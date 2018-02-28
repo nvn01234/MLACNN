@@ -65,15 +65,13 @@ class AttentionInput(Layer):
     def call(self, inputs, **kwargs):
         wM, wd, e1, e2 = inputs
 
-        e1 = K.reshape(e1, (-1, WORD_EMBED_SIZE))
-        e1 = K.repeat(e1, SEQUENCE_LEN)  # (?, SEQUENCE_LEN, WORD_EMBED_SIZE)
-        A1 = K.batch_dot(wd, e1, axes=1)
+        e1 = K.reshape(e1, (-1, WORD_EMBED_SIZE, 1))
+        A1 = K.batch_dot(wd, e1, (2, 1))
         A1 = K.reshape(A1, (-1, SEQUENCE_LEN))
         alpha1 = K.softmax(A1)
 
-        e2 = K.reshape(e2, (-1, WORD_EMBED_SIZE))
-        e2 = K.repeat(e2, SEQUENCE_LEN)  # (?, SEQUENCE_LEN, WORD_EMBED_SIZE)
-        A2 = K.batch_dot(wd, e2, axes=1)
+        e2 = K.reshape(e2, (-1, WORD_EMBED_SIZE, 1))
+        A2 = K.batch_dot(wd, e2, (2,1))
         A2 = K.reshape(A2, (-1, SEQUENCE_LEN))
         alpha2 = K.softmax(A2)
 

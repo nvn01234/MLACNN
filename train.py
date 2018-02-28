@@ -2,10 +2,11 @@ import os
 import tensorflow as tf
 import numpy as np
 import time
-from tensorflow import ConfigProto, logging
+from tensorflow import ConfigProto
 from settings import *
 from models import Model
 from sklearn.metrics import f1_score
+import logging
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 

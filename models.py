@@ -3,7 +3,7 @@ import tensorflow as tf
 from keras.layers.pooling import _GlobalPooling1D
 from tensorflow import ConfigProto
 from keras.layers import Layer, Lambda, Activation, Add, Multiply, Concatenate, Conv1D, GlobalMaxPool1D, Embedding, \
-    Input, Reshape, RepeatVector, Dot, Dense
+    Input, Reshape, RepeatVector, Dot, Dense, initializers, regularizers
 from keras import backend as K, Model
 from keras.engine import InputSpec
 from settings import *
@@ -60,10 +60,6 @@ def build_model():
 
 
 class AttentionInput(Layer):
-    def __init__(self, **kwargs):
-        super(AttentionInput, self).__init__(**kwargs)
-        self.input_spec = [InputSpec(ndim=3), InputSpec(ndim=3), InputSpec(ndim=2), InputSpec(ndim=2)]
-
     def call(self, inputs, **kwargs):
         wM, wd, e1, e2 = inputs
 
@@ -79,18 +75,23 @@ class AttentionInput(Layer):
 
         alpha = (alpha1 ** 2 + alpha2 ** 2)/2 # (?, SEQUENCE_LEN)
         r = wM * K.expand_dims(alpha)
-        print(K.shape(r))
         return r
 
 class AttentionPooling(_GlobalPooling1D):
     def build(self, input_shape):
+        initializer = initializers.get('glorot_uniform')
+        regularizer = regularizers.get(None)
         self.U = self.add_weight(
             name="U",
             shape=(NB_FILTERS, NB_RELATIONS),
+            initializer=initializer,
+            regularizer=regularizer,
         )
         self.WL = self.add_weight(
             name="WL",
             shape=(NB_RELATIONS, NB_FILTERS),
+            initializer=initializer,
+            regularizer=regularizer,
         )
         self.built = True
 

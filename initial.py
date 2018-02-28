@@ -2,6 +2,7 @@ import numpy as np
 from settings import *
 from html.parser import HTMLParser
 from nltk import word_tokenize
+import os
 
 
 def read_word_embeddings(vocab):
@@ -146,6 +147,9 @@ def deep_map(data, word2idx):
 
 
 def main():
+    if not os.path.exists("data"):
+        os.mkdir("data")
+
     dis2idx = init_position_embeddings()
 
     print("read train data")

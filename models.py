@@ -79,6 +79,7 @@ class AttentionInput(Layer):
 
         alpha = (alpha1 ** 2 + alpha2 ** 2)/2 # (?, SEQUENCE_LEN)
         r = wM * K.expand_dims(alpha)
+        print(K.shape(r))
         return r
 
 class AttentionPooling(_GlobalPooling1D):

@@ -20,7 +20,9 @@ def main():
     x_pos1_train = np.load("data/x_pos1_train.npy")
     x_pos2_train = np.load("data/x_pos2_train.npy")
     x_e1_train = np.load("data/x_e1_train.npy")
+    x_e1_train = np.reshape(x_e1_train, (-1, 1))
     x_e2_train = np.load("data/x_e2_train.npy")
+    x_e2_train = np.reshape(x_e2_train, (-1, 1))
     y_train = np.load("data/y_train.npy")
 
     print("load testing data")
@@ -28,7 +30,9 @@ def main():
     x_pos1_test = np.load("data/x_pos1_test.npy")
     x_pos2_test = np.load("data/x_pos2_test.npy")
     x_e1_test = np.load("data/x_e1_test.npy")
+    x_e1_test = np.reshape(x_e1_test, (-1, 1))
     x_e2_test = np.load("data/x_e2_test.npy")
+    x_e2_test = np.reshape(x_e2_test, (-1, 1))
     y_test = np.load("data/y_test.npy")
 
     print("training")

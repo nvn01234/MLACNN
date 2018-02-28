@@ -21,6 +21,7 @@ class SemEvalParser(HTMLParser):
         super(SemEvalParser, self).__init__()
         self.max_len = 0
         self.word2vec = word2vec
+        self.num_unk = 0
 
     def handle_starttag(self, tag, attrs):
         super(SemEvalParser, self).handle_starttag(tag, attrs)
@@ -86,6 +87,7 @@ class SemEvalParser(HTMLParser):
             if _w in self.word2vec:
                 temp.append(self.word2vec[_w])
             else:
+                self.num_unk += 1
                 temp.append(self.word2vec["UNKNOWN"])
         return np.average(temp, 0)
 

@@ -110,7 +110,7 @@ def batch_iter(data, shuffle=True):
         yield shuffled_data[start_index:end_index]
 
 
-def main(_):
+def main():
     train_vec, test_vec = init()
     with tf.Graph().as_default():
         with tf.name_scope("Train"):
@@ -141,3 +141,7 @@ def main(_):
                                  (epoch + 1, train_acc * 100, test_acc * 100, train_f1 * 100, test_f1 * 100))
                 if SAVE_PATH is not None:
                     sv.saver.save(session, SAVE_PATH, global_step=sv.global_step)
+
+
+if __name__ == "__main__":
+    main()

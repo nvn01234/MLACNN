@@ -24,7 +24,7 @@ LOG_FILE = None
 
 # origin data
 TRAIN_FILE = "origin_data/TRAIN_FILE.TXT"
-TEST_FILE = "origin_data/TEST_FILE.TXT"
+TEST_FILE = "origin_data/TEST_FILE_FULL.TXT"
 ORIGIN_WORD_EMBEDDINGS_PATH = "origin_data/glove.6B.300d.txt"
 
 # initialized data

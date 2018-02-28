@@ -3,7 +3,7 @@ import tensorflow as tf
 from keras.layers.pooling import _GlobalPooling1D
 from tensorflow import ConfigProto
 from keras.layers import Layer, Lambda, Activation, Add, Multiply, Concatenate, Conv1D, GlobalMaxPool1D, Embedding, \
-    Input, Reshape, RepeatVector, Dot, Dense, initializers, regularizers
+    Input, Reshape, RepeatVector, Dot, Dense, initializers, regularizers, Dropout
 from keras import backend as K, Model
 from keras.engine import InputSpec
 from settings import *
@@ -52,7 +52,8 @@ def build_model():
     )(r) # (?, SEQUENCE_LEN, NB_FILTERS)
 
     wo = AttentionPooling()(R_star)
-    output = Dense(NB_RELATIONS)(wo)
+    output = Dropout(DROPOUT)(wo)
+    output = Dense(NB_RELATIONS)(output)
     model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input], outputs=[output])
     model.compile(loss='sparse_categorical_crossentropy', metrics=['accuracy'], optimizer='sgd')
     model.summary()

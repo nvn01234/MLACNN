@@ -4,33 +4,23 @@ from html.parser import HTMLParser
 from nltk import word_tokenize
 import os
 
-unknowns = []
-
-def read_word_embeddings(vocab):
-    word2idx = {
-        "PADDING": 0,
-        "UNKNOWN": 1,
+def read_word_embeddings():
+    word2vec = {
+        "UNKNOWN": np.random.uniform(-0.01, 0.01, size=WORD_EMBED_SIZE),
     }
-    word_embeddings = [
-        np.zeros(WORD_EMBED_SIZE),
-        np.random.normal(size=WORD_EMBED_SIZE),
-    ]
     with open(ORIGIN_WORD_EMBEDDINGS_PATH, "r", encoding="utf8") as f:
         for line in f:
             w, *values = line.strip().split()
-            if w in vocab:
-                values = np.array(values, dtype='float32')
-                word2idx[w] = len(word2idx)
-                word_embeddings.append(values)
-    np.save(WORD_EMBEDDINGS_PATH, word_embeddings)
-    return word2idx
+            values = np.array(values, dtype='float32')
+            word2vec[w] = values
+    return word2vec
 
 
 class SemEvalParser(HTMLParser):
-    def __init__(self):
+    def __init__(self, word2vec):
         super(SemEvalParser, self).__init__()
-        self.vocab = set()
         self.max_len = 0
+        self.word2vec = word2vec
 
     def handle_starttag(self, tag, attrs):
         super(SemEvalParser, self).handle_starttag(tag, attrs)
@@ -67,8 +57,8 @@ class SemEvalParser(HTMLParser):
             if self.e2 == w:
                 self.e2pos = i
 
-        self.e1 = self.e1[3:]
-        self.e2 = self.e2[3:]
+        self.e1 = self.word_embed(self.e1[3:])
+        self.e2 = self.word_embed(self.e2[3:])
 
         self.words = []
         self.pos1 = []
@@ -76,10 +66,9 @@ class SemEvalParser(HTMLParser):
         for i in range(SEQUENCE_LEN):
             if i < len(tokens):
                 token = tokens[i][3:] if i == self.e1pos or i == self.e2pos else tokens[i]
-                self.words.append(token)
-                self.vocab.add(token)
+                self.words.append(self.word_embed(token))
             else:
-                self.words.append("PADDING")
+                self.words.append(np.zeros(WORD_EMBED_SIZE))
             self.pos1.append(self.pos_embed(i - self.e1pos))
             self.pos2.append(self.pos_embed(i - self.e2pos))
 
@@ -89,6 +78,16 @@ class SemEvalParser(HTMLParser):
         elif d > MAX_DISTANCE:
             d = MAX_DISTANCE
         return d - MIN_DISTANCE
+
+    def word_embed(self, w):
+        w = w.strip().lower().split("_")
+        temp = []
+        for _w in w:
+            if _w in self.word2vec:
+                temp.append(self.word2vec[_w])
+            else:
+                temp.append(self.word2vec["UNKNOWN"])
+        return np.average(temp, 0)
 
 
 def label2idx(label):
@@ -133,7 +132,6 @@ def deep_map(data, word2idx):
         if data in word2idx:
             data = word2idx[data]
         else:
-            unknowns.append(data)
             data = word2idx["UNKNOWN"]
     return data
 
@@ -142,7 +140,8 @@ def main():
     if not os.path.exists("data"):
         os.mkdir("data")
 
-    parser = SemEvalParser()
+    word2vec = read_word_embeddings()
+    parser = SemEvalParser(word2vec)
 
     print("read train data")
     x_words_train, x_pos1_train, x_pos2_train, x_e1_train, x_e2_train, y_train = read_file(TRAIN_FILE, parser)
@@ -159,23 +158,18 @@ def main():
     print("maxlen: %d" % parser.max_len)
 
     print("read word embeddings")
-    word2idx = read_word_embeddings(parser.vocab)
-    x_words_train = deep_map(x_words_train, word2idx)
-    x_e1_train = deep_map(x_e1_train, word2idx)
-    x_e2_train = deep_map(x_e2_train, word2idx)
-    x_words_test = deep_map(x_words_test, word2idx)
-    x_e1_test = deep_map(x_e1_test, word2idx)
-    x_e2_test = deep_map(x_e2_test, word2idx)
+    x_words_train = deep_map(x_words_train, word2vec)
+    x_e1_train = deep_map(x_e1_train, word2vec)
+    x_e2_train = deep_map(x_e2_train, word2vec)
+    x_words_test = deep_map(x_words_test, word2vec)
+    x_e1_test = deep_map(x_e1_test, word2vec)
+    x_e2_test = deep_map(x_e2_test, word2vec)
     np.save(X_WORDS_TRAIN_PATH, x_words_train)
     np.save(X_E1_TRAIN_PATH, x_e1_train)
     np.save(X_E2_TRAIN_PATH, x_e2_train)
     np.save(X_WORDS_TEST_PATH, x_words_test)
     np.save(X_E1_TEST_PATH, x_e1_test)
     np.save(X_E2_TEST_PATH, x_e2_test)
-
-    print("num unknown words: %d" % len(unknowns))
-    np.save("data/unknowns.npy", unknowns)
-
 
 if __name__ == "__main__":
     main()

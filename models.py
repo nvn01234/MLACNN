@@ -60,7 +60,7 @@ def build_model():
 
 class AttentionInput(Layer):
     def compute_output_shape(self, input_shape):
-        return (None, SEQUENCE_LEN, WORD_REPRE_SIZE)
+        return (input_shape[0], SEQUENCE_LEN, WORD_REPRE_SIZE)
 
     def call(self, inputs, **kwargs):
         wM, wd, e1, e2 = inputs

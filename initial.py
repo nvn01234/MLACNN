@@ -18,7 +18,7 @@ def read_word_embeddings(vocab):
         for line in f:
             w, *values = line.strip().split()
             if w in vocab:
-                values = np.array(values, dtype='float64')
+                values = np.array(values, dtype='float32')
                 word2idx[w] = len(word2idx)
                 word_embeddings.append(values)
     np.save(WORD_EMBEDDINGS_PATH, word_embeddings)
@@ -139,10 +139,7 @@ def deep_map(data, word2idx):
     if isinstance(data, list):
         data = [deep_map(d, word2idx) for d in data]
     elif isinstance(data, str):
-        data = data.split("_")
-        data = [word2idx[d] if d in word2idx else word2idx["UNKNOWN"] for d in data]
-        data = np.average(data, 0)
-        data = np.array(data, dtype='int64')
+        data = word2idx[data] if data in word2idx else word2idx["UNKNOWN"]
     return data
 
 

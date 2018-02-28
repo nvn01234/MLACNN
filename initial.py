@@ -14,14 +14,14 @@ def read_word_embeddings(vocab):
         np.zeros(WORD_EMBED_SIZE),
         np.random.normal(size=WORD_EMBED_SIZE),
     ]
-    with open("origin_data/glove.6B.300d.txt", "r", encoding="utf8") as f:
+    with open(ORIGIN_WORD_EMBEDDINGS_PATH, "r", encoding="utf8") as f:
         for line in f:
             w, *values = line.strip().split()
             if w in vocab:
                 values = np.array(values, dtype='float64')
                 word2idx[w] = len(word2idx)
                 word_embeddings.append(values)
-    np.save("data/word_embeddings.npy", word_embeddings)
+    np.save(WORD_EMBEDDINGS_PATH, word_embeddings)
     return word2idx
 
 
@@ -153,18 +153,16 @@ def main():
     dis2idx = init_position_embeddings()
 
     print("read train data")
-    x_words_train, x_pos1_train, x_pos2_train, x_e1_train, x_e2_train, y_train, vocab_train = read_file(
-        "origin_data/TRAIN_FILE.TXT", dis2idx)
-    np.save("data/x_pos1_train.npy", x_pos1_train)
-    np.save("data/x_pos2_train.npy", x_pos2_train)
-    np.save("data/y_train.npy", y_train)
+    x_words_train, x_pos1_train, x_pos2_train, x_e1_train, x_e2_train, y_train, vocab_train = read_file(TRAIN_FILE, dis2idx)
+    np.save(X_POS1_TRAIN_PATH, x_pos1_train)
+    np.save(X_POS2_TRAIN_PATH, x_pos2_train)
+    np.save(Y_TRAIN_PATH, y_train)
 
     print("read test data")
-    x_words_test, x_pos1_test, x_pos2_test, x_e1_test, x_e2_test, y_test, vocab_test = read_file(
-        "origin_data/TEST_FILE_FULL.TXT", dis2idx)
-    np.save("data/x_pos1_test.npy", x_pos1_test)
-    np.save("data/x_pos2_test.npy", x_pos2_test)
-    np.save("data/y_test.npy", y_test)
+    x_words_test, x_pos1_test, x_pos2_test, x_e1_test, x_e2_test, y_test, vocab_test = read_file(TEST_FILE, dis2idx)
+    np.save(X_POS1_TEST_PATH, x_pos1_test)
+    np.save(X_POS2_TEST_PATH, x_pos2_test)
+    np.save(Y_TEST_PATH, y_test)
 
     print("read word embeddings")
     vocab = set(list(vocab_train) + list(vocab_test))
@@ -175,12 +173,12 @@ def main():
     x_words_test = deep_map(x_words_test, word2idx)
     x_e1_test = deep_map(x_e1_test, word2idx)
     x_e2_test = deep_map(x_e2_test, word2idx)
-    np.save("data/x_words_train.npy", x_words_train)
-    np.save("data/x_e1_train.npy", x_e1_train)
-    np.save("data/x_e2_train.npy", x_e2_train)
-    np.save("data/x_words_test.npy", x_words_test)
-    np.save("data/x_e1_test.npy", x_e1_test)
-    np.save("data/x_e2_test.npy", x_e2_test)
+    np.save(X_WORDS_TRAIN_PATH, x_words_train)
+    np.save(X_E1_TRAIN_PATH, x_e1_train)
+    np.save(X_E2_TRAIN_PATH, x_e2_train)
+    np.save(X_WORDS_TEST_PATH, x_words_test)
+    np.save(X_E1_TEST_PATH, x_e1_test)
+    np.save(X_E2_TEST_PATH, x_e2_test)
 
 
 if __name__ == "__main__":

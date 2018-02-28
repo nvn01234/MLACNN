@@ -9,6 +9,7 @@ from sklearn.metrics import f1_score
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
+
 def run_epoch(session, model, batch_iter, is_training=True, verbose=True):
     start_time = time.time()
     acc_count = 0
@@ -27,7 +28,8 @@ def run_epoch(session, model, batch_iter, is_training=True, verbose=True):
                      in_dist2: dist2, in_y: relations}
         y_true += list(relations)
         if is_training:
-            _, _, acc, loss, pred = session.run([model.train_op, model.reg_op, model.acc, model.loss, model.predict], feed_dict=feed_dict)
+            _, _, acc, loss, pred = session.run([model.train_op, model.reg_op, model.acc, model.loss, model.predict],
+                                                feed_dict=feed_dict)
             acc_count += acc
             if verbose and step % 10 == 0:
                 logging.info("  step: %d acc: %.2f%% loss: %.2f time: %.2f" % (
@@ -43,8 +45,10 @@ def run_epoch(session, model, batch_iter, is_training=True, verbose=True):
     f1 = f1_score(y_true, y_pred, average="macro")
     return acc_count / (step * BATCH_SIZE), f1
 
+
 def vectorize(paths):
     return (np.load(path) for path in paths)
+
 
 def init():
     # Config log
@@ -134,6 +138,6 @@ def main(_):
                     train_acc, train_f1 = run_epoch(session, m_train, train_iter, verbose=False)
                     test_acc, test_f1 = run_epoch(session, m_test, test_iter, is_training=False)
                     logging.info("Epoch: %d, Train: %.2f%%, Test: %.2f%%, Train f1: %.2f%%, Test f1: %.2f%%" %
-                                 (epoch + 1, train_acc * 100, test_acc * 100, train_f1 * 100, test_f1*100))
+                                 (epoch + 1, train_acc * 100, test_acc * 100, train_f1 * 100, test_f1 * 100))
                 if SAVE_PATH is not None:
                     sv.saver.save(session, SAVE_PATH, global_step=sv.global_step)

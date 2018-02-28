@@ -4,6 +4,7 @@ from html.parser import HTMLParser
 from nltk import word_tokenize
 import os
 
+unknowns = []
 
 def read_word_embeddings(vocab):
     word2idx = {
@@ -129,7 +130,11 @@ def deep_map(data, word2idx):
     if isinstance(data, list):
         data = [deep_map(d, word2idx) for d in data]
     elif isinstance(data, str):
-        data = word2idx[data] if data in word2idx else word2idx["UNKNOWN"]
+        if data in word2idx:
+            data = word2idx[data]
+        else:
+            unknowns.append(data)
+            data = word2idx["UNKNOWN"]
     return data
 
 
@@ -167,6 +172,9 @@ def main():
     np.save(X_WORDS_TEST_PATH, x_words_test)
     np.save(X_E1_TEST_PATH, x_e1_test)
     np.save(X_E2_TEST_PATH, x_e2_test)
+
+    print("num unknown words: %d" % len(unknowns))
+    np.save("data/unknowns.npy", unknowns)
 
 
 if __name__ == "__main__":

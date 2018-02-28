@@ -77,7 +77,7 @@ class AttentionInput(Layer):
         A2 = K.reshape(A2, (-1, SEQUENCE_LEN))
         alpha2 = K.softmax(A2)
 
-        alpha = (alpha1 ** 2 + alpha2 ** 2)/2 # (?, SEQUENCE_LEN)
+        alpha = (K.square(alpha1) + K.square(alpha2))/2 # (?, SEQUENCE_LEN)
         r = wM * K.expand_dims(alpha)
         return r
 

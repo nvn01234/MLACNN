@@ -59,6 +59,10 @@ def build_model():
 
 
 class AttentionInput(Layer):
+    def __init__(self, **kwargs):
+        super(AttentionInput, self).__init__(**kwargs)
+        self.input_spec = [InputSpec(ndim=3), InputSpec(ndim=3), InputSpec(ndim=2), InputSpec(ndim=2)]
+
     def call(self, inputs, **kwargs):
         wM, wd, e1, e2 = inputs
 

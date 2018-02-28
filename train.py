@@ -37,12 +37,11 @@ def main():
 
     print("training")
     model = build_model()
-    for i in range(NB_EPOCHS):
-        model.fit([x_words_train, x_pos1_train, x_pos2_train, x_e1_train, x_e2_train], y_train, epochs=i+1, verbose=True, batch_size=BATCH_SIZE, initial_epoch=i)
-        scores = model.predict([x_words_test, x_pos1_test, x_pos2_test, x_e1_test, x_e2_test], verbose=False)
-        y_pred = scores.argmin(axis=-1)
-        f1 = f1_score(y_test, y_pred, average="macro")
-        print("f1-macro: %.4f%%" % (f1*100))
+    model.fit([x_words_train, x_pos1_train, x_pos2_train, x_e1_train, x_e2_train], y_train, epochs=NB_EPOCHS, verbose=True, batch_size=BATCH_SIZE)
+    scores = model.predict([x_words_test, x_pos1_test, x_pos2_test, x_e1_test, x_e2_test], verbose=False)
+    y_pred = scores.argmin(axis=-1)
+    f1 = f1_score(y_test, y_pred, average="macro")
+    print("f1-macro: %.4f%%" % (f1*100))
 
 
 if __name__ == "__main__":

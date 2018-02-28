@@ -125,51 +125,34 @@ def read_file(path, parser):
     return x_words, x_pos1, x_pos2, x_e1, x_e2, y
 
 
-def deep_map(data, word2idx):
-    if isinstance(data, list):
-        data = [deep_map(d, word2idx) for d in data]
-    elif isinstance(data, str):
-        if data in word2idx:
-            data = word2idx[data]
-        else:
-            data = word2idx["UNKNOWN"]
-    return data
-
-
 def main():
     if not os.path.exists("data"):
         os.mkdir("data")
 
+    print("read word embeddings")
     word2vec = read_word_embeddings()
     parser = SemEvalParser(word2vec)
 
     print("read train data")
     x_words_train, x_pos1_train, x_pos2_train, x_e1_train, x_e2_train, y_train = read_file(TRAIN_FILE, parser)
+    np.save(X_WORDS_TRAIN_PATH, x_words_train)
+    np.save(X_E1_TRAIN_PATH, x_e1_train)
+    np.save(X_E2_TRAIN_PATH, x_e2_train)
     np.save(X_POS1_TRAIN_PATH, x_pos1_train)
     np.save(X_POS2_TRAIN_PATH, x_pos2_train)
     np.save(Y_TRAIN_PATH, y_train)
 
     print("read test data")
     x_words_test, x_pos1_test, x_pos2_test, x_e1_test, x_e2_test, y_test = read_file(TEST_FILE, parser)
+    np.save(X_WORDS_TEST_PATH, x_words_test)
+    np.save(X_E1_TEST_PATH, x_e1_test)
+    np.save(X_E2_TEST_PATH, x_e2_test)
     np.save(X_POS1_TEST_PATH, x_pos1_test)
     np.save(X_POS2_TEST_PATH, x_pos2_test)
     np.save(Y_TEST_PATH, y_test)
 
     print("maxlen: %d" % parser.max_len)
 
-    print("read word embeddings")
-    x_words_train = deep_map(x_words_train, word2vec)
-    x_e1_train = deep_map(x_e1_train, word2vec)
-    x_e2_train = deep_map(x_e2_train, word2vec)
-    x_words_test = deep_map(x_words_test, word2vec)
-    x_e1_test = deep_map(x_e1_test, word2vec)
-    x_e2_test = deep_map(x_e2_test, word2vec)
-    np.save(X_WORDS_TRAIN_PATH, x_words_train)
-    np.save(X_E1_TRAIN_PATH, x_e1_train)
-    np.save(X_E2_TRAIN_PATH, x_e2_train)
-    np.save(X_WORDS_TEST_PATH, x_words_test)
-    np.save(X_E1_TEST_PATH, x_e1_test)
-    np.save(X_E2_TEST_PATH, x_e2_test)
 
 if __name__ == "__main__":
     main()

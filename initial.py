@@ -153,8 +153,7 @@ def main():
     np.save(X_POS2_TEST_PATH, x_pos2_test)
     np.save(Y_TEST_PATH, y_test)
 
-    print("maxlen: %d" % parser.max_len)
-
+    print("maxlen: %d, num unknown: %d" % (parser.max_len, parser.num_unk))
 
 if __name__ == "__main__":
     main()

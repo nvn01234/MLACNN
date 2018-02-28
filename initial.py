@@ -150,7 +150,6 @@ def read_file(_set, path, word2idx, dis2idx):
 def main():
     word2idx = read_word_embeddings()
     dis2idx = init_position_embeddings()
-    init_relation_embeddings()
     read_file("train", "origin_data/TRAIN_FILE.TXT", word2idx, dis2idx)
     read_file("test", "origin_data/TEST_FILE_FULL.TXT", word2idx, dis2idx)
 

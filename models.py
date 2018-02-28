@@ -16,8 +16,8 @@ def build_model():
     words_input = Input(shape=(SEQUENCE_LEN,), name="words_input")
     pos1_input = Input(shape=(SEQUENCE_LEN,), name="pos1_input")
     pos2_input = Input(shape=(SEQUENCE_LEN,), name="pos2_input")
-    e1_input = Input(shape=(), name="e1_input")
-    e2_input = Input(shape=(), name="e2_input")
+    e1_input = Input(shape=(1,), name="e1_input")
+    e2_input = Input(shape=(1,), name="e2_input")
 
     word_embeddings = Embedding(
         input_dim=we.shape[0],
@@ -65,11 +65,13 @@ class AttentionInput(Layer):
     def call(self, inputs, **kwargs):
         wM, wd, e1, e2 = inputs
 
+        e1 = K.reshape(e1, (-1, WORD_EMBED_SIZE))
         e1 = K.repeat(e1, SEQUENCE_LEN)  # (?, SEQUENCE_LEN, WORD_EMBED_SIZE)
         A1 = K.batch_dot(wd, e1, -1)
         A1 = K.reshape(A1, (-1, SEQUENCE_LEN))
         alpha1 = K.softmax(A1)
 
+        e2 = K.reshape(e2, (-1, WORD_EMBED_SIZE))
         e2 = K.repeat(e2, SEQUENCE_LEN)  # (?, SEQUENCE_LEN, WORD_EMBED_SIZE)
         A2 = K.batch_dot(wd, e2, -1)
         A2 = K.reshape(A2, (-1, SEQUENCE_LEN))

@@ -48,7 +48,15 @@ def run_epoch(session, model, batch_iter, is_training=True, verbose=True):
 
 
 def vectorize(paths):
-    return (np.load(path) for path in paths)
+    data = []
+    for path in paths:
+        d = np.load(path)
+        if d.dtype == np.int64:
+            d = d.astype(np.int32)
+        elif d.dtype == np.float64:
+            d = d.astype(np.float32)
+        data.append(d)
+    return data
 
 
 def init():

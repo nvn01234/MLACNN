@@ -6,19 +6,19 @@ import numpy as np
 class Model(object):
     def __init__(self, is_training=True):
         # input
-        in_x = tf.placeholder(dtype=tf.int64, shape=[BATCH_SIZE, SEQUENCE_LEN], name='in_x')  # sentences
-        in_e1 = tf.placeholder(dtype=tf.int64, shape=[BATCH_SIZE], name='in_e1')
-        in_e2 = tf.placeholder(dtype=tf.int64, shape=[BATCH_SIZE], name='in_e2')
-        in_dist1 = tf.placeholder(dtype=tf.int64, shape=[BATCH_SIZE, SEQUENCE_LEN], name='in_dist1')
-        in_dist2 = tf.placeholder(dtype=tf.int64, shape=[BATCH_SIZE, SEQUENCE_LEN], name='in_dist2')
-        in_y = tf.placeholder(dtype=tf.int64, shape=[BATCH_SIZE], name='in_y')  # relations
+        in_x = tf.placeholder(dtype=tf.int32, shape=[BATCH_SIZE, SEQUENCE_LEN], name='in_x')  # sentences
+        in_e1 = tf.placeholder(dtype=tf.int32, shape=[BATCH_SIZE], name='in_e1')
+        in_e2 = tf.placeholder(dtype=tf.int32, shape=[BATCH_SIZE], name='in_e2')
+        in_dist1 = tf.placeholder(dtype=tf.int32, shape=[BATCH_SIZE, SEQUENCE_LEN], name='in_dist1')
+        in_dist2 = tf.placeholder(dtype=tf.int32, shape=[BATCH_SIZE, SEQUENCE_LEN], name='in_dist2')
+        in_y = tf.placeholder(dtype=tf.int32, shape=[BATCH_SIZE], name='in_y')  # relations
 
         self.inputs = (in_x, in_e1, in_e2, in_dist1, in_dist2, in_y)
 
         # embeddings
         word_embeddings = np.load(WORD_EMBEDDINGS_PATH)
         initializer = tf.truncated_normal_initializer(stddev=0.1)
-        embed = tf.get_variable(initializer=word_embeddings, dtype=tf.float64, name='word_embed')
+        embed = tf.get_variable(initializer=word_embeddings, dtype=tf.float32, name='word_embed')
         pos1_embed = tf.get_variable(initializer=initializer, shape=[NB_DISTANCES, POSITION_EMBED_SIZE], name='position1_embed')
         pos2_embed = tf.get_variable(initializer=initializer, shape=[NB_DISTANCES, POSITION_EMBED_SIZE], name='position2_embed')
         rel_embed = tf.get_variable(initializer=initializer, shape=[NB_RELATIONS, NB_FILTERS], name='relation_embed')
@@ -69,8 +69,8 @@ class Model(object):
         b_o = tf.get_variable(initializer=initializer, shape=[NB_RELATIONS], name='b_o')
         scores = tf.nn.xw_plus_b(h_pool_flat, W_o, b_o, name="scores")
         predict = tf.argmax(scores, 1, name="predictions")
-        predict = tf.cast(predict, dtype=tf.int64)
-        acc = tf.reduce_sum(tf.cast(tf.equal(predict, in_y), dtype=tf.int64))
+        predict = tf.cast(predict, dtype=tf.int32)
+        acc = tf.reduce_sum(tf.cast(tf.equal(predict, in_y), dtype=tf.int32))
         self.predict = predict
         self.acc = acc
 

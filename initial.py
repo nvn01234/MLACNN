@@ -18,7 +18,7 @@ def read_word_embeddings(vocab):
         for line in f:
             w, *values = line.strip().split()
             if w in vocab:
-                values = np.array(values, dtype='float64')
+                values = np.array(values, dtype='float32')
                 word2idx[w] = len(word2idx)
                 word_embeddings.append(values)
     np.save(WORD_EMBEDDINGS_PATH, word_embeddings)

@@ -6,9 +6,9 @@ import numpy as np
 class Model(object):
     def __init__(self, is_training=True):
         # input
-        in_x = tf.placeholder(dtype=tf.int32, shape=[BATCH_SIZE, SEQUENCE_LEN, WORD_EMBED_SIZE], name='in_x')  # sentences
-        in_e1 = tf.placeholder(dtype=tf.int32, shape=[BATCH_SIZE, WORD_EMBED_SIZE], name='in_e1')
-        in_e2 = tf.placeholder(dtype=tf.int32, shape=[BATCH_SIZE, WORD_EMBED_SIZE], name='in_e2')
+        in_x = tf.placeholder(dtype=tf.float32, shape=[BATCH_SIZE, SEQUENCE_LEN, WORD_EMBED_SIZE], name='in_x')  # sentences
+        in_e1 = tf.placeholder(dtype=tf.float32, shape=[BATCH_SIZE, WORD_EMBED_SIZE], name='in_e1')
+        in_e2 = tf.placeholder(dtype=tf.float32, shape=[BATCH_SIZE, WORD_EMBED_SIZE], name='in_e2')
         in_dist1 = tf.placeholder(dtype=tf.int32, shape=[BATCH_SIZE, SEQUENCE_LEN], name='in_dist1')
         in_dist2 = tf.placeholder(dtype=tf.int32, shape=[BATCH_SIZE, SEQUENCE_LEN], name='in_dist2')
         in_y = tf.placeholder(dtype=tf.int32, shape=[BATCH_SIZE], name='in_y')  # relations

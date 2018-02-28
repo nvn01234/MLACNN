@@ -25,18 +25,11 @@ def read_word_embeddings(vocab):
     return word2idx
 
 
-def init_position_embeddings():
-    dis2idx = {"PADDING": 0, "LOWER_MIN": 1, "GREATER_MAX": 2}
-    for dis in range(MIN_DISTANCE, MAX_DISTANCE + 1):
-        dis2idx[dis] = len(dis2idx)
-    return dis2idx
-
-
 class SemEvalParser(HTMLParser):
-    def __init__(self, dis2idx):
+    def __init__(self):
         super(SemEvalParser, self).__init__()
         self.vocab = set()
-        self.dis2idx = dis2idx
+        self.max_len = 0
 
     def handle_starttag(self, tag, attrs):
         super(SemEvalParser, self).handle_starttag(tag, attrs)
@@ -66,6 +59,7 @@ class SemEvalParser(HTMLParser):
         self.e1pos = 0
         self.e2pos = 0
         tokens = word_tokenize(" ".join(self.data))
+        self.max_len = max(self.max_len, len(tokens))
         for i, w in enumerate(tokens):
             if self.e1 == w:
                 self.e1pos = i
@@ -82,21 +76,18 @@ class SemEvalParser(HTMLParser):
             if i < len(tokens):
                 token = tokens[i][3:] if i == self.e1pos or i == self.e2pos else tokens[i]
                 self.words.append(token)
-                self.pos1.append(self.pos_embed(i - self.e1pos))
-                self.pos2.append(self.pos_embed(i - self.e2pos))
                 self.vocab.add(token)
             else:
                 self.words.append("PADDING")
-                self.pos1.append(self.dis2idx["PADDING"])
-                self.pos2.append(self.dis2idx["PADDING"])
+            self.pos1.append(self.pos_embed(i - self.e1pos))
+            self.pos2.append(self.pos_embed(i - self.e2pos))
 
     def pos_embed(self, d):
         if d < MIN_DISTANCE:
-            return self.dis2idx["LOWER_MIN"]
+            d = MIN_DISTANCE
         elif d > MAX_DISTANCE:
-            return self.dis2idx["GREATER_MAX"]
-        else:
-            return self.dis2idx[d]
+            d = MAX_DISTANCE
+        return d - MIN_DISTANCE
 
 
 def label2idx(label):
@@ -113,14 +104,13 @@ def label2idx(label):
     return labels_mapping[label] if label in labels_mapping else labels_mapping["Other"]
 
 
-def read_file(path, dis2idx):
+def read_file(path, parser):
     x_words = []
     x_pos1 = []
     x_pos2 = []
     x_e1 = []
     x_e2 = []
     y = []
-    parser = SemEvalParser(dis2idx)
     with open(path, "r", encoding="utf8") as f:
         records = f.read().strip().split("\n\n")
         for record in records:
@@ -132,7 +122,7 @@ def read_file(path, dis2idx):
             x_e2.append(parser.e2)
             y.append(parser.label)
 
-    return x_words, x_pos1, x_pos2, x_e1, x_e2, y, parser.vocab
+    return x_words, x_pos1, x_pos2, x_e1, x_e2, y
 
 
 def deep_map(data, word2idx):
@@ -147,23 +137,24 @@ def main():
     if not os.path.exists("data"):
         os.mkdir("data")
 
-    dis2idx = init_position_embeddings()
+    parser = SemEvalParser()
 
     print("read train data")
-    x_words_train, x_pos1_train, x_pos2_train, x_e1_train, x_e2_train, y_train, vocab_train = read_file(TRAIN_FILE, dis2idx)
+    x_words_train, x_pos1_train, x_pos2_train, x_e1_train, x_e2_train, y_train = read_file(TRAIN_FILE, parser)
     np.save(X_POS1_TRAIN_PATH, x_pos1_train)
     np.save(X_POS2_TRAIN_PATH, x_pos2_train)
     np.save(Y_TRAIN_PATH, y_train)
 
     print("read test data")
-    x_words_test, x_pos1_test, x_pos2_test, x_e1_test, x_e2_test, y_test, vocab_test = read_file(TEST_FILE, dis2idx)
+    x_words_test, x_pos1_test, x_pos2_test, x_e1_test, x_e2_test, y_test = read_file(TEST_FILE, parser)
     np.save(X_POS1_TEST_PATH, x_pos1_test)
     np.save(X_POS2_TEST_PATH, x_pos2_test)
     np.save(Y_TEST_PATH, y_test)
 
+    print("maxlen: %d" % parser.max_len)
+
     print("read word embeddings")
-    vocab = set(list(vocab_train) + list(vocab_test))
-    word2idx = read_word_embeddings(vocab)
+    word2idx = read_word_embeddings(parser.vocab)
     x_words_train = deep_map(x_words_train, word2idx)
     x_e1_train = deep_map(x_e1_train, word2idx)
     x_e2_train = deep_map(x_e2_train, word2idx)

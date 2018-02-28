@@ -59,9 +59,6 @@ def build_model():
 
 
 class AttentionInput(Layer):
-    def compute_output_shape(self, input_shape):
-        return (input_shape[0], SEQUENCE_LEN, WORD_REPRE_SIZE)
-
     def call(self, inputs, **kwargs):
         wM, wd, e1, e2 = inputs
 
@@ -100,5 +97,5 @@ class AttentionPooling(Layer):
         return wo
 
     def compute_output_shape(self, input_shape):
-        return (input_shape[0], NB_FILTERS)
+        return (input_shape[0], input_shape[-1])
 

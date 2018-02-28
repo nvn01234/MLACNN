@@ -54,7 +54,7 @@ def build_model():
     wo = AttentionPooling()(R_star)
     output = Dense(NB_RELATIONS)(wo)
     model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input], outputs=[output])
-    model.compile(loss='sparse_categorical_crossentroy', metrics=['accuracy'], optimizer='sgd')
+    model.compile(loss='sparse_categorical_crossentropy', metrics=['accuracy'], optimizer='sgd')
     model.summary()
     return model
 

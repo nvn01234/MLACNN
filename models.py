@@ -48,6 +48,7 @@ def build_model():
         filters=NB_FILTERS,
         activation="tanh",
         name="convolution",
+        padding="same",
     )(r) # (?, SEQUENCE_LEN, NB_FILTERS)
 
     wo = AttentionPooling()(R_star)
@@ -99,7 +100,7 @@ class AttentionPooling(_GlobalPooling1D):
         G = K.dot(R_star, self.U) # (?, SEQUENCE_LEN, NB_RELATIONS)
         G = K.dot(G, self.WL)  # (?, SEQUENCE_LEN, NB_FILTERS)
         AP = K.softmax(G)
-        wo = K.batch_dot(R_star, AP, (1, 2)) #(?, NB_FILTERS, NB_FILTERS)
+        wo = K.batch_dot(R_star, AP, (1, 1)) #(?, NB_FILTERS, NB_FILTERS)
         wo = K.max(wo, -1) # (?, NB_FILTERS)
         return wo
 

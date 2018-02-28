@@ -67,7 +67,7 @@ class AttentionInput(Layer):
 
         e1 = K.reshape(e1, (-1, WORD_EMBED_SIZE))
         e1 = K.repeat(e1, SEQUENCE_LEN)  # (?, SEQUENCE_LEN, WORD_EMBED_SIZE)
-        A1 = K.batch_dot(wd, e1, -1)
+        A1 = K.batch_dot(wd, e1, axes=2)
         A1 = K.reshape(A1, (-1, SEQUENCE_LEN))
         alpha1 = K.softmax(A1)
 

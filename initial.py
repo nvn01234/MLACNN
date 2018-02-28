@@ -4,8 +4,7 @@ from html.parser import HTMLParser
 from nltk import word_tokenize
 
 
-def read_word_embeddings():
-    print("read word embeddings")
+def read_word_embeddings(vocab):
     word2idx = {
         "PADDING": 0,
         "UNKNOWN": 1,
@@ -17,15 +16,15 @@ def read_word_embeddings():
     with open("origin_data/glove.6B.300d.txt", "r", encoding="utf8") as f:
         for line in f:
             w, *values = line.strip().split()
-            values = np.array(values, dtype='float64')
-            word2idx[w] = len(word2idx)
-            word_embeddings.append(values)
+            if w in vocab:
+                values = np.array(values, dtype='float64')
+                word2idx[w] = len(word2idx)
+                word_embeddings.append(values)
     np.save("data/word_embeddings.npy", word_embeddings)
     return word2idx
 
 
 def init_position_embeddings():
-    print("init position embeddings")
     dis2idx = {"PADDING": 0, "LOWER_MIN": 1, "GREATER_MAX": 2}
     for dis in range(MIN_DISTANCE, MAX_DISTANCE + 1):
         dis2idx[dis] = len(dis2idx)
@@ -33,20 +32,9 @@ def init_position_embeddings():
 
 
 class SemEvalParser(HTMLParser):
-    def __init__(self, word2idx, dis2idx):
+    def __init__(self, dis2idx):
         super(SemEvalParser, self).__init__()
-        self.data = []
-
-        self.e1 = None
-        self.e2 = None
-        self.e1pos = 0
-        self.e2pos = 0
-
-        self.words = []
-        self.pos1 = []
-        self.pos2 = []
-
-        self.word2idx = word2idx
+        self.vocab = set()
         self.dis2idx = dis2idx
 
     def handle_starttag(self, tag, attrs):
@@ -65,8 +53,17 @@ class SemEvalParser(HTMLParser):
         self.data.append(data)
 
     def feed(self, data):
+        data, label, _ = data.strip().split("\n")
+        data = data.strip().split("\t")[1][1:-1]
+        self.label = label2idx(label)
+
+        self.data = []
+        self.e1 = None
+        self.e2 = None
         super(SemEvalParser, self).feed(data)
 
+        self.e1pos = 0
+        self.e2pos = 0
         tokens = word_tokenize(" ".join(self.data))
         for i, w in enumerate(tokens):
             if self.e1 == w:
@@ -74,22 +71,23 @@ class SemEvalParser(HTMLParser):
             if self.e2 == w:
                 self.e2pos = i
 
-        self.e1 = self.word_embed(self.e1[3:])
-        self.e2 = self.word_embed(self.e2[3:])
-        tokens = [t[:3] if t.startswith("e1_") or t.startswith("e2_") else t for t in tokens]
+        self.e1 = self.e1[3:]
+        self.e2 = self.e2[3:]
 
+        self.words = []
+        self.pos1 = []
+        self.pos2 = []
         for i in range(SEQUENCE_LEN):
             if i < len(tokens):
-                self.words.append(self.word_embed(tokens[i]))
+                token = tokens[i][3:] if i == self.e1pos or i == self.e2pos else tokens[i]
+                self.words.append(token)
                 self.pos1.append(self.pos_embed(i - self.e1pos))
                 self.pos2.append(self.pos_embed(i - self.e2pos))
+                self.vocab.add(token)
             else:
-                self.words.append(self.word2idx["PADDING"])
+                self.words.append("PADDING")
                 self.pos1.append(self.dis2idx["PADDING"])
                 self.pos2.append(self.dis2idx["PADDING"])
-
-    def word_embed(self, w):
-        return self.word2idx[w] if w in self.word2idx else self.word2idx["UNKNOWN"]
 
     def pos_embed(self, d):
         if d < MIN_DISTANCE:
@@ -114,44 +112,71 @@ def label2idx(label):
     return labels_mapping[label] if label in labels_mapping else labels_mapping["Other"]
 
 
-def read_file(_set, path, word2idx, dis2idx):
-    print("read %s data" % _set)
+def read_file(path, dis2idx):
     x_words = []
     x_pos1 = []
     x_pos2 = []
     x_e1 = []
     x_e2 = []
     y = []
+    parser = SemEvalParser(dis2idx)
     with open(path, "r", encoding="utf8") as f:
         records = f.read().strip().split("\n\n")
         for record in records:
-            text, label, _ = record.strip().split("\n")
-
-            text = text.strip().split("\t")[1][1:-1]
-            label = label2idx(label)
-            parser = SemEvalParser(word2idx, dis2idx)
-            parser.feed(text)
-
+            parser.feed(record)
             x_words.append(parser.words)
             x_pos1.append(parser.pos1)
             x_pos2.append(parser.pos2)
             x_e1.append(parser.e1)
             x_e2.append(parser.e2)
-            y.append(label)
+            y.append(parser.label)
 
-    np.save("data/x_words_%s.npy" % _set, x_words)
-    np.save("data/x_pos1_%s.npy" % _set, x_pos1)
-    np.save("data/x_pos2_%s.npy" % _set, x_pos2)
-    np.save("data/x_e1_%s.npy" % _set, x_e1)
-    np.save("data/x_e2_%s.npy" % _set, x_e2)
-    np.save("data/y_%s.npy" % _set, y)
+    return x_words, x_pos1, x_pos2, x_e1, x_e2, y, parser.vocab
+
+
+def deep_map(data, word2idx):
+    if isinstance(data, list):
+        data = [deep_map(d, word2idx) for d in data]
+    elif isinstance(data, str):
+        data = data.split("_")
+        data = [word2idx[d] if d in word2idx else word2idx["UNKNOWN"] for d in data]
+        data = np.average(data, 0)
+        data = np.array(data, dtype='int64')
+    return data
 
 
 def main():
-    word2idx = read_word_embeddings()
     dis2idx = init_position_embeddings()
-    read_file("train", "origin_data/TRAIN_FILE.TXT", word2idx, dis2idx)
-    read_file("test", "origin_data/TEST_FILE_FULL.TXT", word2idx, dis2idx)
+
+    print("read train data")
+    x_words_train, x_pos1_train, x_pos2_train, x_e1_train, x_e2_train, y_train, vocab_train = read_file(
+        "origin_data/TRAIN_FILE.TXT", dis2idx)
+    np.save("data/x_pos1_train.npy", x_pos1_train)
+    np.save("data/x_pos2_train.npy", x_pos2_train)
+    np.save("data/y_train.npy", y_train)
+
+    print("read test data")
+    x_words_test, x_pos1_test, x_pos2_test, x_e1_test, x_e2_test, y_test, vocab_test = read_file(
+        "origin_data/TEST_FILE_FULL.TXT", dis2idx)
+    np.save("data/x_pos1_test.npy", x_pos1_test)
+    np.save("data/x_pos2_test.npy", x_pos2_test)
+    np.save("data/y_test.npy", y_test)
+
+    print("read word embeddings")
+    vocab = set(list(vocab_train) + list(vocab_test))
+    word2idx = read_word_embeddings(vocab)
+    x_words_train = deep_map(x_words_train, word2idx)
+    x_e1_train = deep_map(x_e1_train, word2idx)
+    x_e2_train = deep_map(x_e2_train, word2idx)
+    x_words_test = deep_map(x_words_test, word2idx)
+    x_e1_test = deep_map(x_e1_test, word2idx)
+    x_e2_test = deep_map(x_e2_test, word2idx)
+    np.save("data/x_words_train.npy", x_words_train)
+    np.save("data/x_e1_train.npy", x_e1_train)
+    np.save("data/x_e2_train.npy", x_e2_train)
+    np.save("data/x_words_test.npy", x_words_test)
+    np.save("data/x_e1_test.npy", x_e1_test)
+    np.save("data/x_e2_test.npy", x_e2_test)
 
 
 if __name__ == "__main__":

@@ -1,5 +1,6 @@
 import numpy as np
 import tensorflow as tf
+from keras.layers.pooling import _GlobalPooling1D
 from tensorflow import ConfigProto
 from keras.layers import Layer, Lambda, Activation, Add, Multiply, Concatenate, Conv1D, GlobalMaxPool1D, Embedding, \
     Input, Reshape, RepeatVector, Dot, Dense
@@ -80,7 +81,7 @@ class AttentionInput(Layer):
         r = wM * K.expand_dims(alpha)
         return r
 
-class AttentionPooling(Layer):
+class AttentionPooling(_GlobalPooling1D):
     def build(self, input_shape):
         self.U = self.add_weight(
             name="U",
@@ -99,7 +100,4 @@ class AttentionPooling(Layer):
         wo = K.batch_dot(R_star, AP, (1, 2)) #(?, NB_FILTERS, NB_FILTERS)
         wo = K.max(wo, -1) # (?, NB_FILTERS)
         return wo
-
-    def compute_output_shape(self, input_shape):
-        return (input_shape[0], input_shape[-1])
 

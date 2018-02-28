@@ -78,7 +78,7 @@ class AttentionInput(Layer):
         alpha2 = K.softmax(A2)
 
         alpha = (K.square(alpha1) + K.square(alpha2))/2 # (?, SEQUENCE_LEN)
-        r = wM * K.expand_dims(alpha)
+        r = wM * K.reshape(alpha, (-1, SEQUENCE_LEN, 1))
         return r
 
 class AttentionPooling(_GlobalPooling1D):

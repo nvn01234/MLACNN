@@ -39,3 +39,7 @@ def main():
         y_pred = scores.argmin(axis=-1)
         f1 = f1_score(y_test, y_pred, average="macro")
         print("f1-macro: %.4f%%" % (f1*100))
+
+
+if __name__ == "__main__":
+    main()

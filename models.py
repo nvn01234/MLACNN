@@ -100,5 +100,5 @@ class AttentionPooling(Layer):
         return wo
 
     def compute_output_shape(self, input_shape):
-        return (None, NB_FILTERS)
+        return (input_shape[0], NB_FILTERS)
 

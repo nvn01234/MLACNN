@@ -3,12 +3,14 @@ from settings import *
 from html.parser import HTMLParser
 from nltk import word_tokenize
 import os
+from gensim.models import Word2Vec
+
 
 def read_word_embeddings():
     word2vec = {
         "UNKNOWN": np.random.uniform(-0.01, 0.01, size=WORD_EMBED_SIZE),
     }
-    with open(ORIGIN_WORD_EMBEDDINGS_PATH, "r", encoding="utf8") as f:
+    with open("origin_data/glove.6B.300d.txt", "r", encoding="utf8") as f:
         for line in f:
             w, *values = line.strip().split()
             values = np.array(values, dtype='float32')
@@ -22,6 +24,8 @@ class SemEvalParser(HTMLParser):
         self.max_len = 0
         self.word2vec = word2vec
         self.num_unk = 0
+        self.pos1_total = []
+        self.pos2_total = []
 
     def handle_starttag(self, tag, attrs):
         super(SemEvalParser, self).handle_starttag(tag, attrs)
@@ -58,27 +62,34 @@ class SemEvalParser(HTMLParser):
             if self.e2 == w:
                 self.e2pos = i
 
-        self.e1 = self.word_embed(self.e1[3:])
-        self.e2 = self.word_embed(self.e2[3:])
+        self.e1 = self.e1[3:]
+        self.e2 = self.e2[3:]
+        tokens = [t[3:] if i == self.e1pos or i == self.e2pos else t for i, t in enumerate(tokens)]
+
+        self.e1 = self.word_embed(self.e1)
+        self.e2 = self.word_embed(self.e2)
 
         self.words = []
-        self.pos1 = []
-        self.pos2 = []
         for i in range(SEQUENCE_LEN):
             if i < len(tokens):
-                token = tokens[i][3:] if i == self.e1pos or i == self.e2pos else tokens[i]
-                self.words.append(self.word_embed(token))
+                self.words.append(self.word_embed(tokens[i]))
             else:
                 self.words.append(np.zeros(WORD_EMBED_SIZE))
+
+        self.pos1 = []
+        self.pos2 = []
+        for i in range(len(tokens)):
             self.pos1.append(self.pos_embed(i - self.e1pos))
             self.pos2.append(self.pos_embed(i - self.e2pos))
+        self.pos1_total += self.pos1
+        self.pos2_total += self.pos2
 
     def pos_embed(self, d):
         if d < MIN_DISTANCE:
             d = MIN_DISTANCE
         elif d > MAX_DISTANCE:
             d = MAX_DISTANCE
-        return d - MIN_DISTANCE
+        return str(d)
 
     def word_embed(self, w):
         w = w.strip().lower().split("_")
@@ -107,53 +118,89 @@ def label2idx(label):
 
 
 def read_file(path, parser):
-    x_words = []
-    x_pos1 = []
-    x_pos2 = []
-    x_e1 = []
-    x_e2 = []
-    y = []
+    words = []
+    pos1 = []
+    pos2 = []
+    e1 = []
+    e2 = []
+    labels = []
     with open(path, "r", encoding="utf8") as f:
         records = f.read().strip().split("\n\n")
         for record in records:
             parser.feed(record)
-            x_words.append(parser.words)
-            x_pos1.append(parser.pos1)
-            x_pos2.append(parser.pos2)
-            x_e1.append(parser.e1)
-            x_e2.append(parser.e2)
-            y.append(parser.label)
+            words.append(parser.words)
+            pos1.append(parser.pos1)
+            pos2.append(parser.pos2)
+            e1.append(parser.e1)
+            e2.append(parser.e2)
+            labels.append(parser.label)
 
-    return x_words, x_pos1, x_pos2, x_e1, x_e2, y
+    return words, pos1, pos2, e1, e2, labels
+
+
+def pretrain_pos2vec(pos1, pos2):
+    pos2vec_1 = Word2Vec(pos1, POSITION_EMBED_SIZE)
+    pos2vec_1.init_sims()
+    pos2vec_1.wv.save_word2vec_format("data/embedding/position_embeddings_1.txt", binary=False)
+
+    pos2vec_2 = Word2Vec(pos2, POSITION_EMBED_SIZE)
+    pos2vec_2.init_sims()
+    pos2vec_2.wv.save_word2vec_format("data/embedding/position_embeddings_1.txt", binary=False)
+
+    return pos2vec_1.wv, pos2vec_2.wv
+
+
+def embed_lookup(poss, pos2vec):
+    new_poss = []
+    for pos in poss:
+        new_pos = []
+        for i in range(SEQUENCE_LEN):
+            if i < len(pos):
+                new_pos.append(pos2vec.word_vec(pos[i]))
+            else:
+                new_pos.append(np.zeros(POSITION_EMBED_SIZE))
+        new_poss.append(new_pos)
+    return new_poss
 
 
 def main():
-    if not os.path.exists("data"):
-        os.mkdir("data")
+    for folder in ["data", "data/train", "data/test", "data/embedding"]:
+        if not os.path.exists(folder):
+            os.mkdir(folder)
 
     print("read word embeddings")
     word2vec = read_word_embeddings()
     parser = SemEvalParser(word2vec)
 
     print("read train data")
-    x_words_train, x_pos1_train, x_pos2_train, x_e1_train, x_e2_train, y_train = read_file(TRAIN_FILE, parser)
-    np.save(X_WORDS_TRAIN_PATH, x_words_train)
-    np.save(X_E1_TRAIN_PATH, x_e1_train)
-    np.save(X_E2_TRAIN_PATH, x_e2_train)
-    np.save(X_POS1_TRAIN_PATH, x_pos1_train)
-    np.save(X_POS2_TRAIN_PATH, x_pos2_train)
-    np.save(Y_TRAIN_PATH, y_train)
+    words_train, pos1_train, pos2_train, e1_train, e2_train, labels_train = read_file("origin_data/TRAIN_FILE.TXT",
+                                                                                      parser)
+    np.save("data/train/words.npy", words_train)
+    np.save("data/train/e1.npy", e1_train)
+    np.save("data/train/e2.npy", e2_train)
+    np.save("data/train/labels.npy", labels_train)
 
     print("read test data")
-    x_words_test, x_pos1_test, x_pos2_test, x_e1_test, x_e2_test, y_test = read_file(TEST_FILE, parser)
-    np.save(X_WORDS_TEST_PATH, x_words_test)
-    np.save(X_E1_TEST_PATH, x_e1_test)
-    np.save(X_E2_TEST_PATH, x_e2_test)
-    np.save(X_POS1_TEST_PATH, x_pos1_test)
-    np.save(X_POS2_TEST_PATH, x_pos2_test)
-    np.save(Y_TEST_PATH, y_test)
+    words_test, pos1_test, pos2_test, e1_test, e2_test, labels_test = read_file("origin_data/TEST_FILE_FULL.TXT",
+                                                                                parser)
+    np.save("data/test/words.npy", words_test)
+    np.save("data/test/e1.npy", e1_test)
+    np.save("data/test/e2.npy", e2_test)
+    np.save("data/test/labels.npy", labels_test)
 
     print("maxlen: %d, num unknown: %d" % (parser.max_len, parser.num_unk))
+
+    print("pretrain position embedding")
+    pos2vec_1, pos2vec_2 = pretrain_pos2vec(parser.pos1_total, parser.pos2_total)
+    pos1_train = embed_lookup(pos1_train, pos2vec_1)
+    pos2_train = embed_lookup(pos2_train, pos2vec_2)
+    pos1_test = embed_lookup(pos1_test, pos2vec_1)
+    pos2_test = embed_lookup(pos2_test, pos2vec_2)
+    np.save("data/train/pos1.npy", pos1_train)
+    np.save("data/train/pos2.npy", pos2_train)
+    np.save("data/test/pos1.npy", pos1_test)
+    np.save("data/test/pos2.npy", pos2_test)
+
 
 if __name__ == "__main__":
     main()

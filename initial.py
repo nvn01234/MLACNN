@@ -139,11 +139,11 @@ def read_file(path, parser):
 
 
 def pretrain_pos2vec(pos1, pos2):
-    pos2vec_1 = Word2Vec(pos1, POSITION_EMBED_SIZE)
+    pos2vec_1 = Word2Vec(pos1, POSITION_EMBED_SIZE, min_count=1)
     pos2vec_1.init_sims()
     pos2vec_1.wv.save_word2vec_format("data/embedding/position_embeddings_1.txt", binary=False)
 
-    pos2vec_2 = Word2Vec(pos2, POSITION_EMBED_SIZE)
+    pos2vec_2 = Word2Vec(pos2, POSITION_EMBED_SIZE, min_count=1)
     pos2vec_2.init_sims()
     pos2vec_2.wv.save_word2vec_format("data/embedding/position_embeddings_1.txt", binary=False)
 

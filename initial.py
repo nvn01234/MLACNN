@@ -81,6 +81,7 @@ class SemEvalParser(HTMLParser):
         for i in range(len(tokens)):
             self.pos1.append(self.pos_embed(i - self.e1pos))
             self.pos2.append(self.pos_embed(i - self.e2pos))
+        print(self.pos1)
         self.pos1_total += self.pos1
         self.pos2_total += self.pos2
 

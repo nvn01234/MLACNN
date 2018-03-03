@@ -81,7 +81,6 @@ class SemEvalParser(HTMLParser):
         for i in range(len(tokens)):
             self.pos1.append(self.pos_embed(i - self.e1pos))
             self.pos2.append(self.pos_embed(i - self.e2pos))
-        print(self.pos1)
         self.pos1_total += self.pos1
         self.pos2_total += self.pos2
 
@@ -140,12 +139,12 @@ def read_file(path, parser):
 
 
 def pretrain_pos2vec(pos1, pos2):
-    pos2vec_1 = Word2Vec(pos1, POSITION_EMBED_SIZE, min_count=1)
-    pos2vec_1.init_sims()
+    pos2vec_1 = Word2Vec(sentences=pos1, size=POSITION_EMBED_SIZE, min_count=1)
+    pos2vec_1.init_sims(replace=True)
     pos2vec_1.wv.save_word2vec_format("data/embedding/position_embeddings_1.txt", binary=False)
 
-    pos2vec_2 = Word2Vec(pos2, POSITION_EMBED_SIZE, min_count=1)
-    pos2vec_2.init_sims()
+    pos2vec_2 = Word2Vec(sentences=pos2, size=POSITION_EMBED_SIZE, min_count=1)
+    pos2vec_2.init_sims(replace=True)
     pos2vec_2.wv.save_word2vec_format("data/embedding/position_embeddings_1.txt", binary=False)
 
     return pos2vec_1.wv, pos2vec_2.wv

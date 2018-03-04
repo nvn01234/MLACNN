@@ -23,6 +23,7 @@ def build_model():
     alpha = Dense(1, activation="softmax")(u)
     alpha = Reshape([SEQUENCE_LEN])(alpha)
     alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
+    alpha = Permute([2,1])(alpha)
     input_repre = Multiply()([input_repre, alpha])
 
     # convolution

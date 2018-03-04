@@ -6,14 +6,6 @@ from settings import *
 from keras.callbacks import Callback
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 
-config = ConfigProto()
-config.log_device_placement = False
-config.gpu_options.allow_growth = True
-sess = Session(config=config)
-K.set_session(sess)
-
-
-
 
 class Metrics(Callback):
     def on_train_begin(self, logs={}):
@@ -55,6 +47,11 @@ def main():
 
     print("training")
     metrics = Metrics()
+    config = ConfigProto()
+    config.log_device_placement = False
+    config.gpu_options.allow_growth = True
+    sess = Session(config=config)
+    K.set_session(sess)
     model = build_model()
     model.fit(x_train, labels_train,
               batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True,

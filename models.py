@@ -44,7 +44,7 @@ class InputAttention(Layer):
         input_repre, words_input, e1, e2 = inputs
 
         A1 = K.dot(words_input, self.W)  # (?, SEQUENCE_LEN, WORD_EMBED_SIZE)
-        A1 = K.batch_dot(A1, e1, (2, 1))  # (?, SEQUENCE_LEN, 1)
+        A1 = K.batch_dot(A1, e1, (2, 1))  # (?, SEQUENCE_LEN)
         alpha1 = K.softmax(A1)
 
         A2 = K.dot(words_input, self.W)

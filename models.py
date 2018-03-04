@@ -51,45 +51,16 @@ def input_attention(words_input, e1_input, e2_input):
 
 def conv_maxpool(input_repre):
     pooled = []
-    att_pool = AttentionPooling()
     for size in WINDOW_SIZES:
         conv = Conv1D(filters=NB_FILTERS,
                       kernel_size=size,
                       padding="same",
                       activation="tanh",
                       )(input_repre)
-        wo = att_pool(conv)
-        # wo = GlobalMaxPool1D()(conv)
+        wo = GlobalMaxPool1D()(conv)
         pooled.append(wo)
     pooled = Concatenate()(pooled)
     return pooled
-
-class AttentionPooling(Layer):
-    def compute_output_shape(self, input_shape):
-        return (input_shape[0], NB_FILTERS)
-
-    def build(self, input_shape):
-        self.U = self.add_weight(
-            name="U",
-            shape=[NB_FILTERS, NB_FILTERS],
-            initializer=TruncatedNormal(stddev=0.1),
-            regularizer=regularizers.get(None),
-        )
-        self.WL = self.add_weight(
-            name="WL",
-            shape=[NB_RELATIONS, NB_FILTERS],
-            initializer=TruncatedNormal(stddev=0.1),
-            regularizer=regularizers.get(None),
-        )
-        self.built = True
-
-    def call(self, inputs, **kwargs):
-        G = K.dot(inputs, self.U)
-        G = K.dot(G, K.transpose(self.WL))
-        AP = K.softmax(G)
-        wo = K.batch_dot(inputs, AP, 1)
-        wo = K.max(wo, -1)
-        return wo
 
 
 def entities_features(e1_input, e2_input):
@@ -99,6 +70,10 @@ def entities_features(e1_input, e2_input):
 def MLP(features):
     output = Concatenate()(features)
     output = Dropout(DROPOUT)(output)
+    output = Dense(
+        units=HIDDEN_LAYER,
+        activation="tanh",
+    )(output)
     output = Dense(
         units=NB_RELATIONS,
         activation="softmax"

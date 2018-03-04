@@ -17,8 +17,8 @@ def build_model():
     # input_repre = Dropout(DROPOUT)(input_repre)
 
     # attention
-    # alpha = input_attention(words_input, e1_input,e2_input)
-    # input_repre = Multiply()([input_repre, alpha])
+    alpha = input_attention(words_input, e1_input,e2_input)
+    input_repre = Multiply()([input_repre, alpha])
 
     pooled = conv_maxpool(input_repre)
     e = entities_features(e1_input, e2_input)

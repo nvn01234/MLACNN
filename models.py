@@ -43,18 +43,17 @@ class InputAttention(Layer):
     def call(self, inputs, **kwargs):
         input_repre, words_input, e1, e2 = inputs
 
-        e1 = K.expand_dims(e1)  # (?, WORD_EMBED_SIZE, 1)
         A1 = K.dot(words_input, self.W)  # (?, SEQUENCE_LEN, WORD_EMBED_SIZE)
-        A1 = K.dot(A1, e1)  # (?, SEQUENCE_LEN, 1)
+        A1 = K.batch_dot(A1, e1, (2, 1))  # (?, SEQUENCE_LEN, 1)
         alpha1 = K.softmax(A1)
 
-        e2 = K.expand_dims(e2)
         A2 = K.dot(words_input, self.W)
-        A2 = K.dot(A2, e2)
+        A2 = K.batch_dot(A2, e2, (2, 1))
         alpha2 = K.softmax(A2)
 
         alpha = (alpha1 + alpha2)/2
-        output = K.batch_dot(input_repre, alpha, 1)
+        alpha = K.expand_dims(alpha)
+        output = input_repre * alpha
         return output
 
 

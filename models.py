@@ -9,8 +9,8 @@ def build_model():
     words_input = Input(shape=[SEQUENCE_LEN, WORD_EMBED_SIZE], dtype='float32')
     pos1_input = Input(shape=[SEQUENCE_LEN, POSITION_EMBED_SIZE], dtype='float32')
     pos2_input = Input(shape=[SEQUENCE_LEN, POSITION_EMBED_SIZE], dtype='float32')
-    e1_input = Input(shape=[WORD_EMBED_SIZE, 3], dtype='float32')
-    e2_input = Input(shape=[WORD_EMBED_SIZE, 3], dtype='float32')
+    e1_input = Input(shape=[3, WORD_EMBED_SIZE], dtype='float32')
+    e2_input = Input(shape=[3, WORD_EMBED_SIZE], dtype='float32')
 
     input_repre = Concatenate()([words_input, pos1_input, pos2_input])
     # input_repre = Dropout(DROPOUT)(input_repre)
@@ -61,8 +61,9 @@ def conv_maxpool(input_repre):
     return pooled
 
 def entities_features(e1_input, e2_input):
-    concat = Concatenate()([e1_input, e2_input])
-    flat = Flatten()(concat)
+    e1_flat = Flatten()(e1_input)
+    e2_flat = Flatten()(e2_input)
+    flat = Concatenate()([e1_flat, e2_flat])
     return flat
 
 def MLP(features):

@@ -31,7 +31,7 @@ def build_model():
 
 class InputAttention(Layer):
     def compute_output_shape(self, input_shape):
-        return [input_shape[0], SEQUENCE_LEN, WORD_EMBED_SIZE]
+        return [input_shape[0], SEQUENCE_LEN, WORD_REPRE_SIZE]
 
     def build(self, input_shape):
         self.W = self.add_weight([WORD_EMBED_SIZE, WORD_EMBED_SIZE],
@@ -54,6 +54,9 @@ class InputAttention(Layer):
         alpha2 = K.softmax(A2)
 
         alpha = (alpha1 + alpha2)/2
-        output = K.batch_dot(input_repre, alpha, (1, 1))
-        output = K.reshape(output, [-1, SEQUENCE_LEN, WORD_EMBED_SIZE])
+        output = K.batch_dot(input_repre, alpha, 1)
         return output
+
+
+if __name__ == "__main__":
+    model = build_model()

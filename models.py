@@ -66,6 +66,9 @@ def conv_maxpool(input_repre):
     return pooled
 
 class AttentionPooling(Layer):
+    def compute_output_shape(self, input_shape):
+        return [input_shape[0], input_shape[2]]
+
     def build(self, input_shape):
         self.U = self.add_weight(
             name="U",

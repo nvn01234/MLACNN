@@ -108,4 +108,3 @@ venv.bak/
 .idea
 origin_data/glove.6B.300d.txt
 data/*
-!data/unknowns.npy

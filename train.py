@@ -3,27 +3,8 @@ from tensorflow import ConfigProto, Session
 from keras import backend as K
 from models import build_model
 from settings import *
-from keras.callbacks import Callback
-from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
+from sklearn.metrics import precision_recall_fscore_support, accuracy_score
 
-
-class Metrics(Callback):
-    def on_train_begin(self, logs={}):
-        self.val_f1s = []
-        self.val_recalls = []
-        self.val_precisions = []
-
-    def on_epoch_end(self, epoch, logs={}):
-        val_predict = (np.asarray(self.model.predict(self.model.validation_data[0]))).round()
-        val_targ = self.model.validation_data[1]
-        _val_f1 = f1_score(val_targ, val_predict)
-        _val_recall = recall_score(val_targ, val_predict)
-        _val_precision = precision_score(val_targ, val_predict)
-        self.val_f1s.append(_val_f1)
-        self.val_recalls.append(_val_recall)
-        self.val_precisions.append(_val_precision)
-        print("- val_f1: %f - val_precision: %f - val_recall %f" % (_val_f1, _val_precision, _val_recall))
-        return
 
 
 def main():
@@ -46,7 +27,6 @@ def main():
     x_test = [words_test, pos1_test, pos2_test, e1_test, e2_test]
 
     print("training")
-    metrics = Metrics()
     config = ConfigProto()
     config.log_device_placement = False
     config.gpu_options.allow_growth = True
@@ -54,18 +34,15 @@ def main():
     K.set_session(sess)
     model = build_model()
     model.fit(x_train, labels_train,
-              batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True,
-              validation_data=(x_test, labels_test), callbacks=[metrics])
+              batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True)
 
     print("testing")
-    scores = model.predict(x_test, verbose=False)
+    scores = model.predict(x_test,verbose=False)
     predictions = scores.argmax(-1)
-    accuracy = accuracy_score(labels_test, predictions) * 100
-    precision = precision_score(labels_test, predictions, average="macro") * 100
-    recall = recall_score(labels_test, predictions, average="macro") * 100
-    f1 = f1_score(labels_test, predictions, average="macro") * 100
-    print("accuracy = %.4f%%, macro-precision = %.4f%%, macro-recall = %.4f%%, macro-f1 = %.4f%%" %
-          (accuracy, precision, recall, f1))
+    accuracy = accuracy_score(labels_test, predictions)
+    precision, recall, f1, support = precision_recall_fscore_support(labels_test, predictions, average="macro", warn_for=())
+    print("accuracy = %.4f%%, precision = %.4f%%, recall = %.4f%%, f1 = %.4f%%" % (accuracy, precision, recall, f1))
+
 
 
 if __name__ == "__main__":

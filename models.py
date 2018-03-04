@@ -18,9 +18,8 @@ def build_model():
     # attention
     e1 = RepeatVector(SEQUENCE_LEN)(e1_input)
     e2 = RepeatVector(SEQUENCE_LEN)(e2_input)
-    h = Concatenate()([words_input, e1, e2])
-    u = Dense(1, activation="tanh")(h)
-    alpha = Dense(1, activation="softmax")(u)
+    e = Concatenate()([words_input, e1, e2])
+    alpha = Dense(1, activation="softmax")(e)
     alpha = Reshape([SEQUENCE_LEN])(alpha)
     alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
     alpha = Permute([2,1])(alpha)

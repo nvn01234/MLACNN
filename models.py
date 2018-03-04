@@ -1,5 +1,5 @@
 from settings import *
-from keras.layers import Input, Concatenate, Conv1D, GlobalMaxPool1D, Dense, Dropout, Reshape, Layer, RepeatVector, Permute, Multiply, Average, Subtract, Embedding
+from keras.layers import Input, Concatenate, Conv1D, GlobalMaxPool1D, Dense, Dropout, Reshape, Layer, RepeatVector, Permute, Multiply, Average, Subtract, Embedding, Flatten
 from keras.engine import Model
 from keras import backend as K
 from keras import  initializers, regularizers
@@ -19,21 +19,9 @@ def build_model():
     # alpha = input_attention(words_input, e1_input,e2_input)
     # input_repre = Multiply()([input_repre, alpha])
 
-    # convolution
-    pooled_output = []
-    for size in WINDOW_SIZES:
-        conv = Conv1D(filters=NB_FILTERS,
-                           kernel_size=size,
-                           padding="same",
-                           activation="tanh")(input_repre)
-        pool = GlobalMaxPool1D()(conv)
-        pooled_output.append(pool)
-
-    # fully connected
-    output = Concatenate()([*pooled_output, e1_input, e2_input])
-    output = Dropout(DROPOUT)(output)
-    output = Dense(HIDDEN_LAYER)(output)
-    output = Dense(units=NB_RELATIONS, activation="softmax")(output)
+    pooled = conv_maxpool(input_repre)
+    e = entities_features(e1_input, e2_input)
+    output = MLP([pooled, e])
 
     model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input], outputs=[output])
     model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer='adam')
@@ -59,6 +47,30 @@ def input_attention(words_input, e1_input, e2_input):
 
     alpha = Average()([alpha1, alpha2])
     return alpha
+
+def conv_maxpool(input_repre):
+    pooled = []
+    for size in WINDOW_SIZES:
+        conv = Conv1D(filters=NB_FILTERS,
+                           kernel_size=size,
+                           padding="same",
+                           activation="tanh")(input_repre)
+        pool = GlobalMaxPool1D()(conv)
+        pooled.append(pool)
+    pooled = Concatenate()(pooled)
+    return pooled
+
+def entities_features(e1_input, e2_input):
+    concat = Concatenate()([e1_input, e2_input])
+    flat = Flatten()(concat)
+    return flat
+
+def MLP(features):
+    output = Concatenate()(features)
+    output = Dropout(DROPOUT)(output)
+    output = Dense(HIDDEN_LAYER)(output)
+    output = Dense(units=NB_RELATIONS, activation="softmax")(output)
+    return output
 
 if __name__ == "__main__":
     model = build_model()

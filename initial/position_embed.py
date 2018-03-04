@@ -3,16 +3,7 @@ from gensim.models import Word2Vec
 from settings import *
 from html.parser import HTMLParser
 from nltk import word_tokenize
-import traceback
 import os
-
-
-def make_dict(*expr):
-    (filename, line_number, function_name, text) = traceback.extract_stack()[-2]
-    begin = text.find('make_dict(') + len('make_dict(')
-    end = text.find(')', begin)
-    text = [name.strip() for name in text[begin:end].split(',')]
-    return dict(zip(text, expr))
 
 
 class SemEvalParser(HTMLParser):
@@ -94,7 +85,6 @@ def to_vec(distances, dis2vec):
                 new_dis.append(np.zeros(POSITION_EMBED_SIZE))
         new_distances.append(new_dis)
     return new_distances
-
 
 
 def main():

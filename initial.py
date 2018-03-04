@@ -191,6 +191,7 @@ def main():
     print("maxlen: %d, num unknown: %d" % (parser.max_len, parser.num_unk))
 
     print("pretrain position embedding")
+    print("pos1_total len: %d, pos2_total len: %d" % (len(parser.pos1_total), len(parser.pos2_total)))
     pos2vec_1, pos2vec_2 = pretrain_pos2vec(parser.pos1_total, parser.pos2_total)
     pos1_train = embed_lookup(pos1_train, pos2vec_1)
     pos2_train = embed_lookup(pos2_train, pos2vec_2)

@@ -24,6 +24,6 @@ def build_model():
     output = Dense(name="output", units=NB_RELATIONS)(output)
 
     model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input], outputs=[output])
-    model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer='sgd')
+    model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer='adam')
     model.summary()
     return model

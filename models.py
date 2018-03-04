@@ -20,10 +20,13 @@ def build_model():
     input_repre = Multiply()([input_repre, alpha])
 
     # convolution
-    conv = Conv1D(filters=NB_FILTERS,
-                  kernel_size=WINDOW_SIZE,
-                  padding="same",
-                  activation="tanh")(input_repre)
+    conv = []
+    for size in WINDOW_SIZES:
+        conv.append(Conv1D(filters=NB_FILTERS,
+                           kernel_size=size,
+                           padding="same",
+                           activation="tanh")(input_repre))
+    conv = Average()(conv)
     pool = GlobalMaxPool1D()(conv)
 
     e = entity_description(e1_input, e2_input)

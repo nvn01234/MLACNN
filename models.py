@@ -31,6 +31,9 @@ def build_model():
 
 
 class InputAttention(Layer):
+    def compute_output_shape(self, input_shape):
+        return [input_shape[0], SEQUENCE_LEN, WORD_EMBED_SIZE]
+
     def build(self, input_shape):
         self.W = self.add_weight([WORD_EMBED_SIZE, WORD_EMBED_SIZE],
                                  initializer=initializers.get('truncated_normal'),

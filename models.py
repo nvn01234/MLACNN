@@ -25,6 +25,6 @@ def build_model():
 
     model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input], outputs=[output])
     optimizer = Adam(lr=LEARNING_RATE)
-    model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer='adam')
+    model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer=optimizer)
     model.summary()
     return model

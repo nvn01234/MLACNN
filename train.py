@@ -64,7 +64,7 @@ def main():
     precision = precision_score(labels_test, predictions, average="macro") * 100
     recall = recall_score(labels_test, predictions, average="macro") * 100
     f1 = f1_score(labels_test, predictions, average="macro") * 100
-    print("accuracy = %.4f%%, macro-precision = %.4f%%, macro-recall = %.4f%%, macro-f1 = %.4f%%",
+    print("accuracy = %.4f%%, macro-precision = %.4f%%, macro-recall = %.4f%%, macro-f1 = %.4f%%" %
           (accuracy, precision, recall, f1))
 
 

@@ -34,7 +34,7 @@ class InputAttention(Layer):
     def build(self, input_shape):
         self.W = self.add_weight([WORD_EMBED_SIZE, WORD_EMBED_SIZE],
                                  initializer=initializers.get('truncated_normal'),
-                                 regularizers=regularizers.get('l2'))
+                                 regularizer=regularizers.get(None))
         self.built = True
 
     def call(self, inputs, **kwargs):

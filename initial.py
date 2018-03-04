@@ -89,7 +89,7 @@ class SemEvalParser(HTMLParser):
             d = MIN_DISTANCE
         elif d > MAX_DISTANCE:
             d = MAX_DISTANCE
-        return str(d)
+        return "#%d" % d
 
     def word_embed(self, w):
         w = w.strip().lower().split("_")

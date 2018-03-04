@@ -51,15 +51,15 @@ def input_attention(words_input, e1_input, e2_input):
 
 def conv_maxpool(input_repre):
     pooled = []
-    # att_pool = AttentionPooling()
+    att_pool = AttentionPooling()
     for size in WINDOW_SIZES:
         conv = Conv1D(filters=NB_FILTERS,
                       kernel_size=size,
                       padding="same",
                       activation="tanh",
                       )(input_repre)
-        # wo = att_pool(conv)
-        wo = GlobalMaxPool1D()(conv)
+        wo = att_pool(conv)
+        # wo = GlobalMaxPool1D()(conv)
         pooled.append(wo)
     pooled = Concatenate()(pooled)
     return pooled

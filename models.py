@@ -57,8 +57,8 @@ def conv_maxpool(input_repre):
                       kernel_size=size,
                       padding="same",
                       activation="tanh",
-                      kernel_initializer=TruncatedNormal(stddev=0.1),
-                      bias_initializer=Constant(0.1),
+                      # kernel_initializer=TruncatedNormal(stddev=0.1),
+                      # bias_initializer=Constant(0.1),
                       )(input_repre)
         # wo = att_pool(conv)
         wo = GlobalMaxPool1D()(conv)
@@ -103,8 +103,9 @@ def MLP(features):
     output = Dropout(DROPOUT)(output)
     output = Dense(
         units=NB_RELATIONS,
-        kernel_initializer=TruncatedNormal(stddev=0.1),
-        bias_initializer=Constant(0.1),
+        # kernel_initializer=TruncatedNormal(stddev=0.1),
+        # bias_initializer=Constant(0.1),
+        activation="softmax"
     )(output)
     return output
 

@@ -51,7 +51,7 @@ def input_attention(words_input, e1_input, e2_input):
 
 def conv_maxpool(input_repre):
     pooled = []
-
+    att_pool = AttentionPooling()
     for size in WINDOW_SIZES:
         conv = Conv1D(filters=NB_FILTERS,
                       kernel_size=size,
@@ -60,7 +60,7 @@ def conv_maxpool(input_repre):
                       kernel_initializer=TruncatedNormal(stddev=0.1),
                       bias_initializer=Constant(0.1),
                       )(input_repre)
-        wo = AttentionPooling()(conv)
+        wo =att_pool(conv)
         pooled.append(wo)
     pooled = Concatenate()(pooled)
     return pooled

@@ -14,7 +14,7 @@ def build_model():
     e2_input = Input(shape=[WORD_EMBED_SIZE], dtype='float32')
 
     input_repre = Concatenate()([words_input, pos1_input, pos2_input])
-    input_repre = Dropout(DROPOUT)(input_repre)
+    # input_repre = Dropout(DROPOUT)(input_repre)
 
     # attention
     # alpha = input_attention(words_input, e1_input,e2_input)

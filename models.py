@@ -1,5 +1,5 @@
 from settings import *
-from keras.layers import Input, Concatenate, Conv1D, GlobalMaxPool1D, Dense, Dropout, Reshape, Layer, RepeatVector, Permute, Multiply, Average
+from keras.layers import Input, Concatenate, Conv1D, GlobalMaxPool1D, Dense, Dropout, Reshape, Layer, RepeatVector, Permute, Multiply, Average, Subtract
 from keras.engine import Model
 from keras import backend as K
 from keras import  initializers, regularizers
@@ -16,6 +16,29 @@ def build_model():
     # input_repre = Dropout(DROPOUT)(input_repre)
 
     # attention
+    alpha = input_attention(words_input, e1_input,e2_input)
+    input_repre = Multiply()([input_repre, alpha])
+
+    # convolution
+    conv = Conv1D(filters=NB_FILTERS,
+                  kernel_size=WINDOW_SIZE,
+                  padding="same",
+                  activation="tanh")(input_repre)
+    pool = GlobalMaxPool1D()(conv)
+
+    e = entity_description(e1_input, e2_input)
+
+    # fully connected
+    output = Concatenate()([pool, e])
+    output = Dropout(DROPOUT)(output)
+    output = Dense(units=NB_RELATIONS, activation="softmax")(output)
+
+    model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input], outputs=[output])
+    model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer='adam')
+    model.summary()
+    return model
+
+def input_attention(words_input, e1_input, e2_input):
     e1 = RepeatVector(SEQUENCE_LEN)(e1_input)
     h1 = Concatenate()([words_input, e1])
     u1 = Dense(1, activation="tanh")(h1)
@@ -33,26 +56,11 @@ def build_model():
     alpha2 = Permute([2, 1])(alpha2)
 
     alpha = Average()([alpha1, alpha2])
-    input_repre = Multiply()([input_repre, alpha])
+    return alpha
 
-    # convolution
-    conv = Conv1D(filters=NB_FILTERS,
-                  kernel_size=WINDOW_SIZE,
-                  padding="same",
-                  activation="tanh")(input_repre)
-    pool = GlobalMaxPool1D()(conv)
-
-    # fully connected
-    output = Concatenate()([pool, e1_input, e2_input])
-    output = Dropout(DROPOUT)(output)
-    output = Dense(units=NB_RELATIONS, activation="softmax")(output)
-
-    model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input], outputs=[output])
-    model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer='adam')
-    model.summary()
-    return model
-
-
+def entity_description(e1_input, e2_input):
+    v = Subtract()([e1_input, e2_input])
+    return v
 
 if __name__ == "__main__":
     model = build_model()

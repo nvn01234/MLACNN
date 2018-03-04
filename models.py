@@ -16,7 +16,7 @@ def build_model():
     pooled_output = []
     for window_size in [3, 4, 5]:
         conv = Conv1D(filters=NB_FILTERS, kernel_size=window_size, padding="same", activation="tanh")(input_repre)
-        pool = GlobalMaxPool1D(name="max_pooling")(conv)
+        pool = GlobalMaxPool1D()(conv)
         pooled_output.append(pool)
     conv = Concatenate(name="convolution_concat")(pooled_output)
     output = Concatenate(name="concat")([conv, e1_input, e2_input])

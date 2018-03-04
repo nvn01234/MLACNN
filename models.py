@@ -1,7 +1,6 @@
 from settings import *
 from keras.layers import Input, Concatenate, Conv1D, GlobalMaxPool1D, Dense, Dropout, Reshape, Layer, RepeatVector
 from keras.engine import Model
-from keras.optimizers import Adam
 from keras import backend as K
 from keras import  initializers, regularizers
 
@@ -55,5 +54,6 @@ class InputAttention(Layer):
         alpha2 = K.softmax(A2)
 
         alpha = (alpha1 + alpha2)/2
-        output = K.batch_dot(input_repre, alpha, 1)
+        output = K.batch_dot(input_repre, alpha, (1, 1))
+        output = K.reshape(output, [-1, SEQUENCE_LEN, WORD_EMBED_SIZE])
         return output

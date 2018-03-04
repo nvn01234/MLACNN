@@ -17,21 +17,26 @@ def main():
     words_train = np.load("data/train/words.npy")
     pos1_train = np.load("data/train/pos1.npy")
     pos2_train = np.load("data/train/pos2.npy")
+    e1_train = np.load("data/train/e1.npy")
+    e2_train = np.load("data/train/e2.npy")
     labels_train = np.load("data/train/labels.npy")
+    x_train = [words_train, pos1_train, pos2_train, e1_train, e2_train]
 
     print("training")
     model = build_model()
-    model.fit([words_train, pos1_train, pos2_train], labels_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS,
-              verbose=True)
+    model.fit(x_train, labels_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True)
 
     print("load test data")
     words_test = np.load("data/test/words.npy")
     pos1_test = np.load("data/test/pos1.npy")
     pos2_test = np.load("data/test/pos2.npy")
+    e1_test = np.load("data/test/e1.npy")
+    e2_test = np.load("data/test/e2.npy")
     labels_test = np.load("data/test/labels.npy")
+    x_test = [words_test, pos1_test, pos2_test, e1_test, e2_test]
 
     print("testing")
-    scores = model.predict([words_test, pos1_test, pos2_test], verbose=False)
+    scores = model.predict(x_test, verbose=False)
     predictions = scores.argmax(-1)
     accuracy = accuracy_score(labels_test, predictions) * 100
     precision = precision_score(labels_test, predictions, average="macro") * 100

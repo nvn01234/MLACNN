@@ -19,7 +19,7 @@ def build_model():
     output = Dropout(name="dropout", rate=DROPOUT)(output)
     output = Dense(name="output", units=NB_RELATIONS)(output)
 
-    model = Model(inputs=[words_input, pos1_input, pos2_input], outputs=[output])
+    model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input], outputs=[output])
     optimizer = Adam(lr=LEARNING_RATE)
     model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer=optimizer)
     model.summary()

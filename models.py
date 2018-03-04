@@ -17,12 +17,22 @@ def build_model():
 
     # attention
     e1 = RepeatVector(SEQUENCE_LEN)(e1_input)
+    h1 = Concatenate()([words_input, e1])
+    u1 = Dense(1, activation="tanh")(h1)
+    alpha1 = Dense(1, activation="softmax")(u1)
+    alpha1 = Reshape([SEQUENCE_LEN])(alpha1)
+    alpha1 = RepeatVector(WORD_REPRE_SIZE)(alpha1)
+    alpha1 = Permute([2, 1])(alpha1)
+
     e2 = RepeatVector(SEQUENCE_LEN)(e2_input)
-    e = Concatenate()([words_input, e1, e2])
-    alpha = Dense(1, activation="softmax")(e)
-    alpha = Reshape([SEQUENCE_LEN])(alpha)
-    alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
-    alpha = Permute([2,1])(alpha)
+    h2 = Concatenate()([words_input, e2])
+    u2 = Dense(1, activation="tanh")(h2)
+    alpha2 = Dense(1, activation="softmax")(u2)
+    alpha2 = Reshape([SEQUENCE_LEN])(alpha2)
+    alpha2 = RepeatVector(WORD_REPRE_SIZE)(alpha2)
+    alpha2 = Permute([2, 1])(alpha2)
+
+    alpha = Average()([alpha1, alpha2])
     input_repre = Multiply()([input_repre, alpha])
 
     # convolution
@@ -33,7 +43,8 @@ def build_model():
     pool = GlobalMaxPool1D()(conv)
 
     # fully connected
-    output = Dropout(DROPOUT)(pool)
+    output = Concatenate()([pool, e1_input, e2_input])
+    output = Dropout(DROPOUT)(output)
     output = Dense(units=NB_RELATIONS, activation="softmax")(output)
 
     model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input], outputs=[output])

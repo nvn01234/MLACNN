@@ -2,14 +2,6 @@ from settings import *
 from keras.layers import Input, Concatenate, Conv1D, GlobalMaxPool1D, Dense, Dropout, Reshape
 from keras.engine import Model
 from keras.optimizers import Adam
-from sklearn.metrics import precision_recall_fscore_support
-from keras import backend as K
-
-def f1_score(y_true, y_pred):
-    y_true = K.eval(y_true)
-    y_pred = K.eval(y_pred)
-    precision, recall, f1, support = precision_recall_fscore_support(y_true, y_pred, average="macro", warn_for=())
-    return K.variable(1. - f1[1])
 
 def build_model():
     words_input = Input(shape=[SEQUENCE_LEN, WORD_EMBED_SIZE], dtype='float32')
@@ -32,6 +24,6 @@ def build_model():
 
     model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input], outputs=[output])
     optimizer = Adam(lr=LEARNING_RATE)
-    model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy", f1_score], optimizer=optimizer)
+    model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer=optimizer)
     model.summary()
     return model

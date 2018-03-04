@@ -3,13 +3,35 @@ from tensorflow import ConfigProto, Session
 from keras import backend as K
 from models import build_model
 from settings import *
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from keras.callbacks import Callback
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 
 config = ConfigProto()
 config.log_device_placement = False
 config.gpu_options.allow_growth = True
 sess = Session(config=config)
 K.set_session(sess)
+
+
+
+
+class Metrics(Callback):
+    def on_train_begin(self, logs={}):
+        self.val_f1s = []
+        self.val_recalls = []
+        self.val_precisions = []
+
+    def on_epoch_end(self, epoch, logs={}):
+        val_predict = (np.asarray(self.model.predict(self.model.validation_data[0]))).round()
+        val_targ = self.model.validation_data[1]
+        _val_f1 = f1_score(val_targ, val_predict)
+        _val_recall = recall_score(val_targ, val_predict)
+        _val_precision = precision_score(val_targ, val_predict)
+        self.val_f1s.append(_val_f1)
+        self.val_recalls.append(_val_recall)
+        self.val_precisions.append(_val_precision)
+        print("- val_f1: %f - val_precision: %f - val_recall %f" % (_val_f1, _val_precision, _val_recall))
+        return
 
 
 def main():
@@ -22,10 +44,6 @@ def main():
     labels_train = np.load("data/train/labels.npy")
     x_train = [words_train, pos1_train, pos2_train, e1_train, e2_train]
 
-    print("training")
-    model = build_model()
-    model.fit(x_train, labels_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True)
-
     print("load test data")
     words_test = np.load("data/test/words.npy")
     pos1_test = np.load("data/test/pos1.npy")
@@ -34,6 +52,13 @@ def main():
     e2_test = np.load("data/test/e2.npy")
     labels_test = np.load("data/test/labels.npy")
     x_test = [words_test, pos1_test, pos2_test, e1_test, e2_test]
+
+    print("training")
+    metrics = Metrics()
+    model = build_model()
+    model.fit(x_train, labels_train,
+              batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True,
+              validation_data=(x_test, labels_test), callbacks=[metrics])
 
     print("testing")
     scores = model.predict(x_test, verbose=False)

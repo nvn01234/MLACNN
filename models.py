@@ -3,6 +3,7 @@ from keras.layers import Input, Concatenate, Conv1D, GlobalMaxPool1D, Dense, Dro
 from keras.engine import Model
 from keras import backend as K
 from keras import  initializers, regularizers
+from keras.initializers import TruncatedNormal, Constant
 
 def build_model():
     # input
@@ -13,11 +14,11 @@ def build_model():
     e2_input = Input(shape=[WORD_EMBED_SIZE], dtype='float32')
 
     input_repre = Concatenate()([words_input, pos1_input, pos2_input])
-    # input_repre = Dropout(DROPOUT)(input_repre)
+    input_repre = Dropout(DROPOUT)(input_repre)
 
     # attention
-    alpha = input_attention(words_input, e1_input,e2_input)
-    input_repre = Multiply()([input_repre, alpha])
+    # alpha = input_attention(words_input, e1_input,e2_input)
+    # input_repre = Multiply()([input_repre, alpha])
 
     pooled = conv_maxpool(input_repre)
     e = entities_features(e1_input, e2_input)
@@ -52,9 +53,12 @@ def conv_maxpool(input_repre):
     pooled = []
     for size in WINDOW_SIZES:
         conv = Conv1D(filters=NB_FILTERS,
-                           kernel_size=size,
-                           padding="same",
-                           activation="tanh")(input_repre)
+                      kernel_size=size,
+                      padding="same",
+                      activation="relu",
+                      kernel_initializer=TruncatedNormal(stddev=0.1),
+                      bias_initializer=Constant(0.1),
+                      )(input_repre)
         pool = GlobalMaxPool1D()(conv)
         pooled.append(pool)
     pooled = Concatenate()(pooled)
@@ -67,8 +71,11 @@ def entities_features(e1_input, e2_input):
 def MLP(features):
     output = Concatenate()(features)
     output = Dropout(DROPOUT)(output)
-    output = Dense(OUTPUT_HIDDEN_LAYER)(output)
-    output = Dense(units=NB_RELATIONS, activation="softmax")(output)
+    output = Dense(
+        units=NB_RELATIONS,
+        kernel_initializer=TruncatedNormal(stddev=0.1),
+        bias_initializer=Constant(0.1),
+    )(output)
     return output
 
 if __name__ == "__main__":

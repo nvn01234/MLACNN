@@ -63,19 +63,9 @@ class SemEvalParser(HTMLParser):
         self.e1 = self.e1[3:]
         self.e2 = self.e2[3:]
 
-        self.e1 = [
-            # self.word_embed(tokens[e1pos - 1]) if e1pos > 0 else np.zeros(WORD_EMBED_SIZE),
-            self.word_embed(self.e1),
-            # self.word_embed(tokens[e1pos + 1]) if e1pos < len(tokens) - 1 else np.zeros(WORD_EMBED_SIZE),
-        ]
-        self.e1 = np.concatenate(self.e1)
+        self.e1 = self.word_embed(self.e1),
 
-        self.e2 = [
-            # self.word_embed(tokens[e2pos - 1]) if e2pos > 0 else np.zeros(WORD_EMBED_SIZE),
-            self.word_embed(self.e2),
-            # self.word_embed(tokens[e2pos + 1]) if e2pos < len(tokens) - 1 else np.zeros(WORD_EMBED_SIZE),
-        ]
-        self.e2 = np.concatenate(self.e2)
+        self.e2 = self.word_embed(self.e2)
 
         self.words = []
         for i in range(SEQUENCE_LEN):

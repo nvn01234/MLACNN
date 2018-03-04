@@ -14,7 +14,7 @@ def build_model():
 
     input_repre = Concatenate()([words_input, pos1_input, pos2_input])
     input_repre = Dropout(DROPOUT)(input_repre)
-    input_att = InputAttention()(input_repre)
+    input_att = InputAttention()([input_repre, words_input, e1_input, e2_input])
 
     conv = Conv1D(filters=NB_FILTERS,
                   kernel_size=WINDOW_SIZE,

@@ -21,7 +21,7 @@ def build_model():
         pooled_output.append(pool)
     output = Concatenate(name="concat")([*pooled_output, e1_input, e2_input])
     output = Dropout(rate=DROPOUT)(output)
-    output = Dense(units=NB_RELATIONS)(output)
+    output = Dense(units=NB_RELATIONS, activation="softmax")(output)
 
     model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input], outputs=[output])
     optimizer = Adam(lr=LEARNING_RATE)

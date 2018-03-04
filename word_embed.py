@@ -63,7 +63,7 @@ class SemEvalParser(HTMLParser):
         self.e1 = self.e1[3:]
         self.e2 = self.e2[3:]
 
-        self.e1 = self.word_embed(self.e1),
+        self.e1 = self.word_embed(self.e1)
 
         self.e2 = self.word_embed(self.e2)
 

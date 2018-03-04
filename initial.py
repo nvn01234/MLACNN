@@ -145,7 +145,7 @@ def pretrain_pos2vec(pos1, pos2):
 
     pos2vec_2 = Word2Vec(sentences=pos2, size=POSITION_EMBED_SIZE, min_count=1)
     pos2vec_2.init_sims(replace=True)
-    pos2vec_2.wv.save_word2vec_format("data/embedding/position_embeddings_1.txt", binary=False)
+    pos2vec_2.wv.save_word2vec_format("data/embedding/position_embeddings_2.txt", binary=False)
 
     return pos2vec_1.wv, pos2vec_2.wv
 
@@ -191,7 +191,6 @@ def main():
     print("maxlen: %d, num unknown: %d" % (parser.max_len, parser.num_unk))
 
     print("pretrain position embedding")
-    print("pos1_total len: %d, pos2_total len: %d" % (len(parser.pos1_total), len(parser.pos2_total)))
     pos2vec_1, pos2vec_2 = pretrain_pos2vec(parser.pos1_total, parser.pos2_total)
     pos1_train = embed_lookup(pos1_train, pos2vec_1)
     pos2_train = embed_lookup(pos2_train, pos2vec_2)

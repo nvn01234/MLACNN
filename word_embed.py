@@ -103,8 +103,11 @@ class Word2Vec:
 
 def extract_features(words, e1pos, e2pos, word2vec):
     words = [[word2vec.word_vec(w) for w in sen] for sen in words]
-    e1context = entity_context(words, e1pos)
-    e2context = entity_context(words, e2pos)
+    e1context = []
+    e2context = []
+    for w, p1, p2 in zip(words, e1pos, e2pos):
+        e1context.append(entity_context(w, p1))
+        e2context.append(entity_context(w, p2))
     words = pad_sequences(words, maxlen=SEQUENCE_LEN, padding="post", truncating="post", value=0)
     return words, e1context, e2context
 

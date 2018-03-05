@@ -1,7 +1,7 @@
 import numpy as np
 from tensorflow import ConfigProto, Session
 from keras import backend as K
-from models import build_model, build_model_2
+from models import build_model
 from settings import *
 from sklearn.metrics import precision_recall_fscore_support, accuracy_score
 
@@ -14,8 +14,9 @@ def main():
     pos2_train = np.load("data/train/pos2.npy")
     e1_train = np.load("data/train/e1.npy")
     e2_train = np.load("data/train/e2.npy")
+    chars_train = np.load("data/train/chars.npy")
     labels_train = np.load("data/train/labels.npy")
-    x_train = [words_train, pos1_train, pos2_train, e1_train, e2_train]
+    x_train = [words_train, pos1_train, pos2_train, e1_train, e2_train, chars_train]
 
     print("load test data")
     words_test = np.load("data/test/words.npy")
@@ -23,8 +24,9 @@ def main():
     pos2_test = np.load("data/test/pos2.npy")
     e1_test = np.load("data/test/e1.npy")
     e2_test = np.load("data/test/e2.npy")
+    chars_test = np.load("data/test/chars.npy")
     labels_test = np.load("data/test/labels.npy")
-    x_test = [words_test, pos1_test, pos2_test, e1_test, e2_test]
+    x_test = [words_test, pos1_test, pos2_test, e1_test, e2_test, chars_test]
 
     print("training")
     config = ConfigProto()

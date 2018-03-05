@@ -23,7 +23,6 @@ class SemEvalParser(HTMLParser):
         self.max_sequence_len = 0
         self.word2vec = word2vec
         self.unknown_words = set()
-        self.max_word_len = 0
 
     def handle_starttag(self, tag, attrs):
         super(SemEvalParser, self).handle_starttag(tag, attrs)
@@ -94,7 +93,6 @@ class SemEvalParser(HTMLParser):
         self.find_entity_pos()
 
         self.tokens = [w[3:] if w == self.e1 or w == self.e2 else w for w in self.tokens]
-        self.max_word_len = max(self.max_word_len, max(len(t) for t in self.tokens))
         self.e1 = self.e1[3:]
         self.e2 = self.e2[3:]
 
@@ -159,7 +157,7 @@ def main():
     np.save("data/test/e1.npy", e1_test)
     np.save("data/test/e2.npy", e2_test)
 
-    print("max_sequence_len: %d, max_word_len: %d, unknown words: %d" % (parser.max_sequence_len, parser.max_word_len, len(parser.unknown_words)))
+    print("max_sequence_len: %d, unknown words: %d" % (parser.max_sequence_len, len(parser.unknown_words)))
 
 
 if __name__ == "__main__":

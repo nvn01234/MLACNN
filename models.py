@@ -14,18 +14,18 @@ def build_model():
     e1_input = Input(shape=[3, WORD_EMBED_SIZE], dtype='float32')
     e2_input = Input(shape=[3, WORD_EMBED_SIZE], dtype='float32')
 
-    e1_input = Flatten()(e1_input)
-    e2_input = Flatten()(e2_input)
+    e1_flat = Flatten()(e1_input)
+    e2_flat = Flatten()(e2_input)
 
     input_repre = Concatenate()([words_input, pos1_input, pos2_input])
     input_repre = Dropout(DROPOUT)(input_repre)
 
     # attention
-    alpha = input_attention(words_input, e1_input, e2_input)
+    alpha = input_attention(words_input, e1_flat, e2_flat)
     input_repre = Multiply()([input_repre, alpha])
 
     pooled = conv_maxpool(input_repre)
-    e = entities_features(e1_input, e2_input)
+    e = entities_features(e1_flat, e2_flat)
     output = MLP([pooled, e])
 
     model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input], outputs=[output])

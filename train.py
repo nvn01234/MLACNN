@@ -32,7 +32,7 @@ def main():
     config.gpu_options.allow_growth = True
     sess = Session(config=config)
     K.set_session(sess)
-    model = build_model_2()
+    model = build_model()
     model.fit(x_train, labels_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True)
 
     print("testing")
@@ -41,7 +41,7 @@ def main():
     accuracy = accuracy_score(labels_test, predictions)
     precision, recall, f1, support = precision_recall_fscore_support(labels_test, predictions, average="macro", warn_for=())
     print("accuracy = %.4f%%, precision = %.4f%%, recall = %.4f%%, f1 = %.4f%%" % (accuracy, precision, recall, f1))
-    np.save("data/y_pred_2.npy", predictions)
+    np.save("log/y_pred_3.npy", predictions)
 
 
 

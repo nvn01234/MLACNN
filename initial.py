@@ -1,6 +1,7 @@
 import numpy as np
 from settings import *
 from utils import make_dict
+from os import makedirs
 
 
 class Counter:
@@ -47,7 +48,7 @@ class Sentence:
         self.positions_2 = []
         for i, w in enumerate(self.words):
             self.vocab_word.add(w)
-            self.max_word_len = max(self.max_word_len, len(words))
+            self.max_word_len = max(self.max_word_len, len(w))
             self.positions_1.append(dis2pos(i - e1start))
             self.positions_2.append(dis2pos(i - e2start))
             for c in w:
@@ -174,6 +175,9 @@ def numpy_save_many(_dict_):
 
 
 def main():
+    for folder in ["data/train", "data/test", "data/embedding"]:
+        makedirs(folder, exist_ok=True)
+
     counter = Counter()
 
     print("read train file")

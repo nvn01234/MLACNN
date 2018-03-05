@@ -22,7 +22,7 @@ class SemEvalParser(HTMLParser):
         super(SemEvalParser, self).__init__()
         self.max_len = 0
         self.word2vec = word2vec
-        self.num_unk = 0
+        self.unknown_words = set()
 
     def handle_starttag(self, tag, attrs):
         super(SemEvalParser, self).handle_starttag(tag, attrs)
@@ -39,6 +39,46 @@ class SemEvalParser(HTMLParser):
             self.e2 = data
         self.data.append(data)
 
+    def find_entity_pos(self):
+        self.e1pos = 0
+        self.e2pos = 0
+        for i, w in enumerate(self.tokens):
+            if self.e1 == w:
+                self.e1pos = i
+            if self.e2 == w:
+                self.e2pos = i
+
+    def extract_entity_contexts(self):
+        self.e1_context = []
+        if self.e1pos > 0:
+            self.e1_context.append(self.word_embed(self.tokens[self.e1pos - 1]))
+        else:
+            self.e1_context.append(self.e1)
+        self.e1_context.append(self.e1)
+        if self.e1pos < len(self.tokens) - 1:
+            self.e1_context.append(self.word_embed(self.tokens[self.e1pos + 1]))
+        else:
+            self.e1_context.append(self.e1)
+
+        self.e2_context = []
+        if self.e2pos > 0:
+            self.e2_context.append(self.word_embed(self.tokens[self.e2pos - 1]))
+        else:
+            self.e2_context.append(self.e2)
+        self.e2_context.append(self.e2)
+        if self.e2pos < len(self.tokens) - 1:
+            self.e2_context.append(self.word_embed(self.tokens[self.e2pos + 1]))
+        else:
+            self.e2_context.append(self.e2)
+
+    def extract_word_feature(self):
+        self.words = []
+        for i in range(SEQUENCE_LEN):
+            if i < len(self.tokens):
+                self.words.append(self.word_embed(self.tokens[i]))
+            else:
+                self.words.append(np.zeros(WORD_EMBED_SIZE))
+
     def feed(self, data):
         data = data.strip().split("\n")[0]
         data = data.strip().split("\t")[1][1:-1]
@@ -48,63 +88,37 @@ class SemEvalParser(HTMLParser):
         self.e2 = None
         super(SemEvalParser, self).feed(data)
 
-        tokens = word_tokenize(" ".join(self.data))
-        self.max_len = max(self.max_len, len(tokens))
+        self.tokens = word_tokenize(" ".join(self.data))
+        self.max_len = max(self.max_len, len(self.tokens))
+        self.find_entity_pos()
 
-        e1pos = 0
-        e2pos = 0
-        for i, w in enumerate(tokens):
-            if self.e1 == w:
-                e1pos = i
-            if self.e2 == w:
-                e2pos = i
-
-        tokens = [w[3:] if w == self.e1 or w == self.e2 else w for w in tokens]
+        self.tokens = [w[3:] if w == self.e1 or w == self.e2 else w for w in self.tokens]
         self.e1 = self.e1[3:]
         self.e2 = self.e2[3:]
 
         self.e1 = self.word_embed(self.e1)
         self.e2 = self.word_embed(self.e2)
 
-        self.e1_context = []
-        if e1pos > 0:
-            self.e1_context.append(self.word_embed(tokens[e1pos - 1]))
-        else:
-            self.e1_context.append(self.e1)
-        self.e1_context.append(self.e1)
-        if e1pos < len(tokens) - 1:
-            self.e1_context.append(self.word_embed(tokens[e1pos + 1]))
-        else:
-            self.e1_context.append(self.e1)
-
-        self.e2_context = []
-        if e2pos > 0:
-            self.e2_context.append(self.word_embed(tokens[e2pos - 1]))
-        else:
-            self.e2_context.append(self.e2)
-        self.e2_context.append(self.e2)
-        if e2pos < len(tokens) - 1:
-            self.e2_context.append(self.word_embed(tokens[e2pos + 1]))
-        else:
-            self.e2_context.append(self.e2)
-
-        self.words = []
-        for i in range(SEQUENCE_LEN):
-            if i < len(tokens):
-                self.words.append(self.word_embed(tokens[i]))
-            else:
-                self.words.append(np.zeros(WORD_EMBED_SIZE))
+        self.extract_entity_contexts()
+        self.extract_word_feature()
 
     def word_embed(self, w):
-        w = w.strip().lower().split("_")
-        temp = []
-        for _w in w:
-            if _w in self.word2vec:
-                temp.append(self.word2vec[_w])
-            else:
-                self.num_unk += 1
-                temp.append(self.word2vec["UNKNOWN"])
-        return np.average(temp, 0)
+        w = w.lower()
+        if w in self.word2vec:
+            return self.word2vec[w]
+        elif "_" in w:
+            w = w.split("_")
+            temp = []
+            for _w in w:
+                if _w in self.word2vec:
+                    temp.append(self.word2vec[_w])
+                else:
+                    self.unknown_words.add(_w)
+                    temp.append(self.word2vec["UNKNOWN"])
+            return np.average(temp, 0)
+        else:
+            self.unknown_words.add(w)
+            return self.word2vec["UNKNOWN"]
 
 
 def read_file(path, parser):
@@ -143,7 +157,7 @@ def main():
     np.save("data/test/e1.npy", e1_test)
     np.save("data/test/e2.npy", e2_test)
 
-    print("maxlen: %d, num unknown: %d" % (parser.max_len, parser.num_unk))
+    print("maxlen: %d, num unknown: %d" % (parser.max_len, len(parser.unknown_words)))
 
 
 if __name__ == "__main__":

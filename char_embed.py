@@ -60,7 +60,7 @@ class SemEvalParser(HTMLParser):
         self.tokens = [w[3:] if w == self.e1 or w == self.e2 else w for w in self.tokens]
         print(self.tokens)
 
-        # self.extract_chars_feature()
+        self.extract_chars_feature()
 
     def char_embed(self, w):
         if "_" in w:
@@ -68,14 +68,14 @@ class SemEvalParser(HTMLParser):
             # return np.average(embed, 0)
         else:
             self.max_word_len = max(self.max_word_len, len(w))
-            if len(w) == 28: print("maxlen: %s" % w)
+            # if len(w) == 28: print("maxlen: %s" % w)
             embed = []
             for i in range(WORD_LEN):
                 if i < len(w):
                     if w[i] in self.char2vec:
                         embed.append(self.char2vec[w[i]])
                     else:
-                        print(w)
+                        # print(w)
                         self.unknown_chars.add(w[i])
                         embed.append(self.char2vec["UNKNOWN"])
                 else:

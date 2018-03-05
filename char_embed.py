@@ -16,9 +16,12 @@ def read_char_embeddings():
     ]
     with open("origin_data/char-embeddings.txt", "r", encoding="utf8") as f:
         for line in f:
-            w, *values = line[:-1].split()
-            values = np.array(values, dtype='float32')
+            w, *values = line.strip().split()
+            if len(values) < CHAR_EMBED_SIZE:
+                values = [w] + values
+                w = " "
             char2idx[w] = len(char2idx)
+            values = np.array(values, dtype='float32')
             char_embeddings.append(values)
     np.save("data/char_embeddings.npy", char_embeddings)
     return char2idx

@@ -1,7 +1,7 @@
 import numpy as np
 from tensorflow import ConfigProto, Session
 from keras import backend as K
-from models import build_model
+from models import build_model, build_model_2
 from settings import *
 from sklearn.metrics import precision_recall_fscore_support, accuracy_score
 
@@ -32,7 +32,7 @@ def main():
     config.gpu_options.allow_growth = True
     sess = Session(config=config)
     K.set_session(sess)
-    model = build_model()
+    model = build_model_2()
     model.fit(x_train, labels_train,
               batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True)
 

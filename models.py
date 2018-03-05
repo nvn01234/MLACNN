@@ -6,6 +6,36 @@ from keras import  initializers, regularizers
 from keras.initializers import TruncatedNormal, Constant
 from keras.optimizers import Adam
 
+def build_model_2():
+    # input
+    words_input = Input(shape=[SEQUENCE_LEN, WORD_EMBED_SIZE], dtype='float32')
+    pos1_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
+    pos2_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
+    e1_input = Input(shape=[3, WORD_EMBED_SIZE], dtype='float32')
+    e2_input = Input(shape=[3, WORD_EMBED_SIZE], dtype='float32')
+
+    e1_flat = Flatten()(e1_input)
+    e2_flat = Flatten()(e2_input)
+    pos1_embed = Embedding(NB_DISTANCES, POSITION_EMBED_SIZE)(pos1_input)
+    pos2_embed = Embedding(NB_DISTANCES, POSITION_EMBED_SIZE)(pos2_input)
+
+    input_repre = Concatenate()([words_input, pos1_embed, pos2_embed])
+    input_repre = Dropout(DROPOUT)(input_repre)
+
+    # attention
+    alpha = input_attention(words_input, e1_flat, e2_flat)
+    input_repre = Multiply()([input_repre, alpha])
+
+    pooled = conv_maxpool(input_repre)
+    e = entities_features(e1_flat, e2_flat)
+    output = MLP([pooled, e])
+
+    model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input], outputs=[output])
+    optimizer = Adam(LEARNING_RATE)
+    model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer=optimizer)
+    # model.summary()
+    return model
+
 def build_model():
     # input
     words_input = Input(shape=[SEQUENCE_LEN, WORD_EMBED_SIZE], dtype='float32')

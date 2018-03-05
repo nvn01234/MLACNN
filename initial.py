@@ -169,7 +169,7 @@ def read_char_embeddings(vocab):
 
 
 def numpy_save_many(_dict_):
-    for k, data in _dict_:
+    for k, data in _dict_.items():
         name, folder = k.split("_")
         np.save("%s/%s.npy" % (folder, name), data)
 

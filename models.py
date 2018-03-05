@@ -1,5 +1,5 @@
 from settings import *
-from keras.layers import Input, Concatenate, Conv1D, GlobalMaxPool1D, Dense, Dropout, Reshape, Layer, RepeatVector, Permute, Multiply, Average, Subtract, Embedding, Flatten
+from keras.layers import Input, Concatenate, Conv1D, GlobalMaxPool1D, Dense, Dropout, Reshape, Layer, RepeatVector, Permute, Multiply, Average, Subtract, Embedding, Flatten, SeparableConv1D, Conv2D, GlobalMaxPool2D
 from keras.engine import Model
 from keras import backend as K
 from keras import  initializers, regularizers
@@ -38,8 +38,8 @@ def build_model():
     return model
 
 def char_level_word_feature(chars):
-    conv = Conv1D(filters=NB_FILTERS_CHAR,
-                  kernel_size=WINDOW_SIZE_CHAR,
+    conv = Conv2D(filters=NB_FILTERS_CHAR,
+                  kernel_size=(1, WINDOW_SIZE_CHAR),
                   padding="same",
                   activation="relu")(chars)
     pool = GlobalMaxPool1D()(conv)

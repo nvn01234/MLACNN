@@ -81,8 +81,8 @@ class Sentence:
         prev_pos = max(0, pos - 1)
         next_pos = min(len(self.words) - 1, pos + 1)
         context = [
-            encoder.word_vec(self.words[prev_pos]),
             encoder.word_vec(self.words[pos]),
+            encoder.word_vec(self.words[prev_pos]),
             encoder.word_vec(self.words[next_pos]),
         ]
         return context
@@ -108,7 +108,7 @@ def read_word_embeddings(vocab):
     }
     word_embeddings = [
         np.zeros(WORD_EMBED_SIZE),
-        np.random.uniform(-0.25, 0.25, WORD_EMBED_SIZE)
+        np.random.normal(0, 0.1, WORD_EMBED_SIZE)
     ]
     with open("origin_data/glove.6B.300d.txt", "r", encoding="utf8") as f:
         for line in f:
@@ -153,7 +153,7 @@ def read_char_embeddings(vocab):
     }
     char_embeddings = [
         np.zeros(CHAR_EMBED_SIZE),
-        np.random.uniform(-0.25, 0.25, CHAR_EMBED_SIZE),
+        np.random.normal(0, 0.1, CHAR_EMBED_SIZE),
     ]
     with open("origin_data/char-embeddings.txt", "r", encoding="utf8") as f:
         for line in f:

@@ -4,6 +4,7 @@ from keras.engine import Model, InputSpec, Layer
 from keras import backend as K
 from keras.optimizers import Adam
 import numpy as np
+from keras.initializers import TruncatedNormal, Constant
 
 
 def build_model():
@@ -35,7 +36,10 @@ def build_model():
     chars = Conv2D(filters=NB_FILTERS_CHAR,
                    kernel_size=(1, WINDOW_SIZE_CHAR),
                    padding="same",
-                   activation="relu")(chars)
+                   activation="relu",
+                   kernel_initializer=TruncatedNormal(stddev=0.1),
+                   bias_initializer=Constant(0.1),
+                   )(chars)
     chars = GlobalMaxPool1D4dim()(chars)
 
     # input representation
@@ -48,7 +52,10 @@ def build_model():
         conv = Conv1D(filters=NB_FILTERS_WORD,
                       kernel_size=size,
                       padding="same",
-                      activation="relu")(input_repre)
+                      activation="relu",
+                      kernel_initializer=TruncatedNormal(stddev=0.1),
+                      bias_initializer=Constant(0.1),
+                      )(input_repre)
         pool = GlobalMaxPool1D()(conv)
         pooled.append(pool)
 
@@ -59,7 +66,12 @@ def build_model():
     # fully connected
     output = Concatenate()([*pooled, e1_flat, e2_flat])
     output = Dropout(DROPOUT)(output)
-    output = Dense(units=NB_RELATIONS, activation="softmax")(output)
+    output = Dense(
+        units=NB_RELATIONS,
+        activation="softmax",
+        kernel_initializer=TruncatedNormal(stddev=0.1),
+        bias_initializer=Constant(0.1),
+    )(output)
 
     model = Model(inputs=[words_input, chars_input, pos1_input, pos2_input, e1_input, e2_input], outputs=[output])
     optimizer = Adam(LEARNING_RATE)

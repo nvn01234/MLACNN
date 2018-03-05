@@ -13,7 +13,6 @@ def main():
 
     print("load test data")
     x_test = [np.load("data/test/%s.npy" % name) for name in ["words", "chars", "pos1", "pos2", "e1", "e2"]]
-    y_test = np.load("data/test/y.npy")
 
     print("training")
     config = ConfigProto()

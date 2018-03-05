@@ -6,7 +6,9 @@ import os
 
 
 def read_char_embeddings():
-    char2vec = {}
+    char2vec = {
+        "UNKNOWN": np.random.uniform(-0.25, 0.25, size=CHAR_EMBED_SIZE),
+    }
     with open("origin_data/char-embeddings.txt", "r", encoding="utf8") as f:
         for line in f:
             w, *values = line.strip().split()
@@ -69,7 +71,11 @@ class SemEvalParser(HTMLParser):
             embed = []
             for i in range(WORD_LEN):
                 if i < len(w):
-                    embed.append(self.char2vec[w[i]])
+                    if w[i] in self.char2vec:
+                        embed.append(self.char2vec[w[i]])
+                    else:
+                        self.unknown_chars.add(w[i])
+                        embed.append(self.char2vec["UNKNOWN"])
                 else:
                     embed.append(np.zeros(CHAR_EMBED_SIZE))
             # return embed

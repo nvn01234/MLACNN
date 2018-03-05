@@ -23,7 +23,7 @@ def read_char_embeddings():
             char2idx[w] = len(char2idx)
             values = np.array(values, dtype='float32')
             char_embeddings.append(values)
-    np.save("data/char_embeddings.npy", char_embeddings)
+    np.save("data/embedding/char_embeddings.npy", char_embeddings)
     return char2idx
 
 

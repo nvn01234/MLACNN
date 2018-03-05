@@ -9,22 +9,30 @@ import numpy as np
 
 def build_model():
     # input
-    words_input = Input(shape=[SEQUENCE_LEN, WORD_EMBED_SIZE], dtype='float32')
+    words_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
     pos1_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
     pos2_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
-    e1_input = Input(shape=[3, WORD_EMBED_SIZE], dtype='float32')
-    e2_input = Input(shape=[3, WORD_EMBED_SIZE], dtype='float32')
+    e1_input = Input(shape=[3], dtype='int32')
+    e2_input = Input(shape=[3], dtype='int32')
     chars_input = Input(shape=[SEQUENCE_LEN, WORD_LEN], dtype='int32')
 
-    e1_flat = Flatten()(e1_input)
-    e2_flat = Flatten()(e2_input)
-    pos1_embed = Embedding(NB_DISTANCES, POSITION_EMBED_SIZE)(pos1_input)
-    pos2_embed = Embedding(NB_DISTANCES, POSITION_EMBED_SIZE)(pos2_input)
-    char_embeddings = np.load("data/char_embeddings.npy")
-    char_embed = Embedding(char_embeddings.shape[0], char_embeddings.shape[1], weights=[char_embeddings], trainable=False)(chars_input)
+    we = np.load("data/embedding/word_embeddings.npy")
+    words_embed = Embedding(we.shape[0], we.shape[1], weights=[we], trainable=False)
+    words = words_embed(words_input)
+    e1 = words_embed(e1_input)
+    e2 = words_embed(e2_input)
 
-    chars = char_level_word_feature(char_embed)
-    input_repre = Concatenate()([words_input, pos1_embed, pos2_embed, chars])
+    pos1 = Embedding(NB_DISTANCES, POSITION_EMBED_SIZE)(pos1_input)
+    pos2 = Embedding(NB_DISTANCES, POSITION_EMBED_SIZE)(pos2_input)
+
+    ce = np.load("data/embedding/char_embeddings.npy")
+    chars = Embedding(ce.shape[0], ce.shape[1], weights=[ce], trainable=False)(chars_input)
+
+    e1_flat = Flatten()(e1)
+    e2_flat = Flatten()(e2)
+
+    chars = char_level_word_feature(chars)
+    input_repre = Concatenate()([words, pos1, pos2, chars])
     input_repre = Dropout(DROPOUT)(input_repre)
 
     pooled = conv_maxpool(input_repre)

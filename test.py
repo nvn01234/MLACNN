@@ -13,7 +13,7 @@ def make_dict(*expr):
 
 def main():
     y_true = np.load("data/test/labels.npy")
-    y_pred = np.load("log/y_pred.npy")
+    y_pred = np.load("log/y_pred_2.npy")
 
     # confusion matrix
     cm19 = np.zeros([NB_RELATIONS, NB_RELATIONS], dtype="int32")

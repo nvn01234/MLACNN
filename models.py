@@ -75,7 +75,7 @@ class GlobalMaxPooling1D_2(GlobalMaxPool1D):
         self.input_spec = InputSpec(ndim=4)
 
     def compute_output_shape(self, input_shape):
-        return [input_shape[0], input_shape[1], input_shape[-1]]
+        return (input_shape[0], SEQUENCE_LEN, NB_FILTERS_CHAR)
 
     def call(self, inputs):
         return K.max(inputs, axis=2)

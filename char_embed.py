@@ -67,12 +67,14 @@ class SemEvalParser(HTMLParser):
             return np.average(embed, 0)
         else:
             self.max_word_len = max(self.max_word_len, len(w))
+            if len(w) == 28: print("maxlen: %s" % w)
             embed = []
             for i in range(WORD_LEN):
                 if i < len(w):
                     if w[i] in self.char2vec:
                         embed.append(self.char2vec[w[i]])
                     else:
+                        print("unknown: %s" % w[i])
                         self.unknown_chars.add(w[i])
                         embed.append(self.char2vec["UNKNOWN"])
                 else:
@@ -104,12 +106,12 @@ def main():
     print("read train data")
     chars_train = read_file("origin_data/TRAIN_FILE.TXT", parser)
     np.save("data/train/chars.npy", chars_train)
-    del chars_train
+    # del chars_train
 
     print("read test data")
     chars_test = read_file("origin_data/TEST_FILE_FULL.TXT", parser)
     np.save("data/test/chars.npy", chars_test)
-    del chars_test
+    # del chars_test
 
     print("max_word_len: %d, unknown chars: %d" % (parser.max_word_len, len(parser.unknown_chars)))
 

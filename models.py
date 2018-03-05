@@ -23,8 +23,8 @@ def build_model_2():
     input_repre = Dropout(DROPOUT)(input_repre)
 
     # attention
-    alpha = input_attention(words_input, e1_flat, e2_flat)
-    input_repre = Multiply()([input_repre, alpha])
+    # alpha = input_attention(words_input, e1_flat, e2_flat)
+    # input_repre = Multiply()([input_repre, alpha])
 
     pooled = conv_maxpool(input_repre)
     e = entities_features(e1_flat, e2_flat)
@@ -105,10 +105,7 @@ def entities_features(e1_input, e2_input):
 def MLP(features):
     output = Concatenate()(features)
     output = Dropout(DROPOUT)(output)
-    output = Dense(
-        units=NB_RELATIONS,
-        activation="softmax"
-    )(output)
+    output = Dense(units=NB_RELATIONS, activation="softmax")(output)
     return output
 
 if __name__ == "__main__":

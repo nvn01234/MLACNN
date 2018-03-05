@@ -84,8 +84,8 @@ def read_file(path, parser):
         for record in records:
             parser.feed(record)
             words.append(parser.words)
-            e1pos.append(parser.e1)
-            e2pos.append(parser.e2)
+            e1pos.append(parser.e1pos)
+            e2pos.append(parser.e2pos)
 
     return words, e1pos, e2pos
 

@@ -1,6 +1,6 @@
 from settings import *
 from keras.layers import Input, Concatenate, Conv1D, GlobalMaxPool1D, Dense, Dropout, Reshape, Layer, RepeatVector, Permute, Multiply, Average, Subtract, Embedding, Flatten, SeparableConv1D, Conv2D, GlobalMaxPool2D
-from keras.engine import Model
+from keras.engine import Model, InputSpec
 from keras import backend as K
 from keras import  initializers, regularizers
 from keras.initializers import TruncatedNormal, Constant
@@ -42,7 +42,7 @@ def char_level_word_feature(chars):
                   kernel_size=(1, WINDOW_SIZE_CHAR),
                   padding="same",
                   activation="relu")(chars)
-    pool = GlobalMaxPool1D()(conv)
+    pool = GlobalMaxPooling1D_2()(conv)
     return pool
 
 def conv_maxpool(input_repre):
@@ -68,6 +68,14 @@ def MLP(features):
     output = Dropout(DROPOUT)(output)
     output = Dense(units=NB_RELATIONS, activation="softmax")(output)
     return output
+
+class GlobalMaxPooling1D_2(GlobalMaxPool1D):
+    def __init__(self, **kwargs):
+        super(GlobalMaxPooling1D_2, self).__init__(**kwargs)
+        self.input_spec = InputSpec(ndim=4)
+
+    def call(self, inputs):
+        return K.max(inputs, axis=1)
 
 if __name__ == "__main__":
     build_model()

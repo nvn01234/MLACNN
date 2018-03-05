@@ -107,7 +107,7 @@ def read_file(path, parser):
 
 
 def main():
-    for folder in ["data", "data/train", "data/test"]:
+    for folder in ["data", "data/train", "data/test", "data/embedding"]:
         if not os.path.exists(folder):
             os.mkdir(folder)
 

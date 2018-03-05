@@ -28,7 +28,7 @@ def dis2pos(dis):
         dis = MIN_DISTANCE
     if dis > MAX_DISTANCE:
         dis = MAX_DISTANCE
-    return dis - MIN_DISTANCE + 1
+    return dis - MIN_DISTANCE
 
 
 class Sentence:
@@ -44,15 +44,17 @@ class Sentence:
         self.vocab_word = set()
         self.vocab_char = set()
         self.max_word_len = 0
-        self.positions_1 = []
-        self.positions_2 = []
         for i, w in enumerate(self.words):
             self.vocab_word.add(w)
             self.max_word_len = max(self.max_word_len, len(w))
-            self.positions_1.append(dis2pos(i - e1start))
-            self.positions_2.append(dis2pos(i - e2start))
             for c in w:
                 self.vocab_char.add(c)
+
+        self.positions_1 = []
+        self.positions_2 = []
+        for i in range(SEQUENCE_LEN):
+            self.positions_1.append(dis2pos(i - e1start))
+            self.positions_2.append(dis2pos(i - e2start))
 
         self.words_encoded = np.zeros(SEQUENCE_LEN, dtype='int32')
         self.chars_encoded = np.zeros([SEQUENCE_LEN, WORD_LEN], dtype='int32')

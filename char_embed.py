@@ -64,8 +64,14 @@ class SemEvalParser(HTMLParser):
         super(SemEvalParser, self).feed(data)
 
         self.tokens = word_tokenize(" ".join(self.data))
-        self.tokens = [w[3:].replace("_", " ") if w == self.e1 or w == self.e2 else w for w in self.tokens]
-        self.tokens = ['"' if w == "''" or w == "``" else w for w in self.tokens]
+        new_tokens = []
+        for w in self.tokens:
+            if w == self.e1 or w == self.e2:
+                w = w[3:].replace("_", " ")
+            if w == "''" or w == "``":
+                w = '"'
+            new_tokens.append(w)
+        self.tokens = new_tokens
 
         self.extract_chars_feature()
 

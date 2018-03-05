@@ -6,27 +6,14 @@ from settings import *
 from sklearn.metrics import precision_recall_fscore_support, accuracy_score
 
 
-
 def main():
     print("load train data")
-    words_train = np.load("data/train/words.npy")
-    pos1_train = np.load("data/train/pos1.npy")
-    pos2_train = np.load("data/train/pos2.npy")
-    e1_train = np.load("data/train/e1.npy")
-    e2_train = np.load("data/train/e2.npy")
-    chars_train = np.load("data/train/chars.npy")
-    labels_train = np.load("data/train/labels.npy")
-    x_train = [words_train, pos1_train, pos2_train, e1_train, e2_train, chars_train]
+    x_train = [np.load("data/train/%s.npy" % name) for name in ["words", "chars", "pos1", "pos2", "e1", "e2"]]
+    y_train = np.load("data/train/y.npy")
 
     print("load test data")
-    words_test = np.load("data/test/words.npy")
-    pos1_test = np.load("data/test/pos1.npy")
-    pos2_test = np.load("data/test/pos2.npy")
-    e1_test = np.load("data/test/e1.npy")
-    e2_test = np.load("data/test/e2.npy")
-    chars_test = np.load("data/test/chars.npy")
-    labels_test = np.load("data/test/labels.npy")
-    x_test = [words_test, pos1_test, pos2_test, e1_test, e2_test, chars_test]
+    x_test = [np.load("data/test/%s.npy" % name) for name in ["words", "chars", "pos1", "pos2", "e1", "e2"]]
+    y_test = np.load("data/test/y.npy")
 
     print("training")
     config = ConfigProto()
@@ -35,16 +22,15 @@ def main():
     sess = Session(config=config)
     K.set_session(sess)
     model = build_model()
-    model.fit(x_train, labels_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True)
+    model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True)
 
     print("testing")
     scores = model.predict(x_test,verbose=False)
     predictions = scores.argmax(-1)
-    accuracy = accuracy_score(labels_test, predictions)
-    precision, recall, f1, support = precision_recall_fscore_support(labels_test, predictions, average="macro", warn_for=())
+    accuracy = accuracy_score(y_test, predictions)
+    precision, recall, f1, support = precision_recall_fscore_support(y_test, predictions, average="macro", warn_for=())
     print("accuracy = %.4f%%, precision = %.4f%%, recall = %.4f%%, f1 = %.4f%%" % (accuracy, precision, recall, f1))
     np.save("log/y_pred_3.npy", predictions)
-
 
 
 if __name__ == "__main__":

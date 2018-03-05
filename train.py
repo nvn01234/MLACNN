@@ -3,7 +3,7 @@ from tensorflow import ConfigProto, Session
 from keras import backend as K
 from models import build_model
 from settings import *
-from sklearn.metrics import precision_recall_fscore_support, accuracy_score
+from test import gen_answer_key
 
 
 def main():
@@ -25,12 +25,9 @@ def main():
     model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True)
 
     print("testing")
-    scores = model.predict(x_test,verbose=False)
+    scores = model.predict(x_test, verbose=False)
     predictions = scores.argmax(-1)
-    accuracy = accuracy_score(y_test, predictions)
-    precision, recall, f1, support = precision_recall_fscore_support(y_test, predictions, average="macro", warn_for=())
-    print("accuracy = %.4f%%, precision = %.4f%%, recall = %.4f%%, f1 = %.4f%%" % (accuracy, precision, recall, f1))
-    np.save("log/y_pred_3.npy", predictions)
+    gen_answer_key(predictions)
 
 
 if __name__ == "__main__":

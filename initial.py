@@ -92,8 +92,8 @@ def read_file(path, counter):
         lines = f.read().strip().split("\n")
     for line in lines:
         r, e1start, e1end, e2start, e2end, *words = line.split()
-        y.append(r)
-        s = Sentence(e1start, e1end, e2start, e2end, words)
+        y.append(int(r))
+        s = Sentence(int(e1start), int(e1end), int(e2start), int(e2end), words)
         counter.update(s)
         sentences.append(s)
     return sentences, y

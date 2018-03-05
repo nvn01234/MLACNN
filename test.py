@@ -20,7 +20,7 @@ def main():
     y_pred = np.load("log/y_pred_3.npy")
     lines = []
     for idx, y in zip(test_idx, y_pred):
-        line = "%d\t%s" % (idx, idx2relations[y])
+        line = "%s\t%s" % (idx, idx2relations[y])
         lines.append(line)
     with open("log/answer_keys.txt", "w", encoding="utf8") as f:
         f.write("\n".join(lines))

@@ -76,8 +76,8 @@ class Sentence:
         return self.words_encoded, self.chars_encoded, self.positions_1, self.positions_2, self.e1_context, self.e2_context
 
     def entity_context(self, pos, encoder):
-        prev_pos = min(0, pos - 1)
-        next_pos = max(len(self.words) - 1, pos + 1)
+        prev_pos = max(0, pos - 1)
+        next_pos = min(len(self.words) - 1, pos + 1)
         context = [
             encoder.word_vec(self.words[prev_pos]),
             encoder.word_vec(self.words[pos]),

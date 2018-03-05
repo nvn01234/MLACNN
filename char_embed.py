@@ -58,8 +58,9 @@ class SemEvalParser(HTMLParser):
 
         self.tokens = word_tokenize(" ".join(self.data))
         self.tokens = [w[3:] if w == self.e1 or w == self.e2 else w for w in self.tokens]
+        print(self.tokens)
 
-        self.extract_chars_feature()
+        # self.extract_chars_feature()
 
     def char_embed(self, w):
         if "_" in w:

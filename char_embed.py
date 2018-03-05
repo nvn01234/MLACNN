@@ -69,7 +69,7 @@ class SemEvalParser(HTMLParser):
                 if w[i] in self.char2vec:
                     embed.append(self.char2vec[w[i]])
                 else:
-                    self.unknown_chars += 1
+                    self.unknown_chars.add(w[i])
                     embed.append(self.char2vec["UNKNOWN"])
             else:
                 embed.append(np.zeros(CHAR_EMBED_SIZE))

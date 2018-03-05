@@ -16,8 +16,6 @@ def gen_answer_key(y_pred):
             idx = line.strip().split()[0]
             test_idx.append(idx)
 
-    print("load y_pred")
-
     lines = []
     for idx, y in zip(test_idx, y_pred):
         line = "%s\t%s" % (idx, idx2relations[y])

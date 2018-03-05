@@ -92,13 +92,12 @@ def read_file(path, counter):
     sentences = []
     y = []
     with open(path, "r", encoding="utf8") as f:
-        lines = f.read().strip().split("\n")
-    for line in lines:
-        r, e1start, e1end, e2start, e2end, *words = line.split()
-        y.append(int(r))
-        s = Sentence(int(e1start), int(e1end), int(e2start), int(e2end), words)
-        counter.update(s)
-        sentences.append(s)
+        for line in f:
+            r, e1start, e1end, e2start, e2end, *words = line.strip().split()
+            y.append(int(r))
+            s = Sentence(int(e1start), int(e1end), int(e2start), int(e2end), words)
+            counter.update(s)
+            sentences.append(s)
     return sentences, y
 
 

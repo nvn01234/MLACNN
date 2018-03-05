@@ -74,8 +74,11 @@ class GlobalMaxPooling1D_2(GlobalMaxPool1D):
         super(GlobalMaxPooling1D_2, self).__init__(**kwargs)
         self.input_spec = InputSpec(ndim=4)
 
+    def compute_output_shape(self, input_shape):
+        return [input_shape[0], input_shape[1], input_shape[-1]]
+
     def call(self, inputs):
-        return K.max(inputs, axis=1)
+        return K.max(inputs, axis=2)
 
 if __name__ == "__main__":
     build_model()

@@ -16,8 +16,7 @@ def build_model():
     e2_input = Input(shape=[3], dtype='int32')
 
     # word embedding
-    # we = np.load("data/embedding/word_embeddings.npy")
-    we = np.random.random([10, WORD_EMBED_SIZE])
+    we = np.load("data/embedding/word_embeddings.npy")
     words_embed = Embedding(we.shape[0], we.shape[1], weights=[we], trainable=False)
     words = words_embed(words_input)
     e1 = words_embed(e1_input)
@@ -28,8 +27,7 @@ def build_model():
     pos2 = Embedding(NB_POSITIONS, POSITION_EMBED_SIZE)(pos2_input)
 
     # character embedding
-    # ce = np.load("data/embedding/char_embeddings.npy")
-    ce = np.random.random([10, CHAR_EMBED_SIZE])
+    ce = np.load("data/embedding/char_embeddings.npy")
     chars_embed = Embedding(ce.shape[0], ce.shape[1], weights=[ce], trainable=False)
     chars = chars_embed(chars_input)
 

@@ -94,7 +94,7 @@ class SemEvalParser(HTMLParser):
         self.find_entity_pos()
 
         self.tokens = [w[3:] if w == self.e1 or w == self.e2 else w for w in self.tokens]
-        self.max_word_len = max(len(t) for t in self.tokens)
+        self.max_word_len = max(self.max_word_len, max(len(t) for t in self.tokens))
         self.e1 = self.e1[3:]
         self.e2 = self.e2[3:]
 

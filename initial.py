@@ -206,6 +206,8 @@ def main():
     data_test = make_dict(words_test, chars_test, pos1_test, pos2_test, e1_test, e2_test, y_test)
     numpy_save_many(data_test)
 
+    print(encoder)
+
 
 if __name__ == "__main__":
     main()

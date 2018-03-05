@@ -6,9 +6,7 @@ import os
 
 
 def read_char_embeddings():
-    char2vec = {
-        "UNKNOWN": np.random.uniform(-0.25, 0.25, size=CHAR_EMBED_SIZE),
-    }
+    char2vec = {}
     with open("origin_data/char-embeddings.txt", "r", encoding="utf8") as f:
         for line in f:
             w, *values = line.strip().split()
@@ -22,7 +20,7 @@ class SemEvalParser(HTMLParser):
         super(SemEvalParser, self).__init__()
         self.char2vec = char2vec
         self.unknown_chars = set()
-        self.max_word_len = 0
+        self.words_len = []
 
     def handle_starttag(self, tag, attrs):
         super(SemEvalParser, self).handle_starttag(tag, attrs)
@@ -58,7 +56,7 @@ class SemEvalParser(HTMLParser):
 
         self.tokens = word_tokenize(" ".join(self.data))
         self.tokens = [w[3:] if w == self.e1 or w == self.e2 else w for w in self.tokens]
-        print(self.tokens)
+        self.tokens = ['"' if w == "''" or w == "``" else w for w in self.tokens]
 
         self.extract_chars_feature()
 
@@ -67,21 +65,14 @@ class SemEvalParser(HTMLParser):
             embed = [self.char_embed(_w) for _w in w.split("_")]
             # return np.average(embed, 0)
         else:
-            self.max_word_len = max(self.max_word_len, len(w))
-            # if len(w) == 28: print("maxlen: %s" % w)
+            self.words_len.append(len(w))
             embed = []
             for i in range(WORD_LEN):
                 if i < len(w):
-                    if w[i] in self.char2vec:
-                        embed.append(self.char2vec[w[i]])
-                    else:
-                        # print(w)
-                        self.unknown_chars.add(w[i])
-                        embed.append(self.char2vec["UNKNOWN"])
+                    embed.append(self.char2vec[w[i]])
                 else:
                     embed.append(np.zeros(CHAR_EMBED_SIZE))
             # return embed
-        return None
 
 
 
@@ -115,7 +106,7 @@ def main():
     # np.save("data/test/chars.npy", chars_test)
     # del chars_test
 
-    print("max_word_len: %d, unknown chars: %d" % (parser.max_word_len, len(parser.unknown_chars)))
+    print("max_word_len: %d, unknown chars: %d" % (np.average(parser.words_len), len(parser.unknown_chars)))
 
 
 if __name__ == "__main__":

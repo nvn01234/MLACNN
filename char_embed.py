@@ -16,7 +16,7 @@ def read_char_embeddings():
     ]
     with open("origin_data/char-embeddings.txt", "r", encoding="utf8") as f:
         for line in f:
-            w, *values = line.strip().split()
+            w, *values = line[:-1].split()
             values = np.array(values, dtype='float32')
             char2idx[w] = len(char2idx)
             char_embeddings.append(values)
@@ -112,17 +112,17 @@ def main():
     char2vec = read_char_embeddings()
     parser = SemEvalParser(char2vec)
 
-    print("read train data")
-    chars_train = read_file("origin_data/TRAIN_FILE.TXT", parser)
-    np.save("data/train/chars.npy", chars_train)
-    del chars_train
+    # print("read train data")
+    # chars_train = read_file("origin_data/TRAIN_FILE.TXT", parser)
+    # np.save("data/train/chars.npy", chars_train)
+    # del chars_train
+    #
+    # print("read test data")
+    # chars_test = read_file("origin_data/TEST_FILE_FULL.TXT", parser)
+    # np.save("data/test/chars.npy", chars_test)
+    # del chars_test
 
-    print("read test data")
-    chars_test = read_file("origin_data/TEST_FILE_FULL.TXT", parser)
-    np.save("data/test/chars.npy", chars_test)
-    del chars_test
-
-    print("max_word_len: %d, unknown chars: %d" % (parser.max_word_len, len(parser.unknown_chars)))
+    # print("max_word_len: %d, unknown chars: %d" % (parser.max_word_len, len(parser.unknown_chars)))
 
 
 if __name__ == "__main__":

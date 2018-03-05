@@ -66,7 +66,7 @@ class SemEvalParser(HTMLParser):
             embed = [self.char_embed(_w) for _w in w.split("_")]
             return np.average(embed, 0)
         else:
-            self.max_word_len = max(self.max_word_len, w)
+            self.max_word_len = max(self.max_word_len, len(w))
             embed = []
             for i in range(WORD_LEN):
                 if i < len(w):

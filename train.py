@@ -42,6 +42,7 @@ def main():
     accuracy = accuracy_score(labels_test, predictions)
     precision, recall, f1, support = precision_recall_fscore_support(labels_test, predictions, average="macro", warn_for=())
     print("accuracy = %.4f%%, precision = %.4f%%, recall = %.4f%%, f1 = %.4f%%" % (accuracy, precision, recall, f1))
+    np.save("data/y_pred.npy", predictions)
 
 
 

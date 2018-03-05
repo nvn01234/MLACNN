@@ -64,8 +64,29 @@ class SemEvalParser(HTMLParser):
         self.e2 = self.e2[3:]
 
         self.e1 = self.word_embed(self.e1)
-
         self.e2 = self.word_embed(self.e2)
+
+        self.e1_context = []
+        if e1pos > 0:
+            self.e1_context.append(self.word_embed(tokens[e1pos - 1]))
+        else:
+            self.e1_context.append(self.e1)
+        self.e1_context.append(self.e1)
+        if e1pos < len(tokens) - 1:
+            self.e1_context.append(self.word_embed(tokens[e1pos + 1]))
+        else:
+            self.e1_context.append(self.e1)
+
+        self.e2_context = []
+        if e2pos > 0:
+            self.e2_context.append(self.word_embed(tokens[e2pos - 1]))
+        else:
+            self.e2_context.append(self.e2)
+        self.e2_context.append(self.e2)
+        if e2pos < len(tokens) - 1:
+            self.e2_context.append(self.word_embed(tokens[e2pos + 1]))
+        else:
+            self.e2_context.append(self.e2)
 
         self.words = []
         for i in range(SEQUENCE_LEN):
@@ -95,8 +116,8 @@ def read_file(path, parser):
         for record in records:
             parser.feed(record)
             words.append(parser.words)
-            e1.append(parser.e1)
-            e2.append(parser.e2)
+            e1.append(parser.e1_context)
+            e2.append(parser.e2_context)
 
     return words, e1, e2
 

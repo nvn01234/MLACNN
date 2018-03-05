@@ -4,20 +4,24 @@ from keras.engine import Model
 from keras import backend as K
 from keras import  initializers, regularizers
 from keras.initializers import TruncatedNormal, Constant
+from keras.optimizers import Adam
 
 def build_model():
     # input
     words_input = Input(shape=[SEQUENCE_LEN, WORD_EMBED_SIZE], dtype='float32')
     pos1_input = Input(shape=[SEQUENCE_LEN, POSITION_EMBED_SIZE], dtype='float32')
     pos2_input = Input(shape=[SEQUENCE_LEN, POSITION_EMBED_SIZE], dtype='float32')
-    e1_input = Input(shape=[WORD_EMBED_SIZE], dtype='float32')
-    e2_input = Input(shape=[WORD_EMBED_SIZE], dtype='float32')
+    e1_input = Input(shape=[3, WORD_EMBED_SIZE], dtype='float32')
+    e2_input = Input(shape=[3, WORD_EMBED_SIZE], dtype='float32')
+
+    e1_input = Flatten()(e1_input)
+    e2_input = Flatten()(e2_input)
 
     input_repre = Concatenate()([words_input, pos1_input, pos2_input])
-    # input_repre = Dropout(DROPOUT)(input_repre)
+    input_repre = Dropout(DROPOUT)(input_repre)
 
     # attention
-    alpha = input_attention(words_input, e1_input,e2_input)
+    alpha = input_attention(words_input, e1_input, e2_input)
     input_repre = Multiply()([input_repre, alpha])
 
     pooled = conv_maxpool(input_repre)
@@ -25,7 +29,8 @@ def build_model():
     output = MLP([pooled, e])
 
     model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input], outputs=[output])
-    model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer='adam')
+    optimizer = Adam(LEARNING_RATE)
+    model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer=optimizer)
     # model.summary()
     return model
 
@@ -55,7 +60,7 @@ def conv_maxpool(input_repre):
         conv = Conv1D(filters=NB_FILTERS,
                       kernel_size=size,
                       padding="same",
-                      activation="tanh",
+                      activation="relu",
                       )(input_repre)
         wo = GlobalMaxPool1D()(conv)
         pooled.append(wo)
@@ -71,14 +76,10 @@ def MLP(features):
     output = Concatenate()(features)
     output = Dropout(DROPOUT)(output)
     output = Dense(
-        units=HIDDEN_LAYER,
-        activation="tanh",
-    )(output)
-    output = Dense(
         units=NB_RELATIONS,
         activation="softmax"
     )(output)
     return output
 
 if __name__ == "__main__":
-    model = build_model()
+    build_model()

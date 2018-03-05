@@ -5,6 +5,7 @@ from keras import backend as K
 from keras import  initializers, regularizers
 from keras.initializers import TruncatedNormal, Constant
 from keras.optimizers import Adam
+import numpy as np
 
 def build_model():
     # input
@@ -13,14 +14,16 @@ def build_model():
     pos2_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
     e1_input = Input(shape=[3, WORD_EMBED_SIZE], dtype='float32')
     e2_input = Input(shape=[3, WORD_EMBED_SIZE], dtype='float32')
-    chars_input = Input(shape=[SEQUENCE_LEN, WORD_LEN, CHAR_EMBED_SIZE], dtype='float32')
+    chars_input = Input(shape=[SEQUENCE_LEN, WORD_LEN], dtype='int32')
 
     e1_flat = Flatten()(e1_input)
     e2_flat = Flatten()(e2_input)
     pos1_embed = Embedding(NB_DISTANCES, POSITION_EMBED_SIZE)(pos1_input)
     pos2_embed = Embedding(NB_DISTANCES, POSITION_EMBED_SIZE)(pos2_input)
+    char_embeddings = np.load("data/char_embeddings.npy")
+    char_embed = Embedding(char_embeddings.shape[0], char_embeddings.shape[1], weights=[char_embeddings], trainable=False)(chars_input)
 
-    chars = char_level_word_feature(chars_input)
+    chars = char_level_word_feature(char_embed)
     input_repre = Concatenate()([words_input, pos1_embed, pos2_embed, chars])
     input_repre = Dropout(DROPOUT)(input_repre)
 

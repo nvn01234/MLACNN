@@ -6,15 +6,22 @@ import os
 
 
 def read_char_embeddings():
-    char2vec = {
-        "UNKNOWN": np.random.uniform(-0.25, 0.25, size=CHAR_EMBED_SIZE),
+    char2idx = {
+        "PADDING": 0,
+        "UNKNOWN": 1,
     }
+    char_embeddings = [
+        np.zeros(CHAR_EMBED_SIZE),
+        np.random.uniform(-0.25, 0.25, CHAR_EMBED_SIZE),
+    ]
     with open("origin_data/char-embeddings.txt", "r", encoding="utf8") as f:
         for line in f:
             w, *values = line.strip().split()
             values = np.array(values, dtype='float32')
-            char2vec[w] = values
-    return char2vec
+            char2idx[w] = len(char2idx)
+            char_embeddings.append(values)
+    np.save("data/char_embeddings.npy", char_embeddings)
+    return char2idx
 
 
 class SemEvalParser(HTMLParser):
@@ -45,7 +52,7 @@ class SemEvalParser(HTMLParser):
             if i < len(self.tokens):
                 self.chars.append(self.char_embed(self.tokens[i]))
             else:
-                self.chars.append(np.zeros(WORD_EMBED_SIZE))
+                self.chars.append(np.zeros(WORD_LEN))
 
     def feed(self, data):
         data = data.strip().split("\n")[0]
@@ -57,28 +64,25 @@ class SemEvalParser(HTMLParser):
         super(SemEvalParser, self).feed(data)
 
         self.tokens = word_tokenize(" ".join(self.data))
-        self.tokens = [w[3:] if w == self.e1 or w == self.e2 else w for w in self.tokens]
+        self.tokens = [w[3:].replace("_", " ") if w == self.e1 or w == self.e2 else w for w in self.tokens]
         self.tokens = ['"' if w == "''" or w == "``" else w for w in self.tokens]
 
         self.extract_chars_feature()
 
     def char_embed(self, w):
-        if "_" in w:
-            embed = [self.char_embed(_w) for _w in w.split("_")]
-            return np.average(embed, 0)
-        else:
-            self.max_word_len = max(self.max_word_len, len(w))
-            embed = []
-            for i in range(WORD_LEN):
-                if i < len(w):
-                    if w[i] in self.char2vec:
-                        embed.append(self.char2vec[w[i]])
-                    else:
-                        self.unknown_chars.add(w[i])
-                        embed.append(self.char2vec["UNKNOWN"])
+        self.max_word_len = max(self.max_word_len, len(w))
+        chars = []
+        for i in range(WORD_LEN):
+            if i < len(w):
+                if w[i] in self.char2vec:
+                    chars.append(self.char2vec[w[i]])
                 else:
-                    embed.append(np.zeros(CHAR_EMBED_SIZE))
-            return embed
+                    self.unknown_chars.add(w[i])
+                    chars.append(self.char2vec["UNKNOWN"])
+            else:
+                chars.append(self.char2vec["PADDING"])
+        return chars
+
 
 
 

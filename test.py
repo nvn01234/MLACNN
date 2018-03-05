@@ -12,9 +12,10 @@ def gen_answer_key(y_pred):
     print("read test keys")
     test_idx = []
     with open("origin_data/test_keys.txt", "r", encoding="utf8") as f:
-        for line in f:
-            idx = line.strip().split()[0]
-            test_idx.append(idx)
+        lines = f.read().strip().split("\n")
+    for line in lines:
+        idx = line.strip().split()[0]
+        test_idx.append(idx)
 
     lines = []
     for idx, y in zip(test_idx, y_pred):

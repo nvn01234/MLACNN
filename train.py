@@ -33,8 +33,7 @@ def main():
     sess = Session(config=config)
     K.set_session(sess)
     model = build_model_2()
-    model.fit(x_train, labels_train,
-              batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True)
+    model.fit(x_train, labels_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True)
 
     print("testing")
     scores = model.predict(x_test,verbose=False)

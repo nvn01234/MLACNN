@@ -115,17 +115,17 @@ def main():
     char2vec = read_char_embeddings()
     parser = SemEvalParser(char2vec)
 
-    # print("read train data")
-    # chars_train = read_file("origin_data/TRAIN_FILE.TXT", parser)
-    # np.save("data/train/chars.npy", chars_train)
-    # del chars_train
-    #
-    # print("read test data")
-    # chars_test = read_file("origin_data/TEST_FILE_FULL.TXT", parser)
-    # np.save("data/test/chars.npy", chars_test)
-    # del chars_test
+    print("read train data")
+    chars_train = read_file("origin_data/TRAIN_FILE.TXT", parser)
+    np.save("data/train/chars.npy", chars_train)
+    del chars_train
 
-    # print("max_word_len: %d, unknown chars: %d" % (parser.max_word_len, len(parser.unknown_chars)))
+    print("read test data")
+    chars_test = read_file("origin_data/TEST_FILE_FULL.TXT", parser)
+    np.save("data/test/chars.npy", chars_test)
+    del chars_test
+
+    print("max_word_len: %d, unknown chars: %d" % (parser.max_word_len, len(parser.unknown_chars)))
 
 
 if __name__ == "__main__":

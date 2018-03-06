@@ -129,7 +129,7 @@ class AttentionInput(Layer):
         alpha1 = K.softmax(A1)
         A2 = K.reshape(K.batch_dot(e2, words, (1, 2)), [-1, SEQUENCE_LEN])
         alpha2 = K.softmax(A2)
-        alpha = (alpha1 + alpha2) / 2
+        alpha = K.expand_dims((alpha1 + alpha2) / 2)
         output = word_repre * alpha
         return output
 

@@ -113,7 +113,8 @@ class AttentionPooling(Layer):
 
     def call(self, inputs, **kwargs):
         G = K.dot(inputs, self.U)
-        G = K.dot(G, K.transpose(self.rel_embed))
+        rel_embed = K.reshape(K.transpose(self.rel_embed), [NB_FILTERS_WORD, NB_RELATIONS])
+        G = K.dot(G, rel_embed)
         AP = K.softmax(G)
 
         wo = K.batch_dot(inputs, AP, [1, 1])

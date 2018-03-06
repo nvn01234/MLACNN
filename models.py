@@ -5,6 +5,7 @@ from keras import backend as K
 import numpy as np
 from keras.initializers import TruncatedNormal, Constant
 from keras import initializers, regularizers
+import tensorflow as tf
 
 
 def build_model():
@@ -115,9 +116,10 @@ class AttentionPooling(Layer):
         G = K.dot(inputs, self.U)
         rel_embed = K.reshape(K.transpose(self.rel_embed), [NB_FILTERS_WORD, NB_RELATIONS])
         G = K.dot(G, rel_embed)
+        G = K.permute_dimensions(G, [0, 2, 1])
         AP = K.softmax(G)
 
-        wo = K.batch_dot(inputs, AP, [1, 1])
+        wo = K.batch_dot(inputs, AP, [1, 2])
         wo = K.max(wo, -1)
         return wo
 

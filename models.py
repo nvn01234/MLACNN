@@ -32,7 +32,7 @@ def build_model():
     chars = chars_embed(chars_input)
 
     # character-level convolution
-    pooled_chars = []
+    pooled_char = []
     for size in WINDOW_SIZES_CHAR:
         chars = Conv2D(filters=NB_FILTERS_CHAR,
                        kernel_size=(1, size),
@@ -42,14 +42,14 @@ def build_model():
                        bias_initializer=Constant(0.1),
                        )(chars)
         pool = GlobalMaxPool1D4dim()(chars)
-        pooled_chars.append(pool)
+        pooled_char.append(pool)
 
     # input representation
-    input_repre = Concatenate()([words, *pooled_chars, pos1, pos2])
+    input_repre = Concatenate()([words, *pooled_char, pos1, pos2])
     input_repre = Dropout(DROPOUT)(input_repre)
 
     # word-level convolution
-    pooled = []
+    pooled_word = []
     for size in WINDOW_SIZES_WORD:
         conv = Conv1D(filters=NB_FILTERS_WORD,
                       kernel_size=size,
@@ -59,14 +59,14 @@ def build_model():
                       bias_initializer=Constant(0.1),
                       )(input_repre)
         pool = GlobalMaxPool1D()(conv)
-        pooled.append(pool)
+        pooled_word.append(pool)
 
     # lexical feature
     e1_flat = Flatten()(e1)
     e2_flat = Flatten()(e2)
 
     # fully connected
-    output = Concatenate()([*pooled, e1_flat, e2_flat])
+    output = Concatenate()([*pooled_word, e1_flat, e2_flat])
     output = Dropout(DROPOUT)(output)
     output = Dense(
         units=NB_RELATIONS,

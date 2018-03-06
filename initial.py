@@ -79,6 +79,8 @@ class Sentence:
         self.tags_encoded = np.zeros(SEQUENCE_LEN, dtype='int32')
         self.words_encoded = np.zeros(SEQUENCE_LEN, dtype='int32')
         self.chars_encoded = np.zeros([SEQUENCE_LEN, WORD_LEN], dtype='int32')
+        self.e1 = None
+        self.e2 = None
         self.e1_context = None
         self.e2_context = None
 
@@ -99,23 +101,29 @@ class Sentence:
             self.positions_1.append(encoder.dis1_vec(i, self.e1start, self.e1end))
             self.positions_2.append(encoder.dis2_vec(i, self.e2start, self.e2end))
 
-        self.e1_context = self.entity_context(self.e1start, encoder)
-        self.e2_context = self.entity_context(self.e2start, encoder)
+        self.e1, self.e1_context = self.entity_context(self.e1start, self.e1end, encoder)
+        self.e2, self.e2_context = self.entity_context(self.e2start, self.e2end, encoder)
 
-        return self.words_encoded, self.chars_encoded, self.positions_1, self.positions_2, self.e1_context, self.e2_context, self.tags_encoded
+        return self.words_encoded, self.chars_encoded, self.positions_1, self.positions_2, self.e1, self.e2, self.tags_encoded, self.e1_context, self.e2_context
 
-    def entity_context(self, estart, encoder):
-        start = estart - 1
-        end = estart + ENTITY_LEN
-        context = []
-        for i in range(start, end + 1):
-            if i < 0:
-                context.append(encoder.word_vec(self.words[0]))
-            elif i > len(self.words) - 1:
-                context.append(encoder.word_vec(self.words[-1]))
+    def entity_context(self, e_start, e_end, encoder):
+        entity = []
+        for i in range(e_start, e_start + ENTITY_LEN):
+            if i <= e_end:
+                entity.append(encoder.word_vec(self.words[i]))
             else:
-                context.append(encoder.word_vec(self.words[i]))
-        return context
+                entity.append(np.zeros(WORD_EMBED_SIZE))
+
+        context = []
+        if e_start > 0:
+            context.append(encoder.word_vec(self.words[e_start - 1]))
+        else:
+            context.append(np.zeros(WORD_EMBED_SIZE))
+        if e_end < len(self.words) - 1:
+            context.append(encoder.word_vec(self.words[e_end + 1]))
+        else:
+            context.append(np.zeros(WORD_EMBED_SIZE))
+        return entity, context
 
 
 def read_file(path, counter):
@@ -266,13 +274,13 @@ def main():
     encoder = Encoder(word2idx, char2idx, dis2idx_1, dis2idx_2, tag2idx)
 
     print("saving train data")
-    words_train, chars_train, pos1_train, pos2_train, e1_train, e2_train, tags_train = zip(*[s.generate_features(encoder) for s in sentences_train])
-    data_train = make_dict(words_train, chars_train, pos1_train, pos2_train, e1_train, e2_train, tags_train, y_train)
+    words_train, chars_train, pos1_train, pos2_train, e1_train, e2_train, tags_train, e1context_train, e2context_train = zip(*[s.generate_features(encoder) for s in sentences_train])
+    data_train = make_dict(words_train, chars_train, pos1_train, pos2_train, e1_train, e2_train, tags_train, e1context_train, e2context_train, y_train)
     numpy_save_many(data_train)
 
     print("saving test data")
-    words_test, chars_test, pos1_test, pos2_test, e1_test, e2_test, tags_test = zip(*[s.generate_features(encoder) for s in sentences_test])
-    data_test = make_dict(words_test, chars_test, pos1_test, pos2_test, e1_test, e2_test, y_test)
+    words_test, chars_test, pos1_test, pos2_test, e1_test, e2_test, tags_test, e1context_test, e2context_test = zip(*[s.generate_features(encoder) for s in sentences_test])
+    data_test = make_dict(words_test, chars_test, pos1_test, pos2_test, e1_test, e2_test, tags_test, e1context_test, e2context_test, y_test)
     numpy_save_many(data_test)
 
     print(encoder)

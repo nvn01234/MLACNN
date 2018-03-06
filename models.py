@@ -7,14 +7,18 @@ from keras.initializers import TruncatedNormal, Constant
 
 
 def build_model():
-    # input
+    # input representation features
     words_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
     chars_input = Input(shape=[SEQUENCE_LEN, WORD_LEN], dtype='int32')
     pos1_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
     pos2_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
-    e1_input = Input(shape=[ENTITY_CONTEXT], dtype='int32')
-    e2_input = Input(shape=[ENTITY_CONTEXT], dtype='int32')
     tags_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
+
+    # lexical features
+    e1_input = Input(shape=[ENTITY_LEN], dtype='int32')  # L1
+    e2_input = Input(shape=[ENTITY_LEN], dtype='int32')  # L2
+    e1context_input = Input(shape=[2], dtype='int32')  # L3
+    e2context_input = Input(shape=[2], dtype='int32')  # L4
 
     # word embedding
     we = np.load("data/embedding/word_embeddings.npy")
@@ -27,6 +31,8 @@ def build_model():
     words = words_embed(words_input)
     e1 = words_embed(e1_input)
     e2 = words_embed(e2_input)
+    e1context = words_embed(e1context_input)
+    e2context = words_embed(e2context_input)
 
     # position embedding
     pe1 = np.load("data/embedding/position_embeddings_1.npy")
@@ -88,9 +94,11 @@ def build_model():
     # lexical feature
     e1_flat = Flatten()(e1)
     e2_flat = Flatten()(e2)
+    e1context_flat = Flatten()(e1context)
+    e2context_flat = Flatten()(e2context)
 
     # fully connected
-    output = Concatenate()([*pooled_word, e1_flat, e2_flat])
+    output = Concatenate()([*pooled_word, e1_flat, e2_flat, e1context_flat, e2context_flat])
     output = Dropout(DROPOUT)(output)
     output = Dense(
         units=NB_RELATIONS,
@@ -101,7 +109,7 @@ def build_model():
         bias_regularizer='l2',
     )(output)
 
-    model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input, chars_input, tags_input], outputs=[output])
+    model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input, chars_input, tags_input, e1context_input, e2context_input], outputs=[output])
     model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer='adam')
     # model.summary()
     return model

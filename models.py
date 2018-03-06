@@ -56,16 +56,28 @@ def build_model():
                       activation="relu",
                       kernel_initializer=TruncatedNormal(stddev=0.1),
                       bias_initializer=Constant(0.1),
+                      kernel_regularizer='l2',
+                      bias_regularizer='l2',
                       )(input_repre)
         pool = GlobalMaxPool1D()(conv)
         pooled.append(pool)
+    pooled = Concatenate()(pooled)
+
+    # sentence-level feature
+    sen_feature = Dense(
+        units=HIDDEN_LAYER_2,
+        use_bias=False,
+        activation="tanh",
+        kernel_initializer=TruncatedNormal(stddev=0.1),
+        kernel_regularizer='l2',
+    )(pooled)
 
     # lexical feature
     e1_flat = Flatten()(e1)
     e2_flat = Flatten()(e2)
 
     # fully connected
-    output = Concatenate()([*pooled, e1_flat, e2_flat])
+    output = Concatenate()([sen_feature, e1_flat, e2_flat])
     output = Dropout(DROPOUT)(output)
     output = Dense(
         units=NB_RELATIONS,

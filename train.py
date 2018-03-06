@@ -26,7 +26,7 @@ def main():
     print("testing")
     scores = model.predict(x_test, verbose=False)
     predictions = scores.argmax(-1)
-    gen_answer_key(predictions, name="base_l2")
+    gen_answer_key(predictions, name="base")
 
 
 if __name__ == "__main__":

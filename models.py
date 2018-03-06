@@ -68,7 +68,7 @@ def build_model():
         conv = Conv1D(filters=NB_FILTERS_WORD,
                       kernel_size=size,
                       padding="same",
-                      activation="relu",
+                      activation="tanh",
                       kernel_initializer=TruncatedNormal(stddev=0.1),
                       bias_initializer=Constant(0.1),
                       )(input_repre)

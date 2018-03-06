@@ -2,7 +2,7 @@ from settings import *
 from keras.layers import Input, Concatenate, Conv1D, GlobalMaxPool1D, Dense, Dropout, Embedding, Flatten, Conv2D
 from keras.engine import Model, InputSpec, Layer
 from keras import backend as K
-from keras.optimizers import Adam
+from keras.optimizers import Adam, SGD
 import numpy as np
 from keras.initializers import TruncatedNormal, Constant
 
@@ -43,7 +43,6 @@ def build_model():
     # chars = GlobalMaxPool1D4dim()(chars)
 
     # input representation
-    # input_repre = Concatenate()([words, chars, pos1, pos2])
     input_repre = Concatenate()([words, pos1, pos2])
     input_repre = Dropout(DROPOUT)(input_repre)
 
@@ -62,14 +61,14 @@ def build_model():
     pooled = Concatenate()(pooled)
 
     # sentence-level feature
-    # sen_feature = Dense(
-    #     units=HIDDEN_LAYER_2,
-    #     use_bias=False,
-    #     activation="tanh",
-    #     kernel_initializer=TruncatedNormal(stddev=0.1),
-    #     kernel_regularizer='l2',
-    # )(pooled)
-    sen_feature = pooled
+    sen_feature = Dense(
+        units=SEN_REPRE_SIZE,
+        activation="tanh",
+        kernel_initializer=TruncatedNormal(stddev=0.1),
+        kernel_regularizer='l2',
+        bias_initializer=TruncatedNormal(stddev=0.1),
+        bias_regularizer='l2',
+    )(pooled)
 
     # lexical feature
     e1_flat = Flatten()(e1)
@@ -88,7 +87,7 @@ def build_model():
     )(output)
 
     model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input], outputs=[output])
-    optimizer = Adam(LEARNING_RATE)
+    optimizer = SGD(lr=LEARNING_RATE)
     model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer=optimizer)
     # model.summary()
     return model

@@ -59,7 +59,9 @@ def build_model():
     rel_embed = Embedding(
         input_dim=NB_RELATIONS, output_dim=NB_FILTERS_WORD,
         embeddings_initializer=TruncatedNormal(stddev=0.1),
-    ).weights
+    )
+    rel_embed.build(None)
+    rel_embed = rel_embed.weights
     pooled_word = []
     for size in WINDOW_SIZES_WORD:
         conv = Conv1D(filters=NB_FILTERS_WORD,

@@ -23,7 +23,6 @@ def build_model():
         output_dim=we.shape[1],
         weights=[we],
         trainable=False,
-        mask_zero=True
     )
     words = words_embed(words_input)
     e1 = words_embed(e1_input)
@@ -49,7 +48,6 @@ def build_model():
         input_dim=te.shape[0],
         output_dim=te.shape[1],
         weights=[te],
-        mask_zero=True,
     )(tags_input)
 
     # character embedding

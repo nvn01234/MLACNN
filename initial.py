@@ -137,6 +137,7 @@ def read_word_embeddings(vocab):
         "UNKNOWN": 1,
     }
     word_embeddings = [
+        np.zeros(WORD_EMBED_SIZE),
         np.random.normal(0, 0.1, WORD_EMBED_SIZE)
     ]
     with open("origin_data/glove.6B.300d.txt", "r", encoding="utf8") as f:
@@ -225,6 +226,7 @@ def pretrain_embedding(data, size, padding=False):
     embeddings = []
     if padding:
         index["PADDING"] = len(index)
+        embeddings.append(np.zeros(size))
     for d in model.wv.index2word:
         index[d] = len(index)
         embeddings.append(model.wv.word_vec(d))
@@ -270,7 +272,7 @@ def main():
 
     print("saving test data")
     words_test, chars_test, pos1_test, pos2_test, e1_test, e2_test, tags_test = zip(*[s.generate_features(encoder) for s in sentences_test])
-    data_test = make_dict(words_test, chars_test, pos1_test, pos2_test, e1_test, e2_test, tags_test, y_test)
+    data_test = make_dict(words_test, chars_test, pos1_test, pos2_test, e1_test, e2_test, y_test)
     numpy_save_many(data_test)
 
     print(encoder)

@@ -86,7 +86,7 @@ class Sentence:
 
     def entity_context(self, estart, encoder):
         start = estart - 1
-        end = start + ENTITY_LEN
+        end = estart + ENTITY_LEN
         context = []
         for i in range(start, end + 1):
             if i < 0:

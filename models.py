@@ -104,7 +104,7 @@ def build_model():
     )(output)
 
     model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input, chars_input, tags_input], outputs=[output])
-    model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer='adadelta')
+    model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer='adam')
     # model.summary()
     return model
 

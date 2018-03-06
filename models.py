@@ -34,6 +34,12 @@ def build_model():
     e1context = words_embed(e1context_input)
     e2context = words_embed(e2context_input)
 
+    # lexical feature
+    e1_flat = Flatten()(e1)
+    e2_flat = Flatten()(e2)
+    e1context_flat = Flatten()(e1context)
+    e2context_flat = Flatten()(e2context)
+
     # position embedding
     pe1 = np.load("data/embedding/position_embeddings_1.npy")
     pos1 = Embedding(
@@ -77,6 +83,7 @@ def build_model():
     # input representation
     input_repre = Concatenate()([words, pos1, pos2, tags, *pooled_char])
     input_repre = Dropout(DROPOUT)(input_repre)
+    input_repre = AttentionInput()([input_repre, words, e1, e2])
 
     # word-level convolution
     pooled_word = []
@@ -90,12 +97,6 @@ def build_model():
                       )(input_repre)
         pool = GlobalMaxPool1D()(conv)
         pooled_word.append(pool)
-
-    # lexical feature
-    e1_flat = Flatten()(e1)
-    e2_flat = Flatten()(e2)
-    e1context_flat = Flatten()(e1context)
-    e2context_flat = Flatten()(e2context)
 
     # fully connected
     output = Concatenate()([*pooled_word, e1_flat, e2_flat, e1context_flat, e2context_flat])
@@ -113,6 +114,24 @@ def build_model():
     model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer='adam')
     # model.summary()
     return model
+
+
+class AttentionInput(Layer):
+    def build(self, input_shape):
+        self.f = self.add_weight(name="f", shape=[ENTITY_LEN, 1], initializer=TruncatedNormal(stddev=0.1), regularizer=None)
+        self.built = True
+
+    def call(self, inputs, **kwargs):
+        word_repre, words, e1, e2 = inputs
+        e1 = K.dot(K.permute_dimensions(e1, [0, 2, 1]), self.f)
+        e2 = K.dot(K.permute_dimensions(e2, [0, 2, 1]), self.f)
+        A1 = K.reshape(K.batch_dot(e1, words, (1, 2)), [-1, SEQUENCE_LEN])
+        alpha1 = K.softmax(A1)
+        A2 = K.reshape(K.batch_dot(e2, words, (1, 2)), [-1, SEQUENCE_LEN])
+        alpha2 = K.softmax(A2)
+        alpha = (alpha1 + alpha2) / 2
+        output = word_repre * alpha
+        return output
 
 
 class CharLevelPooling(Layer):

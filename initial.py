@@ -214,6 +214,7 @@ def pretrain_position_embeddings(distances):
     for d in dis2vec.wv.index2word:
         dis2idx[d] = len(dis2idx)
         position_embeddings.append(dis2vec.wv.word_vec(d))
+    print(dis2idx)
     return dis2idx, position_embeddings
 
 

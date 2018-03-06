@@ -40,7 +40,7 @@ def relative_distance(i, e_start, e_end):
         dis = MIN_DISTANCE
     if dis > MAX_DISTANCE:
         dis = MAX_DISTANCE
-    return dis
+    return str(dis)
 
 
 class Sentence:
@@ -65,8 +65,8 @@ class Sentence:
         self.distances_1 = []
         self.distances_2 = []
         for i in range(len(words)):
-            self.distances_1.append(str(relative_distance(i, e1start, e1end)))
-            self.distances_2.append(str(relative_distance(i, e2start, e2end)))
+            self.distances_1.append(relative_distance(i, e1start, e1end))
+            self.distances_2.append(relative_distance(i, e2start, e2end))
 
         self.positions_1 = []
         self.positions_2 = []
@@ -214,7 +214,6 @@ def pretrain_position_embeddings(distances):
     for d in dis2vec.wv.index2word:
         dis2idx[d] = len(dis2idx)
         position_embeddings.append(dis2vec.wv.word_vec(d))
-    print(dis2idx)
     return dis2idx, position_embeddings
 
 

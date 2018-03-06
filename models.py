@@ -72,6 +72,8 @@ def build_model():
         activation="softmax",
         kernel_initializer=TruncatedNormal(stddev=0.1),
         bias_initializer=Constant(0.1),
+        kernel_regularizer='l2',
+        bias_regularizer='l2',
     )(output)
 
     model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input], outputs=[output])

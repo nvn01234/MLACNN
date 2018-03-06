@@ -62,7 +62,7 @@ def build_model():
         embeddings_initializer=TruncatedNormal(stddev=0.1),
     )
     rel_embed.build(None)
-    rel_embed = rel_embed.weights
+    rel_embed = rel_embed.embeddings
     pooled_word = []
     for size in WINDOW_SIZES_WORD:
         conv = Conv1D(filters=NB_FILTERS_WORD,
@@ -114,7 +114,7 @@ class AttentionPooling(Layer):
 
     def call(self, inputs, **kwargs):
         G = K.dot(inputs, self.U)
-        rel_embed = K.reshape(K.transpose(self.rel_embed), [NB_FILTERS_WORD, NB_RELATIONS])
+        rel_embed = K.transpose(self.rel_embed)
         G = K.dot(G, rel_embed)
         G = K.permute_dimensions(G, [0, 2, 1])
         AP = K.softmax(G)

@@ -107,22 +107,15 @@ class Sentence:
         return self.words_encoded, self.chars_encoded, self.positions_1, self.positions_2, self.e1, self.e2, self.tags_encoded, self.e1_context, self.e2_context
 
     def entity_context(self, e_start, e_end, encoder):
-        entity = []
-        for i in range(e_start, e_start + ENTITY_LEN):
-            if i <= e_end:
-                entity.append(encoder.word_vec(self.words[i]))
-            else:
-                entity.append(np.zeros(WORD_EMBED_SIZE))
+        entity = np.zeros(ENTITY_LEN)
+        for i in range(e_end - e_start + 1):
+            entity[i] = encoder.word_vec(self.words[e_start + i])
 
-        context = []
+        context = np.zeros(2)
         if e_start > 0:
-            context.append(encoder.word_vec(self.words[e_start - 1]))
-        else:
-            context.append(np.zeros(WORD_EMBED_SIZE))
+            context[0] = encoder.word_vec(self.words[e_start - 1])
         if e_end < len(self.words) - 1:
-            context.append(encoder.word_vec(self.words[e_end + 1]))
-        else:
-            context.append(np.zeros(WORD_EMBED_SIZE))
+            context[1] = encoder.word_vec(self.words[e_end + 1])
         return entity, context
 
 

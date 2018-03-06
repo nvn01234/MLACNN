@@ -17,7 +17,7 @@ def gen_answer_key(y_pred):
         idx = line.strip().split()[0]
         test_idx.append(idx)
 
-    with open("log/predict_keys_2.txt", "w", encoding="utf8") as f:
+    with open("log/predict_keys_base.txt", "w", encoding="utf8") as f:
         for idx, y in zip(test_idx, y_pred):
             f.write("%s\t%s\n" % (idx, idx2relations[y]))
 

@@ -34,7 +34,7 @@ def build_model():
 
     # character embedding
     ce = np.load("data/embedding/char_embeddings.npy")
-    chars_embed = Embedding(ce.shape[0], ce.shape[1], weights=[ce], trainable=True)
+    chars_embed = Embedding(ce.shape[0], ce.shape[1], weights=[ce], trainable=False)
     chars = chars_embed(chars_input)
 
     # character-level convolution

@@ -62,14 +62,14 @@ def build_model():
     pooled = Concatenate()(pooled)
 
     # sentence-level feature
-    sen_feature = Dense(
-        units=HIDDEN_LAYER_2,
-        use_bias=False,
-        activation="tanh",
-        kernel_initializer=TruncatedNormal(stddev=0.1),
-        kernel_regularizer='l2',
-    )(pooled)
-    # sen_feature = pooled
+    # sen_feature = Dense(
+    #     units=HIDDEN_LAYER_2,
+    #     use_bias=False,
+    #     activation="tanh",
+    #     kernel_initializer=TruncatedNormal(stddev=0.1),
+    #     kernel_regularizer='l2',
+    # )(pooled)
+    sen_feature = pooled
 
     # lexical feature
     e1_flat = Flatten()(e1)

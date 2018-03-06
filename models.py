@@ -4,12 +4,13 @@ from keras.engine import Model, InputSpec, Layer
 from keras import backend as K
 import numpy as np
 from keras.initializers import TruncatedNormal, Constant
+from keras import initializers, regularizers
 
 
 def build_model():
     # input
     words_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
-    chars_input = Input(shape=[SEQUENCE_LEN, WORD_LEN], dtype='int32')
+    # chars_input = Input(shape=[SEQUENCE_LEN, WORD_LEN], dtype='int32')
     pos1_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
     pos2_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
     e1_input = Input(shape=[3], dtype='int32')
@@ -23,32 +24,42 @@ def build_model():
     e2 = words_embed(e2_input)
 
     # position embedding
-    pos1 = Embedding(NB_POSITIONS, POSITION_EMBED_SIZE)(pos1_input)
-    pos2 = Embedding(NB_POSITIONS, POSITION_EMBED_SIZE)(pos2_input)
+    pos1 = Embedding(
+        input_dim=NB_POSITIONS, output_dim=POSITION_EMBED_SIZE,
+        embeddings_initializer=TruncatedNormal(stddev=0.1),
+    )(pos1_input)
+    pos2 = Embedding(
+        input_dim=NB_POSITIONS, output_dim=POSITION_EMBED_SIZE,
+        embeddings_initializer=TruncatedNormal(stddev=0.1),
+    )(pos2_input)
 
     # character embedding
-    ce = np.load("data/embedding/char_embeddings.npy")
-    chars_embed = Embedding(ce.shape[0], ce.shape[1], weights=[ce], trainable=False)
-    chars = chars_embed(chars_input)
+    # ce = np.load("data/embedding/char_embeddings.npy")
+    # chars_embed = Embedding(ce.shape[0], ce.shape[1], weights=[ce], trainable=False)
+    # chars = chars_embed(chars_input)
 
     # character-level convolution
-    pooled_char = []
-    for size in WINDOW_SIZES_CHAR:
-        chars = Conv2D(filters=NB_FILTERS_CHAR,
-                       kernel_size=(1, size),
-                       padding="same",
-                       activation="relu",
-                       kernel_initializer=TruncatedNormal(stddev=0.1),
-                       bias_initializer=Constant(0.1),
-                       )(chars)
-        pool = GlobalMaxPool1D4dim()(chars)
-        pooled_char.append(pool)
+    # pooled_char = []
+    # for size in WINDOW_SIZES_CHAR:
+    #     chars = Conv2D(filters=NB_FILTERS_CHAR,
+    #                    kernel_size=(1, size),
+    #                    padding="same",
+    #                    activation="relu",
+    #                    kernel_initializer=TruncatedNormal(stddev=0.1),
+    #                    bias_initializer=Constant(0.1),
+    #                    )(chars)
+    #     pool = CharLevelPooling()(chars)
+    #     pooled_char.append(pool)
 
     # input representation
-    input_repre = Concatenate()([words, *pooled_char, pos1, pos2])
+    input_repre = Concatenate()([words, pos1, pos2])
     input_repre = Dropout(DROPOUT)(input_repre)
 
     # word-level convolution
+    rel_embed = Embedding(
+        input_dim=NB_RELATIONS, output_dim=NB_FILTERS_WORD,
+        embeddings_initializer=TruncatedNormal(stddev=0.1),
+    ).weights[0]
     pooled_word = []
     for size in WINDOW_SIZES_WORD:
         conv = Conv1D(filters=NB_FILTERS_WORD,
@@ -58,7 +69,8 @@ def build_model():
                       kernel_initializer=TruncatedNormal(stddev=0.1),
                       bias_initializer=Constant(0.1),
                       )(input_repre)
-        pool = GlobalMaxPool1D()(conv)
+        pool = AttentionPooling(rel_embed)(conv)
+        # pool = GlobalMaxPool1D()(conv)
         pooled_word.append(pool)
 
     # lexical feature
@@ -77,17 +89,40 @@ def build_model():
         bias_regularizer='l2',
     )(output)
 
-    model = Model(inputs=[words_input, chars_input, pos1_input, pos2_input, e1_input, e2_input], outputs=[output])
+    model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input], outputs=[output])
     model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer='adam')
     # model.summary()
     return model
 
 
-class GlobalMaxPool1D4dim(Layer):
-    def __init__(self, **kwargs):
-        super(GlobalMaxPool1D4dim, self).__init__(**kwargs)
-        self.input_spec = InputSpec(ndim=4)
+class AttentionPooling(Layer):
+    def __init__(self, rel_embed, **kwargs):
+        super(AttentionPooling, self).__init__(**kwargs)
+        self.rel_embed = rel_embed
 
+    def build(self, input_shape):
+        self.U = self.add_weight(
+            name="U",
+            shape=[input_shape[-1], input_shape[-1]],
+            initializer=TruncatedNormal(stddev=0.1),
+            regularizer=regularizers.get(None)
+        )
+        self.built = True
+
+    def call(self, inputs, **kwargs):
+        G = K.dot(inputs, self.U)
+        G = K.dot(G, K.transpose(self.rel_embed))
+        AP = K.softmax(G)
+
+        wo = K.batch_dot(inputs, AP, [1, 1])
+        wo = K.max(wo, -1)
+        return wo
+
+    def compute_output_shape(self, input_shape):
+        return input_shape[0], input_shape[2]
+
+
+class CharLevelPooling(Layer):
     def compute_output_shape(self, input_shape):
         return input_shape[0], input_shape[1], input_shape[3]
 

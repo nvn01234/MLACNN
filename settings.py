@@ -1,5 +1,5 @@
 # character-level convolution
-NB_FILTERS_CHAR = 50
+NB_FILTERS_CHAR = 200
 WINDOW_SIZES_CHAR = [3, 4, 5]
 CHAR_EMBED_SIZE = 300
 WORD_LEN = 24

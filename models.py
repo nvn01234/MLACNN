@@ -19,7 +19,7 @@ def build_model():
     # word embedding
     we = np.load("data/embedding/word_embeddings.npy")
     words_embed = Embedding(
-        input_dim=we.shape[0] + 1,
+        input_dim=we.shape[0],
         output_dim=we.shape[1],
         weights=[we],
         trainable=False,
@@ -46,7 +46,7 @@ def build_model():
     # tag embedding
     te = np.load("data/embedding/tag_embeddings.npy")
     tags = Embedding(
-        input_dim=te.shape[0] + 1,
+        input_dim=te.shape[0],
         output_dim=te.shape[1],
         weights=[te],
         mask_zero=True,

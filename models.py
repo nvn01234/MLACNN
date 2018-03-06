@@ -14,6 +14,7 @@ def build_model():
     pos2_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
     e1_input = Input(shape=[ENTITY_CONTEXT], dtype='int32')
     e2_input = Input(shape=[ENTITY_CONTEXT], dtype='int32')
+    tags_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
 
     # word embedding
     we = np.load("data/embedding/word_embeddings.npy")
@@ -38,6 +39,15 @@ def build_model():
         embeddings_initializer=TruncatedNormal(stddev=0.1),
     )(pos2_input)
 
+    # tag embedding
+    te = np.load("data/embedding/tag_embeddings.npy")
+    tags = Embedding(
+        input_dim=te.shape[0],
+        output_dim=te.shape[1],
+        weights=[te],
+        embeddings_initializer=TruncatedNormal(stddev=0.1),
+    )(tags_input)
+
     # character embedding
     ce = np.load("data/embedding/char_embeddings.npy")
     chars_embed = Embedding(ce.shape[0], ce.shape[1], weights=[ce], trainable=False)
@@ -57,7 +67,7 @@ def build_model():
         pooled_char.append(pool)
 
     # input representation
-    input_repre = Concatenate()([words, pos1, pos2, *pooled_char])
+    input_repre = Concatenate()([words, pos1, pos2, tags, *pooled_char])
     input_repre = Dropout(DROPOUT)(input_repre)
 
     # word-level convolution
@@ -89,7 +99,7 @@ def build_model():
         bias_regularizer='l2',
     )(output)
 
-    model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input, chars_input], outputs=[output])
+    model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input, chars_input, tags_input], outputs=[output])
     model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer='adadelta')
     # model.summary()
     return model

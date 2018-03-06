@@ -8,11 +8,11 @@ from test import gen_answer_key
 
 def main():
     print("load train data")
-    x_train = [np.load("data/train/%s.npy" % name) for name in ["words", "chars", "pos1", "pos2", "e1", "e2"]]
+    x_train = [np.load("data/train/%s.npy" % name) for name in ["words", "pos1", "pos2", "e1", "e2"]]
     y_train = np.load("data/train/y.npy")
 
     print("load test data")
-    x_test = [np.load("data/test/%s.npy" % name) for name in ["words", "chars", "pos1", "pos2", "e1", "e2"]]
+    x_test = [np.load("data/test/%s.npy" % name) for name in ["words", "pos1", "pos2", "e1", "e2"]]
 
     print("training")
     config = ConfigProto()
@@ -26,7 +26,7 @@ def main():
     print("testing")
     scores = model.predict(x_test, verbose=False)
     predictions = scores.argmax(-1)
-    gen_answer_key(predictions, name="chars_5")
+    gen_answer_key(predictions, name="base_features")
 
 
 if __name__ == "__main__":

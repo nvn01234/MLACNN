@@ -2,6 +2,7 @@ import numpy as np
 from settings import *
 from utils import make_dict
 from os import makedirs
+from gensim.models import Word2Vec
 
 
 class Counter:
@@ -11,6 +12,8 @@ class Counter:
         self.max_entity_len = 0
         self.vocab_word = set()
         self.vocab_char = set()
+        self.distances_1 = []
+        self.distances_2 = []
 
     def update(self, sentence):
         self.max_sequence_len = max(self.max_sequence_len, len(sentence))
@@ -18,12 +21,14 @@ class Counter:
         self.max_entity_len = max(self.max_entity_len, sentence.max_entity_len)
         self.vocab_word = self.vocab_word | sentence.vocab_word
         self.vocab_char = self.vocab_char | sentence.vocab_char
+        self.distances_1.append(sentence.distances_1)
+        self.distances_2.append(sentence.distances_2)
 
     def __str__(self):
         return "max_sequence_len = %d, max_word_len = %d, max_entity_len = %d, vocab_word = %d, vocab_char = %d" % (self.max_sequence_len, self.max_word_len, self.max_entity_len, len(self.vocab_word), len(self.vocab_char))
 
 
-def dis2pos(i, e_start, e_end):
+def relative_distance(i, e_start, e_end):
     if i < e_start:
         dis = i - e_start
     elif e_start <= i <= e_end:
@@ -35,7 +40,7 @@ def dis2pos(i, e_start, e_end):
         dis = MIN_DISTANCE
     if dis > MAX_DISTANCE:
         dis = MAX_DISTANCE
-    return dis - MIN_DISTANCE
+    return dis
 
 
 class Sentence:
@@ -57,12 +62,14 @@ class Sentence:
             for c in w:
                 self.vocab_char.add(c)
 
+        self.distances_1 = []
+        self.distances_2 = []
+        for i in range(len(words)):
+            self.distances_1.append(str(relative_distance(i, e1start, e1end)))
+            self.distances_2.append(str(relative_distance(i, e2start, e2end)))
+
         self.positions_1 = []
         self.positions_2 = []
-        for i in range(SEQUENCE_LEN):
-            self.positions_1.append(dis2pos(i, e1start, e2end))
-            self.positions_2.append(dis2pos(i, e2start, e2end))
-
         self.words_encoded = np.zeros(SEQUENCE_LEN, dtype='int32')
         self.chars_encoded = np.zeros([SEQUENCE_LEN, WORD_LEN], dtype='int32')
         self.e1_context = None
@@ -78,6 +85,10 @@ class Sentence:
             for j in range(min(len(w), WORD_LEN)):
                 c = w[j]
                 self.chars_encoded[i, j] = encoder.char_vec(c)
+
+        for i in range(SEQUENCE_LEN):
+            self.positions_1.append(encoder.dis1_vec(i, self.e1start, self.e1end))
+            self.positions_2.append(encoder.dis2_vec(i, self.e2start, self.e2end))
 
         self.e1_context = self.entity_context(self.e1start, encoder)
         self.e2_context = self.entity_context(self.e2start, encoder)
@@ -132,9 +143,11 @@ def read_word_embeddings(vocab):
 
 
 class Encoder:
-    def __init__(self, word2idx, char2idx):
+    def __init__(self, word2idx, char2idx, dis2idx_1, dis2idx_2):
         self.word2idx = word2idx
         self.char2idx = char2idx
+        self.dis2idx_1 = dis2idx_1
+        self.dis2idx_2 = dis2idx_2
         self.unknown_words = set()
         self.unknown_chars = set()
 
@@ -151,6 +164,14 @@ class Encoder:
         else:
             self.unknown_chars.add(c)
             return self.char2idx["UNKNOWN"]
+
+    def dis1_vec(self, i, e_start, e_end):
+        d = relative_distance(i, e_start, e_end)
+        return self.dis2idx_1[d]
+
+    def dis2_vec(self, i, e_start, e_end):
+        d = relative_distance(i, e_start, e_end)
+        return self.dis2idx_2[d]
 
     def __str__(self):
         return "unknown_words: %d, unknown_chars: %d" % (len(self.unknown_words), len(self.unknown_chars))
@@ -185,6 +206,17 @@ def numpy_save_many(_dict_):
         np.save("data/%s/%s.npy" % (folder, name), data)
 
 
+def pretrain_position_embeddings(distances):
+    dis2vec = Word2Vec(distances, size=POSITION_EMBED_SIZE, min_count=1)
+    dis2vec.init_sims(replace=True)
+    dis2idx = {}
+    position_embeddings = []
+    for d in dis2vec.wv.index2word:
+        dis2idx[d] = len(dis2idx)
+        position_embeddings.append(dis2vec.wv.word_vec(d))
+    return dis2idx, position_embeddings
+
+
 def main():
     for folder in ["data/train", "data/test", "data/embedding"]:
         makedirs(folder, exist_ok=True)
@@ -205,7 +237,14 @@ def main():
     print("read char embeddings")
     char2idx = read_char_embeddings(counter.vocab_char)
 
-    encoder = Encoder(word2idx, char2idx)
+    print("pretrain position embeddings")
+
+    dis2idx_1, position_embeddings_1 = pretrain_position_embeddings(counter.distances_1)
+    dis2idx_2, position_embeddings_2 = pretrain_position_embeddings(counter.distances_2)
+    np.save("data/embedding/position_embeddings_1.npy", position_embeddings_1)
+    np.save("data/embedding/position_embeddings_2.npy", position_embeddings_2)
+
+    encoder = Encoder(word2idx, char2idx, dis2idx_1, dis2idx_2)
 
     print("saving train data")
     words_train, chars_train, pos1_train, pos2_train, e1_train, e2_train = zip(*[s.generate_features(encoder) for s in sentences_train])

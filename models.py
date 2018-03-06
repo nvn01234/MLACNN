@@ -18,7 +18,13 @@ def build_model():
 
     # word embedding
     we = np.load("data/embedding/word_embeddings.npy")
-    words_embed = Embedding(we.shape[0], we.shape[1], weights=[we], trainable=False)
+    words_embed = Embedding(
+        input_dim=we.shape[0] + 1,
+        output_dim=we.shape[1],
+        weights=[we],
+        trainable=False,
+        mask_zero=True
+    )
     words = words_embed(words_input)
     e1 = words_embed(e1_input)
     e2 = words_embed(e2_input)
@@ -29,23 +35,21 @@ def build_model():
         input_dim=pe1.shape[0],
         output_dim=pe1.shape[1],
         weights=[pe1],
-        embeddings_initializer=TruncatedNormal(stddev=0.1),
     )(pos1_input)
     pe2 = np.load("data/embedding/position_embeddings_2.npy")
     pos2 = Embedding(
         input_dim=pe2.shape[0],
         output_dim=pe2.shape[1],
         weights=[pe2],
-        embeddings_initializer=TruncatedNormal(stddev=0.1),
     )(pos2_input)
 
     # tag embedding
     te = np.load("data/embedding/tag_embeddings.npy")
     tags = Embedding(
-        input_dim=te.shape[0],
+        input_dim=te.shape[0] + 1,
         output_dim=te.shape[1],
         weights=[te],
-        embeddings_initializer=TruncatedNormal(stddev=0.1),
+        mask_zero=True,
     )(tags_input)
 
     # character embedding

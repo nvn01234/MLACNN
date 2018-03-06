@@ -84,14 +84,17 @@ class Sentence:
 
         return self.words_encoded, self.chars_encoded, self.positions_1, self.positions_2, self.e1_context, self.e2_context
 
-    def entity_context(self, pos, encoder):
-        prev_pos = max(0, pos - 1)
-        next_pos = min(len(self.words) - 1, pos + 1)
-        context = [
-            encoder.word_vec(self.words[pos]),
-            encoder.word_vec(self.words[prev_pos]),
-            encoder.word_vec(self.words[next_pos]),
-        ]
+    def entity_context(self, estart, encoder):
+        start = estart - 1
+        end = start * ENTITY_LEN
+        context = []
+        for i in range(start, end + 1):
+            if i < 0:
+                context.append(encoder.word_vec(self.words[0]))
+            elif i > len(self.words) - 1:
+                context.append(encoder.word_vec(self.words[-1]))
+            else:
+                context.append(encoder.word_vec(self.words[i]))
         return context
 
 

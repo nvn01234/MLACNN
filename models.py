@@ -12,8 +12,8 @@ def build_model():
     # chars_input = Input(shape=[SEQUENCE_LEN, WORD_LEN], dtype='int32')
     pos1_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
     pos2_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
-    e1_input = Input(shape=[3], dtype='int32')
-    e2_input = Input(shape=[3], dtype='int32')
+    e1_input = Input(shape=[ENTITY_CONTEXT], dtype='int32')
+    e2_input = Input(shape=[ENTITY_CONTEXT], dtype='int32')
 
     # word embedding
     we = np.load("data/embedding/word_embeddings.npy")

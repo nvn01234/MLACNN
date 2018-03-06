@@ -23,7 +23,14 @@ class Counter:
         return "max_sequence_len = %d, max_word_len = %d, max_entity_len = %d, vocab_word = %d, vocab_char = %d" % (self.max_sequence_len, self.max_word_len, self.max_entity_len, len(self.vocab_word), len(self.vocab_char))
 
 
-def dis2pos(dis):
+def dis2pos(i, e_start, e_end):
+    if i < e_start:
+        dis = i - e_start
+    elif e_start <= i <= e_end:
+        dis = 0
+    else:
+        dis = i - e_end
+
     if dis < MIN_DISTANCE:
         dis = MIN_DISTANCE
     if dis > MAX_DISTANCE:
@@ -53,8 +60,8 @@ class Sentence:
         self.positions_1 = []
         self.positions_2 = []
         for i in range(SEQUENCE_LEN):
-            self.positions_1.append(dis2pos(i - e1start))
-            self.positions_2.append(dis2pos(i - e2start))
+            self.positions_1.append(dis2pos(i, e1start, e2end))
+            self.positions_2.append(dis2pos(i, e2start, e2end))
 
         self.words_encoded = np.zeros(SEQUENCE_LEN, dtype='int32')
         self.chars_encoded = np.zeros([SEQUENCE_LEN, WORD_LEN], dtype='int32')

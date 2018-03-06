@@ -32,17 +32,20 @@ def build_model():
     chars = chars_embed(chars_input)
 
     # character-level convolution
-    chars = Conv2D(filters=NB_FILTERS_CHAR,
-                   kernel_size=(1, WINDOW_SIZE_CHAR),
-                   padding="same",
-                   activation="relu",
-                   kernel_initializer=TruncatedNormal(stddev=0.1),
-                   bias_initializer=Constant(0.1),
-                   )(chars)
-    chars = GlobalMaxPool1D4dim()(chars)
+    pooled_chars = []
+    for size in WINDOW_SIZES_CHAR:
+        chars = Conv2D(filters=NB_FILTERS_CHAR,
+                       kernel_size=(1, size),
+                       padding="same",
+                       activation="relu",
+                       kernel_initializer=TruncatedNormal(stddev=0.1),
+                       bias_initializer=Constant(0.1),
+                       )(chars)
+        pool = GlobalMaxPool1D4dim()(chars)
+        pooled_chars.append(pool)
 
     # input representation
-    input_repre = Concatenate()([words, chars, pos1, pos2])
+    input_repre = Concatenate()([words, *pooled_chars, pos1, pos2])
     input_repre = Dropout(DROPOUT)(input_repre)
 
     # word-level convolution

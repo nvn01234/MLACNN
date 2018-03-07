@@ -1,4 +1,4 @@
-import numpy as np
+import os
 
 
 def gen_answer_key(y_pred, name):
@@ -22,9 +22,13 @@ def gen_answer_key(y_pred, name):
             f.write("%s\t%s\n" % (idx, idx2relations[y]))
 
 
+
 def main():
-    y_pred = np.load("log/y_pred.npy")
-    gen_answer_key(y_pred)
+    name = "base"
+    os.system("perl scorer.pl log/predict_keys_{0}.txt origin_data/test_keys.txt > log/result_scores_{0}.txt".format(name))
+    with open("log/result_scores_%s.txt" % name, "r") as f:
+        result = f.read()
+    print(result)
 
 
 if __name__ == "__main__":

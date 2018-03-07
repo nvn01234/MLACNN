@@ -13,7 +13,7 @@ def build_model():
     # chars_input = Input(shape=[SEQUENCE_LEN, WORD_LEN], dtype='int32')
     pos1_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
     pos2_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
-    tags_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
+    # tags_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
 
     # lexical features
     e1_input = Input(shape=[ENTITY_LEN], dtype='int32')  # L1
@@ -56,12 +56,12 @@ def build_model():
     )(pos2_input)
 
     # tag embedding
-    te = np.load("data/embedding/tag_embeddings.npy")
-    tags = Embedding(
-        input_dim=te.shape[0],
-        output_dim=te.shape[1],
-        weights=[te],
-    )(tags_input)
+    # te = np.load("data/embedding/tag_embeddings.npy")
+    # tags = Embedding(
+    #     input_dim=te.shape[0],
+    #     output_dim=te.shape[1],
+    #     weights=[te],
+    # )(tags_input)
 
     # character embedding
     # ce = np.load("data/embedding/char_embeddings.npy")
@@ -82,25 +82,25 @@ def build_model():
     #     pooled_char.append(pool)
 
     # input representation
-    input_repre = Concatenate()([words, pos1, pos2, tags])
+    input_repre = Concatenate()([words, pos1, pos2])
     input_repre = Dropout(DROPOUT)(input_repre)
 
     # attention input
-    # e1_repeat = RepeatVector(SEQUENCE_LEN)(e1_flat)
-    # h1 = Concatenate()([words, e1_repeat])
-    # e2_repeat = RepeatVector(SEQUENCE_LEN)(e2_flat)
-    # h2 = Concatenate()([words, e2_repeat])
-    # MLP1 = Dense(units=ATT_HIDDEN_LAYER, activation="tanh")
-    # MLP2 = Dense(units=1, activation="softmax")
-    # u1 = MLP1(h1)
-    # alpha1 = MLP2(u1)
-    # u2 = MLP1(h2)
-    # alpha2 = MLP2(u2)
-    # alpha = Average()([alpha1, alpha2])
-    # alpha = Reshape([SEQUENCE_LEN])(alpha)
-    # alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
-    # alpha = Permute([2, 1])(alpha)
-    # input_repre = Multiply()([input_repre, alpha])
+    e1_repeat = RepeatVector(SEQUENCE_LEN)(e1_flat)
+    h1 = Concatenate()([words, e1_repeat])
+    e2_repeat = RepeatVector(SEQUENCE_LEN)(e2_flat)
+    h2 = Concatenate()([words, e2_repeat])
+    MLP1 = Dense(units=ATT_HIDDEN_LAYER, activation="tanh")
+    MLP2 = Dense(units=1, activation="softmax")
+    u1 = MLP1(h1)
+    alpha1 = MLP2(u1)
+    u2 = MLP1(h2)
+    alpha2 = MLP2(u2)
+    alpha = Average()([alpha1, alpha2])
+    alpha = Reshape([SEQUENCE_LEN])(alpha)
+    alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
+    alpha = Permute([2, 1])(alpha)
+    input_repre = Multiply()([input_repre, alpha])
 
     # word-level convolution
     pooled_word = []
@@ -127,7 +127,7 @@ def build_model():
         bias_regularizer='l2',
     )(output)
 
-    model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input, tags_input, e1context_input, e2context_input], outputs=[output])
+    model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input, e1context_input, e2context_input], outputs=[output])
     model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer='adam')
     # model.summary()
     return model

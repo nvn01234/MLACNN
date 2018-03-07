@@ -1,6 +1,6 @@
 from settings import *
 from keras.layers import Input, Concatenate, Conv1D, GlobalMaxPool1D, Dense, Dropout, Embedding, Flatten, Conv2D, \
-    RepeatVector, Activation, Reshape, Multiply, Permute, Average
+    RepeatVector, Activation, Reshape, Multiply, Permute, Average, Dot, Lambda
 from keras.engine import Model, Layer
 from keras import backend as K
 import numpy as np
@@ -86,21 +86,10 @@ def build_model():
     input_repre = Dropout(DROPOUT)(input_repre)
 
     # attention input
-    e1_repeat = RepeatVector(SEQUENCE_LEN)(e1_flat)
-    h1 = Concatenate()([words, e1_repeat])
-    e2_repeat = RepeatVector(SEQUENCE_LEN)(e2_flat)
-    h2 = Concatenate()([words, e2_repeat])
-    MLP1 = Dense(units=ATT_HIDDEN_LAYER, activation="tanh")
-    MLP2 = Dense(units=1, activation="softmax")
-    u1 = MLP1(h1)
-    alpha1 = MLP2(u1)
-    u2 = MLP1(h2)
-    alpha2 = MLP2(u2)
-    alpha = Average()([alpha1, alpha2])
-    alpha = Reshape([SEQUENCE_LEN])(alpha)
-    alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
-    alpha = Permute([2, 1])(alpha)
-    input_repre = Multiply()([input_repre, alpha])
+    mlp_1 = Dense(units=ATT_HIDDEN_LAYER, activation="tanh")
+    mlp_2 = Dense(units=1, activation="softmax")
+    att_context_1 = attention_context(mlp_1, mlp_2, words, e1_flat)
+    att_context_2 = attention_context(mlp_1, mlp_2, words, e2_flat)
 
     # word-level convolution
     pooled_word = []
@@ -116,7 +105,7 @@ def build_model():
         pooled_word.append(pool)
 
     # fully connected
-    output = Concatenate()([*pooled_word, e1_flat, e2_flat, e1context_flat, e2context_flat])
+    output = Concatenate()([*pooled_word, e1_flat, e2_flat, e1context_flat, e2context_flat, att_context_1, att_context_2])
     output = Dropout(DROPOUT)(output)
     output = Dense(
         units=NB_RELATIONS,
@@ -132,6 +121,19 @@ def build_model():
     # model.summary()
     return model
 
+def attention_context(mlp1, mlp2, words, e_flat):
+    e_repeat = RepeatVector(SEQUENCE_LEN)(e_flat)
+    h = Concatenate()([words, e_repeat])
+    u = mlp1(h)
+    alpha = mlp2(u)
+    alpha = Reshape([SEQUENCE_LEN])(alpha)
+    alpha = RepeatVector(WORD_EMBED_SIZE)(alpha)
+    alpha = Permute([2, 1])(alpha)
+    context = Multiply()([words, alpha])
+    context = Reshape([WORD_EMBED_SIZE, SEQUENCE_LEN])(context)
+    context = Lambda(lambda x: K.sum(x))(context)
+    context = Flatten()(context)
+    return context
 
 class CharLevelPooling(Layer):
     def compute_output_shape(self, input_shape):

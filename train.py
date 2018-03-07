@@ -27,10 +27,12 @@ def main():
     scores = model.predict(x_test, verbose=False)
     predictions = scores.argmax(-1)
     meta = """
-position embedding: trainable
-pos tag: False
-char embedding: False
-attention input: 100
+baseline
+position embedding: pretrain, trainable
+pos tag: No
+char embedding: No
+attention input: No
+word-level convo: 200 filter, size [3,4,5]
 """
     gen_answer_key(predictions, meta=meta)
 

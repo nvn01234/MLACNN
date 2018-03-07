@@ -25,7 +25,7 @@ def gen_answer_key(y_pred, meta):
             f.write("%s\t%s\n" % (idx, idx2relations[y]))
 
     timestamp = int(time.time())
-    os.system("perl scorer.pl log/predict_keys.txt origin_data/test_keys.txt > log/result_%d.txt" % time)
+    os.system("perl scorer.pl log/predict_keys.txt origin_data/test_keys.txt > log/result_%d.txt" % timestamp)
     os.remove("log/predict_keys.txt")
     with open("log/result_%d.txt" % timestamp, "a") as f:
         f.write(meta)

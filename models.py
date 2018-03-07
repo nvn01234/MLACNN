@@ -22,7 +22,8 @@ def build_model():
     e2context_input = Input(shape=[2], dtype='int32')  # L4
 
     # word embedding
-    we = np.load("data/embedding/word_embeddings.npy")
+    # we = np.load("data/embedding/word_embeddings.npy")
+    we = np.random.random([10, 300])
     words_embed = Embedding(
         input_dim=we.shape[0],
         output_dim=we.shape[1],
@@ -42,13 +43,15 @@ def build_model():
     e2context_flat = Flatten()(e2context)
 
     # position embedding
-    pe1 = np.load("data/embedding/position_embeddings_1.npy")
+    # pe1 = np.load("data/embedding/position_embeddings_1.npy")
+    pe1 = np.random.random([10, 5])
     pos1 = Embedding(
         input_dim=pe1.shape[0],
         output_dim=pe1.shape[1],
         weights=[pe1],
     )(pos1_input)
-    pe2 = np.load("data/embedding/position_embeddings_2.npy")
+    # pe2 = np.load("data/embedding/position_embeddings_2.npy")
+    pe2 = np.random.random([10, 5])
     pos2 = Embedding(
         input_dim=pe2.shape[0],
         output_dim=pe2.shape[1],
@@ -56,7 +59,8 @@ def build_model():
     )(pos2_input)
 
     # tag embedding
-    te = np.load("data/embedding/tag_embeddings.npy")
+    # te = np.load("data/embedding/tag_embeddings.npy")
+    te = np.random.random([10, 10])
     tags = Embedding(
         input_dim=te.shape[0],
         output_dim=te.shape[1],
@@ -64,7 +68,8 @@ def build_model():
     )(tags_input)
 
     # character embedding
-    ce = np.load("data/embedding/char_embeddings.npy")
+    # ce = np.load("data/embedding/char_embeddings.npy")
+    ce = np.random.random([10, 300])
     chars_embed = Embedding(ce.shape[0], ce.shape[1], weights=[ce], trainable=False)
     chars = chars_embed(chars_input)
 
@@ -130,10 +135,15 @@ def attention_context(mlp1, mlp2, words, e_flat):
     alpha = RepeatVector(WORD_EMBED_SIZE)(alpha)
     alpha = Permute([2, 1])(alpha)
     context = Multiply()([words, alpha])
-    context = Reshape([WORD_EMBED_SIZE, SEQUENCE_LEN])(context)
-    context = Lambda(lambda x: K.sum(x))(context)
-    context = Flatten()(context)
+    context = Sum()(context)
     return context
+
+class Sum(Layer):
+    def compute_output_shape(self, input_shape):
+        return input_shape[0], input_shape[2]
+
+    def call(self, inputs, **kwargs):
+        return K.sum(inputs, 1)
 
 class CharLevelPooling(Layer):
     def compute_output_shape(self, input_shape):

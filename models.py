@@ -83,7 +83,7 @@ def build_model():
     # input representation
     input_repre = Concatenate()([words, pos1, pos2, tags, *pooled_char])
     input_repre = Dropout(DROPOUT)(input_repre)
-    input_repre = AttentionInput()([input_repre, words, e1, e2])
+    input_repre = AttentionInput()([input_repre, words, e1_flat, e2_flat])
 
     # word-level convolution
     pooled_word = []

@@ -1,6 +1,6 @@
 from settings import *
 from keras.layers import Input, Concatenate, Conv1D, GlobalMaxPool1D, Dense, Dropout, Embedding, Flatten, Conv2D, \
-    RepeatVector, Activation, Reshape, Multiply, Permute
+    RepeatVector, Activation, Reshape, Multiply, Permute, Average
 from keras.engine import Model, Layer
 from keras import backend as K
 import numpy as np
@@ -96,7 +96,7 @@ def build_model():
     alpha1 = MLP2(u1)
     u2 = MLP1(h2)
     alpha2 = MLP2(u2)
-    alpha = (alpha1 + alpha2)/2
+    alpha = Average()([alpha1, alpha2])
     alpha = Reshape([SEQUENCE_LEN])(alpha)
     alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
     alpha = Permute([2, 1])(alpha)

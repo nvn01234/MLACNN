@@ -12,7 +12,7 @@ def main():
     y_train = np.load("data/train/y.npy")
 
     print("load test data")
-    x_test = [np.load("data/test/%s.npy" % name) for name in ["words", "pos1", "pos2", "tags", "char", "e1", "e2", "e1context", "e2context"]]
+    x_test = [np.load("data/test/%s.npy" % name) for name in ["words", "pos1", "pos2", "tags", "chars", "e1", "e2", "e1context", "e2context"]]
 
     print("training")
     config = ConfigProto()

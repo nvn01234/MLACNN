@@ -13,7 +13,7 @@ def build_model():
     # chars_input = Input(shape=[SEQUENCE_LEN, WORD_LEN], dtype='int32')
     pos1_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
     pos2_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
-    # tags_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
+    tags_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
 
     # lexical features
     e1_input = Input(shape=[ENTITY_LEN], dtype='int32')  # L1
@@ -46,26 +46,22 @@ def build_model():
     pos1 = Embedding(
         input_dim=pe1.shape[0],
         output_dim=pe1.shape[1],
-        # weights=[pe1],
-        # trainable=False,
-        embeddings_initializer=TruncatedNormal(stddev=0.1),
+        weights=[pe1],
     )(pos1_input)
     pe2 = np.load("data/embedding/position_embeddings_2.npy")
     pos2 = Embedding(
         input_dim=pe2.shape[0],
         output_dim=pe2.shape[1],
-        # weights=[pe2],
-        # trainable=False,
-        embeddings_initializer=TruncatedNormal(stddev=0.1),
+        weights=[pe2],
     )(pos2_input)
 
     # tag embedding
-    # te = np.load("data/embedding/tag_embeddings.npy")
-    # tags = Embedding(
-    #     input_dim=te.shape[0],
-    #     output_dim=te.shape[1],
-    #     weights=[te],
-    # )(tags_input)
+    te = np.load("data/embedding/tag_embeddings.npy")
+    tags = Embedding(
+        input_dim=te.shape[0],
+        output_dim=te.shape[1],
+        weights=[te],
+    )(tags_input)
 
     # character embedding
     # ce = np.load("data/embedding/char_embeddings.npy")
@@ -86,7 +82,7 @@ def build_model():
     #     pooled_char.append(pool)
 
     # input representation
-    input_repre = Concatenate()([words, pos1, pos2])
+    input_repre = Concatenate()([words, pos1, pos2, tags])
     input_repre = Dropout(DROPOUT)(input_repre)
 
     # attention input
@@ -131,7 +127,7 @@ def build_model():
         bias_regularizer='l2',
     )(output)
 
-    model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input, e1context_input, e2context_input], outputs=[output])
+    model = Model(inputs=[words_input, pos1_input, pos2_input, tags_input, e1_input, e2_input, e1context_input, e2context_input], outputs=[output])
     model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer='adam')
     # model.summary()
     return model

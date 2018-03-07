@@ -8,11 +8,11 @@ from test import gen_answer_key
 
 def main():
     print("load train data")
-    x_train = [np.load("data/train/%s.npy" % name) for name in ["words", "pos1", "pos2", "e1", "e2", "e1context", "e2context"]]
+    x_train = [np.load("data/train/%s.npy" % name) for name in ["words", "pos1", "pos2", "tags", "e1", "e2", "e1context", "e2context"]]
     y_train = np.load("data/train/y.npy")
 
     print("load test data")
-    x_test = [np.load("data/test/%s.npy" % name) for name in ["words", "pos1", "pos2", "e1", "e2", "e1context", "e2context"]]
+    x_test = [np.load("data/test/%s.npy" % name) for name in ["words", "pos1", "pos2", "tags", "e1", "e2", "e1context", "e2context"]]
 
     print("training")
     config = ConfigProto()
@@ -28,8 +28,8 @@ def main():
     predictions = scores.argmax(-1)
     meta = """
 baseline
-position embedding: random init
-pos tag: No
+position embedding: pretrain, trainable, size = 5
+pos tag: pretrain, trainable, size = 10
 char embedding: No
 attention input: No
 word-level convo: 200 filter, window size: 3

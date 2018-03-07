@@ -1,7 +1,8 @@
 import os
+import time
 
 
-def gen_answer_key(y_pred, name):
+def gen_answer_key(y_pred, meta):
     print("read relations file")
     idx2relations = {}
     with open("origin_data/relations.txt", "r", encoding="utf8") as f:
@@ -17,19 +18,19 @@ def gen_answer_key(y_pred, name):
         idx = line.strip().split()[0]
         test_idx.append(idx)
 
-    with open("log/predict_keys_%s.txt" % name, "w", encoding="utf8") as f:
+    if not os.path.exists("log"):
+        os.makedirs("log")
+    with open("log/predict_keys.txt", "w", encoding="utf8") as f:
         for idx, y in zip(test_idx, y_pred):
             f.write("%s\t%s\n" % (idx, idx2relations[y]))
 
+    timestamp = int(time.time())
+    os.system("perl scorer.pl log/predict_keys.txt origin_data/test_keys.txt > log/result_%d.txt" % time)
+    os.remove("log/predict_keys.txt")
+    with open("log/result_%d.txt" % timestamp, "a") as f:
+        f.write(meta)
+    with open("log/result_%d.txt" % timestamp, "r") as f:
+        print(f.read())
+    with open("log/results.txt", "a+") as f:
+        f.write("\n\n==================%s=================\n\n%s" % (timestamp, meta))
 
-
-def main():
-    name = "base"
-    os.system("perl scorer.pl log/predict_keys_{0}.txt origin_data/test_keys.txt > log/result_scores_{0}.txt".format(name))
-    with open("log/result_scores_%s.txt" % name, "r") as f:
-        result = f.read()
-    print(result)
-
-
-if __name__ == "__main__":
-    main()

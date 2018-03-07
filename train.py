@@ -26,7 +26,13 @@ def main():
     print("testing")
     scores = model.predict(x_test, verbose=False)
     predictions = scores.argmax(-1)
-    gen_answer_key(predictions, name="att_input_wo_tags")
+    meta = """
+position embedding: trainable
+pos tag: False
+char embedding: False
+attention input: 100
+"""
+    gen_answer_key(predictions, meta=meta)
 
 
 if __name__ == "__main__":

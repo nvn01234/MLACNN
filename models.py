@@ -1,5 +1,6 @@
 from settings import *
-from keras.layers import Input, Concatenate, Conv1D, GlobalMaxPool1D, Dense, Dropout, Embedding, Flatten, Conv2D
+from keras.layers import Input, Concatenate, Conv1D, GlobalMaxPool1D, Dense, Dropout, Embedding, Flatten, Conv2D, \
+    RepeatVector, Activation, Reshape, Multiply, Permute
 from keras.engine import Model, Layer
 from keras import backend as K
 import numpy as np
@@ -83,7 +84,26 @@ def build_model():
     # input representation
     input_repre = Concatenate()([words, pos1, pos2, tags, *pooled_char])
     input_repre = Dropout(DROPOUT)(input_repre)
-    input_repre = AttentionInput()([input_repre, words, e1_flat, e2_flat])
+
+    # attention input
+    e1_repeat = RepeatVector(SEQUENCE_LEN)(e1_flat)
+    h1 = Concatenate()([words, e1_repeat])
+    e2_repeat = RepeatVector(SEQUENCE_LEN)(e2_flat)
+    h2 = Concatenate()([words, e2_repeat])
+    MLP1 = Dense(units=ATT_HIDDEN_LAYER, activation="tanh")
+    MLP2 = Dense(units=1)
+    u1 = MLP1(h1)
+    alpha1 = MLP2(u1)
+    alpha1 = Reshape([-1, SEQUENCE_LEN])(alpha1)
+    alpha1 = Activation("softmax")(alpha1)
+    u2 = MLP1(h2)
+    alpha2 = MLP2(u2)
+    alpha2 = Reshape([-1, SEQUENCE_LEN])(alpha2)
+    alpha2 = Activation("softmax")(alpha2)
+    alpha = (alpha1 + alpha2)/2
+    alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
+    alpha = Permute([0, 2, 1])(alpha)
+    input_repre = Multiply()(input_repre, alpha)
 
     # word-level convolution
     pooled_word = []
@@ -114,24 +134,6 @@ def build_model():
     model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer='adam')
     # model.summary()
     return model
-
-
-class AttentionInput(Layer):
-    def build(self, input_shape):
-        self.f = self.add_weight(name="f", shape=[ENTITY_LEN*WORD_EMBED_SIZE, WORD_EMBED_SIZE], initializer=TruncatedNormal(stddev=0.1), regularizer=None)
-        self.built = True
-
-    def call(self, inputs, **kwargs):
-        word_repre, words, e1_flat, e2_flat = inputs
-        e1 = K.dot(e1_flat, self.f)
-        e2 = K.dot(e2_flat, self.f)
-        A1 = K.reshape(K.batch_dot(e1, words, (1, 2)), [-1, SEQUENCE_LEN])
-        alpha1 = K.softmax(A1)
-        A2 = K.reshape(K.batch_dot(e2, words, (1, 2)), [-1, SEQUENCE_LEN])
-        alpha2 = K.softmax(A2)
-        alpha = K.expand_dims((alpha1 + alpha2) / 2)
-        output = word_repre * alpha
-        return output
 
 
 class CharLevelPooling(Layer):

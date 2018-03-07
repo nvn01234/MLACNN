@@ -118,13 +118,13 @@ def build_model():
 
 class AttentionInput(Layer):
     def build(self, input_shape):
-        self.f = self.add_weight(name="f", shape=[ENTITY_LEN, 1], initializer=TruncatedNormal(stddev=0.1), regularizer=None)
+        self.f = self.add_weight(name="f", shape=[ENTITY_LEN*WORD_EMBED_SIZE, WORD_EMBED_SIZE], initializer=TruncatedNormal(stddev=0.1), regularizer=None)
         self.built = True
 
     def call(self, inputs, **kwargs):
-        word_repre, words, e1, e2 = inputs
-        e1 = K.dot(K.permute_dimensions(e1, [0, 2, 1]), self.f)
-        e2 = K.dot(K.permute_dimensions(e2, [0, 2, 1]), self.f)
+        word_repre, words, e1_flat, e2_flat = inputs
+        e1 = K.dot(e1_flat, self.f)
+        e2 = K.dot(e2_flat, self.f)
         A1 = K.reshape(K.batch_dot(e1, words, (1, 2)), [-1, SEQUENCE_LEN])
         alpha1 = K.softmax(A1)
         A2 = K.reshape(K.batch_dot(e2, words, (1, 2)), [-1, SEQUENCE_LEN])

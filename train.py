@@ -30,9 +30,9 @@ def main():
 baseline
 position embedding: pretrain, trainable, size = 5
 pos tag: pretrain, trainable, size = 10
-char embedding: 10 filters, window size: [3,4,5]
+char embedding: 50 filters, window size: [3]
 attention input: No
-word-level convo: 200 filter, window size: 3
+word-level convo: 200 filter, window size: [3]
 """
     gen_answer_key(predictions, meta=meta)
 

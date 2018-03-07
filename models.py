@@ -47,12 +47,14 @@ def build_model():
         input_dim=pe1.shape[0],
         output_dim=pe1.shape[1],
         weights=[pe1],
+        trainable=False,
     )(pos1_input)
     pe2 = np.load("data/embedding/position_embeddings_2.npy")
     pos2 = Embedding(
         input_dim=pe2.shape[0],
         output_dim=pe2.shape[1],
         weights=[pe2],
+        trainable=False,
     )(pos2_input)
 
     # tag embedding

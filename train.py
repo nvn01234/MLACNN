@@ -28,7 +28,7 @@ def main():
     predictions = scores.argmax(-1)
     meta = """
 baseline
-position embedding: pretrain, trainable
+position embedding: pretrain, non-trainable
 pos tag: No
 char embedding: No
 attention input: No

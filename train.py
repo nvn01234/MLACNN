@@ -32,7 +32,7 @@ position embedding: pretrain, trainable
 pos tag: No
 char embedding: No
 attention input: No
-word-level convo: 200 filter, size [3,4,5]
+word-level convo: 200 filter, size [2, 3,4,5]
 """
     gen_answer_key(predictions, meta=meta)
 

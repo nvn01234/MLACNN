@@ -30,8 +30,8 @@ def main():
 baseline
 position embedding: pretrain, trainable, size = 5
 pos tag: pretrain, trainable, size = 10
-char embedding: 200 filters, window size: [3]
-attention input: No
+char embedding: 50 filters, window size: [3]
+attention input: Yes, hidden layer: 100
 word-level convo: 200 filter, window size: 3
 """
     gen_answer_key(predictions, meta=meta)

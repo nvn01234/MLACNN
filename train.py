@@ -8,11 +8,11 @@ from test import gen_answer_key
 
 def main():
     print("load train data")
-    x_train = [np.load("data/train/%s.npy" % name) for name in ["words", "pos1", "pos2", "e1", "e2", "chars", "tags", "e1context", "e2context"]]
+    x_train = [np.load("data/train/%s.npy" % name) for name in ["words", "pos1", "pos2", "e1", "e2", "tags", "e1context", "e2context"]]
     y_train = np.load("data/train/y.npy")
 
     print("load test data")
-    x_test = [np.load("data/test/%s.npy" % name) for name in ["words", "pos1", "pos2", "e1", "e2", "chars", "tags", "e1context", "e2context"]]
+    x_test = [np.load("data/test/%s.npy" % name) for name in ["words", "pos1", "pos2", "e1", "e2", "tags", "e1context", "e2context"]]
 
     print("training")
     config = ConfigProto()

@@ -4,6 +4,7 @@ from keras import backend as K
 from models import build_model
 from settings import *
 from test import gen_answer_key
+from utils import make_dict
 
 
 def main():
@@ -14,13 +15,21 @@ def main():
     print("load test data")
     x_test = [np.load("data/test/%s.npy" % name) for name in ["words", "pos1", "pos2", "tags", "chars", "e1", "e2", "e1context", "e2context"]]
 
+    print("load embeddings")
+    word_embeddings = np.load("data/embedding/word_embeddings.npy")
+    position_embeddings_1 = np.load("data/embedding/position_embeddings_1.npy")
+    position_embeddings_2 = np.load("data/embedding/position_embeddings_2.npy")
+    char_embeddings = np.load("data/embedding/char_embeddings.npy")
+    tag_embeddings = np.load("data/embedding/tag_embeddings.npy")
+    embeddings = make_dict(word_embeddings, position_embeddings_1, position_embeddings_2, char_embeddings, tag_embeddings)
+
     print("training")
     config = ConfigProto()
     config.log_device_placement = False
     config.gpu_options.allow_growth = True
     sess = Session(config=config)
     K.set_session(sess)
-    model = build_model()
+    model = build_model(embeddings)
     model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True)
 
     print("testing")

@@ -6,8 +6,10 @@ from keras import backend as K
 import numpy as np
 from keras.initializers import TruncatedNormal, Constant
 
+from utils import make_dict
 
-def build_model():
+
+def build_model(embeddings):
     # input representation features
     words_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
     chars_input = Input(shape=[SEQUENCE_LEN, WORD_LEN], dtype='int32')
@@ -22,14 +24,8 @@ def build_model():
     e2context_input = Input(shape=[2], dtype='int32')  # L4
 
     # word embedding
-    # we = np.load("data/embedding/word_embeddings.npy")
-    we = np.random.random([10, 300])
-    words_embed = Embedding(
-        input_dim=we.shape[0],
-        output_dim=we.shape[1],
-        weights=[we],
-        trainable=False,
-    )
+    we = embeddings["word_embeddings"]
+    words_embed = Embedding(we.shape[0], we.shape[1], weights=[we], trainable=False)
     words = words_embed(words_input)
     e1 = words_embed(e1_input)
     e2 = words_embed(e2_input)
@@ -43,33 +39,17 @@ def build_model():
     e2context_flat = Flatten()(e2context)
 
     # position embedding
-    # pe1 = np.load("data/embedding/position_embeddings_1.npy")
-    pe1 = np.random.random([10, 5])
-    pos1 = Embedding(
-        input_dim=pe1.shape[0],
-        output_dim=pe1.shape[1],
-        weights=[pe1],
-    )(pos1_input)
-    # pe2 = np.load("data/embedding/position_embeddings_2.npy")
-    pe2 = np.random.random([10, 5])
-    pos2 = Embedding(
-        input_dim=pe2.shape[0],
-        output_dim=pe2.shape[1],
-        weights=[pe2],
-    )(pos2_input)
+    pe1 = embeddings["position_embeddings_1"]
+    pos1 = Embedding(pe1.shape[0], pe1.shape[1], weights=[pe1])(pos1_input)
+    pe2 = embeddings["position_embeddings_2"]
+    pos2 = Embedding(pe2.shape[0], pe2.shape[1], weights=[pe2])(pos2_input)
 
     # tag embedding
-    # te = np.load("data/embedding/tag_embeddings.npy")
-    te = np.random.random([10, 10])
-    tags = Embedding(
-        input_dim=te.shape[0],
-        output_dim=te.shape[1],
-        weights=[te],
-    )(tags_input)
+    te = embeddings["tag_embeddings"]
+    tags = Embedding(te.shape[0], te.shape[1], weights=[te])(tags_input)
 
     # character embedding
-    # ce = np.load("data/embedding/char_embeddings.npy")
-    ce = np.random.random([10, 300])
+    ce = embeddings["char_embeddings"]
     chars_embed = Embedding(ce.shape[0], ce.shape[1], weights=[ce], trainable=False)
     chars = chars_embed(chars_input)
 
@@ -126,6 +106,7 @@ def build_model():
     # model.summary()
     return model
 
+
 def attention_context(mlp1, mlp2, words, e_flat):
     e_repeat = RepeatVector(SEQUENCE_LEN)(e_flat)
     h = Concatenate()([words, e_repeat])
@@ -138,12 +119,14 @@ def attention_context(mlp1, mlp2, words, e_flat):
     context = Sum()(context)
     return context
 
+
 class Sum(Layer):
     def compute_output_shape(self, input_shape):
         return input_shape[0], input_shape[2]
 
     def call(self, inputs, **kwargs):
         return K.sum(inputs, 1)
+
 
 class CharLevelPooling(Layer):
     def compute_output_shape(self, input_shape):
@@ -154,4 +137,10 @@ class CharLevelPooling(Layer):
 
 
 if __name__ == "__main__":
-    build_model()
+    word_embeddings = np.random.random([10, WORD_EMBED_SIZE])
+    position_embeddings_1 = np.random.random([10, POSITION_EMBED_SIZE])
+    position_embeddings_2 = np.random.random([10, POSITION_EMBED_SIZE])
+    char_embeddings = np.random.random([10, CHAR_EMBED_SIZE])
+    tag_embeddings = np.random.random([10, TAG_EMBED_SIZE])
+    embeddings = make_dict(word_embeddings, position_embeddings_1, position_embeddings_2, char_embeddings, tag_embeddings)
+    build_model(embeddings)

@@ -46,15 +46,17 @@ def build_model():
     pos1 = Embedding(
         input_dim=pe1.shape[0],
         output_dim=pe1.shape[1],
-        weights=[pe1],
-        trainable=False,
+        # weights=[pe1],
+        # trainable=False,
+        embeddings_initializer=TruncatedNormal(stddev=0.1),
     )(pos1_input)
     pe2 = np.load("data/embedding/position_embeddings_2.npy")
     pos2 = Embedding(
         input_dim=pe2.shape[0],
         output_dim=pe2.shape[1],
-        weights=[pe2],
-        trainable=False,
+        # weights=[pe2],
+        # trainable=False,
+        embeddings_initializer=TruncatedNormal(stddev=0.1),
     )(pos2_input)
 
     # tag embedding

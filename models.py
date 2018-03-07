@@ -91,19 +91,16 @@ def build_model():
     e2_repeat = RepeatVector(SEQUENCE_LEN)(e2_flat)
     h2 = Concatenate()([words, e2_repeat])
     MLP1 = Dense(units=ATT_HIDDEN_LAYER, activation="tanh")
-    MLP2 = Dense(units=1)
+    MLP2 = Dense(units=1, activation="softmax")
     u1 = MLP1(h1)
     alpha1 = MLP2(u1)
-    alpha1 = Reshape([-1, SEQUENCE_LEN])(alpha1)
-    alpha1 = Activation("softmax")(alpha1)
     u2 = MLP1(h2)
     alpha2 = MLP2(u2)
-    alpha2 = Reshape([-1, SEQUENCE_LEN])(alpha2)
-    alpha2 = Activation("softmax")(alpha2)
     alpha = (alpha1 + alpha2)/2
+    alpha = Reshape([SEQUENCE_LEN])(alpha)
     alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
-    alpha = Permute([0, 2, 1])(alpha)
-    input_repre = Multiply()(input_repre, alpha)
+    alpha = Permute([2, 1])(alpha)
+    input_repre = Multiply()([input_repre, alpha])
 
     # word-level convolution
     pooled_word = []

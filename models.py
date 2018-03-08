@@ -71,9 +71,9 @@ def build_model(embeddings):
     input_repre = Dropout(DROPOUT)(input_repre)
 
     # attention input
-    e_conv = Conv1D(filters=1,
-                    kernel_size=ENTITY_LEN,
-                    padding="valid",
+    e_conv = Conv1D(filters=WORD_EMBED_SIZE,
+                    kernel_size=3,
+                    padding="same",
                     activation="relu",
                     kernel_initializer=TruncatedNormal(stddev=0.1),
                     bias_initializer=Constant(0.1))
@@ -119,7 +119,7 @@ def build_model(embeddings):
 
 def attention(e_conv, mlp1, mlp2, e, words):
     e = e_conv(e)
-    e = Reshape([SEQUENCE_LEN])(e)
+    e = GlobalMaxPool1D()(e)
     e = RepeatVector(SEQUENCE_LEN)(e)
     h = Concatenate()([words, e])
     u = mlp1(h)

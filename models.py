@@ -74,25 +74,9 @@ def build_model(embeddings):
                     activation="relu",
                     kernel_initializer=TruncatedNormal(stddev=0.1),
                     bias_initializer=Constant(0.1))
-
     e1_conved = e_conv(e1)
-    e1_conved = Flatten()(e1_conved)
-    e1_repeat = RepeatVector(SEQUENCE_LEN)(e1_conved)
-    A1 = Dot(-1)([e1_repeat, words])
-    A1 = Flatten()(A1)
-    alpha1 = Activation("softmax")(A1)
-
     e2_conved = e_conv(e2)
-    e2_conved = Flatten()(e2_conved)
-    e2_repeat = RepeatVector(SEQUENCE_LEN)(e2_conved)
-    A2 = Dot(-1)([e2_repeat, words])
-    A2 = Flatten()(A2)
-    alpha2 = Activation("softmax")(A2)
-
-    alpha = Average()([alpha1, alpha2])
-    alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
-    alpha = Permute([2,1])(alpha)
-    input_repre = Multiply()([input_repre, alpha])
+    input_repre = AttentionInput()([input_repre, words, e1_conved, e2_conved])
 
     # word-level convolution
     input_conved = Conv1D(filters=NB_FILTERS_WORD,
@@ -119,6 +103,21 @@ def build_model(embeddings):
     model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer='adam')
     # model.summary()
     return model
+
+
+class AttentionInput(Layer):
+    def call(self, inputs, **kwargs):
+        words_repre, words, e1, e2 = inputs
+
+        alpha1 = K.batch_dot(e1, words, [2, 2])
+        alpha2 = K.batch_dot(e2, words, [2, 2])
+        alpha = (alpha1 + alpha2) / 2
+        alpha = K.permute_dimensions(alpha, [0, 2, 1])
+
+        output = words_repre * alpha
+        return output
+
+
 
 
 class CharLevelPooling(Layer):

@@ -9,11 +9,11 @@ from utils import make_dict
 
 def main():
     print("load train data")
-    x_train = [np.load("data/train/%s.npy" % name) for name in ["words", "pos1", "pos2", "tags", "chars", "e1", "e2"]]
+    x_train = [np.load("data/train/%s.npy" % name) for name in ["words", "pos1", "pos2", "tags", "chars", "e1", "e2", "e1context", "e2context"]]
     y_train = np.load("data/train/y.npy")
 
     print("load test data")
-    x_test = [np.load("data/test/%s.npy" % name) for name in ["words", "pos1", "pos2", "tags", "chars", "e1", "e2"]]
+    x_test = [np.load("data/test/%s.npy" % name) for name in ["words", "pos1", "pos2", "tags", "chars", "e1", "e2", "e1context", "e2context"]]
 
     print("load embeddings")
     word_embeddings = np.load("data/embedding/word_embeddings.npy")
@@ -41,7 +41,7 @@ position embedding: pretrain, trainable, size = 5
 pos tag: pretrain, trainable, size = 10
 char embedding: 50 filters, window size: 3
 word-level convo: 200 filter, window size: 3
-w/o context around entities
+input attention average, apply convo on e
 """
     gen_answer_key(predictions, meta=meta)
 

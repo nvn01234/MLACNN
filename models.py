@@ -20,8 +20,8 @@ def build_model(embeddings):
     # lexical features
     e1_input = Input(shape=[ENTITY_LEN], dtype='int32')  # L1
     e2_input = Input(shape=[ENTITY_LEN], dtype='int32')  # L2
-    # e1context_input = Input(shape=[2], dtype='int32')  # L3
-    # e2context_input = Input(shape=[2], dtype='int32')  # L4
+    e1context_input = Input(shape=[2], dtype='int32')  # L3
+    e2context_input = Input(shape=[2], dtype='int32')  # L4
 
     # word embedding
     we = embeddings["word_embeddings"]
@@ -29,14 +29,14 @@ def build_model(embeddings):
     words = words_embed(words_input)
     e1 = words_embed(e1_input)
     e2 = words_embed(e2_input)
-    # e1context = words_embed(e1context_input)
-    # e2context = words_embed(e2context_input)
+    e1context = words_embed(e1context_input)
+    e2context = words_embed(e2context_input)
 
     # lexical feature
     e1_flat = Flatten()(e1)
     e2_flat = Flatten()(e2)
-    # e1context_flat = Flatten()(e1context)
-    # e2context_flat = Flatten()(e2context)
+    e1context_flat = Flatten()(e1context)
+    e2context_flat = Flatten()(e2context)
 
     # position embedding
     pe1 = embeddings["position_embeddings_1"]
@@ -67,6 +67,31 @@ def build_model(embeddings):
     input_repre = Concatenate()([words, pos1, pos2, tags, pool_char])
     input_repre = Dropout(DROPOUT)(input_repre)
 
+    # input attention
+    e_conv = Conv1D(filters=WORD_EMBED_SIZE,
+                    kernel_size=ENTITY_LEN,
+                    padding="valid",
+                    activation="relu",
+                    kernel_initializer=TruncatedNormal(stddev=0.1),
+                    bias_initializer=Constant(0.1))
+
+    e1_conved = e_conv(e1)
+    e1_repeat = RepeatVector(SEQUENCE_LEN)(e1_conved)
+    A1 = Dot(-1)(e1_repeat, words)
+    A1 = Flatten()(A1)
+    alpha1 = Activation("softmax")(A1)
+
+    e2_conved = e_conv(e2)
+    e2_repeat = RepeatVector(SEQUENCE_LEN)(e2_conved)
+    A2 = Dot(-1)(e2_repeat, words)
+    A2 = Flatten()(A2)
+    alpha2 = Activation("softmax")(A2)
+
+    alpha = Average()([alpha1, alpha2])
+    alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
+    alpha = Permute([2,1])(alpha)
+    input_repre = Multiply()([input_repre, alpha])
+
     # word-level convolution
     input_conved = Conv1D(filters=NB_FILTERS_WORD,
                           kernel_size=WINDOW_SIZE_WORD,
@@ -77,7 +102,7 @@ def build_model(embeddings):
     input_pooled = GlobalMaxPool1D()(input_conved)
 
     # fully connected
-    output = Concatenate()([input_pooled, e1_flat, e2_flat])
+    output = Concatenate()([input_pooled, e1_flat, e2_flat, e1context_flat, e2context_flat])
     output = Dropout(DROPOUT)(output)
     output = Dense(
         units=NB_RELATIONS,
@@ -88,7 +113,7 @@ def build_model(embeddings):
         bias_regularizer='l2',
     )(output)
 
-    model = Model(inputs=[words_input, pos1_input, pos2_input, tags_input, chars_input, e1_input, e2_input], outputs=[output])
+    model = Model(inputs=[words_input, pos1_input, pos2_input, tags_input, chars_input, e1_input, e2_input, e1context_input, e2context_input], outputs=[output])
     model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer='adam')
     # model.summary()
     return model

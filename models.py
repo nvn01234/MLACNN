@@ -33,7 +33,7 @@ def build_model(embeddings):
     e2context = words_embed(e2context_input)
 
     # lexical feature
-    word_conv = Conv1D(filters=NB_FILTERS_WORD,
+    word_conv = Conv1D(filters=WORD_EMBED_SIZE,
                        kernel_size=WINDOW_SIZE_WORD,
                        padding="same",
                        activation="relu",
@@ -43,8 +43,9 @@ def build_model(embeddings):
     e1_pooled = GlobalMaxPool1D()(e1_conved)
     e2_conved = word_conv(e2)
     e2_pooled = GlobalMaxPool1D()(e2_conved)
-    e1context_flat = Flatten()(e1context)
-    e2context_flat = Flatten()(e2context)
+    e1context = EntityContext()([e1_pooled, e1context])
+    e2context = EntityContext()([e2_pooled, e2context])
+
 
     # position embedding
     pe1 = embeddings["position_embeddings_1"]
@@ -95,7 +96,7 @@ def build_model(embeddings):
     input_pooled = GlobalMaxPool1D()(input_conved)
 
     # fully connected
-    output = Concatenate()([input_pooled, e1_pooled, e2_pooled, e1context_flat, e2context_flat])
+    output = Concatenate()([input_pooled, e1context, e2context])
     output = Dropout(DROPOUT)(output)
     output = Dense(
         units=NB_RELATIONS,
@@ -127,6 +128,17 @@ class CharLevelPooling(Layer):
 
     def call(self, inputs, **kwargs):
         return K.max(inputs, axis=2)
+
+
+class EntityContext(Layer):
+    def compute_output_shape(self, input_shape):
+        return input_shape[0], 3*WORD_EMBED_SIZE
+
+    def call(self, inputs, **kwargs):
+        mid, arounds = inputs
+        first = K.reshape(arounds[:, 0, :], [-1, WORD_EMBED_SIZE])
+        last = K.reshape(arounds[:, 1, :], [-1, WORD_EMBED_SIZE])
+        return K.concatenate([first, mid, last])
 
 
 if __name__ == "__main__":

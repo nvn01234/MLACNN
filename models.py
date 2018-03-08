@@ -132,13 +132,14 @@ class CharLevelPooling(Layer):
 
 class EntityContext(Layer):
     def compute_output_shape(self, input_shape):
-        return input_shape[0], 3*WORD_EMBED_SIZE
+        return input_shape[0][0], 3*WORD_EMBED_SIZE
 
     def call(self, inputs, **kwargs):
         mid, arounds = inputs
         first = K.reshape(arounds[:, 0, :], [-1, WORD_EMBED_SIZE])
         last = K.reshape(arounds[:, 1, :], [-1, WORD_EMBED_SIZE])
-        return K.concatenate([first, mid, last])
+        context = K.concatenate([first, mid, last])
+        return context
 
 
 if __name__ == "__main__":

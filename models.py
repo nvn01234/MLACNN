@@ -32,9 +32,18 @@ def build_model(embeddings):
     e1context = words_embed(e1context_input)
     e2context = words_embed(e2context_input)
 
+    word_conv = Conv1D(filters=NB_FILTERS_WORD,
+                       kernel_size=WINDOW_SIZE_WORD,
+                       padding="same",
+                       activation="relu",
+                       kernel_initializer=TruncatedNormal(stddev=0.1),
+                       bias_initializer=Constant(0.1))
+
     # lexical feature
-    e1_flat = Flatten()(e1)
-    e2_flat = Flatten()(e2)
+    e1_conved = word_conv(e1)
+    e1_pooled = GlobalMaxPool1D()(e1_conved)
+    e2_conved = word_conv(e2)
+    e2_pooled = GlobalMaxPool1D()(e2_conved)
     e1context_flat = Flatten()(e1context)
     e2context_flat = Flatten()(e2context)
 
@@ -54,53 +63,35 @@ def build_model(embeddings):
     chars = chars_embed(chars_input)
 
     # character-level convolution
-    pooled_char = []
-    for size in WINDOW_SIZES_CHAR:
-        chars = Conv2D(filters=NB_FILTERS_CHAR,
-                       kernel_size=(1, size),
+    char_conv = Conv2D(filters=NB_FILTERS_CHAR,
+                       kernel_size=(1, WINDOW_SIZE_CHAR),
                        padding="same",
                        activation="relu",
                        kernel_initializer=TruncatedNormal(stddev=0.1),
                        bias_initializer=Constant(0.1),
                        )(chars)
-        pool = CharLevelPooling()(chars)
-        pooled_char.append(pool)
+    pool_char = CharLevelPooling()(char_conv)
 
     # input representation
-    input_repre = Concatenate()([words, pos1, pos2, tags, *pooled_char])
+    input_repre = Concatenate()([words, pos1, pos2, tags, pool_char])
     input_repre = Dropout(DROPOUT)(input_repre)
 
     # attention input
-    e_conv = Conv1D(filters=WORD_EMBED_SIZE,
-                    kernel_size=3,
-                    padding="same",
-                    activation="relu",
-                    kernel_initializer=TruncatedNormal(stddev=0.1),
-                    bias_initializer=Constant(0.1))
     mlp1 = Dense(ATT_HIDDEN_LAYER, activation="tanh")
     mlp2 = Dense(1, activation="softmax")
-    alpha1 = attention(e_conv, mlp1, mlp2, e1, words)
-    alpha2 = attention(e_conv, mlp1, mlp2, e2, words)
+    alpha1 = attention(mlp1, mlp2, e1_pooled, words)
+    alpha2 = attention(mlp1, mlp2, e2_pooled, words)
     alpha = Average()([alpha1, alpha2])
     alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
     alpha = Permute([2, 1])(alpha)
     input_repre = Multiply()([input_repre, alpha])
 
     # word-level convolution
-    pooled_word = []
-    for size in WINDOW_SIZES_WORD:
-        conv = Conv1D(filters=NB_FILTERS_WORD,
-                      kernel_size=size,
-                      padding="same",
-                      activation="relu",
-                      kernel_initializer=TruncatedNormal(stddev=0.1),
-                      bias_initializer=Constant(0.1),
-                      )(input_repre)
-        pool = GlobalMaxPool1D()(conv)
-        pooled_word.append(pool)
+    words_conved = word_conv(input_repre)
+    words_pooled = GlobalMaxPool1D()(words_conved)
 
     # fully connected
-    output = Concatenate()([*pooled_word, e1_flat, e2_flat, e1context_flat, e2context_flat])
+    output = Concatenate()([words_pooled, e1_pooled, e2_pooled, e1context_flat, e2context_flat])
     output = Dropout(DROPOUT)(output)
     output = Dense(
         units=NB_RELATIONS,
@@ -117,11 +108,9 @@ def build_model(embeddings):
     return model
 
 
-def attention(e_conv, mlp1, mlp2, e, words):
-    e = e_conv(e)
-    e = GlobalMaxPool1D()(e)
-    e = RepeatVector(SEQUENCE_LEN)(e)
-    h = Concatenate()([words, e])
+def attention(mlp1, mlp2, e_pooled, words):
+    e_pooled = RepeatVector(SEQUENCE_LEN)(e_pooled)
+    h = Concatenate()([words, e_pooled])
     u = mlp1(h)
     alpha = mlp2(u)
     alpha = Reshape([SEQUENCE_LEN])(alpha)

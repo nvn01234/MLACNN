@@ -32,14 +32,13 @@ def build_model(embeddings):
     e1context = words_embed(e1context_input)
     e2context = words_embed(e2context_input)
 
+    # lexical feature
     word_conv = Conv1D(filters=NB_FILTERS_WORD,
                        kernel_size=WINDOW_SIZE_WORD,
                        padding="same",
                        activation="relu",
                        kernel_initializer=TruncatedNormal(stddev=0.1),
                        bias_initializer=Constant(0.1))
-
-    # lexical feature
     e1_conved = word_conv(e1)
     e1_pooled = GlobalMaxPool1D()(e1_conved)
     e2_conved = word_conv(e2)
@@ -87,11 +86,16 @@ def build_model(embeddings):
     input_repre = Multiply()([input_repre, alpha])
 
     # word-level convolution
-    words_conved = word_conv(input_repre)
-    words_pooled = GlobalMaxPool1D()(words_conved)
+    input_conved = Conv1D(filters=NB_FILTERS_WORD,
+                          kernel_size=WINDOW_SIZE_WORD,
+                          padding="same",
+                          activation="relu",
+                          kernel_initializer=TruncatedNormal(stddev=0.1),
+                          bias_initializer=Constant(0.1))(input_repre)
+    input_pooled = GlobalMaxPool1D()(input_conved)
 
     # fully connected
-    output = Concatenate()([words_pooled, e1_pooled, e2_pooled, e1context_flat, e2context_flat])
+    output = Concatenate()([input_pooled, e1_pooled, e2_pooled, e1context_flat, e2context_flat])
     output = Dropout(DROPOUT)(output)
     output = Dense(
         units=NB_RELATIONS,

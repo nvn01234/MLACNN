@@ -85,7 +85,7 @@ def build_model(embeddings):
     e2_conved = e_conv(e2)
     e2_conved = Flatten()(e2_conved)
     e2_repeat = RepeatVector(SEQUENCE_LEN)(e2_conved)
-    A2 = Dot(-1)(e2_repeat, words)
+    A2 = Dot(-1)([e2_repeat, words])
     A2 = Flatten()(A2)
     alpha2 = Activation("softmax")(A2)
 

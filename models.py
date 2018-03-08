@@ -76,12 +76,14 @@ def build_model(embeddings):
                     bias_initializer=Constant(0.1))
 
     e1_conved = e_conv(e1)
+    e1_conved = Flatten()(e1_conved)
     e1_repeat = RepeatVector(SEQUENCE_LEN)(e1_conved)
     A1 = Dot(-1)(e1_repeat, words)
     A1 = Flatten()(A1)
     alpha1 = Activation("softmax")(A1)
 
     e2_conved = e_conv(e2)
+    e2_conved = Flatten()(e2_conved)
     e2_repeat = RepeatVector(SEQUENCE_LEN)(e2_conved)
     A2 = Dot(-1)(e2_repeat, words)
     A2 = Flatten()(A2)

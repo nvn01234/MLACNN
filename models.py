@@ -33,18 +33,16 @@ def build_model(embeddings):
     e2context = words_embed(e2context_input)
 
     # lexical feature
-    # word_conv = Conv1D(filters=WORD_EMBED_SIZE,
-    #                    kernel_size=WINDOW_SIZE_WORD,
-    #                    padding="same",
-    #                    activation="relu",
-    #                    kernel_initializer=TruncatedNormal(stddev=0.1),
-    #                    bias_initializer=Constant(0.1))
-    # e1_conved = word_conv(e1)
-    # e1_pooled = GlobalMaxPool1D()(e1_conved)
-    # e2_conved = word_conv(e2)
-    # e2_pooled = GlobalMaxPool1D()(e2_conved)
-    e1_flat = Flatten()(e1)
-    e2_flat = Flatten()(e2)
+    word_conv = Conv1D(filters=WORD_EMBED_SIZE,
+                       kernel_size=ENTITY_LEN,
+                       padding="valid",
+                       activation="relu",
+                       kernel_initializer=TruncatedNormal(stddev=0.1),
+                       bias_initializer=Constant(0.1))
+    e1_conved = word_conv(e1)
+    e2_conved = word_conv(e2)
+    e1_flat = Flatten()(e1_conved)
+    e2_flat = Flatten()(e2_conved)
     e1context_flat = Flatten()(e1context)
     e2context_flat = Flatten()(e2context)
 

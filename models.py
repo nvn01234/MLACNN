@@ -1,6 +1,6 @@
 from settings import *
 from keras.layers import Input, Concatenate, Conv1D, GlobalMaxPool1D, Dense, Dropout, Embedding, Flatten, Conv2D, \
-    RepeatVector, Activation, Reshape, Multiply, Permute, Average, Dot, Lambda
+    RepeatVector, Activation, Reshape, Multiply, Permute, Average, Dot, Lambda, Subtract
 from keras.engine import Model, Layer
 from keras import backend as K
 import numpy as np
@@ -43,8 +43,8 @@ def build_model(embeddings):
     e1_pooled = GlobalMaxPool1D()(e1_conved)
     e2_conved = word_conv(e2)
     e2_pooled = GlobalMaxPool1D()(e2_conved)
-    e1context = EntityContext()([e1_pooled, e1context])
-    e2context = EntityContext()([e2_pooled, e2context])
+    e1context_flat = Flatten()(e1context)
+    e2context_flat = Flatten()(e2context)
 
 
     # position embedding
@@ -77,14 +77,15 @@ def build_model(embeddings):
     input_repre = Dropout(DROPOUT)(input_repre)
 
     # attention input
-    mlp1 = Dense(ATT_HIDDEN_LAYER, activation="tanh")
-    mlp2 = Dense(1, activation="softmax")
-    alpha1 = attention(mlp1, mlp2, e1_pooled, words)
-    alpha2 = attention(mlp1, mlp2, e2_pooled, words)
-    alpha = Average()([alpha1, alpha2])
-    alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
-    alpha = Permute([2, 1])(alpha)
-    input_repre = Multiply()([input_repre, alpha])
+    # r_vec = Subtract()(e1_pooled, e2_pooled)
+    # r_vec_repeat = RepeatVector(SEQUENCE_LEN)(r_vec)
+    # w = Concatenate()([words, r_vec_repeat])
+    # w = Dense(1, activation="tanh")(w)
+    # alpha = Activation("softmax")(w)
+    # alpha = Reshape([SEQUENCE_LEN])(alpha)
+    # alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
+    # alpha = Permute([2, 1])(alpha)
+    # input_repre = Multiply()([input_repre, alpha])
 
     # word-level convolution
     input_conved = Conv1D(filters=NB_FILTERS_WORD,
@@ -96,7 +97,7 @@ def build_model(embeddings):
     input_pooled = GlobalMaxPool1D()(input_conved)
 
     # fully connected
-    output = Concatenate()([input_pooled, e1context, e2context])
+    output = Concatenate()([input_pooled, e1_pooled, e2_pooled, e1context_flat, e2context_flat])
     output = Dropout(DROPOUT)(output)
     output = Dense(
         units=NB_RELATIONS,
@@ -128,18 +129,6 @@ class CharLevelPooling(Layer):
 
     def call(self, inputs, **kwargs):
         return K.max(inputs, axis=2)
-
-
-class EntityContext(Layer):
-    def compute_output_shape(self, input_shape):
-        return input_shape[0][0], 3*WORD_EMBED_SIZE
-
-    def call(self, inputs, **kwargs):
-        mid, arounds = inputs
-        first = K.reshape(arounds[:, 0, :], [-1, WORD_EMBED_SIZE])
-        last = K.reshape(arounds[:, 1, :], [-1, WORD_EMBED_SIZE])
-        context = K.concatenate([first, mid, last])
-        return context
 
 
 if __name__ == "__main__":

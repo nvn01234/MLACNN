@@ -33,19 +33,10 @@ def build_model(embeddings):
     e2context = words_embed(e2context_input)
 
     # lexical feature
-    word_conv = Conv1D(filters=WORD_EMBED_SIZE,
-                       kernel_size=ENTITY_LEN,
-                       padding="valid",
-                       activation="relu",
-                       kernel_initializer=TruncatedNormal(stddev=0.1),
-                       bias_initializer=Constant(0.1))
-    e1_conved = word_conv(e1)
-    e2_conved = word_conv(e2)
-    e1_flat = Flatten()(e1_conved)
-    e2_flat = Flatten()(e2_conved)
+    e1_flat = Flatten()(e1)
+    e2_flat = Flatten()(e2)
     e1context_flat = Flatten()(e1context)
     e2context_flat = Flatten()(e2context)
-
 
     # position embedding
     pe1 = embeddings["position_embeddings_1"]
@@ -76,16 +67,16 @@ def build_model(embeddings):
     input_repre = Concatenate()([words, pos1, pos2, tags, pool_char])
     input_repre = Dropout(DROPOUT)(input_repre)
 
-    # attention input
-    # r_vec = Subtract()(e1_pooled, e2_pooled)
-    # r_vec_repeat = RepeatVector(SEQUENCE_LEN)(r_vec)
-    # w = Concatenate()([words, r_vec_repeat])
-    # w = Dense(1, activation="tanh")(w)
-    # alpha = Activation("softmax")(w)
-    # alpha = Reshape([SEQUENCE_LEN])(alpha)
-    # alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
-    # alpha = Permute([2, 1])(alpha)
-    # input_repre = Multiply()([input_repre, alpha])
+    # attention
+    e1_repeat = RepeatVector(SEQUENCE_LEN)(e1_flat)
+    e2_repeat = RepeatVector(SEQUENCE_LEN)(e2_flat)
+    words_concat_e = Concatenate()([words, e1_repeat, e2_repeat])
+    # feed to MLP
+    alpha = Dense(1, activation="softmax")(words_concat_e)
+    alpha = Reshape([SEQUENCE_LEN])(alpha)
+    alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
+    alpha = Permute([2, 1])(alpha)
+    input_repre = Multiply()([input_repre, alpha])
 
     # word-level convolution
     input_conved = Conv1D(filters=NB_FILTERS_WORD,
@@ -112,15 +103,6 @@ def build_model(embeddings):
     model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer='adam')
     # model.summary()
     return model
-
-
-def attention(mlp1, mlp2, e_pooled, words):
-    e_pooled = RepeatVector(SEQUENCE_LEN)(e_pooled)
-    h = Concatenate()([words, e_pooled])
-    u = mlp1(h)
-    alpha = mlp2(u)
-    alpha = Reshape([SEQUENCE_LEN])(alpha)
-    return alpha
 
 
 class CharLevelPooling(Layer):

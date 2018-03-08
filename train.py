@@ -40,9 +40,8 @@ baseline
 position embedding: pretrain, trainable, size = 5
 pos tag: pretrain, trainable, size = 10
 char embedding: 50 filters, window size: 3
-attention input: No
+attention input: concat words with both 2 entity, 1 MLP layer with softmax 
 word-level convo: 200 filter, window size: 3
-entity_convolution
 """
     gen_answer_key(predictions, meta=meta)
 

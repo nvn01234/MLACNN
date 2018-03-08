@@ -33,16 +33,18 @@ def build_model(embeddings):
     e2context = words_embed(e2context_input)
 
     # lexical feature
-    word_conv = Conv1D(filters=WORD_EMBED_SIZE,
-                       kernel_size=WINDOW_SIZE_WORD,
-                       padding="same",
-                       activation="relu",
-                       kernel_initializer=TruncatedNormal(stddev=0.1),
-                       bias_initializer=Constant(0.1))
-    e1_conved = word_conv(e1)
-    e1_pooled = GlobalMaxPool1D()(e1_conved)
-    e2_conved = word_conv(e2)
-    e2_pooled = GlobalMaxPool1D()(e2_conved)
+    # word_conv = Conv1D(filters=WORD_EMBED_SIZE,
+    #                    kernel_size=WINDOW_SIZE_WORD,
+    #                    padding="same",
+    #                    activation="relu",
+    #                    kernel_initializer=TruncatedNormal(stddev=0.1),
+    #                    bias_initializer=Constant(0.1))
+    # e1_conved = word_conv(e1)
+    # e1_pooled = GlobalMaxPool1D()(e1_conved)
+    # e2_conved = word_conv(e2)
+    # e2_pooled = GlobalMaxPool1D()(e2_conved)
+    e1_flat = Flatten()(e1)
+    e2_flat = Flatten()(e2)
     e1context_flat = Flatten()(e1context)
     e2context_flat = Flatten()(e2context)
 
@@ -97,7 +99,7 @@ def build_model(embeddings):
     input_pooled = GlobalMaxPool1D()(input_conved)
 
     # fully connected
-    output = Concatenate()([input_pooled, e1_pooled, e2_pooled, e1context_flat, e2context_flat])
+    output = Concatenate()([input_pooled, e1_flat, e2_flat, e1context_flat, e2context_flat])
     output = Dropout(DROPOUT)(output)
     output = Dense(
         units=NB_RELATIONS,

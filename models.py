@@ -20,8 +20,8 @@ def build_model(embeddings):
     # lexical features
     e1_input = Input(shape=[ENTITY_LEN], dtype='int32')  # L1
     e2_input = Input(shape=[ENTITY_LEN], dtype='int32')  # L2
-    e1context_input = Input(shape=[2], dtype='int32')  # L3
-    e2context_input = Input(shape=[2], dtype='int32')  # L4
+    # e1context_input = Input(shape=[2], dtype='int32')  # L3
+    # e2context_input = Input(shape=[2], dtype='int32')  # L4
 
     # word embedding
     we = embeddings["word_embeddings"]
@@ -29,14 +29,14 @@ def build_model(embeddings):
     words = words_embed(words_input)
     e1 = words_embed(e1_input)
     e2 = words_embed(e2_input)
-    e1context = words_embed(e1context_input)
-    e2context = words_embed(e2context_input)
+    # e1context = words_embed(e1context_input)
+    # e2context = words_embed(e2context_input)
 
     # lexical feature
     e1_flat = Flatten()(e1)
     e2_flat = Flatten()(e2)
-    e1context_flat = Flatten()(e1context)
-    e2context_flat = Flatten()(e2context)
+    # e1context_flat = Flatten()(e1context)
+    # e2context_flat = Flatten()(e2context)
 
     # position embedding
     pe1 = embeddings["position_embeddings_1"]
@@ -74,10 +74,10 @@ def build_model(embeddings):
                           activation="relu",
                           kernel_initializer=TruncatedNormal(stddev=0.1),
                           bias_initializer=Constant(0.1))(input_repre)
-    input_pooled = AttentionMaxPooling()(input_conved)
+    input_pooled = GlobalMaxPool1D()(input_conved)
 
     # fully connected
-    output = Concatenate()([input_pooled, e1_flat, e2_flat, e1context_flat, e2context_flat])
+    output = Concatenate()([input_pooled, e1_flat, e2_flat])
     output = Dropout(DROPOUT)(output)
     output = Dense(
         units=NB_RELATIONS,
@@ -88,7 +88,7 @@ def build_model(embeddings):
         bias_regularizer='l2',
     )(output)
 
-    model = Model(inputs=[words_input, pos1_input, pos2_input, tags_input, chars_input, e1_input, e2_input, e1context_input, e2context_input], outputs=[output])
+    model = Model(inputs=[words_input, pos1_input, pos2_input, tags_input, chars_input, e1_input, e2_input], outputs=[output])
     model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer='adam')
     # model.summary()
     return model
@@ -100,32 +100,6 @@ class CharLevelPooling(Layer):
 
     def call(self, inputs, **kwargs):
         return K.max(inputs, axis=2)
-
-class AttentionMaxPooling(Layer):
-    def compute_output_shape(self, input_shape):
-        return input_shape[0], input_shape[2]
-
-    def build(self, input_shape):
-        self.U = self.add_weight(
-            name="U",
-            shape=[NB_FILTERS_WORD, NB_FILTERS_WORD],
-            initializer=TruncatedNormal(stddev=0.1),
-        )
-        self.WL = self.add_weight(
-            name="WL",
-            shape=[NB_RELATIONS, NB_FILTERS_WORD],
-            initializer=TruncatedNormal(stddev=0.1),
-        )
-        self.built = True
-
-    def call(self, inputs, **kwargs):
-        G = K.dot(inputs, self.U)
-        G = K.dot(G, K.transpose(self.WL))
-        G = K.permute_dimensions(G, [0, 2, 1])
-        AP = K.softmax(G)
-        wo = K.batch_dot(inputs, AP, [1, 2])
-        wo = K.max(wo, -1)
-        return wo
 
 
 if __name__ == "__main__":

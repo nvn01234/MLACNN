@@ -68,16 +68,6 @@ def build_model(embeddings):
     input_repre = Dropout(DROPOUT)(input_repre)
 
     # attention
-    e1_repeat = RepeatVector(SEQUENCE_LEN)(e1_flat)
-    e2_repeat = RepeatVector(SEQUENCE_LEN)(e2_flat)
-    words_concat_e = Concatenate()([words, e1_repeat, e2_repeat])
-    # feed to MLP
-    alpha = Dense(1, activation="softmax")(words_concat_e)
-    alpha = Reshape([SEQUENCE_LEN])(alpha)
-    alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
-    alpha = Permute([2, 1])(alpha)
-    input_repre = Multiply()([input_repre, alpha])
-
     # word-level convolution
     input_conved = Conv1D(filters=NB_FILTERS_WORD,
                           kernel_size=WINDOW_SIZE_WORD,
@@ -85,7 +75,7 @@ def build_model(embeddings):
                           activation="relu",
                           kernel_initializer=TruncatedNormal(stddev=0.1),
                           bias_initializer=Constant(0.1))(input_repre)
-    input_pooled = GlobalMaxPool1D()(input_conved)
+    input_pooled = AttentionMaxPooling()(input_conved)
 
     # fully connected
     output = Concatenate()([input_pooled, e1_flat, e2_flat, e1context_flat, e2context_flat])
@@ -111,6 +101,32 @@ class CharLevelPooling(Layer):
 
     def call(self, inputs, **kwargs):
         return K.max(inputs, axis=2)
+
+class AttentionMaxPooling(Layer):
+    def compute_output_shape(self, input_shape):
+        return input_shape[0], input_shape[2]
+
+    def build(self, input_shape):
+        self.U = self.add_weight(
+            name="U",
+            shape=[NB_FILTERS_WORD, NB_FILTERS_WORD],
+            initializer=TruncatedNormal(stddev=0.1),
+        )
+        self.WL = self.add_weight(
+            name="WL",
+            shape=[NB_RELATIONS, NB_FILTERS_WORD],
+            initializer=TruncatedNormal(stddev=0.1),
+        )
+        self.built = True
+
+    def call(self, inputs, **kwargs):
+        G = K.dot(inputs, self.U)
+        G = K.dot(G, K.transpose(self.WL))
+        G = K.permute_dimensions(G, [0, 2, 1])
+        AP = K.softmax(G)
+        wo = K.batch_dot(inputs, AP, [1, 2])
+        wo = K.max(wo, -1)
+        return wo
 
 
 if __name__ == "__main__":

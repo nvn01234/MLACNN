@@ -71,10 +71,20 @@ def build_model(embeddings):
     input_repre = Dropout(DROPOUT)(input_repre)
 
     # attention input
-    mlp_1 = Dense(units=ATT_HIDDEN_LAYER, activation="tanh")
-    mlp_2 = Dense(units=1, activation="softmax")
-    att_context_1 = attention_context(mlp_1, mlp_2, words, e1_flat)
-    att_context_2 = attention_context(mlp_1, mlp_2, words, e2_flat)
+    e_conv = Conv1D(filters=1,
+                    kernel_size=ENTITY_LEN,
+                    padding="valid",
+                    activation="relu",
+                    kernel_initializer=TruncatedNormal(stddev=0.1),
+                    bias_initializer=Constant(0.1))
+    mlp1 = Dense(ATT_HIDDEN_LAYER, activation="tanh")
+    mlp2 = Dense(1, activation="softmax")
+    alpha1 = attention(e_conv, mlp1, mlp2, e1, words)
+    alpha2 = attention(e_conv, mlp1, mlp2, e2, words)
+    alpha = Average()([alpha1, alpha2])
+    alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
+    alpha = Permute([2, 1])(alpha)
+    input_repre = Multiply()([input_repre, alpha])
 
     # word-level convolution
     pooled_word = []
@@ -90,7 +100,7 @@ def build_model(embeddings):
         pooled_word.append(pool)
 
     # fully connected
-    output = Concatenate()([*pooled_word, e1_flat, e2_flat, e1context_flat, e2context_flat, att_context_1, att_context_2])
+    output = Concatenate()([*pooled_word, e1_flat, e2_flat, e1context_flat, e2context_flat])
     output = Dropout(DROPOUT)(output)
     output = Dense(
         units=NB_RELATIONS,
@@ -107,25 +117,14 @@ def build_model(embeddings):
     return model
 
 
-def attention_context(mlp1, mlp2, words, e_flat):
-    e_repeat = RepeatVector(SEQUENCE_LEN)(e_flat)
-    h = Concatenate()([words, e_repeat])
+def attention(e_conv, mlp1, mlp2, e, words):
+    e = e_conv(e)
+    e = RepeatVector(SEQUENCE_LEN)(e)
+    h = Concatenate()([words, e])
     u = mlp1(h)
     alpha = mlp2(u)
     alpha = Reshape([SEQUENCE_LEN])(alpha)
-    alpha = RepeatVector(WORD_EMBED_SIZE)(alpha)
-    alpha = Permute([2, 1])(alpha)
-    context = Multiply()([words, alpha])
-    context = Sum()(context)
-    return context
-
-
-class Sum(Layer):
-    def compute_output_shape(self, input_shape):
-        return input_shape[0], input_shape[2]
-
-    def call(self, inputs, **kwargs):
-        return K.sum(inputs, 1)
+    return alpha
 
 
 class CharLevelPooling(Layer):

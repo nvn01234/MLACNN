@@ -40,7 +40,7 @@ baseline
 position embedding: pretrain, trainable, size = 5
 pos tag: pretrain, trainable, size = 10
 char embedding: 50 filters, window size: [3]
-attention input: Yes, concat, hidden layer: 50
+attention input: convolution -> MLP, hidden layer: 100
 word-level convo: 200 filter, window size: [3]
 """
     gen_answer_key(predictions, meta=meta)

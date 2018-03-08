@@ -67,7 +67,6 @@ def build_model(embeddings):
     input_repre = Concatenate()([words, pos1, pos2, tags, pool_char])
     input_repre = Dropout(DROPOUT)(input_repre)
 
-    # attention
     # word-level convolution
     input_conved = Conv1D(filters=NB_FILTERS_WORD,
                           kernel_size=WINDOW_SIZE_WORD,

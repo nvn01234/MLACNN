@@ -119,6 +119,7 @@ def build_model(embeddings):
 
 def attention(e_conv, mlp1, mlp2, e, words):
     e = e_conv(e)
+    e = Reshape([SEQUENCE_LEN])(e)
     e = RepeatVector(SEQUENCE_LEN)(e)
     h = Concatenate()([words, e])
     u = mlp1(h)

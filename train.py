@@ -14,6 +14,7 @@ def main():
 
     print("load test data")
     x_test = [np.load("data/test/%s.npy" % name) for name in ["words", "pos1", "pos2", "tags", "chars", "e1", "e2", "e1context", "e2context"]]
+    y_test = np.load("data/test/y.npy")
 
     print("load embeddings")
     word_embeddings = np.load("data/embedding/word_embeddings.npy")
@@ -30,7 +31,7 @@ def main():
     sess = Session(config=config)
     K.set_session(sess)
     model = build_model(embeddings)
-    model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True)
+    model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True, validation_data=[x_test, y_test])
 
     print("testing")
     scores = model.predict(x_test, verbose=False)

@@ -81,7 +81,8 @@ def build_model(embeddings):
     e2_conved = Reshape([WORD_EMBED_SIZE])(e2_conved)
     e2_repeat = RepeatVector(SEQUENCE_LEN)(e2_conved)
     concat = Concatenate()([words, e1_repeat, e2_repeat])
-    alpha = Dense(1, activation="softmax")(concat)
+    alpha = Dense(ATT_HIDDEN_LAYER, activation="tanh")(concat)
+    alpha = Dense(1, activation="softmax")(alpha)
     alpha = Reshape([SEQUENCE_LEN])(alpha)
     alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
     alpha = Permute([2, 1])(alpha)
@@ -97,7 +98,7 @@ def build_model(embeddings):
     input_pooled = GlobalMaxPool1D()(input_conved)
 
     # fully connected
-    output = Concatenate()([input_pooled, e1_conved, e2_conved, e1context_flat, e2context_flat])
+    output = Concatenate()([input_pooled, e1_flat, e2_flat, e1context_flat, e2context_flat])
     output = Dropout(DROPOUT)(output)
     output = Dense(
         units=NB_RELATIONS,

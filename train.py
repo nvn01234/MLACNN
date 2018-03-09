@@ -16,7 +16,6 @@ def main():
 
     print("load test data")
     x_test = [np.load("data/test/%s.npy" % name) for name in ["words", "pos1", "pos2", "tags", "chars", "e1", "e2", "e1context", "e2context"]]
-    y_test = np.load("data/test/y.npy")
 
     print("load embeddings")
     word_embeddings = np.load("data/embedding/word_embeddings.npy")
@@ -38,13 +37,13 @@ def main():
     filepath = "model/weights.best.hdf5"
     checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
     model = build_model(embeddings)
-    model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True, validation_data=[x_test, y_test], callbacks=[checkpoint])
+    model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True, validation_split=1/8, callbacks=[checkpoint])
 
     print("testing")
+    model.load_weights("model/weights.best.hdf5")
     scores = model.predict(x_test, verbose=False)
     predictions = scores.argmax(-1)
     meta = """
-baseline
 position embedding: pretrain, trainable, size = 5
 pos tag: pretrain, trainable, size = 10
 char embedding: 50 filters, window size: 3

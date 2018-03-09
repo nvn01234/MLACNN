@@ -81,7 +81,7 @@ def build_model(embeddings):
                        padding="valid",
                        activation="relu",
                        kernel_initializer=TruncatedNormal(stddev=0.1),
-                       bias_initializer=Constant(0.1))(e21)
+                       bias_initializer=Constant(0.1))(e2)
     e2_conved = Reshape([WORD_EMBED_SIZE])(e2_conved)
     e2_repeat = RepeatVector(SEQUENCE_LEN)(e2_conved)
     concat = Concatenate()([words, e1_repeat, e2_repeat])

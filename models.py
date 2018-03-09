@@ -75,8 +75,17 @@ def build_model(embeddings):
                     kernel_initializer=TruncatedNormal(stddev=0.1),
                     bias_initializer=Constant(0.1))
     e1_conved = e_conv(e1)
+    e1_conved = Reshape([WORD_EMBED_SIZE])(e1_conved)
+    e1_repeat = RepeatVector(SEQUENCE_LEN)(e1_conved)
     e2_conved = e_conv(e2)
-    input_repre = AttentionInput()([input_repre, words, e1_conved, e2_conved])
+    e2_conved = Reshape([WORD_EMBED_SIZE])(e2_conved)
+    e2_repeat = RepeatVector(SEQUENCE_LEN)(e2_conved)
+    concat = Concatenate()([words, e1_repeat, e2_repeat])
+    alpha = Dense(1, activation="softmax")(concat)
+    alpha = Reshape([SEQUENCE_LEN])(alpha)
+    alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
+    alpha = Permute([2, 1])(alpha)
+    input_repre = Multiply()([input_repre, alpha])
 
     # word-level convolution
     input_conved = Conv1D(filters=NB_FILTERS_WORD,
@@ -103,21 +112,6 @@ def build_model(embeddings):
     model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer='adam')
     # model.summary()
     return model
-
-
-class AttentionInput(Layer):
-    def call(self, inputs, **kwargs):
-        words_repre, words, e1, e2 = inputs
-
-        alpha1 = K.batch_dot(e1, words, [2, 2])
-        alpha2 = K.batch_dot(e2, words, [2, 2])
-        alpha = (alpha1 + alpha2) / 2
-        alpha = K.permute_dimensions(alpha, [0, 2, 1])
-
-        output = words_repre * alpha
-        return output
-
-
 
 
 class CharLevelPooling(Layer):

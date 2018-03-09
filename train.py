@@ -41,7 +41,6 @@ def main():
     model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True, validation_data=[x_test, y_test], callbacks=[checkpoint])
 
     print("testing")
-    model.load_weights("model/weights.best.hdf5")
     scores = model.predict(x_test, verbose=False)
     predictions = scores.argmax(-1)
     meta = """

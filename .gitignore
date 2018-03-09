@@ -109,3 +109,4 @@ venv.bak/
 origin_data/glove.6B.300d.txt
 data/*
 log/*
+model/*

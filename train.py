@@ -1,4 +1,6 @@
+import os
 import numpy as np
+from keras.callbacks import ModelCheckpoint
 from tensorflow import ConfigProto, Session
 from keras import backend as K
 from models import build_model
@@ -30,10 +32,16 @@ def main():
     config.gpu_options.allow_growth = True
     sess = Session(config=config)
     K.set_session(sess)
+
+    if not os.path.exists("model"):
+        os.makedirs("model")
+    filepath = "model/weights.best.hdf5"
+    checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
     model = build_model(embeddings)
-    model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True, validation_data=[x_test, y_test])
+    model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True, validation_data=[x_test, y_test], callbacks=[checkpoint])
 
     print("testing")
+    model.load_weights("model/weights.best.hdf5")
     scores = model.predict(x_test, verbose=False)
     predictions = scores.argmax(-1)
     meta = """

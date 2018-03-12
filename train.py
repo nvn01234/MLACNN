@@ -45,8 +45,8 @@ def main():
     predictions = scores.argmax(-1)
     meta = """
 position embedding: pretrain, trainable, size = 5
-pos tag: pretrain, trainable, size = 10
-char embedding: 50 filters, window size: 3
+pos tag: No
+char embedding: No
 word-level convo: 200 filter, window size: 3
 input attention: No
 """

@@ -49,22 +49,22 @@ def build_model(embeddings):
     tags = Embedding(te.shape[0], te.shape[1], weights=[te])(tags_input)
 
     # character embedding
-    # ce = embeddings["char_embeddings"]
-    # chars_embed = Embedding(ce.shape[0], ce.shape[1], weights=[ce], trainable=False)
-    # chars = chars_embed(chars_input)
+    ce = embeddings["char_embeddings"]
+    chars_embed = Embedding(ce.shape[0], ce.shape[1], weights=[ce], trainable=False)
+    chars = chars_embed(chars_input)
 
     # character-level convolution
-    # char_conv = Conv2D(filters=NB_FILTERS_CHAR,
-    #                    kernel_size=(1, WINDOW_SIZE_CHAR),
-    #                    padding="same",
-    #                    activation="relu",
-    #                    kernel_initializer=TruncatedNormal(stddev=0.1),
-    #                    bias_initializer=Constant(0.1),
-    #                    )(chars)
-    # pool_char = CharLevelPooling()(char_conv)
+    char_conv = Conv2D(filters=NB_FILTERS_CHAR,
+                       kernel_size=(1, WINDOW_SIZE_CHAR),
+                       padding="same",
+                       activation="relu",
+                       kernel_initializer=TruncatedNormal(stddev=0.1),
+                       bias_initializer=Constant(0.1),
+                       )(chars)
+    pool_char = CharLevelPooling()(char_conv)
 
     # input representation
-    input_repre = Concatenate()([words, pos1, pos2, tags])
+    input_repre = Concatenate()([words, pos1, pos2, tags, pool_char])
     input_repre = Dropout(DROPOUT)(input_repre)
 
     # input attention

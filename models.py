@@ -49,59 +49,61 @@ def build_model(embeddings):
     tags = Embedding(te.shape[0], te.shape[1], weights=[te])(tags_input)
 
     # character embedding
-    ce = embeddings["char_embeddings"]
-    chars_embed = Embedding(ce.shape[0], ce.shape[1], weights=[ce], trainable=False)
-    chars = chars_embed(chars_input)
+    # ce = embeddings["char_embeddings"]
+    # chars_embed = Embedding(ce.shape[0], ce.shape[1], weights=[ce], trainable=False)
+    # chars = chars_embed(chars_input)
 
     # character-level convolution
-    char_conv = Conv2D(filters=NB_FILTERS_CHAR,
-                       kernel_size=(1, WINDOW_SIZE_CHAR),
-                       padding="same",
-                       activation="relu",
-                       kernel_initializer=TruncatedNormal(stddev=0.1),
-                       bias_initializer=Constant(0.1),
-                       )(chars)
-    pool_char = CharLevelPooling()(char_conv)
+    # char_conv = Conv2D(filters=NB_FILTERS_CHAR,
+    #                    kernel_size=(1, WINDOW_SIZE_CHAR),
+    #                    padding="same",
+    #                    activation="relu",
+    #                    kernel_initializer=TruncatedNormal(stddev=0.1),
+    #                    bias_initializer=Constant(0.1),
+    #                    )(chars)
+    # pool_char = CharLevelPooling()(char_conv)
 
     # input representation
-    input_repre = Concatenate()([words, pos1, pos2, tags, pool_char])
+    input_repre = Concatenate()([words, pos1, pos2, tags])
     input_repre = Dropout(DROPOUT)(input_repre)
 
     # input attention
-    e1_conved = Conv1D(filters=WORD_EMBED_SIZE,
-                       kernel_size=ENTITY_LEN,
-                       padding="valid",
-                       activation="relu",
-                       kernel_initializer=TruncatedNormal(stddev=0.1),
-                       bias_initializer=Constant(0.1))(e1)
-    e1_conved = Reshape([WORD_EMBED_SIZE])(e1_conved)
-    e1_repeat = RepeatVector(SEQUENCE_LEN)(e1_conved)
-    e2_conved = Conv1D(filters=WORD_EMBED_SIZE,
-                       kernel_size=ENTITY_LEN,
-                       padding="valid",
-                       activation="relu",
-                       kernel_initializer=TruncatedNormal(stddev=0.1),
-                       bias_initializer=Constant(0.1))(e2)
-    e2_conved = Reshape([WORD_EMBED_SIZE])(e2_conved)
-    e2_repeat = RepeatVector(SEQUENCE_LEN)(e2_conved)
-    concat = Concatenate()([words, e1_repeat, e2_repeat])
-    alpha = Dense(1, activation="softmax")(concat)
-    alpha = Reshape([SEQUENCE_LEN])(alpha)
-    alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
-    alpha = Permute([2, 1])(alpha)
-    input_repre = Multiply()([input_repre, alpha])
+    # e1_conved = Conv1D(filters=WORD_EMBED_SIZE,
+    #                    kernel_size=ENTITY_LEN,
+    #                    padding="valid",
+    #                    activation="relu",
+    #                    kernel_initializer=TruncatedNormal(stddev=0.1),
+    #                    bias_initializer=Constant(0.1))(e1)
+    # e1_conved = Reshape([WORD_EMBED_SIZE])(e1_conved)
+    # e1_repeat = RepeatVector(SEQUENCE_LEN)(e1_conved)
+    # e2_conved = Conv1D(filters=WORD_EMBED_SIZE,
+    #                    kernel_size=ENTITY_LEN,
+    #                    padding="valid",
+    #                    activation="relu",
+    #                    kernel_initializer=TruncatedNormal(stddev=0.1),
+    #                    bias_initializer=Constant(0.1))(e2)
+    # e2_conved = Reshape([WORD_EMBED_SIZE])(e2_conved)
+    # e2_repeat = RepeatVector(SEQUENCE_LEN)(e2_conved)
+    # concat = Concatenate()([words, e1_repeat, e2_repeat])
+    # alpha = Dense(1, activation="softmax")(concat)
+    # alpha = Reshape([SEQUENCE_LEN])(alpha)
+    # alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
+    # alpha = Permute([2, 1])(alpha)
+    # input_repre = Multiply()([input_repre, alpha])
 
     # word-level convolution
-    input_conved = Conv1D(filters=NB_FILTERS_WORD,
-                          kernel_size=WINDOW_SIZE_WORD,
-                          padding="same",
-                          activation="relu",
-                          kernel_initializer=TruncatedNormal(stddev=0.1),
-                          bias_initializer=Constant(0.1))(input_repre)
-    input_pooled = GlobalMaxPool1D()(input_conved)
+    input_pooled = []
+    for window_size in WINDOW_SIZE_WORD:
+        input_conved = Conv1D(filters=NB_FILTERS_WORD,
+                              kernel_size=window_size,
+                              padding="same",
+                              activation="relu",
+                              kernel_initializer=TruncatedNormal(stddev=0.1),
+                              bias_initializer=Constant(0.1))(input_repre)
+        input_pooled.append(GlobalMaxPool1D()(input_conved))
 
     # fully connected
-    output = Concatenate()([input_pooled, e1_flat, e2_flat, e1context_flat, e2context_flat])
+    output = Concatenate()([*input_pooled, e1_flat, e2_flat, e1context_flat, e2context_flat])
     output = Dropout(DROPOUT)(output)
     output = Dense(
         units=NB_RELATIONS,

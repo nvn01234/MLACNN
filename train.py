@@ -44,11 +44,7 @@ def main():
     scores = model.predict(x_test, verbose=False)
     predictions = scores.argmax(-1)
     meta = """
-position embedding: pretrain, trainable, size = 5
-pos tag: pretrain, trainable, size = 10
-char embedding: Yes
-word-level convo: 200 filter, window size: 3
-input attention: Yes
+baseline
 """
     gen_answer_key(predictions, meta=meta)
 

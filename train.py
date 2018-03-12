@@ -45,10 +45,10 @@ def main():
     predictions = scores.argmax(-1)
     meta = """
 position embedding: pretrain, trainable, size = 5
-pos tag: No
+pos tag: pretrain, trainable, size = 10
 char embedding: No
 word-level convo: 200 filter, window size: 3
-input attention: No
+input attention: Yes
 """
     gen_answer_key(predictions, meta=meta)
 

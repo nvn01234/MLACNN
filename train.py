@@ -48,6 +48,7 @@ def main():
 baseline:
 POS tagging: yes
 activation: relu
+characted-level: yes
 """
     gen_answer_key(predictions, meta=meta)
 

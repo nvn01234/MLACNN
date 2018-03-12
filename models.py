@@ -45,8 +45,8 @@ def build_model(embeddings):
     pos2 = Embedding(pe2.shape[0], pe2.shape[1], weights=[pe2])(pos2_input)
 
     # tag embedding
-    # te = embeddings["tag_embeddings"]
-    # tags = Embedding(te.shape[0], te.shape[1], weights=[te])(tags_input)
+    te = embeddings["tag_embeddings"]
+    tags = Embedding(te.shape[0], te.shape[1], weights=[te])(tags_input)
 
     # character embedding
     # ce = embeddings["char_embeddings"]
@@ -64,7 +64,7 @@ def build_model(embeddings):
     # pool_char = CharLevelPooling()(char_conv)
 
     # input representation
-    input_repre = Concatenate()([words, pos1, pos2])
+    input_repre = Concatenate()([words, pos1, pos2, tags])
     input_repre = Dropout(DROPOUT)(input_repre)
 
     # input attention
@@ -92,18 +92,16 @@ def build_model(embeddings):
     # input_repre = Multiply()([input_repre, alpha])
 
     # word-level convolution
-    input_pooled = []
-    for window_size in WINDOW_SIZE_WORD:
-        input_conved = Conv1D(filters=NB_FILTERS_WORD,
-                              kernel_size=window_size,
-                              padding="same",
-                              activation="relu",
-                              kernel_initializer=TruncatedNormal(stddev=0.1),
-                              bias_initializer=Constant(0.1))(input_repre)
-        input_pooled.append(GlobalMaxPool1D()(input_conved))
+    input_conved = Conv1D(filters=NB_FILTERS_WORD,
+                          kernel_size=WINDOW_SIZE_WORD,
+                          padding="same",
+                          activation="tanh",
+                          kernel_initializer=TruncatedNormal(stddev=0.1),
+                          bias_initializer=Constant(0.1))(input_repre)
+    input_pooled = GlobalMaxPool1D()(input_conved)
 
     # fully connected
-    output = Concatenate()([*input_pooled, e1_flat, e2_flat, e1context_flat, e2context_flat])
+    output = Concatenate()([input_pooled, e1_flat, e2_flat, e1context_flat, e2context_flat])
     output = Dropout(DROPOUT)(output)
     output = Dense(
         units=NB_RELATIONS,

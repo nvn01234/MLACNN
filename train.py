@@ -46,7 +46,7 @@ def main():
     meta = """
 position embedding: pretrain, trainable, size = 5
 pos tag: pretrain, trainable, size = 10
-char embedding: No
+char embedding: Yes
 word-level convo: 200 filter, window size: 3
 input attention: Yes
 """

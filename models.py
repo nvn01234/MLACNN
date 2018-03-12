@@ -45,8 +45,8 @@ def build_model(embeddings):
     pos2 = Embedding(pe2.shape[0], pe2.shape[1], weights=[pe2])(pos2_input)
 
     # tag embedding
-    te = embeddings["tag_embeddings"]
-    tags = Embedding(te.shape[0], te.shape[1], weights=[te])(tags_input)
+    # te = embeddings["tag_embeddings"]
+    # tags = Embedding(te.shape[0], te.shape[1], weights=[te])(tags_input)
 
     # character embedding
     # ce = embeddings["char_embeddings"]
@@ -64,7 +64,7 @@ def build_model(embeddings):
     # pool_char = CharLevelPooling()(char_conv)
 
     # input representation
-    input_repre = Concatenate()([words, pos1, pos2, tags])
+    input_repre = Concatenate()([words, pos1, pos2])
     input_repre = Dropout(DROPOUT)(input_repre)
 
     # input attention

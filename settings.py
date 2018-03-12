@@ -6,7 +6,7 @@ WORD_LEN = 24
 
 # word-level convolution
 NB_FILTERS_WORD = 200  # hidden layer 1
-WINDOW_SIZE_WORD = [3,4,5]
+WINDOW_SIZE_WORD = [3]
 WORD_EMBED_SIZE = 300
 SEQUENCE_LEN = 98
 

@@ -45,7 +45,9 @@ def main():
     scores = model.predict(x_test, verbose=False)
     predictions = scores.argmax(-1)
     meta = """
-baseline
+baseline:
+POS tagging: no
+window size: [3]
 """
     gen_answer_key(predictions, meta=meta)
 

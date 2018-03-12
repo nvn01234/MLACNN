@@ -47,6 +47,7 @@ def main():
     meta = """
 baseline:
 POS tagging: yes
+activation: relu
 """
     gen_answer_key(predictions, meta=meta)
 

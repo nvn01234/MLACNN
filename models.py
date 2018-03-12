@@ -95,7 +95,7 @@ def build_model(embeddings):
     input_conved = Conv1D(filters=NB_FILTERS_WORD,
                           kernel_size=WINDOW_SIZE_WORD,
                           padding="same",
-                          activation="tanh",
+                          activation="relu",
                           kernel_initializer=TruncatedNormal(stddev=0.1),
                           bias_initializer=Constant(0.1))(input_repre)
     input_pooled = GlobalMaxPool1D()(input_conved)

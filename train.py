@@ -49,6 +49,7 @@ baseline:
 POS tagging: yes
 activation: relu
 characted-level: yes
+attention input: yes
 """
     gen_answer_key(predictions, meta=meta)
 

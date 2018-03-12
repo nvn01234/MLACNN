@@ -47,7 +47,7 @@ def main():
     meta = """
 baseline:
 POS tagging: no
-window size: [3]
+window size: [3,4,5]
 """
     gen_answer_key(predictions, meta=meta)
 

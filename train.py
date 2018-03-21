@@ -11,11 +11,11 @@ from utils import make_dict
 
 def main():
     print("load train data")
-    x_train = [np.load("data/train/%s.npy" % name) for name in ["words", "pos1", "pos2", "e1", "e2", "e1context", "e2context", "chars"]]
+    x_train = [np.load("data/train/%s.npy" % name) for name in ["words", "pos1", "pos2", "e1", "e2", "e1context", "e2context", "tags"]]
     y_train = np.load("data/train/y.npy")
 
     print("load test data")
-    x_test = [np.load("data/test/%s.npy" % name) for name in ["words", "pos1", "pos2", "e1", "e2", "e1context", "e2context", "chars"]]
+    x_test = [np.load("data/test/%s.npy" % name) for name in ["words", "pos1", "pos2", "e1", "e2", "e1context", "e2context", "tags"]]
     y_test = np.load("data/test/y.npy")
 
     print("load embeddings")
@@ -45,8 +45,8 @@ def main():
     scores = model.predict(x_test, verbose=False)
     predictions = scores.argmax(-1)
     meta = """
-POS tagging: No
-characted-level: yes
+POS tagging: yes
+characted-level: no
 attention input: no
 PCNN: no
 """

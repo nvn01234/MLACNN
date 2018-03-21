@@ -14,8 +14,8 @@ def build_model(embeddings):
     words_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
     pos1_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
     pos2_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
-    # tags_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
-    chars_input = Input(shape=[SEQUENCE_LEN, WORD_LEN], dtype='int32')
+    tags_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
+    # chars_input = Input(shape=[SEQUENCE_LEN, WORD_LEN], dtype='int32')
     # segs_input = Input(shape=[SEQUENCE_LEN, 3], dtype='float32')
 
     # lexical features
@@ -46,25 +46,25 @@ def build_model(embeddings):
     pos2 = Embedding(pe2.shape[0], pe2.shape[1], weights=[pe2])(pos2_input)
 
     # tag embedding
-    # te = embeddings["tag_embeddings"]
-    # tags = Embedding(te.shape[0], te.shape[1], weights=[te])(tags_input)
+    te = embeddings["tag_embeddings"]
+    tags = Embedding(te.shape[0], te.shape[1], weights=[te])(tags_input)
 
     # character embedding
-    ce = embeddings["char_embeddings"]
-    chars = Embedding(ce.shape[0], ce.shape[1], weights=[ce], trainable=False)(chars_input)
+    # ce = embeddings["char_embeddings"]
+    # chars = Embedding(ce.shape[0], ce.shape[1], weights=[ce], trainable=False)(chars_input)
 
     # character-level convolution
-    char_feature = Conv2D(filters=NB_FILTERS_CHAR,
-                          kernel_size=(1, WINDOW_SIZE_CHAR),
-                          padding="same",
-                          activation="relu",
-                          kernel_initializer=TruncatedNormal(stddev=0.1),
-                          bias_initializer=Constant(0.1),
-                          )(chars)
-    char_feature = CharLevelPooling()(char_feature)
+    # char_feature = Conv2D(filters=NB_FILTERS_CHAR,
+    #                       kernel_size=(1, WINDOW_SIZE_CHAR),
+    #                       padding="same",
+    #                       activation="relu",
+    #                       kernel_initializer=TruncatedNormal(stddev=0.1),
+    #                       bias_initializer=Constant(0.1),
+    #                       )(chars)
+    # char_feature = CharLevelPooling()(char_feature)
 
     # input representation
-    input_repre = Concatenate()([words, pos1, pos2, char_feature])
+    input_repre = Concatenate()([words, pos1, pos2, tags])
     input_repre = Dropout(DROPOUT)(input_repre)
 
     # input attention
@@ -113,7 +113,7 @@ def build_model(embeddings):
         bias_regularizer='l2',
     )(output)
 
-    model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input, e1context_input, e2context_input, chars_input], outputs=[output])
+    model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input, e1context_input, e2context_input, tags_input], outputs=[output])
     model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer='adam')
     # model.summary()
     return model

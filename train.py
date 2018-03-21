@@ -11,11 +11,11 @@ from utils import make_dict
 
 def main():
     print("load train data")
-    x_train = [np.load("data/train/%s.npy" % name) for name in ["words", "pos1", "pos2", "e1", "e2", "e1context", "e2context", "segments"]]
+    x_train = [np.load("data/train/%s.npy" % name) for name in ["words", "pos1", "pos2", "tags", "e1", "e2", "e1context", "e2context", "segments"]]
     y_train = np.load("data/train/y.npy")
 
     print("load test data")
-    x_test = [np.load("data/test/%s.npy" % name) for name in ["words", "pos1", "pos2", "e1", "e2", "e1context", "e2context", "segments"]]
+    x_test = [np.load("data/test/%s.npy" % name) for name in ["words", "pos1", "pos2", "tags", "e1", "e2", "e1context", "e2context", "segments"]]
     y_test = np.load("data/test/y.npy")
 
     print("load embeddings")
@@ -48,8 +48,9 @@ def main():
 baseline:
 POS tagging: yes
 activation: relu
-characted-level: yes
+characted-level: no
 attention input: yes
+PCNN: yes
 """
     gen_answer_key(predictions, meta=meta)
 

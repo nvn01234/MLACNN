@@ -65,7 +65,7 @@ def build_model(embeddings):
     pool_char = CharLevelPooling()(char_conv)
 
     # input representation
-    input_repre = Concatenate()([words, pos1, pos2, tags])
+    input_repre = Concatenate()([words, pos1, pos2, tags, pool_char])
     input_repre = Dropout(DROPOUT)(input_repre)
 
     # input attention

@@ -103,7 +103,7 @@ def build_model(embeddings):
     input_pooled = PiecewiseMaxPool()([input_conved, segs_input])
 
     # fully connected
-    output = Concatenate()([input_pooled, e1_conved, e2_conved, e1context_flat, e2context_flat])
+    output = Concatenate()([input_pooled, e1_flat, e2_flat, e1context_flat, e2context_flat])
     output = Dropout(DROPOUT)(output)
     output = Dense(
         units=NB_RELATIONS,

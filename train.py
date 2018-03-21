@@ -48,7 +48,7 @@ def main():
 baseline:
 POS tagging: yes
 activation: relu
-characted-level: no
+characted-level: yes
 attention input: yes
 PCNN: yes
 """

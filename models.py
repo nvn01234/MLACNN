@@ -76,7 +76,7 @@ def build_model(embeddings):
                        kernel_initializer=TruncatedNormal(stddev=0.1),
                        bias_initializer=Constant(0.1))(e1)
     e1_conved = Reshape([WORD_EMBED_SIZE])(e1_conved)
-    e1_repeat = RepeatVector(SEQUENCE_LEN)(e1_conved)
+    # e1_repeat = RepeatVector(SEQUENCE_LEN)(e1_conved)
     e2_conved = Conv1D(filters=WORD_EMBED_SIZE,
                        kernel_size=ENTITY_LEN,
                        padding="valid",
@@ -84,13 +84,13 @@ def build_model(embeddings):
                        kernel_initializer=TruncatedNormal(stddev=0.1),
                        bias_initializer=Constant(0.1))(e2)
     e2_conved = Reshape([WORD_EMBED_SIZE])(e2_conved)
-    e2_repeat = RepeatVector(SEQUENCE_LEN)(e2_conved)
-    concat = Concatenate()([words, e1_repeat, e2_repeat])
-    alpha = Dense(1, activation="softmax")(concat)
-    alpha = Reshape([SEQUENCE_LEN])(alpha)
-    alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
-    alpha = Permute([2, 1])(alpha)
-    input_repre = Multiply()([input_repre, alpha])
+    # e2_repeat = RepeatVector(SEQUENCE_LEN)(e2_conved)
+    # concat = Concatenate()([words, e1_repeat, e2_repeat])
+    # alpha = Dense(1, activation="softmax")(concat)
+    # alpha = Reshape([SEQUENCE_LEN])(alpha)
+    # alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
+    # alpha = Permute([2, 1])(alpha)
+    # input_repre = Multiply()([input_repre, alpha])
 
     # word-level convolution
     input_conved = Conv1D(filters=NB_FILTERS_WORD,
@@ -103,7 +103,7 @@ def build_model(embeddings):
     input_pooled = PiecewiseMaxPool()([input_conved, segs_input])
 
     # fully connected
-    output = Concatenate()([input_pooled, e1_flat, e2_flat, e1context_flat, e2context_flat])
+    output = Concatenate()([input_pooled, e1_conved, e2_conved, e1context_flat, e2context_flat])
     output = Dropout(DROPOUT)(output)
     output = Dense(
         units=NB_RELATIONS,

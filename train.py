@@ -46,9 +46,9 @@ def main():
     predictions = scores.argmax(-1)
     meta = """
 POS tagging: No
-characted-level: no
+characted-level: yes
 attention input: no
-PCNN: yes
+PCNN: no
 """
     gen_answer_key(predictions, meta=meta)
 

@@ -84,6 +84,15 @@ class Sentence:
         self.e1_context = None
         self.e2_context = None
 
+        self.segments = np.zeros([SEQUENCE_LEN, 3])
+        for i in range(min(SEQUENCE_LEN, len(words))):
+            if i < e1start:
+                self.segments[i, 0] = 1.
+            elif e1start <= i <= e2end:
+                self.segments[i, 1] = 1.
+            elif e2end < i:
+                self.segments[i, 2] = 1.
+
     def __len__(self):
         return len(self.words)
 
@@ -104,7 +113,7 @@ class Sentence:
         self.e1, self.e1_context = self.entity_context(self.e1start, self.e1end, encoder)
         self.e2, self.e2_context = self.entity_context(self.e2start, self.e2end, encoder)
 
-        return self.words_encoded, self.chars_encoded, self.positions_1, self.positions_2, self.e1, self.e2, self.tags_encoded, self.e1_context, self.e2_context
+        return self.words_encoded, self.chars_encoded, self.positions_1, self.positions_2, self.e1, self.e2, self.tags_encoded, self.e1_context, self.e2_context, self.segments
 
     def entity_context(self, e_start, e_end, encoder):
         entity = np.zeros(ENTITY_LEN)
@@ -267,13 +276,13 @@ def main():
     encoder = Encoder(word2idx, char2idx, dis2idx_1, dis2idx_2, tag2idx)
 
     print("saving train data")
-    words_train, chars_train, pos1_train, pos2_train, e1_train, e2_train, tags_train, e1context_train, e2context_train = zip(*[s.generate_features(encoder) for s in sentences_train])
-    data_train = make_dict(words_train, chars_train, pos1_train, pos2_train, e1_train, e2_train, tags_train, e1context_train, e2context_train, y_train)
+    words_train, chars_train, pos1_train, pos2_train, e1_train, e2_train, tags_train, e1context_train, e2context_train, segments_train = zip(*[s.generate_features(encoder) for s in sentences_train])
+    data_train = make_dict(words_train, chars_train, pos1_train, pos2_train, e1_train, e2_train, tags_train, e1context_train, e2context_train, segments_train, y_train)
     numpy_save_many(data_train)
 
     print("saving test data")
-    words_test, chars_test, pos1_test, pos2_test, e1_test, e2_test, tags_test, e1context_test, e2context_test = zip(*[s.generate_features(encoder) for s in sentences_test])
-    data_test = make_dict(words_test, chars_test, pos1_test, pos2_test, e1_test, e2_test, tags_test, e1context_test, e2context_test, y_test)
+    words_test, chars_test, pos1_test, pos2_test, e1_test, e2_test, tags_test, e1context_test, e2context_test, segments_test = zip(*[s.generate_features(encoder) for s in sentences_test])
+    data_test = make_dict(words_test, chars_test, pos1_test, pos2_test, e1_test, e2_test, tags_test, e1context_test, e2context_test, segments_test, y_test)
     numpy_save_many(data_test)
 
     print(encoder)

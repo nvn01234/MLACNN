@@ -47,7 +47,7 @@ def build_model(embeddings):
 
     # tag embedding
     te = embeddings["tag_embeddings"]
-    tags = Embedding(te.shape[0], te.shape[1], weights=[te], embeddings_regularizer=Constant(0.1))(tags_input)
+    tags = Embedding(te.shape[0], te.shape[1], weights=[te])(tags_input)
 
     # character embedding
     # ce = embeddings["char_embeddings"]

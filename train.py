@@ -1,7 +1,7 @@
 import os
 import numpy as np
 from keras.callbacks import ModelCheckpoint
-from tensorflow import ConfigProto, Session
+# from tensorflow import ConfigProto, Session
 from keras import backend as K
 from models import build_model
 from settings import *
@@ -27,11 +27,11 @@ def main():
     embeddings = make_dict(word_embeddings, position_embeddings_1, position_embeddings_2, char_embeddings, tag_embeddings)
 
     print("training")
-    config = ConfigProto()
-    config.log_device_placement = False
-    config.gpu_options.allow_growth = True
-    sess = Session(config=config)
-    K.set_session(sess)
+    # config = ConfigProto()
+    # config.log_device_placement = False
+    # config.gpu_options.allow_growth = True
+    # sess = Session(config=config)
+    # K.set_session(sess)
 
     if not os.path.exists("model"):
         os.makedirs("model")

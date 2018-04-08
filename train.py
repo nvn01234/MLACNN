@@ -40,12 +40,12 @@ def main():
     f1_scores = []
     for i, (train_index, test_index) in enumerate(split):
         print("training fold %d" % (i+1))
-        filepath = "model/weights_%d.best.h5" % (i+1)
+        weights_path = "model/weights_%d.best.h5" % (i+1)
 
         callbacks = []
         callbacks.append(TensorBoard(log_dir))
         callbacks.append(F1score())
-        callbacks.append(ModelCheckpoint(filepath, monitor='f1', verbose=1, save_best_only=True, save_weights_only=True, mode='max'))
+        callbacks.append(ModelCheckpoint(weights_path, monitor='f1', verbose=1, save_best_only=True, save_weights_only=True, mode='max'))
         callbacks.append(EarlyStopping(monitor='f1', patience=4, mode='max'))
 
         x_train = [d[x_index[train_index]] for d in x]
@@ -56,6 +56,7 @@ def main():
         model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True, callbacks=callbacks, validation_data=[x_test, y_test])
 
         print("testing fold %d" % (i+1))
+        model.load_weights(weights_path)
         scores = model.predict(x_test, verbose=False)
         predictions = scores.argmax(-1)
         f1 = evaluate(y_test, predictions, "log/result_%d.txt" % (i + 1))

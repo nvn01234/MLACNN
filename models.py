@@ -18,25 +18,25 @@ def build_model(embeddings):
     # segs_input = Input(shape=[SEQUENCE_LEN, 3], dtype='float32')
 
     # lexical features
-    # e1_input = Input(shape=[ENTITY_LEN], dtype='int32')  # L1
-    # e2_input = Input(shape=[ENTITY_LEN], dtype='int32')  # L2
-    # e1context_input = Input(shape=[2], dtype='int32')  # L3
-    # e2context_input = Input(shape=[2], dtype='int32')  # L4
+    e1_input = Input(shape=[ENTITY_LEN], dtype='int32')  # L1
+    e2_input = Input(shape=[ENTITY_LEN], dtype='int32')  # L2
+    e1context_input = Input(shape=[2], dtype='int32')  # L3
+    e2context_input = Input(shape=[2], dtype='int32')  # L4
 
     # word embedding
     we = embeddings["word_embeddings"]
     words_embed = Embedding(we.shape[0], we.shape[1], weights=[we], trainable=False)
     words = words_embed(words_input)
-    # e1 = words_embed(e1_input)
-    # e2 = words_embed(e2_input)
-    # e1context = words_embed(e1context_input)
-    # e2context = words_embed(e2context_input)
+    e1 = words_embed(e1_input)
+    e2 = words_embed(e2_input)
+    e1context = words_embed(e1context_input)
+    e2context = words_embed(e2context_input)
 
     # lexical feature
-    # e1_flat = Flatten()(e1)
-    # e2_flat = Flatten()(e2)
-    # e1context_flat = Flatten()(e1context)
-    # e2context_flat = Flatten()(e2context)
+    e1_flat = Flatten()(e1)
+    e2_flat = Flatten()(e2)
+    e1context_flat = Flatten()(e1context)
+    e2context_flat = Flatten()(e2context)
 
     # position embedding
     pe1 = embeddings["position_embeddings_1"]
@@ -83,8 +83,8 @@ def build_model(embeddings):
     # input_pooled = PiecewiseMaxPool()([input_conved, segs_input])
 
     # fully connected
-    # output = Concatenate()([input_pooled, e1_flat, e2_flat, e1context_flat, e2context_flat])
-    output = Dropout(DROPOUT)(input_pooled)
+    output = Concatenate()([input_pooled, e1_flat, e2_flat, e1context_flat, e2context_flat])
+    output = Dropout(DROPOUT)(output)
     output = Dense(
         units=NB_RELATIONS,
         activation="softmax",
@@ -94,7 +94,7 @@ def build_model(embeddings):
         bias_regularizer='l2',
     )(output)
 
-    model = Model(inputs=[words_input, pos1_input, pos2_input], outputs=[output])
+    model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input, e1context_input, e2context_input], outputs=[output])
     model.compile(loss="sparse_categorical_crossentropy", optimizer='adam', metrics=['accuracy'])
     # model.summary()
     return model

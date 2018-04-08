@@ -86,16 +86,19 @@ def build_model(embeddings):
         input_pooled = GlobalMaxPool1D()(input_conved)
 
     # fully connected
-    outputs = [input_pooled]
-    if 1 in LEXICAL_FEATURES:
-        outputs.append(e1_flat)
-    if 2 in LEXICAL_FEATURES:
-        outputs.append(e2_flat)
-    if 3 in LEXICAL_FEATURES:
-        outputs.append(e1context_flat)
-    if 4 in LEXICAL_FEATURES:
-        outputs.append(e2context_flat)
-    output = Concatenate()(outputs)
+    if LEXICAL_FEATURES is None:
+        output = input_pooled
+    else:
+        outputs = [input_pooled]
+        if 1 in LEXICAL_FEATURES:
+            outputs.append(e1_flat)
+        if 2 in LEXICAL_FEATURES:
+            outputs.append(e2_flat)
+        if 3 in LEXICAL_FEATURES:
+            outputs.append(e1context_flat)
+        if 4 in LEXICAL_FEATURES:
+            outputs.append(e2context_flat)
+        output = Concatenate()(outputs)
     output = Dropout(DROPOUT)(output)
     output = Dense(
         units=NB_RELATIONS,

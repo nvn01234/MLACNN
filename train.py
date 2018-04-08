@@ -1,8 +1,10 @@
 import os
 import numpy as np
-from keras.callbacks import ModelCheckpoint
+from keras.callbacks import ModelCheckpoint, EarlyStopping, TensorBoard
 from tensorflow import ConfigProto, Session
 from keras import backend as K
+
+from metrics import F1score
 from models import build_model
 from settings import *
 from test import evaluate
@@ -30,28 +32,34 @@ def main():
     sess = Session(config=config)
     K.set_session(sess)
 
-    if not os.path.exists("model"):
-        os.makedirs("model")
+    os.makedirs("model", exist_ok=True)
+    log_dir = "log"
+    os.makedirs(log_dir, exist_ok=True)
 
     split = skf.split(x_index, y)
     f1_scores = []
     for i, (train_index, test_index) in enumerate(split):
         print("training fold %d" % (i+1))
-        filepath = "model/weights_%d.best.hdf5" % (i+1)
-        checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
+        filepath = "model/weights_%d.best.h5" % (i+1)
+
+        callbacks = []
+        callbacks.append(TensorBoard(log_dir))
+        callbacks.append(F1score())
+        callbacks.append(ModelCheckpoint(filepath, monitor='f1', verbose=1, save_best_only=True, save_weights_only=True, mode='max'))
+        callbacks.append(EarlyStopping(monitor='f1', patience=4, mode='max'))
 
         x_train = [d[x_index[train_index]] for d in x]
         y_train = y[train_index]
         x_test = [d[x_index[test_index]] for d in x]
         y_test = y[test_index]
         model = build_model(embeddings)
-        model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True, callbacks=[checkpoint], validation_data=[x_test, y_test])
+        model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True, callbacks=callbacks, validation_data=[x_test, y_test])
 
         print("testing fold %d" % (i+1))
-        model.load_weights(filepath)
         scores = model.predict(x_test, verbose=False)
         predictions = scores.argmax(-1)
-        f1_score = evaluate(predictions, y_test, i+1)
+        f1_score = evaluate(predictions, y_test, "log/result_%d.txt" % (i+1))
+        print("f1_score: %.2f" % f1_score)
         f1_scores.append(f1_score)
     f1_avg = sum(f1_scores) / len(f1_scores)
     print("f1_avg = %.2f" % f1_avg)

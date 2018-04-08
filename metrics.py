@@ -13,9 +13,9 @@ class F1score(Callback):
         if logs is None:
             logs = {}
 
-        scores = self.model.predict(self.validation_data[:3], verbose=False)
+        scores = self.model.predict(self.validation_data[:-2], verbose=False)
         predictions = scores.argmax(-1)
-        y_true = self.validation_data[3]
+        y_true = self.validation_data[-2]
         f1 = evaluate(y_true, predictions)
         print(' - f1: {:04.2f}'.format(f1))
         logs['f1'] = f1

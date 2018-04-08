@@ -14,7 +14,7 @@ from metrics import evaluate
 
 def main():
     print("load data")
-    x = [np.load("data/%s.npy" % name) for name in ["words", "pos1", "pos2", "e1", "e2", "e1context", "e2context"]]
+    x = [np.load("data/%s.npy" % name) for name in ["words", "pos1", "pos2", "e1", "e2", "e1context", "e2context", "segments"]]
     y = np.load("data/y.npy")
     x_index = np.arange(len(y))
     skf = StratifiedKFold(n_splits=K_FOLD)

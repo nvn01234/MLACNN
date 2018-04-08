@@ -15,7 +15,7 @@ def build_model(embeddings):
     words_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
     pos1_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
     pos2_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
-    # segs_input = Input(shape=[SEQUENCE_LEN, 3], dtype='float32')
+    segs_input = Input(shape=[SEQUENCE_LEN, 3], dtype='float32')
 
     # lexical features
     e1_input = Input(shape=[ENTITY_LEN], dtype='int32')  # L1
@@ -49,28 +49,29 @@ def build_model(embeddings):
     input_repre = Dropout(DROPOUT)(input_repre)
 
     # input attention
-    # e1_conved = Conv1D(filters=WORD_EMBED_SIZE,
-    #                    kernel_size=ENTITY_LEN,
-    #                    padding="valid",
-    #                    activation="relu",
-    #                    kernel_initializer=TruncatedNormal(stddev=0.1),
-    #                    bias_initializer=Constant(0.1))(e1)
-    # e1_conved = Reshape([WORD_EMBED_SIZE])(e1_conved)
-    # e1_repeat = RepeatVector(SEQUENCE_LEN)(e1_conved)
-    # e2_conved = Conv1D(filters=WORD_EMBED_SIZE,
-    #                    kernel_size=ENTITY_LEN,
-    #                    padding="valid",
-    #                    activation="relu",
-    #                    kernel_initializer=TruncatedNormal(stddev=0.1),
-    #                    bias_initializer=Constant(0.1))(e2)
-    # e2_conved = Reshape([WORD_EMBED_SIZE])(e2_conved)
-    # e2_repeat = RepeatVector(SEQUENCE_LEN)(e2_conved)
-    # concat = Concatenate()([words, e1_repeat, e2_repeat])
-    # alpha = Dense(1, activation="softmax")(concat)
-    # alpha = Reshape([SEQUENCE_LEN])(alpha)
-    # alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
-    # alpha = Permute([2, 1])(alpha)
-    # input_repre = Multiply()([input_repre, alpha])
+    if ATTENTION_INPUT:
+        e1_conved = Conv1D(filters=WORD_EMBED_SIZE,
+                           kernel_size=ENTITY_LEN,
+                           padding="valid",
+                           activation="relu",
+                           kernel_initializer=TruncatedNormal(stddev=0.1),
+                           bias_initializer=Constant(0.1))(e1)
+        e1_conved = Reshape([WORD_EMBED_SIZE])(e1_conved)
+        e1_repeat = RepeatVector(SEQUENCE_LEN)(e1_conved)
+        e2_conved = Conv1D(filters=WORD_EMBED_SIZE,
+                           kernel_size=ENTITY_LEN,
+                           padding="valid",
+                           activation="relu",
+                           kernel_initializer=TruncatedNormal(stddev=0.1),
+                           bias_initializer=Constant(0.1))(e2)
+        e2_conved = Reshape([WORD_EMBED_SIZE])(e2_conved)
+        e2_repeat = RepeatVector(SEQUENCE_LEN)(e2_conved)
+        concat = Concatenate()([words, e1_repeat, e2_repeat])
+        alpha = Dense(1, activation="softmax")(concat)
+        alpha = Reshape([SEQUENCE_LEN])(alpha)
+        alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
+        alpha = Permute([2, 1])(alpha)
+        input_repre = Multiply()([input_repre, alpha])
 
     # word-level convolution
     input_conved = Conv1D(filters=NB_FILTERS_WORD,
@@ -79,11 +80,22 @@ def build_model(embeddings):
                           activation="relu",
                           kernel_initializer=TruncatedNormal(stddev=0.1),
                           bias_initializer=Constant(0.1))(input_repre)
-    input_pooled = GlobalMaxPool1D()(input_conved)
-    # input_pooled = PiecewiseMaxPool()([input_conved, segs_input])
+    if PIECEWISE_MAX_POOL:
+        input_pooled = PiecewiseMaxPool()([input_conved, segs_input])
+    else:
+        input_pooled = GlobalMaxPool1D()(input_conved)
 
     # fully connected
-    output = Concatenate()([input_pooled, e1_flat, e2_flat, e1context_flat, e2context_flat])
+    outputs = [input_pooled]
+    if 1 in LEXICAL_FEATURES:
+        outputs.append(e1_flat)
+    if 2 in LEXICAL_FEATURES:
+        outputs.append(e2_flat)
+    if 3 in LEXICAL_FEATURES:
+        outputs.append(e1context_flat)
+    if 4 in LEXICAL_FEATURES:
+        outputs.append(e2context_flat)
+    output = Concatenate()(outputs)
     output = Dropout(DROPOUT)(output)
     output = Dense(
         units=NB_RELATIONS,
@@ -94,7 +106,7 @@ def build_model(embeddings):
         bias_regularizer='l2',
     )(output)
 
-    model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input, e1context_input, e2context_input], outputs=[output])
+    model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input, e1context_input, e2context_input, segs_input], outputs=[output])
     model.compile(loss="sparse_categorical_crossentropy", optimizer='adam', metrics=['accuracy'])
     # model.summary()
     return model

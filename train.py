@@ -42,11 +42,12 @@ def main():
         print("training fold %d" % (i+1))
         weights_path = "model/weights_%d.best.h5" % (i+1)
 
-        callbacks = []
-        callbacks.append(TensorBoard(log_dir))
-        callbacks.append(F1score())
-        callbacks.append(ModelCheckpoint(weights_path, monitor='f1', verbose=1, save_best_only=True, save_weights_only=True, mode='max'))
-        callbacks.append(EarlyStopping(monitor='f1', patience=4, mode='max'))
+        callbacks = [
+            TensorBoard(log_dir),
+            F1score(),
+            ModelCheckpoint(weights_path, monitor='f1', verbose=1, save_best_only=True, save_weights_only=True, mode='max'),
+            EarlyStopping(monitor='f1', patience=4, mode='max')
+        ]
 
         x_train = [d[x_index[train_index]] for d in x]
         y_train = y[train_index]

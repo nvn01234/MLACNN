@@ -5,6 +5,7 @@ from keras.engine import Model, Layer
 from keras import backend as K
 import numpy as np
 from keras.initializers import TruncatedNormal, Constant
+from metrics import evaluate
 
 from utils import make_dict
 
@@ -94,7 +95,7 @@ def build_model(embeddings):
     )(output)
 
     model = Model(inputs=[words_input, pos1_input, pos2_input], outputs=[output])
-    model.compile(loss="sparse_categorical_crossentropy", metrics=["accuracy"], optimizer='adam')
+    model.compile(loss="sparse_categorical_crossentropy", optimizer='adam', metrics=['accuracy'])
     # model.summary()
     return model
 

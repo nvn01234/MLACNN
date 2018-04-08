@@ -7,9 +7,9 @@ from keras import backend as K
 from metrics import F1score
 from models import build_model
 from settings import *
-from test import evaluate
 from utils import make_dict
 from sklearn.model_selection import StratifiedKFold
+from metrics import evaluate
 
 
 def main():
@@ -58,9 +58,9 @@ def main():
         print("testing fold %d" % (i+1))
         scores = model.predict(x_test, verbose=False)
         predictions = scores.argmax(-1)
-        f1_score = evaluate(predictions, y_test, "log/result_%d.txt" % (i+1))
-        print("f1_score: %.2f" % f1_score)
-        f1_scores.append(f1_score)
+        f1 = evaluate(y_test, predictions, "log/result_%d.txt" % (i + 1))
+        print("f1_score: %.2f" % f1)
+        f1_scores.append(f1)
     f1_avg = sum(f1_scores) / len(f1_scores)
     print("f1_avg = %.2f" % f1_avg)
 

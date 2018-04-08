@@ -173,14 +173,7 @@ sub getIDandLabel() {
 
 	return ($id, $label)
     if (($label eq 'Cause-Effect(e1,e2)')       || ($label eq 'Cause-Effect(e2,e1)')       ||
-		($label eq 'Component-Whole(e1,e2)')    || ($label eq 'Component-Whole(e2,e1)')    ||
-		($label eq 'Content-Container(e1,e2)')  || ($label eq 'Content-Container(e2,e1)')  ||
-		($label eq 'Entity-Destination(e1,e2)') || ($label eq 'Entity-Destination(e2,e1)') ||
-		($label eq 'Entity-Origin(e1,e2)')      || ($label eq 'Entity-Origin(e2,e1)')      ||
-		($label eq 'Instrument-Agency(e1,e2)')  || ($label eq 'Instrument-Agency(e2,e1)')  ||
-		($label eq 'Member-Collection(e1,e2)')  || ($label eq 'Member-Collection(e2,e1)')  ||
-		($label eq 'Message-Topic(e1,e2)')      || ($label eq 'Message-Topic(e2,e1)')      ||
-		($label eq 'Product-Producer(e1,e2)')   || ($label eq 'Product-Producer(e2,e1)'));
+		($label eq 'Component-Whole(e1,e2)')    || ($label eq 'Component-Whole(e2,e1)'));
 	
 	return (-1, ());
 }

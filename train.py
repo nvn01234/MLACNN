@@ -46,7 +46,6 @@ def main():
             TensorBoard(log_dir),
             F1score(),
             ModelCheckpoint(weights_path, monitor='f1', verbose=1, save_best_only=True, save_weights_only=True, mode='max'),
-            EarlyStopping(monitor='f1', patience=5, mode='max')
         ]
 
         x_train = [d[x_index[train_index]] for d in x]

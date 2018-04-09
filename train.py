@@ -41,7 +41,7 @@ def train(split, x, y, x_index, embeddings, log_dir, model_config={}):
         f1 = evaluate(y_test, predictions, "log/result_%d.txt" % (i + 1))
         print("f1_score: %.2f" % f1)
         f1_scores.append(f1)
-    f1_avg = sum(f1_scores) / len(f1_scores)
+    f1_avg = np.average(f1_scores)
     print("model_config: %s, f1_avg = %.2f" % (str(model_config), f1_avg))
     return model_config, f1_avg
 

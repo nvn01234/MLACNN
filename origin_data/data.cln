@@ -89,7 +89,7 @@
 3 0 0 5 5 búp_bê hoàn_thành được làm bằng vớ cho mặt và vớ một em bé cho cơ_thể
 4 0 0 4 4 nhà_nước đã lắp_ráp một gói khuyến_khích trị_giá 230 triệu usd để thu_hút dự_án , có_thể có nghĩa là khoảng 9000 việc_làm
 0 1 1 6 7 trận động_đất mạnh gây ra sự mất điện trên sân_khấu âm_thanh và ngắn mạch một_số cây đàn violon có ống neon
-3 8 9 15 15 cuốn sách bao_gồm một_số vấn_đề tồn_tại của các cuốn sách trước , cũng như các tiêu_đề mới
+3 0 1 15 15 cuốn sách bao_gồm một_số vấn_đề tồn_tại của các cuốn sách trước , cũng như các tiêu_đề mới
 4 0 0 3 3 giải_pháp bao_gồm việc tạo ra một hệ_thống phân_giải tên máy_chủ internet phân_cấp với hệ_thống phân_cấp bằng_phẳng trên cơ_sở cấu_trúc dữ_liệu thu nhỏ của thế_giới
 4 21 22 24 24 với một mong_muốn bẩm_sinh để biết và làm , con_người đã tiến_triển qua việc đặt một con cá chết ở mọi ngọn đồi , ngô và bí
 4 1 2 6 6 một cuộc họp đặc_biệt của các cổ_đông của lydia_diamond đã được tổ_chức vào ngày 23 tháng 12 năm 2009 và bán đã được chấp_thuận bởi các cổ_đông
@@ -241,7 +241,7 @@
 0 0 2 5 5 sự tan chảy của lò phản_ứng gây ra phản_ứng_dây_chuyền đã phá_huỷ tất_cả các tháp trong mạng
 2 0 0 13 13 nhóm địa_phương , có hơn 5000 thành_viên , là một phần của một hiệp_hội quốc_gia của các cán_bộ thực_thi pháp_luật đang hoạt_động và đã nghỉ hưu
 1 0 0 7 7 co_giật xảy ra sau khi dtap bị sốt
-4 45 46 28 28 mặc_dù một enigma thương_mại , được sửa_đổi bởi các nhà mật_mã của ba_lan để kết_hợp với một enigma quân_sự , sử_dụng phích cắm điện_thoại , phích cắm trong khay của enigma thực_tế có hai cái chân , nhưng chúng vẫn hoạt_động bằng điện_tử giống như phích cắm điện_thoại
+4 21 22 28 28 mặc_dù một enigma thương_mại , được sửa_đổi bởi các nhà mật_mã của ba_lan để kết_hợp với một enigma quân_sự , sử_dụng phích cắm điện_thoại , phích cắm trong khay của enigma thực_tế có hai cái chân , nhưng chúng vẫn hoạt_động bằng điện_tử giống như phích cắm điện_thoại
 3 3 3 10 10 cô nhấp đúp chuột bằng cách đặt ngón tay vào nút chuột trái và nhanh_chóng nhấn và nhả nút hai lần
 4 5 5 8 9 nó được đánh_dấu bởi một dấu_hiệu cho thấy độ dài ngập_ngừng
 1 4 5 8 8 khi những chiếc xe bốc cháy sau vụ va_chạm , các máy biến_áp bắt_đầu phát_nổ chiếc máy này
@@ -330,7 +330,7 @@
 4 0 0 22 22 ngân_hàng towne , chỉ có một địa_điểm bán_lẻ , là một trong những cơ_hội mới nhất , một ngân_hàng được xây_dựng trên bong_bóng
 4 0 1 5 5 ống xoắn chạy ra khỏi nucleotide
 1 5 6 9 9 tôi nhận được rất nhiều niềm vui từ việc dạy học_sinh trong phòng_thí_nghiệm
-4 6 6 36 37 nghiên_cứu cho thấy những người dùng kết_hợp các thuốc ức_chế cholinesterase ( aricept , razadyne , hoặc exelon ) và memantine , cho thấy tốc_độ suy_giảm nhận_thức chậm lại đáng_kể so với những người chỉ uống thuốc ức_chế cholinesterase hoặc không dùng thuốc
+4 6 6 8 9 nghiên_cứu cho thấy những người dùng kết_hợp các thuốc ức_chế cholinesterase ( aricept , razadyne , hoặc exelon ) và memantine , cho thấy tốc_độ suy_giảm nhận_thức chậm lại đáng_kể so với những người chỉ uống thuốc ức_chế cholinesterase hoặc không dùng thuốc
 4 2 2 8 8 những chiếc sừng cáo antelope phát_triển từ vùng núi sa_mạc miền nam_california qua arkansas và tới kansas
 1 1 1 7 7 một vấn_đề rất nghiêm_trọng xuất_phát từ những sự_kiện trong ngày
 1 1 2 16 16 một cuộc cách_mạng đầu_tiên đã được phát_động bởi việc sử_dụng ngày_càng tăng của việc đọc và viết
@@ -445,28 +445,46 @@
 2 22 22 23 24 mỗi vài giây , ngọn lửa bùng lên , và đôi_khi một quả cầu lửa nhỏ tự tách ra , trôi_nổi lên trần lò nướng
 1 8 8 16 16 những trải_nghiệm của bệnh_nhân đã giải_toả tình_cảm và thiếu_thốn tài_chính cũng như sự tức_giận sau khi ly_dị
 4 7 7 12 12 bây_giờ chúng_ta đang bắt_đầu hiểu làm thế_nào bộ_não hoạt_động bằng cách sử_dụng công_nghệ giao_diện máy_tính não
+4 5 5 8 8 các quy_định giới_hạn việc sử_dụng công_nghệ rfid để theo_dõi con_người
+4 6 7 14 14 tôi đã rất lo_lắng về việc giẫm lên của các vị_trí quan_trọng của chiếc ba_lô
+4 1 1 8 8 việc thực_hiện đề_xuất này đang được thảo_luận ở cấp tiểu_bang
+4 13 13 11 11 điều này dựa trên khái_niệm rằng con_người về cơ_bản là một động_vật có mục_đích hướng
 0 0 1 10 11 hút thuốc_lá là một trong những nguyên_nhân hàng_đầu gây ra suy thận
 0 0 0 7 7 vi_trùng là vi_sinh_vật gây nên đau_ốm hoặc bệnh_tật
+4 7 7 5 5 tôi vừa_mới mua một chiếc vòng bằng bạc từ một người phụ_nữ làm đồ trang_sức của chính mình với những dấu vân tay của con tôi trên đó
+4 1 2 4 4 lớp vỏ trái_đất bao_gồm silic , nhôm , canxi , natri và kali
 2 0 0 7 7 đường nằm ngang là một phần của biểu_đồ hertzsprung - russell ( h-r ) đại_diện cho các ngôi_sao đốt cháy helium trong lõi của chúng
 1 0 0 6 6 sốt vàng là do nhiễm siêu virus sốt vàng , truyền qua vết cắn của muỗi bị nhiễm_bệnh
+4 4 4 8 8 trong khi thực_hiện các quan_sát của vi_sinh_vật thông_qua kính_hiển_vi bằng kính_lúp hoặc trên một màn_hình máy_tính , điều_tra_viên cần_thiết phải di_chuyển mẫu_vật theo cách thủ_công
+4 8 8 10 10 biddle đã thực_hiện một công_việc triệt_để bỏ_qua các mập_mờ của mâu_thuẫn và tưởng_tượng xung_quanh cuộc tranh_luận ném bom chiến_lược 1914-1945
 3 0 1 9 10 món ăn ý này được chế_biến từ những miếng thịt cừu ướp muối được dồn bằng rau tươi và kho
 1 7 7 12 13 mặc_dù cậu bé 16 tháng tuổi bị bỏng nặng trên cơ_thể do nước sôi nhưng cha cô từ_chối cho_phép xe đưa con gái đến hadassah vì " rabbi khuyên khác "
+4 10 10 13 13 nghiên_cứu này trình_bày một phương_pháp_luận toàn_diện để tính chi_phí cho xã_hội của các hành_vi phạm_tội khác nhau
+4 4 4 10 10 mốt bắt_đầu khi một nhãn_hiệu vớ được sản_xuất bởi một công_ty mỹ đã trở_nên phổ_biến trong số các cô gái nhật_bản
+4 7 7 11 11 sau 5 phút hoặc lâu hơn , vấn_đề đã đi từ quan_điểm hoạt_động
+4 5 5 4 4 lý_thuyết của frazer về tinh_thần ngô và khả_năng sinh_sản và do_đó cần phải không hỏi thêm nữa , do_đó sự phân_bố và chức_năng của chúng vẫn không rõ_ràng
+4 0 0 2 2 tác_giả trích_dẫn trường_hợp của một công_dân hoa_kỳ trong chiến_tranh chung
 2 0 1 3 3 trang bìa của tạp_chí nổi_bật với hình_ảnh nổi_tiếng của einstein chụp năm 1947 bởi nhà nhiếp_ảnh chân_dung mỹ philippe_halsman
 3 7 8 15 15 hai cấu_trúc khác ở độ sâu của não giữa quan_trọng đối_với chức_năng vận_động bình_thường là hạt_nhân đỏ ( không nhìn thấy được ) và chất đen
 2 9 9 16 16 một tealight , hoặc nightlight , là một ngọn nến được sử_dụng trong trà hoặc thức_ăn nóng hoặc ( vì chúng kéo_dài nhiều giờ ) như một ánh_sáng ban_đêm
+4 23 23 0 0 quân_đội israel đã bị đánh_bại hoàn_toàn và trại của họ bị lục_soát , làm tăng thêm rất nhiều kinh_hoàng và thảm_hoạ của sự thất_bại của quân_đội của saulơ
 2 5 5 7 8 dây cấp dữ_liệu nối hai lưỡi của ăng ten có chiều dài 4 mm và bán_kính 0,01 mm
 0 0 1 11 11 viêm da dị_ứng , loại chàm eczema phổ_biến nhất , gây ngứa ở những tháng lạnh hơn
 2 8 9 11 11 mức_độ ưu_tiên của các vị_trí cần_cẩu phụ_thuộc vào giàn khoan của tàu
+4 7 7 9 9 đôi mắt tôi đã nhìn thấy sự thất_bại của kẻ_thù của tôi ; tai tôi đã nghe thấy những kẻ_thù xấu_xa của tôi
 2 0 0 1 1 nắp quan_tài của người khonstefnakht từ thế_kỷ 4 trước công_nguyên
 3 4 5 9 9 trên phiên_bản studio , bài hát mở_rộng sau đoạn điệp_khúc thứ hai với một phần dây_chuyền khi ryan nhấc harmonica lên
 1 0 0 13 13 bệnh uốn_ván là một căn_bệnh bại_liệt hiếm nhưng nghiêm_trọng gây ra bởi một độc_tố thần_kinh được sản_xuất bởi vi_khuẩn clostridium botulinum
 3 1 1 11 11 con chó của tôi có một nốt màu đỏ nhỏ trên mõm của nó
 1 1 1 3 3 những lợi_ích từ lạm_phát mà giáo_sư mulligan trích_dẫn ( ví_dụ như giải_cứu người thế_chấp dưới nước ) được hiểu rõ hơn như là một khoản tài_trợ của chính_phủ chuyển từ người tiết_kiệm sang các nhà đầu_cơ
+4 19 19 15 16 một quan_niệm sai_lầm mà tôi thường thấy là một ý_tưởng mờ về sự khác_biệt giữa nhà xây_dựng bản_sao và toán_tử phân_công
 2 0 1 3 3 thuỳ quang của não được nối với mắt bởi các dây_thần_kinh thị_giác , thần_kinh cranial 1
 0 0 0 11 11 nhiễm_trùng đường tiểu ( uti ) là nguyên_nhân phổ_biến nhất gây bàng_quang
 0 1 1 4 4 cuộc biểu_tình dẫn đến ùn_tắc giao_thông trên những con đường lớn của quảng_châu , như quảng_nguyên_lục , hoàng_thục_dương và lu_dongfeng
 1 13 13 15 16 những người sơ_tán bị khuyết_tật đã có một thời_gian khó_khăn khi truyền_tải những chấn_thương do sự xuất_hiện bất_ngờ của các sĩ_quan mặc đồng_phục đã ra_lệnh cho họ ra khỏi nhà của họ và đôi_khi buộc họ phải cởi bỏ chúng
 3 0 1 1 1 bộ gen bao_gồm 4411529 cặp cơ_sở , chứa khoảng 4000 gen , và có hàm_lượng guanine + cytosine rất cao
+4 0 0 3 3 phóng_điện bắt_đầu từ tán mạch phá
+4 2 2 10 10 một chiếc máy_bay của hoa_kỳ đã rơi vào một cuộc hạ_cánh khó_khăn ở mali
 1 1 1 4 4 các u_nang là do viêm mãn_tính của perichondrium với sản_xuất dịch huyết_thanh giữa perichondrium và sụn
 1 28 28 30 31 một_số áp_phích ( ví_dụ số 18 ) khuyến_khích dân_cư ở các khu_vực gần phía trước di_tản , tránh tình_trạng quá_tải và các vấn_đề liên_quan đến phân_phối thực_phẩm và dịch_bệnh do người tị_nạn nhập_cư gây ra
 0 2 3 10 10 nếu một đơn khiếu_nại của người tham_gia là nguồn dẫn_dắt điều_tra , người điều_tra phải thực_hiện việc tiếp_xúc tạm_thời với người tham_gia
@@ -476,18 +494,36 @@
 3 10 10 12 12 chiếc bưu_kiện đầu_tiên anh ấy tìm thấy là một cái túi năm_mươi đô_la và những đồng xu bọc trong giấy
 3 0 0 15 15 báo_thức cá_nhân này kết_hợp hai yếu_tố ngăn_chặn tuyệt_vời để tấn_công - một tiếng báo_động và ánh_sáng nhấp_nháy
 2 1 1 3 3 các trang của tạp_chí đã xuất_hiện ở metreon với các món ăn ngon , rượu_vang thung_lũng sonoma tuyệt_vời và nhạc gây nhiễu
+4 0 2 5 5 thuốc kháng acid làm_việc bằng cách sử_dụng một bazơ để trung_hoà axit
 2 9 9 10 10 tuy_nhiên , điều hầu_hết xảy đến với anh là dây chuông của chiếc chuông báo_động lớn trên mái nhà , treo trên góc phòng phía bên phải lò_sưởi
+4 4 4 13 13 ross lưu_ý rằng những phong_cảnh mà ông vẽ - thường là các cảnh núi_non , hồ , tuyết , và cabin của cabin - bị ảnh_hưởng mạnh_mẽ bởi những năm_tháng sống ở alaska , nơi ông đóng quân cho phần_lớn sự_nghiệp của không_quân mỹ
 0 1 1 15 15 các dấu_hiệu đặt tại hòn đảo cột cờ ở quảng_trường thôn gây ra một sự khuấy_động trên diễn_đàn linglestown trên pennlive.com
+4 1 1 8 8 cuốn sách có giá_trị đã đến trong sự quan_tâm của tôi
 1 15 15 22 22 lena_basilone , một đầu_bếp tại camp_pendleton , đang ở trong bệnh_viện hồi_phục sau khi bị bỏng nặng ở nhà_bếp sau khi chất_lỏng tràn_ngập trên chân cô
 1 1 1 4 4 tổng doanh_thu từ việc bán dầu_thô trong năm 2003 đạt 11,508 tỷ đô_la mỹ hoặc 112,85 phần_trăm số tiền được nhắm mục_tiêu vào ngân_sách nhà_nước năm 2003
 1 4 4 8 8 ho_gà là một bệnh nhiễm_trùng đường hô_hấp do vi_khuẩn bordetella gây ra
+4 4 4 3 3 chúng_tôi là một công_ty dầu_khí và hoá_dầu
+4 1 2 5 6 những người dùng đang gặp các vấn_đề với trình cài_đặt
+4 1 2 6 6 cuối_cùng con đường đã đi từ hồ đến một_số kim tước
 1 32 32 35 35 và đó là lý_do tại_sao chúng_ta thậm_chí còn tự_hào tuyên_bố rằng sự hấp_dẫn này nhờ vào sự yêu_mến của độc giả của chúng_tôi - đã tăng 26.000 bảng anh , bất_chấp những khó_khăn do cuộc suy_thoái gây ra
 1 0 1 4 4 các vấn_đề là do tràn bộ đệm khi phân_tích cú_pháp một tham_số quá dài
-3 19 20 24 24 từ chính ông , ông đã nhận được quyền thúc_đẩy đúng_đắn của mình và một thanh kiếm tráng_lệ với thanh kiếm bằng vàng và lưỡi sáng , được ghi bằng các chữ_cái
+3 15 16 24 24 từ chính ông , ông đã nhận được quyền thúc_đẩy đúng_đắn của mình và một thanh kiếm tráng_lệ với thanh kiếm bằng vàng và lưỡi sáng , được ghi bằng các chữ_cái
+4 0 0 9 10 kinh_doanh rock ' n ' roll đang rơi vào tự nhái
+4 1 1 2 2 một số_ít quốc_gia đã ngăn_chặn một thoả_thuận hợp_pháp về biến_đổi khí_hậu ở copenhagen và tiến_trình đàm_phán cần được cải_cách khẩn_cấp để ngăn_chặn một cái gì đó tương_tự xảy ra lần nữa
+4 1 2 7 7 tất_cả các khía_cạnh được chỉ ra với tín_hiệu ánh_sáng màu
 3 1 1 9 9 con dao trượt được mở ra bằng cách trượt lưỡi dao ra phía trước của tay cầm
 2 1 1 3 3 các mặt_tiền của cung_điện bao_gồm cửa gỗ trang_trí đẹp_mắt , cửa_sổ và thông gió ngoài các hoạ_tiết bằng thạch_cao được trang_trí
+4 3 3 6 6 ông nhấn_mạnh những hy_sinh nhỏ_bé của quân_đội phương tây so với quân_đội hồng_quân
+4 3 3 9 10 một trong những loại mô tạo thành xương là mô xương bị khoáng hoá , còn được gọi là mô xương , tạo ra độ cứng và cấu_trúc bên trong ba chiều giống như tổ ong
 1 1 1 5 5 cuộc thảo_luận bắt_nguồn từ florida phụ_thuộc vào thực_tế rằng các luật bảo_vệ chủ_sở_hữu nghiêm_ngặt tại florida buộc nó phải được cung_cấp trước_tiên
+4 14 14 16 18 khoảng năm 1830 , tấm gương new_york mô_tả khu_vực này như là một " hang_ổ ghê_tởm kẻ giết người , trộm , phụ_nữ bỏ_rơi , trẻ_em bị phá_hoại , bẩn_thỉu , say rượu , và thịt nướng . "
+4 6 6 5 5 tôi đã bán một chiếc nhẫn vàng cho công_ty khác trực_tuyến và họ đã gửi cho tôi một cái séc tồi_tệ với giá 14 đô_la
+4 23 23 10 12 các mái vòm của bảo_tàng rotunda được thực_hiện từ một ấm đun nước thực_tế , và đi bộ vào nó mang lại cho du_khách cảm_giác được trong ấm đun nước
+4 7 8 15 15 erikson ( 1976 ) phát_hiện ra rằng những người trong cộng_đồng đã thoát khỏi một tai_nạn khủng_khiếp đã có tiến_bộ rất ít sau hai năm
+4 18 18 21 21 khu cắm trại có nhiều gồ_ghề hơn một khách_sạn nhưng lại có tầm nhìn tuyệt_vời ra hồ và đồng_nghiệp của các giáo_sư hoá_học
 3 0 0 3 4 chương_trình bắt_đầu bằng cuộc thi liên_doanh của uwi được mở cho sinh_viên năm cuối , sinh_viên tốt_nghiệp và các nhà_nghiên_cứu tại uwi
+4 6 6 9 9 nó sử_dụng một mắt quan_trọng và điều_tra miễn_phí vào điều_kiện của cuộc_sống và các vấn_đề đạo_đức
+4 0 0 4 4 ông_già đi vào trạng_thái hôn_mê tiểu_đường
 0 4 4 3 3 chúng_tôi tìm thấy ánh_sáng nến tạo ra một bầu_không_khí đặc_biệt không_chỉ cho thực_phẩm , mà_còn cho cả bữa ăn thư_giãn thoải_mái
 2 8 8 10 10 anh ta dùng ngón tay của mình trên gậy của tăm để xỉa răng
 1 7 7 9 9 các triệu_chứng khác nhau tuỳ theo mức_độ viêm do vi_khuẩn , từ phân lỏng đến tiêu_chảy đẫm máu , đau bụng , và sốt
@@ -495,54 +531,84 @@
 0 2 2 9 9 các cơn gió lớn gây ra sự chậm_trễ và huỷ_bỏ một_số phà của bang
 0 1 1 8 10 các bánh_xe phía trước đang tạo ra một tiếng ồn nghiền
 0 4 4 9 9 hội_chứng williams : một rối_loạn di_truyền gây ra sự suy_giảm nhận_thức có chọn_lọc
+4 14 14 21 21 một người đàn_ông chowchilla đang ở sau quán bar , sau khi một quả bom ống được phát_hiện trong một ngôi nhà di_động
+4 0 0 3 3 biểu_tượng biểu_thị sự ghép_nối
+4 14 16 18 18 trong không_khí cởi_mở của khách_sạn sanz , giữa âm_nhạc của đài phun nước và ánh đèn lấp_lánh của cá_vàng , tôi gần như quên mất quốc_tịch của mình và tưởng_tượng mình là một người_lớn tây_ban_nha vĩ_đại , sống trong biệt_thự tây_ban_nha cổ_đại và , không nghi_ngờ gì , của cuộc đi bộ sang_trọng và cuộc trò_chuyện phù_hợp với một phần
+4 26 26 25 25 tôi đã rất may_mắn khi nhìn thấy sự sụp_đổ của thị_trường cổ_phiếu gần đây , nơi mà họ mất đi vài triệu đô_la , một_số tiền lớn không sinh_lợi dã trôi ra biển
 1 2 2 10 10 và cuộc khủng_hoảng kinh_tế đã được tạo ra do sự lộn_xộn thế_chấp của bên thứ ba thông_qua sự can_thiệp của chính_phủ vào thị_trường để thúc_đẩy những lý_tưởng tiến_bộ ( tức_là mở_rộng các khoản vay cho những người đi vay có thu_nhập thấp )
+4 1 1 6 6 một di_sản cụ_thể có liên_quan đến thời_gian thực_hiện di_chúc
 1 11 11 19 20 tuy_nhiên cuối những năm 1980 , ngân_hàng đã bị cuốn vào_cuộc khủng_hoảng nợ ở các nước đang phát_triển do suy_thoái kinh_tế và sự gia_tăng mạnh của lãi_suất
+4 2 2 5 5 mục_đích của nghiên_cứu này là đo cường_độ và hoàn_cảnh sử_dụng ma_tuý
 3 0 0 10 10 câu_chuyện về tập phim thí_điểm liên_quan đến một loạt các hồi_tưởng
 2 0 0 2 2 chăn_nuôi trên trang_trại của bố cô từ năm 1963 đến giữa những năm 1990 đã được phục_hồi
 1 5 5 10 10 rủi_ro đối_với nhà ở và lợi_nhuận doanh_nghiệp nói_chung là từ lạm_phát khá rõ_ràng và chiến_lược phòng_thủ trong dài_hạn đã trả cổ_tức
 1 4 4 6 6 có rất ít sự khó_chịu trong phẫu_thuật này và hầu_hết các cá_nhân hiếm khi uống tylenol nhiều vì sự khó_chịu của họ
 0 0 0 7 7 chất_béo từ thịt và sữa gây ra bệnh tim , nguyên_nhân tử_vong hàng_đầu của bệnh tiểu_đường
+4 3 3 8 8 sau khi những vận_động_viên chạy đuốc qua các đường_phố của north_platte , ngọn đuốc đã được giao lại cho người lái pony_express , người tiếp_tục đi xuống
 1 1 1 4 4 các biến_dạng là do tương_tác trọng_lực với các vệ_tinh nhỏ prometheus và pandora
 2 18 18 23 23 các tài_liệu tham_khảo rộng_rãi đến các tài_liệu khoa_học là một phần quan_trọng của mỗi chuyên_khảo và hơn 1800 trích_dẫn mới xuất_hiện trong cuốn sách
 3 0 0 4 4 pháp_luật california bao_gồm 29 bộ_luật gồm nhiều chủ_đề , hiến_pháp và hiến_pháp nhà_nước
+4 16 16 20 20 trong tương_lai nước anh , alex_delarge đã bị phạt tù_và sau đó là tình_nguyện_viên cho một liệu_pháp hưng_phấn thử_nghiệm do chính_phủ phát_triển để cố_gắng giải_quyết vấn_đề tội_phạm của xã_hội
 3 0 0 7 8 nông_trại có nhiều mẫu đất với một_số khu nhà dành riêng cho các nông_sản , hoa_quả , hàng bánh_mì và các mặt_hàng đặc_sản tuỳ_thuộc vào mùa
 0 0 1 16 16 nụ cười này , một sự phản_chiếu chân_thật sự dịu_dàng của đức chúa_trời , là nguồn hy_vọng bất_khả_chiến_bại
 3 4 4 6 6 đó là một con cá có phổi , và nó có_thể sống_sót trên đất trong những khoảng thời_gian ngắn
-0 1 1 25 26 trận động_đất gây ra một đầm lầy dày_đặc ở west_point , trên bờ puget_sound ở seattle , để thả và sóng_thần cống cát trên đỉnh đầm lầy
+0 1 1 5 6 trận động_đất gây ra một đầm lầy dày_đặc ở west_point , trên bờ puget_sound ở seattle , để thả và sóng_thần cống cát trên đỉnh đầm lầy
 1 1 1 9 9 sự ngạc_nhiên lớn nhất là do những chiếc xuồng nổi lên
+4 2 3 0 1 hàng đợi đầu vào được sử_dụng để xử_lý các sự_kiện từ một ứng_dụng mfg / pro đến một ứng_dụng websphere-connected
 2 13 13 15 15 vì lý_do an_toàn , anh ta tải và tháo_dỡ xe_đạp của mình khỏi lề_đường của xe_buýt
 1 1 2 5 6 điều_trị suy tim do dùng quá liều caffeine với lidocaine , phenylephrine và thẩm phân máu
+4 14 14 0 0 lực_lượng hoa_kỳ đã có triển_vọng tốt đến_nỗi macarthur được phép của truman để cố_gắng đánh_bại toàn_bộ lực_lượng cộng_sản
+4 0 0 9 9 chiến_lược này bao_gồm giai_đoạn đến năm 2016 , với trọng_tâm là năm 2010
 3 1 1 4 4 cuốn sách bao_gồm mười chương
 1 6 6 19 19 cho đến nay , tất_cả sự bùng_phát của hình_thức cúm gia_cầm có tính_chất gây bệnh cao là do các virut của các phân typ h5 và h7
+4 5 7 11 11 nó được tìm thấy rằng silic đa tinh_thể phát_triển từ một bước_đầu của sự lắng_đọng
 2 31 31 2 2 bây_giờ , tai của bạn không bao_giờ có_thể thoát được vì đinh_tán khớp nối bằng đồng này được gắn vào một chuỗi gắn liền với một cái túi gắn liền với xoắn tai
 2 13 14 15 15 anh ta kéo cái đinh trên đầu rắn và sau đó nhấp vào nút chuyển máy_ghi_âm
 0 13 13 18 18 nhìn_chung , hiệu_quả hạ kali máu lớn nhất đã đạt được nhờ các chế_phẩm liposomal dẫn đến sự tăng bền_vững của l-hct và f-hct trong huyết_tương
+4 0 0 3 3 applet yêu_cầu một trình_duyệt hỗ_trợ jdk 1.1.5 trở lên
 3 14 14 13 13 tasheki đang chụp ảnh tại địa_điểm gặp_gỡ khi một viên đạn chạm vào xương hàm
 1 0 0 5 5 đói_nghèo là do dân_số quá đông
+4 0 1 11 11 loa hydro áp_điện mới hoạt_động được cải_tiến này được làm bằng cáp không thấm nước được che_chắn rõ_ràng và buồng âm_thanh bằng đồng phủ bằng cao_su đen không độc và bền
 2 2 2 6 6 những bức tranh sơn_dầu trưng_bày tại triển_lãm có chất_lượng cao đặc_biệt
 0 1 1 9 9 những bất_lợi về kinh_tế năm 1893 đã gây ra thất_nghiệp và nghèo_đói dẫn tới sự di_cư trong việc tìm_kiếm các cơ_hội mới
+4 3 3 7 7 tại thời_điểm này nông_trại có ba con ngựa và một máy_kéo nhỏ
 3 0 1 4 4 vở kịch ban_đầu đầy hài_hước , vì_vậy đạo_diễn cảm_thấy tự_do để thêm tính hài_hước đặc_trưng hiện_tại cho kịch_bản
+4 2 2 6 7 chúng_tôi quyết_tâm theo_đuổi sự độc_ác bằng điều tốt_đẹp
+4 0 0 13 14 người thực , biết vị_trí của họ trên thế_giới , hoàn_thành nó với niềm vui và sự chú_ý
+4 0 2 13 13 các nhà thống_nhất cho thấy nước anh đến với sự trợ_giúp của vị tổng_thống mới
 0 1 1 2 2 các phần_mềm sử_dụng khá nhiều cpu vì lý_do nào
 1 0 0 4 4 hư_hỏng gây ra bởi hệ_thống lời mời
+4 18 18 19 19 trong khi hầu_hết các tài_liệu thực_nghiệm tập_trung vào những đóng_góp cá_nhân , nhiều vấn_đề thực_tế liên_quan đến việc hình_thành liên_minh
 1 4 4 9 9 alfred_nobel đã tạo ra tài_sản của mình từ việc bán thuốc_nổ sử_dụng nitroglycerin
 3 1 1 0 0 trục cần_cẩu giơ lên , xoay và kéo_dài đến 11 inch
 0 10 10 14 15 việc rửa và chăm_sóc da đúng cách có_thể giúp loại_bỏ vi_khuẩn và dầu gây mụn trứng_cá
+4 9 9 13 13 liên_minh này nảy ra sau khi tory phát_hành một tuyên_bố kinh_tế bị các đảng đối_lập chê_trách
+4 0 0 2 2 hệ_thống kết_hợp cấu_trúc phân_cấp của cây quyết_định với một ngữ_nghĩa xác_suất rõ_ràng
 0 1 1 6 6 sự thiếu ổn_định gây ra sự phụ_thuộc mạnh_mẽ vào các thực_dân
+4 1 2 8 8 một đứa trẻ đã được đưa vào chăm_sóc nuôi_dưỡng
 2 1 1 3 3 khi cánh_tay của bệnh_nhân được đặt tỉ_mỉ ở mức_độ tâm_nhĩ phải ở cả hai vị_trí , sự khác_biệt thậm_chí còn lớn hơn khi cánh_tay nằm trên bàn hoặc trên tay hỗ_trợ ghế
+4 6 6 9 10 kể từ đó , hàng triệu đô_la đã được xây_dựng lại cho các nạn_nhân của sóng_thần vào năm 2004
+4 0 0 5 5 tổ_tiên của nó đã làm_nên tên của ông với một tài_liệu phi viễn_tưởng tuyệt_vời về cảnh_sát tại baltimore gọi là homicide
 1 2 3 8 10 các vụ phun trào xảy ra do các lực kiến ​​tạo hoặc bởi sự nén chặt các trầm_tích tại các vùng đồng_bằng sông lớn như sông mississippi
 2 4 4 7 7 ông adel ném sợi dây của chiếc cần_câu ra xa nhất có_thể vào mặt_nước
 1 12 12 17 17 lenin và các nhà_lãnh_đạo khác của liên_xô đã thiết_lập để sửa_chữa những thiệt_hại gây ra bởi cuộc cách_mạng và cuộc nội_chiến
 2 7 7 9 9 đá phải được đặt trong% inch từ cạnh của căn_hộ
 3 2 2 0 0 xưởng của nhà_máy hoạt_động trong một phần mở_rộng lớn hơn nơi cư_ngụ thực_tế
 1 0 0 2 2 phản_ứng từ báo_chí quốc_tế , mà tôi chắc_chắn bạn ở tokyo đã nhận thấy , đã được rất rộng và chi_tiết
+4 3 3 8 8 tất_cả các ngôi nhà đều được xây_dựng theo cách này
 0 12 12 16 17 khi mô_hình đầu_tiên bị chìm vào tháng 8 năm 1991 , vụ va_chạm gây ra một sự_kiện địa_chấn đăng_ký 3,0 trên thang richter , và không để lại gì ngoài một đống các mảnh vụn ở độ sâu 220m
+4 3 3 10 10 mục_đích của bài kiểm_tra này là báo_cáo công_chúng mỹ về thành_tích học_tập của từng cá_nhân học_sinh , trường_học , các quận và tiểu_bang
 0 10 10 19 19 ví_dụ , lái_xe một_cách thiếu thận_trọng và gây ra một tai_nạn tự_động dẫn đến người lái_xe khác hoặc hành_khách tử_vong có_thể được coi là giết người
 1 5 5 11 12 điều đó cùng với sự tử_vong và tàn_phá gây ra bởi cơn bão là một trải_nghiệm rất chấn_thương cho những cư_dân này
+4 5 5 6 6 tôi đã yêu_cầu một loại sữa uống có ga trong một thời_gian
+4 1 1 7 8 các nhà_sản_xuất thường quan_tâm nhiều hơn đến các yếu_tố như giá_cả , chất_lượng , hoặc chu_kỳ thời_gian , và không quan_tâm đến lượng năng_lượng mà quá_trình sản_xuất của họ sử_dụng
 2 1 2 10 11 các tế_bào thần_kinh trung não dopamine ( mda ) giữa vùng chất_xám và vùng quanh mắt có vai_trò cơ_bản trong việc kiểm_soát vận_động tự_nguyện
 1 0 0 3 3 nhiễm_trùng đến từ vết_thương
 2 6 7 13 13 công_chúng được chào_đón đến thăm các hồ nước và đập nước tạo nên mạng_lưới thuỷ_điện của tasmania
 1 0 0 2 2 bức_xạ từ điện_thoại_di_động tiếp_tục trở_thành một mối quan_tâm ngày_càng tăng
+4 9 9 12 12 chúng_ta lấy được một cặp trọng_số tối_ưu trên đồng đô_la trong một giỏ tiền_tệ để ổn_định cân_bằng thương_mại của họ cho cả hai nước
 1 6 6 9 9 sumatera ( yagasu ) kiếm được lợi_nhuận từ việc bán các hoạt_động thủ_công của các nhóm phụ_nữ
+4 29 29 32 32 công_việc cuối_cùng của d.c . về chủ_đề này , trong những thập_kỷ gần đây , dù_sao đi_chăng_nữa , có_thể là cuốn there_there của jerzy_kosinski , nguồn cảm_hứng cho bộ phim peter_sellers cùng tên
 2 2 2 5 5 ở những khu_vực cũ của thành_phố , đường_phố trước nhà của người được coi là trách_nhiệm của người đó , nó được coi là một phần mở_rộng của ngôi nhà
 3 0 0 2 2 cá_heo sử_dụng đuôi của nó để bơi_lội và vây tay để lái
 0 1 1 9 9 sự thất_vọng , đe_doạ , và xung_đột gây ra căng_thẳng
@@ -551,84 +617,144 @@
 1 12 12 15 15 cyber ​​squatter - người mua tên_miền và giữ chúng với mục_đích kiếm tiền từ việc bán tên_miền
 1 15 15 18 18 trong kính_thiên_văn hai gương được trang_bị hệ_thống quang_học hoạt_động thường m2 được sử_dụng để sửa sai_lệch do các lý_do quang_học , nghĩa_là mất tập_trung và hôn_mê
 0 1 1 8 8 việc bổ_sung nước vào bể gây ra một phản_ứng hoá_học ngay_tức_khắc , dẫn đến sự gia_tăng nhanh_chóng của áp_suất và nhiệt_độ
+4 2 2 10 10 một chiếc túi bánh pizza cách_điện mới được đưa ra thị_trường
 0 2 2 4 4 ốc và sên gây hại cho cây con , hoa , rau và cây_bụi
+4 6 6 15 16 ngay cả trong thế_chiến ii , lính mỹ đã nhắm mục_tiêu đến người đàn_ông với cây kiếm đầu_tiên bởi_vì sức_mạnh giết người của họ đã được kính sợ và tôn_trọng
+4 11 11 16 16 sau khi giao trách_nhiệm của mình , cô đã lặng_lẽ trở_lại cây của cô sâu trong rừng
 0 0 0 4 4 bão_tuyết gây ra một thảm_hoạ nghiêm_trọng trên đường rẽ west_virginia
 0 1 3 11 11 bệnh tăng nhãn áp là một trong những nguyên_nhân hàng_đầu gây mù_loà và hiện_nay có khoảng 90 triệu bệnh_nhân trên thế_giới bị ảnh_hưởng bởi căn_bệnh này
+4 0 1 6 6 phòng ngủ của brittany_murphy đã đầy thuốc theo toa
 2 7 7 13 13 trong các toà nhà độc_quyền , một nhà_hàng tư_nhân là một phần của gói
 0 11 12 18 18 có những hành_động hàng ngày có_thể giúp ngăn_ngừa sự lây_lan của mầm bệnh gây ra chứng_bệnh hô_hấp như cúm
 1 1 1 5 5 sự bùng_phát này là do virut bại_liệt trực_tiếp được sử_dụng trong các vắc-xin được đưa ra bằng miệng theo phương_pháp được ưa_thích ở các nước đang phát_triển bởi_vì nó rẻ hơn và không cần đào_tạo y_tế
 2 1 1 3 3 các cổng của cung_điện của john the priest được làm bằng sardius , với sừng của con rắn sừng đã ngấm vào để không ai có_thể gây ra chất_độc trong
+4 0 0 10 10 âm_đạo được khâu sau tân_kinh ; âm_đạo cung_cấp một dụng_cụ mở_rộng cỡ 12
+4 4 4 7 7 tháng_chín bình_thường đánh_dấu sự xuất_hiện của con cá sớm nhất vào các hồ sông , và các đợt cao_điểm xảy ra vào tháng mười
+4 1 2 6 6 doanh_số bán xe địa_hình đi vào bế_tắc
+4 2 2 0 0 linh_hồn của lúa ở châu_á hầu_như luôn_luôn là phụ_nữ và được xem như là một người mẹ
 3 3 3 10 10 không_khí trong không_gian tai giữa là rất quan_trọng để cho_phép màng_nhĩ và xương tai giữa bị rung bởi âm_thanh thu được từ ống tai
+4 10 10 13 13 và có bạn , nổi lên một_vài ngàn bộ trên bầu_trời trong một giỏ nhỏ_bé
 2 4 4 5 5 các rễ vượt qua thân cây thay_vì phát_triển bên ngoài được gọi là rễ girdling và nên được loại_bỏ vì chúng có_thể làm nghẹt cây
+4 4 5 9 10 đoàn công_đoàn tái khẳng_định mối quan_tâm của mình rằng khu_vực công đã trợ_cấp hiệu_quả các sự_kiện này và yêu_cầu ngừng hoạt_động này
 2 9 9 11 11 động_lực của phong_trào của họ phá vỡ vòng_tròn như cánh_tay của vũ_công bậc nhất đạt đến
 0 2 2 8 8 những loại thuốc này cũng gây đau_đầu và buồn_nôn , ảnh_hưởng đến nội_tạng của bạn và tăng cholesterol xấu của bạn
 3 0 0 10 10 chi_phí tái cơ_cấu bao_gồm 11,9 triệu đô_la tiền_mặt cho các khoản trợ_cấp thôi_việc và các chi_phí khác và 8,2 triệu đô_la phí không dùng tiền_mặt , chủ_yếu cho việc giảm bớt các tài_sản bị suy_giảm
 1 6 7 10 11 vâng tôi biết một_vài người đã không hài_lòng từ việc cười nhạo
+4 5 5 12 12 khi thời_gian trôi qua , nhôm biến_đổi chính nó vào một cái hộp , nắp và một cái thẻ
 0 0 1 5 5 người nhập_cư chiếm hơn một_nửa dân_số anh tăng_trưởng trong những năm gần đây
 1 3 3 6 6 lính iraq kiểm_tra thiệt_hại sau vụ nổ tại một trường_học ở baghdad
 3 1 1 0 0 chuột máy_tính đã được chọn là một thiết_bị đầu_vào trong một thời_gian dài tới bây_giờ trong thế_giới máy_tính
+4 0 0 6 8 quy_tắc này là chủ_đề của một thách_thức pháp lý do abc và các đối_tác liên_minh đưa ra
 3 2 3 5 6 ví_dụ như động_cơ bước có cuộn dây có điện_trở 5 ohm và dòng_điện định_mức là 1 amp
+4 3 3 6 6 đây là một phong_cách văn_chương miêu_tả tội_ác và bạo_lực theo một_cách không tự_nhiên
 3 0 1 4 5 máy cắt có 13 lưỡi dao được đặt trên một trục cắt
 2 0 0 20 20 hướng_dẫn sinh_viên , bao_gồm một danh_sách và mô_tả các khoá học được giảng_dạy bởi mỗi khoa , được xuất_bản trên trang_web của_trường
+4 9 9 12 15 nói cách khác , những người như_vậy chấp_nhận một hình_thức của những người theo thuyết toán_học , cho_dù họ có ghi nhãn theo cách đó hay không
 2 8 8 5 6 anh ấy mặc một chiếc áo sơ_mi ngắn tay bằng cà_vạt
+4 4 4 9 9 chính_phủ nepal thành_lập một uỷ_ban để tìm_hiểu về việc sử_dụng sai mục_đích của hộ_chiếu ngoại_giao
+4 0 1 5 5 cuộc điều_tra liên_quan đến một loạt các bức thư nhận được tại nhà_chứa bột trắng không độc_hại
+4 0 0 7 7 plasma được tạo ra bởi một sự phóng_điện rf giữa hai điện_cực song_song có đường_kính là 100 mm và cách_ly là 40 mm sử_dụng khí silan tinh_khiết
+4 5 6 11 11 với hai công_cụ này , tập dữ_liệu đã được giảm từ kích_thước ban_đầu của hơn 200 tính_năng xuống 17%
 3 9 9 8 8 đối_với chức_năng chính : chức_năng khí nén cho_phép trục cần_cẩu được nâng lên và hạ xuống dễ_dàng
+4 12 13 11 11 các tổ cũ được sử_dụng năm này qua năm khác bởi ong thợ mộc
+4 0 0 4 4 thế_giới được điều_chỉnh bởi luật toán_học
 1 5 5 8 8 người môi_giới có quyền nhận hoa_hồng từ việc bán tài_sản của bạn
 3 0 0 11 11 tài_liệu số 21 , agenda đã đồng_ý với rio bao_gồm một phần về hợp_tác quốc_tế
 2 0 0 9 10 kem dulce de leche là phần hay nhất của món tráng_miệng này ; nó đã được kem và không quá ngọt như tôi thường thấy hương_vị này
+4 0 3 8 8 chứng tăng nhãn áp là một nhóm các rối_loạn thoái_hoá thần_kinh được đặc_trưng bởi sự chết của tế_bào hạch võng_mạc và do sự biến dạng đặc_biệt của dây_thần_kinh thị_giác
 0 4 4 12 13 áp_lực của cha_mẹ về thất_nghiệp và nghèo_đói dẫn đến lạm_dụng ma_tuý và nghiện rượu hoặc căng_thẳng và trầm_cảm có ảnh_hưởng sâu_sắc đến trẻ_em
+4 4 4 12 13 bên trong xe , chìa_khoá đã được tìm thấy trong chiếc xe đánh lửa và giấy_phép của codario-ferrino được phát_hiện trong một chiếc ví trên ghế hành_khách
 2 9 9 11 11 giai_đoạn ở trong hầm rượu , và tất_cả ánh đèn trong cửa_hàng đã tắt ; tiếng kêu từ cánh cửa sập
 1 0 0 7 7 từ_trường được tạo ra bởi một dòng_điện lưu_hành trong nội_thất ngôi_sao
 0 0 1 4 5 loài cây này gây tiếng ồn
+4 1 2 7 7 việc cắt_giảm thuế cho người giàu bị nghi_ngờ
+4 6 6 14 14 đây là một phần của một chuỗi nội_thất được anthropologie sáng_tạo ra bởi các nhà_thiết_kế nội_thất người_anh
 0 1 1 7 7 sự thống_nhất chính_trị của iroquois là nguồn sức_mạnh của họ , nhưng nó không phải là hoàn_hảo
+4 0 0 7 8 cư_dân south_bade đã được thổi bay trở_lại lối sống nguyên_thuỷ
 2 4 4 14 14 tôi đã làm tấm thảm bằng cách cắt một sợi len dệt thành các dải ngắn
 1 9 9 13 14 đây là những tin_tức báo_cáo và hình_ảnh của những tàn_phá gây ra bởi cơn bão
 3 2 2 9 9 ống thép khung hình chữ z được làm bằng dây_dẫn thép ( đường_kính 0,2 mm ) , được phủ lớp ghép mạch , và cố_định vào thành ghép với nhiều mũi khâu bị gián_đoạn
-2 13 14 16 17 chảy gót ở trẻ sơ_sinh là thủ_tục phổ_biến để lấy mẫu máu từ gót chân của trẻ sơ_sinh
+2 13 14 3 4 chảy gót ở trẻ sơ_sinh là thủ_tục phổ_biến để lấy mẫu máu từ gót chân của trẻ sơ_sinh
+4 1 1 10 10 những nhà_tư_tưởng tò_mò ngày_nay đang giữ truyền_thống của ben bằng cách sáng_tạo ra những cách_thức mới và cải_tiến để làm cho mọi việc trở_nên hiệu_quả
 1 0 0 11 11 phong_trào của lá cờ trên mặt_trăng đã được gây ra bởi chân_không
 0 9 9 12 12 propionibacteria acnes , hay p. acnes , là những vi_khuẩn gây ra mụn trứng_cá
 3 0 0 5 6 lò_vi_sóng của chúng_tôi có một bàn xoay có_thể quay và các núm quay số bên ngoài
 2 8 8 11 12 các chấm được thêu ở mặt trước và tay_áo của chiếc áo len này , thêm một kích_thước của niềm vui
 3 0 0 5 6 khoang giảm áp chứa một màng ngăn dưới áp_lực từ một lò_xo màng
+4 1 2 6 6 trong bài thơ , một con hải_âu bắt_đầu đi theo con tàu - theo sau là một con albatros thường được coi là một điềm may_mắn
 3 0 0 2 2 pháo_đài có cổng duy_nhất từ ​​phía tây_nam
 2 7 7 8 8 đồ trang_sức xỏ lỗ cơ_thể đặc_biệt cho thuỳ tai
 0 1 1 8 9 việc khai_thác dầu ở amazon đã gây ra sự tuyệt_chủng của các quốc_gia tetete và zaparo và tiếp_tục đe_doạ các dân_tộc bản_địa
 1 0 0 10 11 tín_hiệu rf 100 mhz cho bộ_khuếch_đại biên_độ được lấy từ máy phát mô_hình xung ( ppg )
+4 1 1 5 5 sự phân_bố nhiệt_độ trong một lọ trong quá_trình sấy khô bằng đông_lạnh của dung_dịch sữa tách kem được xác_định bằng thực_nghiệm
 1 0 2 8 8 sự chấn_động địa_chấn đầu_tiên xảy ra từ trận động_đất là sóng p , thường có biên_độ tương_đối thấp
 1 20 20 25 25 các trung_tâm này , cùng với các can_thiệp giáo_dục và tâm_lý xã_hội thích_hợp , đã giúp trẻ vượt qua được chấn_thương và căng_thẳng do trận động_đất gây ra
 0 12 12 16 16 vận_động_viên trượt_tuyết người mỹ lindsey_vonn phủ_nhận nhiều gấp ba lần dốc khi sương_mù gây ra việc huỷ_bỏ ở val d ' isere
+4 10 10 21 22 mark cũng đã nói về các quyền dân_sự và các vấn_đề tự_do dân_sự sau ngày 11 tháng 9 phải đối_mặt với người nhập_cư
+4 4 4 9 10 thẩm_phán đã chỉ_thị cho toà_án quyết_định vấn_đề ban_đầu của người khởi_kiện
 3 7 8 5 5 anh ta nắm lấy một đầu của cây chổi khi họ lấy đầu kia
 3 1 1 9 9 con chó của tôi có vài vết sưng dưới cằm
+4 2 3 6 7 giả_sử rằng làm nguội bắt_đầu ở khoảng giữa của nam_châm
+4 0 0 4 4 kem được làm bằng tay_trong một cái bát lớn đặt bên trong một cái bồn chứa đầy nước_đá và muối
+4 0 1 9 9 người sử_dụng đang làm mát một bộ_xử_lý với mức tiêu_thụ điện là 35w , sử_dụng tản nhiệt thông_thường
 0 0 0 3 3 sóng_thần gây ra thiệt_hại đáng_kể về tài_sản nhưng chỉ có hai người chết trong rs
+4 0 0 4 4 tổng_thống đã làm cho thuế và chi_tiêu các vấn_đề lớn một lần nữa
 1 5 5 10 10 vào cuối ngày làm_việc , tức_giận đang lan ra từ thành_phố
 3 0 0 3 3 trang_trại bao_gồm 80 tuabin và công_suất 160 megawatts , gần 2% tổng tiêu_thụ điện của đan_mạch
 2 0 1 4 5 chỉ báo nguồn của máy phát và tai nghe sau đó đã tắt
+4 5 5 6 6 bạn_bè big_barn_farm khám_phá ra một đống rác
 1 3 3 6 7 theo góc nhìn tàn_phá khủng_khiếp do sóng lũ gây ra , chúng_ta phải lo_ngại rằng một_số người đức sẽ là những người chết
 2 18 18 21 21 người kháng_cáo lưu_ý rằng việc chuyển mạch của bộ ngắt mạch điện nguồn cấp_điện áp 440 v.t cho tổng_đài chính trong động_cơ
 3 3 3 6 6 những con hươu_cao_cổ chim ưng với đuôi và chân dài , mỏng
+4 2 2 5 5 đây là ước_mơ của một nhà_văn mù thực_tế hơn những người mà ông cáo_buộc về chứng mù
+4 6 6 8 9 hệ_thống giáo_dục công đã đưa các quốc_gia vào sự thịnh_vượng
+4 3 4 13 13 làm và trang_trí móng ngựa chỉ là một phần của cuộc_đời của một thợ_rèn
 1 11 11 14 14 đó là địa_ngục trong các bệnh_viện , nơi những người tàn_tật la_hét sau khi mất thuốc morphine luôn được lắng_nghe
 2 9 9 21 21 vì mục_đích cuối_cùng của công_ty là bán hàng , bộ_phận bán hàng được công_nhận là một trong những bộ_phận chính của doanh_nghiệp
 0 6 6 11 11 các nhà_khoa_học phát_hiện ra rằng những thuốc này có liên_quan đến bệnh van tim
+4 8 8 9 9 sáp_ong là một sáp tự_nhiên được sản_xuất trong tổ ong của ong_mật ong của chi apis
+4 4 4 7 7 thông_thường , các loại giống này được nông_dân trồng trên đất bằng_phẳng
 2 7 7 9 9 tuy_nhiên , một_số người đã phá vỡ ổ_khoá của chuỗi trên đường
 2 4 4 6 6 nói cách khác , mũi con tàu chỉ vào cạnh mở_rộng của bàn
 0 2 2 5 5 những tên tội_phạm gây ra hoả_hoạn bất_hợp_pháp vào đất_nước chúng_tôi
+4 1 1 7 7 những quan_điểm này đã được phản_ánh trong thiết_kế xây_dựng của ông
 2 17 17 18 18 chúng_tôi loại_bỏ một_số nhánh sống và tăng_trưởng mới , do_đó tối_đa_hoá sự thâm_nhập ánh_sáng và không_khí thông_qua vòng_hoa cây
+4 9 9 13 14 sau đó , một_số văn_bản nào đó nói về xã_hội anh ở các lứa tuổi khác nhau
 2 18 18 20 20 một cáp hoặc cưỡi là dây , dây_chuyền , hoặc sự kết_hợp của chúng được sử_dụng để kết_nối mỏ_neo với tàu
+4 19 19 18 18 để tạo ra một con_dấu tốt , các nhà_sản_xuất đặt một bao bọt hoặc gel chứa đầy giữa vành tai và đầu của bạn
+4 7 7 11 11 một bức ảnh tập_tin cho thấy một phi_công microlight bay với ngỗng
+4 0 0 6 6 hành_vi thoả_thuận của họ được một công_chứng_viên đưa ra trong đền thờ và được xác_nhận bằng một lời thề " của thần và vua . "
 0 2 2 7 8 một chiếc xe_tải chằng_chịt đã gây ra sự chậm_trễ trên tuyến a27 giữa havant , hampshire , và chichester , west_sussex
 0 0 0 3 3 virut gây ra bệnh hô_hấp điển_hình có khả_năng gây ra một loạt các biểu_hiện lâm_sàng và có_thể nhiễm_trùng không triệu_chứng
 3 0 1 4 4 khoá cửa với một thanh trượt ẩn trong mảnh chạm_khắc qua trung_tâm của cửa
 2 0 0 6 6 cửa bên phải kèm theo một buồng khử_trùng
 2 4 5 9 9 tôi tìm thấy những lối đi bí_mật bên trong tu_viện
+4 1 1 6 6 toàn_bộ tương_lai của họ đang bị xáo_trộn
+4 0 0 16 17 cơ_chế im_lặng của rna trong cây_trồng đã được vận_dụng hiệu_quả như là một công_cụ cho việc điều_chỉnh xuống các gen
+4 0 0 11 11 vợ ông , một luật_sư thành_công của tập_đoàn , đã từ_bỏ công_việc
+4 5 6 10 12 trong phương_pháp này , các khái_niệm đa_ngữ được coi là các từ đơn
+4 0 0 0 0 chú của franken , người trong quân_đội nga , giải_phóng auschwitz với chú của barry
 1 1 1 7 7 92% khí_thải co2 gây ra bởi các xe_tải , nhưng điều này không công_bằng vì_vậy cần phải có một phương_pháp phân_phối khác
+4 2 3 6 7 ngoại_lệ là người chơi đã vẽ át chủ , những người có_thể dừng lại bất_cứ khi nào họ muốn
 3 6 6 5 5 anh ta đặt ngón_trỏ vào lưỡi dao và ba ngón tay còn lại trên tay cầm
+4 0 1 6 6 trẻ sơ_sinh được sinh ra trong tình_trạng sốc và chết trong mười phút
+4 9 9 11 11 có hai lỗ hở ở hai bên đường_phố trong lề_đường của vỉa_hè
 0 2 2 7 7 mưa và tuyết tan dẫn đến vụ tràn nước_thải lớn nhất trong năm của quận genesee
 3 2 2 13 13 anh ta mở dây_cáp phanh bằng cách tháo kẹp giữ ra khỏi vỏ cáp
 2 0 0 4 4 bánh_lái trong những chiếc thuyền bằng dù là cố_định hoặc có một lưỡi nâng
 1 5 6 13 13 sự đổ_vỡ hôn_nhân thường do nỗi đau không được giải_quyết từ vô_sinh , sẩy_thai , và mất_mát của một đứa trẻ
+4 5 5 17 19 một lá_chắn đường_cao_tốc là một dấu_hiệu biểu_thị số tuyến đường_cao_tốc , thường ở dạng hình biểu_tượng với số tuyến đường
 0 4 4 10 10 ngoài_ra , một cuốn tiểu_sử sơ_lược về việc thiết_lập các chứng_chỉ của cô đã được đưa vào cuối báo_cáo
 2 4 4 6 6 để thức_ăn thoải_mái trên kệ trong siêu_thị , mua thêm trái_cây và rau quả , theo cách đó bạn nhận vào những thứ khoẻ_mạnh , nó làm_việc tin_tưởng tôi , tôi làm nó thường_xuyên
 3 8 8 13 13 iraq đã nhắc lại hôm thứ sáu rằng hồ_sơ của họ đã cung_cấp tài_khoản đầy_đủ và trung_thực về các chương_trình vũ_khí của họ
+4 1 1 4 4 các bị_đơn đã lợi_dụng khả_năng tinh_thần suy_giảm của astor để đưa họ ra ngoài
+4 1 1 7 7 người đàn_ông đã đi vào các cuộc nghiên_cứu sâu hơn với các bậc thầy âm_thanh
 1 24 24 26 26 ngoài_ra , các hệ_thống đất và sông đã bị ô_nhiễm bởi các hoá_chất khắc_nghiệt được sử_dụng trong sản_xuất cocaine và không_khí bị ô_nhiễm bởi khói do đốt rừng và rừng để trồng cây coca bush
+4 7 7 5 5 anh ta mua một chiếc vòng_tay bằng vàng với giá 200 đô_la
+4 6 6 4 4 hầu_hết mọi người mua bấc cây nến làm sẵn trước khi làm nến tự chế
+4 1 1 9 9 việc loại_bỏ các bài hát trùng_lặp được thực_hiện bằng thuật_sĩ khởi_động thân_thiện với người dùng
 1 1 2 4 5 sự suy_thoái kinh_tế do bong_bóng chứng_khoán gây ra tương_đối nhẹ , nhưng sự phục_hồi cũng như_vậy
+4 22 24 27 27 tôi nghĩ đôi_khi tôi thấy ánh đèn flash của những ngọn tháp xa_xôi , ánh nắng chói loá của đồng_cỏ vùng_cao , sự dợn sóng nhẹ_nhàng của đồi màu tím
 2 3 3 5 5 không_khí lưu_thông qua cánh_tay của máy , tạo ra một chân_không nhẹ_nhàng có_thể thu_hút một trang và hướng_dẫn nó từ phía bên phải cuốn sách sang trái
 2 2 3 5 5 để kết_thúc giàn khoan của tàu và phong_cách hoạt_động có sự đơn_giản
 1 12 13 18 19 cali , colombia , cho hàng_loạt các bài viết của họ về trường_hợp khẩn_cấp gây ra bởi một sạt_lở đất trên đường_cao_tốc dẫn đến bờ biển
@@ -643,80 +769,137 @@
 1 0 0 14 14 lở_loét giường ( còn gọi là loét áp_suất , loét vết loét hoặc loét áp_lực ) gây ra bởi áp_lực , làm giảm lưu_lượng máu đến các bộ_phận của cơ_thể
 0 1 1 4 4 bài thuyết_trình tạo ra tranh_luận và đã có thảo_luận chung về cách các nhà_báo có_thể tự trang_bị tốt hơn để giải_quyết những thách_thức
 2 8 8 12 12 bít tết không nấu chín được đặt trên kệ trên cùng của tủ_lạnh và thịt gà nướng được mở ra trên kệ dưới cùng
+4 5 5 8 8 bộ_luật áp_dụng cho tất_cả các tài_trợ liên_quan đến hình_ảnh , thương_hiệu , sản_phẩm , dịch_vụ hoặc sự_kiện dưới bất_kỳ hình_thức nào
 0 0 1 5 5 các thành_phố tạo ra lượng khí_thải carbon thấp một_cách đáng ngạc_nhiên
+4 2 2 10 11 một ngôi làng nhỏ của người serbia đã dựng một bức tượng để tôn_vinh người bảo_trợ được thông_qua - rocky của sylvester_stallone
+4 0 1 9 9 ớt bột là một_phép chữa bệnh kỳ_diệu cho bệnh loét và rất nhiều điều_kiện khác , cộng với sự trợ_giúp của các chất dinh_dưỡng và vitamin
 2 0 1 2 2 tay cầm súng là loại nhựa tiêu_chuẩn nhưng có hai mặt bích cao_su làm cho thiết_bị cảm_thấy thoải_mái trong tay
 1 2 2 5 5 loại_trừ sự bùng_nổ hiện_nay do virut h5n1 , chỉ có 24 vụ dịch cúm_gia_cầm có khả_năng gây bệnh cao đã được ghi_nhận trên toàn thế_giới kể từ năm 1959
+4 14 14 14 14 tom_reynold đã đưa một thùng bột đầu_tiên của mình từ detour lên một chiếc xe_bò
 1 1 1 4 4 các máy_phát_điện tạo ra điện theo cùng nguyên_lý với máy phát dc
 2 29 29 30 30 một hộp đựng thức_ăn trung_quốc đặt trên đầu một thứ gì đó dính đã được nhấc lên và xé ra , để lại một mảnh giấy bìa dán vào kệ tủ_lạnh
+4 10 10 7 7 cà_rốt kiểu pháp thực_sự dễ thực_hiện hơn gan gạn của bà tôi , vốn gọi là chế_biến chất_béo gà
 1 6 6 8 8 rất nhiều trong số 550 ca tử_vong do bác_sĩ gây ra trực_tiếp và cố_ý nhưng không báo_cáo là do tác_động nhanh_chóng bởi_vì họ không có sự đồng_ý
 2 12 13 13 13 mục_đích của việc này là làm chậm hoặc giảm sự phân_rã của thân cây hoặc chi
 2 2 2 6 6 anh bấm phím trái của con chuột để sao_chép bản dịch đã chọn vào khay nhớ tạm
 2 2 2 3 3 anh mở lỗ mũi lên một_chút để vừa khít cánh trái và cánh phải
+4 5 6 8 8 john_chaney được tìm thấy trong ngôi nhà của nông_trại clarksburg
+4 0 1 8 8 các kế_hoạch mới được đưa ra cho một trang_trại gió khác ở phía bắc devon với không quá 4 tuabin
+4 1 2 4 4 hai trường đại_học bắt_đầu hợp_tác tập_trung vào phát_triển công_nghệ_sinh_học thực_vật
 2 10 10 3 3 tay cầm của cung được làm bằng gỗ và các dây_cung là thực_ra là lông ngựa từ đuôi ngựa
 2 1 1 5 7 các sợi bên trong của chổi lau nhà được xoắn rất ít , trong khi các sợi bên ngoài xa hơn và do_đó nhận được nhiều mô men xoắn , hoặc lực xoắn
+4 1 2 16 17 một chủ quán cà_phê đã nghĩ đến một đồ uống không chắc_chắn đã tạo ra phương_pháp chữa bệnh " thần_kỳ "
+4 0 1 3 4 nữ diễn_viên đã ngừng tim
 3 7 7 10 11 chúa ơi , tôi vui vì chiếc xe_hơi này có dây an_toàn
+4 1 1 9 9 cuốn sách dễ đọc này là sản_phẩm của cuộc hành_trình tuyệt_vời của darwin trên tàu beagle
 3 0 0 5 6 bố_trí điều_khiển trong cabin bao_gồm màn_hình máy_tính , bảng điều_khiển truyền_thống và hai cần điều_khiển để điều_khiển cánh_tay cần_cẩu
+4 8 9 11 11 ông đặt một_chút điều_khiển mà phù_hợp với các ốc vít trong chuck khoan báo_chí
+4 0 0 4 4 bị_cáo đã hành_động từ máy_tính của mình ở london
 1 0 0 2 2 khói từ lửa rừng trong lâu_đài tutbury ở nottingham được eleanor of aquitaine , vợ của henry ii không_thể chấp_nhận , khiến cô phải di_chuyển ra ngoài vào năm 1157
 1 1 1 6 6 sự gia_tăng này là do sự hấp_thụ tia uv bởi oxy và ozone
+4 4 5 7 7 toà_án đã đưa người nghiện ma_tuý vào ngủ_đông
 2 2 2 3 3 nhóm làm bìa tạp_chí rolling_stone vào ngày 29 tháng 3 năm 1973 , 3 tháng sau khi phát_hành
 1 6 6 8 8 dùng thuốc để giảm hắt_hơi và ho do dị_ứng
 3 1 1 3 4 một thiết_bị bao_gồm các bộ_phận cố_định và chuyển_động làm thay_đổi năng_lượng cơ_học và truyền_tải nó trong một dạng hữu_ích hơn
 2 0 0 3 3 van an_toàn của bể đầu_tiên đã được kích_hoạt sau 16 phút và 27 giây , trong khi van an_toàn của bể thứ hai được kích_hoạt sau 16 phút và 53 giây
+4 10 10 12 12 quan_tâm đến cái gì đó là một bước_tiến lớn đối_với hạnh_phúc sau trầm_cảm
+4 2 2 8 9 bây_giờ , bạn_bè của tôi đã quen_thuộc với nỗi ám_ảnh gần như tiếng anh của tôi với bánh_mì nướng
+4 1 1 7 7 các cáo_buộc này bắt_nguồn từ một cuộc tống_tiền chống lại moti , luật_sư hiến_pháp và công_dân úc , ở vanuatu năm 1997-1998
 2 5 5 7 7 các vây vượt ra ngoài thân của tàu dưới mực nước , và thay_đổi góc tấn_công tuỳ_thuộc vào góc nghiêng của tàu
 2 9 9 22 22 đoạn đầu_tiên phát_hiện ra_mắt stais là một trong những tấm bị ăn_mòn , được ghi lại là một phần không_thể thiếu của cơ_chế antikythera , vì thiết_bị này sau đó được gọi
 1 4 4 9 9 nói_chung có_vẻ như hầu_hết thiệt_hại là do gió và biển
+4 0 1 14 15 x quang là ngành hoặc chuyên_khoa của y_học liên_quan đến việc nghiên_cứu và ứng_dụng công_nghệ hình_ảnh
 1 13 13 16 16 thực_tế của thế_giới cho thấy rằng chính_quyền địa_phương nhanh hơn để đối_phó với thiên_tai do sự thay_đổi khí_hậu gây ra
+4 10 10 13 13 có bốn địa_điểm của nhà_hàng này , thuộc sở_hữu của công_ty buckley của nhà_máy dublin
 1 18 18 25 25 các khoản tiền được huy_động thông_qua kháng_cáo này có tác_động trực_tiếp đến những người bị ảnh_hưởng bởi những tàn_phá nặng_nề gây ra bởi các cơn bão
+4 1 2 5 5 cái dây buộc nằm trong ngực
+4 7 7 12 12 khi nhóm tiến sâu vào rừng , vùng_đất huyền_ảo này sẽ giải_phóng tinh_thần của nó cho những kẻ xâm_nhập , giết chết từng người một
 2 8 8 6 6 điều này đã được chứng_minh cho cánh_tay robot điều_khiển bằng mô_phỏng máy_tính
+4 4 4 1 2 ngăn_chặn sự xói_mòn bờ suối và dòng sông là một trong những trọng_tâm chính trong việc bảo_vệ và phục_hồi bờ biển
 1 0 1 3 3 sự bùng_phát của virut cúm_gia_cầm đã xảy ra trước đó
 2 4 4 5 5 anh lấy một cái kẹp hồ_sơ , và một mảnh giấy được đục lỗ phù_hợp với kẹp hồ_sơ
 3 12 12 11 11 các trang_web có chứa hình_ảnh của những người nổi_tiếng lộ các nút bụng của họ
 1 1 1 9 9 sự thoả_hiệp giải_quyết khủng_hoảng thông_qua một loạt các cuộc đàm_phán bí_mật liên_quan đến các chính_trị_gia đảng cộng_hoà và dân_chủ và các nhóm lợi_ích khác nhau
+4 0 0 5 6 đàn_ông làm_việc bên trong một thùng lặn trong khi đào cho nền_móng
 3 8 8 10 10 sự thấm hút này rất quan_trọng trong cây nến vì lõi cần hấp_thụ sáp lỏng và đưa nó lên trên trong khi nến đang cháy
+4 2 2 8 8 thường thì tác_giả tách ra từ một lời giải_thích về những gì đã xảy ra và các sự_kiện và các lực liên_quan đến hành_động
 2 20 20 13 14 hành_động pha_trộn chủ_yếu là để cắt các hợp_chất trộn giữa các rotor của máy trộn , và khoảng_cách giữa các rotors ít hơn đường_kính rotor
+4 0 1 8 8 ban nhạc biểu_diễn với mức_độ cao về tính âm_nhạc , năng_lượng và tinh_thần trong khi kết_hợp sự tương_tác giữa nhóm nhạy_cảm với những lần ngẫu_hứng năng_động
+4 0 0 3 3 quá_trình xây_dựng nhiều tính_năng vào sản_phẩm mang lại lợi_ích cho bạn
 3 0 0 9 10 căn_hộ có nhà_bếp đầy_đủ tiện_nghi , bbq , hai phòng tắm , mạng , bầu_trời và hồ bơi trong nhà
+4 5 5 9 9 trường_hợp người lao_động làm_việc trong nhà_máy trong hơn 9 giờ trong ngày hoặc trong hơn bốn_mươi tám giờ trong tuần thì người đó được hưởng mức lương gấp đôi mức lương bình_thường
+4 0 0 4 4 tác_phẩm bắt_nguồn từ một nỗ_lực để chứng_minh tính phổ_biến giữa nghệ_thuật bằng cách tập_trung vào lời hùng_biện cổ_đại như là cơ_quan diễn ngôn chính
+4 2 2 8 10 thermocerin là chất_đốt mỡ mạnh , kết_hợp với các loại thảo_mộc tự_nhiên như trắng và trà xanh , capsaicin và caffeine
+4 4 4 3 3 peter_wayner , một nhà_văn công_nghệ , đang phải vật_lộn với cách đối_phó với nạn cướp_biển phổ_biến trong các cuốn sách của mình trên mạng
 2 2 2 4 4 ngay cả bản_lề của tủ_lạnh được giấu để cung_cấp một cái nhìn sắc nét
 1 17 17 33 33 vì_vậy , việc phát_điện năng_lượng mặt_trời hoạt_động chủ_yếu giống như_thế hệ_từ nhiên_liệu hoá_thạch , ngoại_trừ việc sử_dụng hơi_nước được sản_xuất từ ​​sự đốt cháy các nhiên_liệu hoá_thạch , hơi_nước được tạo ra bởi nhiệt thu được từ ánh_sáng mặt_trời
+4 1 1 4 4 nhưng vấn_đề đòi_hỏi một giải_pháp rộng hơn - một giải_pháp phù_hợp với cam_kết mới của mỹ đối_với hợp_tác xuyên biên_giới
+4 3 3 6 6 kích_thước của các bộ_phận phát_triển từ giao_diện bề_mặt byssus đến lớp chuyển_tiếp
 0 1 4 13 14 sự mất cân_bằng về tự_trị là một trong những nguyên_nhân đa_nguyên nhân của tăng huyết_áp thiết_yếu hiện_nay
+4 1 1 4 4 nhận_dạng tự_thuật tham_gia vào phong_trào của câu_chuyện , trong cách biện_chứng giữa trật_tự và rối_loạn
 2 10 10 12 12 một_số móng tay khó loại_bỏ hơn những cái khác khỏi đế của giày
 3 6 6 5 5 anh ấy tiếp_tục thu_thập những tiêu_đề sách và gửi chúng cho tôi để đọc tiếp
 1 6 7 9 9 khi tôi tiến gần bếp , tiếng ồn của tủ_lạnh tăng lên mạnh_mẽ hơn
+4 0 0 9 9 sản_lượng thực trên đầu người đang gặp phải những rào_cản vốn có
+4 7 7 11 12 trái_đất là trung_tâm của vũ_trụ , và bầu_trời bao_bọc trong một mái vòm
 0 0 0 5 5 thuốc_lá mới gây đau_đầu và buồn_nôn và chứa các hoá_chất nguy_hiểm
+4 5 5 6 6 bangladesh đã kêu_gọi ấn_độ loại_bỏ thị_thực du_lịch giữa hai nước láng_giềng để thúc_đẩy thương_mại
 3 1 2 7 8 máy làm mát không_khí được xây_dựng từ các bộ_phận để tạo ra mô_hình của một đối_tượng từ cuộc_sống hàng ngày , ví_dụ : máy_bay , côn_trùng , hoặc chim
 2 20 20 21 21 khi người lái_xe qua venne , một trong những cái móc bắt được người đi xe_đạp , kéo anh dưới bánh xe_tải
 2 10 10 13 13 túi_peg là những chiếc túi có kích_thước trung_bình treo trong quầy kẹo của cửa_hàng
 0 3 3 6 6 vào giờ , đồng_hồ phát một giai_điệu với chuyển_động
+4 4 4 3 3 ví_dụ , một nhà_sản_xuất công_nghệ đã thực_hiện một nỗ_lực gia_công nguồn nhân_lực 7 năm với 200 triệu đô_la
 1 0 0 8 8 sức_mạnh của các y_tá xuất_phát từ hai loại kinh_nghiệm khác nhau
+4 0 0 3 3 ấn_phẩm này được tài_trợ bởi merck
 3 1 1 6 7 một động_cơ dc đơn_giản có một cuộn dây có_thể quay trong một từ_trường
 2 8 8 11 12 nails phát_triển ra các nếp gấp sâu trong da của các ngón tay và ngón chân
 1 0 1 4 4 sự ô_nhiễm từ các nhà_máy động_vật cũng đang huỷ_hoại các bộ_phận của đại_dương trên thế_giới
+4 7 7 13 13 nhưng o ' brien tự_hào về việc đội của mình đã hoàn_thành một mùa giải khó_khăn
 3 6 6 1 1 các làng được hợp_nhất thành một khu_vực có tên là kalbach , nhưng mỗi làng vẫn có bản_sắc riêng của mình
+4 1 1 11 13 những thành_tựu của michael_phelps trong hồ bơi đã chứng_tỏ là một điểm nói chính cho các tay_đua
+4 1 2 7 7 một sự kết_hợp đáng chú_ý của các hoàn_cảnh thuận_lợi cho thấy tiến_bộ công_nghệ từ giai_đoạn đổi_mới - thử_nghiệm của nó trong mẫu nguyên_mẫu - thông_qua để thông_qua và sử_dụng rộng_rãi , trong chỉ một_vài năm
 1 14 14 17 17 nnt và nnh là các chỉ_số hữu_ích để mô_tả sự cân_bằng giữa lợi_ích và tổn_hại do cách điều_trị mới
 3 5 5 7 7 tuy_nhiên , có những con cá có phổi và có những con không có bong_bóng bơi
 1 0 0 4 4 mụn gây ra bởi tắc_nghẽn của tuyến bã nhờn ( sản_xuất dầu ) trên da
 2 0 0 2 2 cơ_bắp của dạ_dày dày hơn ở những nơi khác
-3 15 16 6 6 cordgo đã phát_triển một thiết_bị cuộn dây tai nghe nhỏ gọn để tránh trường_hợp dây tai nghe bị rối khi di_chuyển trong suốt cả ngày
+3 7 8 6 6 cordgo đã phát_triển một thiết_bị cuộn dây tai nghe nhỏ gọn để tránh trường_hợp dây tai nghe bị rối khi di_chuyển trong suốt cả ngày
+4 6 6 9 9 pháp_lệnh này là kết_quả của sự liên_kết của các đại_lý lợi_nhuận đang tức_giận về việc mở_rộng gần đây của chương_trình pretrial_county_broward
 3 0 0 2 2 bảng tóm_tắt kết_quả cho 567 phụ_nữ còn lại
 0 12 12 15 15 không có nước xâm_nhập vào bên trong máy rửa chén , và động_cơ phát ra âm_thanh như_thể dưới áp_suất
+4 9 9 16 16 con tàu rơi xuống trong cơn bão và người đàn_ông được phát_hiện bên trong một bộ đệm nứa được sử_dụng để ngăn_ngừa thiệt_hại cho con tàu trong quá_trình đóng
 2 16 17 18 18 mặt_khác , kim_loại phản_ánh những sóng_vô_tuyến này , một đặc_tính rất khéo_léo được sử_dụng trong các bức tường lò_vi_sóng để không có sóng trốn
 2 0 1 3 3 mùa xuân của gravimeter phải mở_rộng thêm một_số để chứa trọng_lượng lớn hơn
+4 7 7 9 9 những con đường_mòn , hố lửa và pháo_đài trong rừng đã khuyến_khích anh ta dành thời_gian bên ngoài
+4 0 0 5 5 loại dụng_cụ cắt dùng để khoan lỗ sâu có đầu cắt được gắn trên thân
 1 1 1 4 4 sự biến_động là do thuế của tiểu_bang và liên_bang , khoảng_cách từ các nhà_máy lọc dầu đến trạm nạp và luật môi_trường
 1 0 1 6 6 bệnh dại là do một loại virut thường bị nhiễm qua nước_bọt của một con vật nhiễm_bệnh
 1 1 1 6 6 một tai_nạn đã xảy ra bởi sương_mù
 2 33 33 35 36 như đã được thực_hành tiêu_chuẩn tại bảo_tàng vào ngày đó trong tuần , chỉ có nhân_viên bảo_trì , nhân_viên làm sạch , người quản_lý , và một_vài nhân_viên khác đi lang_thang vào các sảnh của toà nhà mà đã từng là nhà của các vị vua của pháp nhưng trong nhiều thế_kỷ đã được dành cho chứa_đựng những kho báu nghệ_thuật của quốc_gia
 0 0 0 4 4 chấn_thương dẫn tới nhiều hoạt_động để cứu thị_lực của anh ta
+4 3 3 6 6 lần này , tôm_hùm có đầy_đủ hương_vị tuyệt_vời , đã bị ngấm vào trong bắp
+4 3 3 4 4 tại luxembourg , đa_số lao_động nhập_cư là lao_động qua biên_giới duy_trì nơi ở của họ ở các nước láng_giềng như bỉ , pháp và đức ; kết_quả là chủ sử_dụng lao_động và các cơ_quan nhà_nước công_nhận văn_bằng của họ khá dễ_dàng
+4 1 1 8 8 nhiều nghiên_cứu đã được tiến_hành liên_quan đến các hiện_tượng trên
 2 10 10 13 13 ông đã nhìn thấy đằng sau hậu_trường và tất_cả các khu_vực trưng_bày của cửa_hàng
 1 3 4 9 10 chúng_tôi giải_quyết sự mất cân_bằng ngân_sách dài_hạn do sự cắt_giảm thuế
 1 5 6 9 9 ở bắc_mỹ , khoảng 58% cháy rừng là do con_người gây ra
+4 3 3 5 6 chúng_tôi đưa sự công_bằng vào sử_dụng bản_quyền
+4 3 4 8 9 dữ_liệu cho thấy mối quan_tâm của công_chúng về nền kinh_tế đã chuyển sang năm vấn_đề hàng_đầu mà quốc_gia phải đối_mặt
+4 0 0 6 6 hạn_ngạch đã được kéo_dài từ sáu tuần đến 10 tuần trong năm 2009
 2 1 2 3 3 mặc_dù ống cuộn kèn chủ_yếu là hình_trụ , nó được hình_thành từ một loạt các sợi ngắn , nhỏ nhất ở đầu thu_thanh , và lớn nhất là ở cổ_họng của chuông , trước khi bùng_phát tiếng chuông bắt_đầu
+4 8 8 10 10 người anh họ tôi vui_vẻ trượt xuống từng bậc trong giỏ giặt
 2 3 3 5 5 andre_hartman chạm vào mõm của cá_mập trắng tuyệt_vời
+4 2 2 4 4 volvo lưu_giữ thông_tin trong môi_trường an_toàn và được bảo_vệ miễn là họ tin rằng nó sẽ giúp công_ty hiểu cách phục_vụ khách_hàng tốt hơn
 2 3 3 6 6 bom đã được giữ trong khoang tàu
+4 5 5 9 9 thông_tin chi_tiết về cách các giáo_phận công_giáo giải_quyết các cáo_buộc lạm_dụng trẻ_em như_thế_nào sẽ xuất_hiện trong những tuần tới
 1 14 14 17 18 đảm_bảo bé có nhiều dịch bất_chấp sự khó_chịu của răng miệng để tránh bị sốt cao do mất nước
+4 10 10 12 12 quảng_trường tafawa_balewa ( tbs ) ở lagos đã tổ_chức một thiên_hà các sự_kiện với các hoạt_động du_lịch và văn_hoá làm điểm thu_hút
 2 13 13 16 16 các thợ lặn đã đi xuống hai tuần trước để xem_xét tình_trạng của cọc hỗ_trợ các bến_tàu
 2 17 18 20 21 hạ_cánh được cung_cấp ở trên cùng và dưới cùng của mỗi chuyến bay bao_gồm một phần của sàn nhà của toà nhà
 3 2 2 8 8 một tờ báo chỉ gồm có cùng một_số từ cho_dù có tin_tức gì trong đó hay không
 0 0 0 11 11 bệnh di_căn hiếm gặp và không chữa được , gây ra mù_loà đã được điều_trị thành_công lần đầu_tiên sử_dụng liệu_pháp gen
 0 26 26 36 36 công_trình của ông đã dẫn tới các phương_pháp điều_trị mới cho người nghiện ma_tuý , các xét_nghiệm về tình_trạng ngộ_độc thuốc và sự hiểu_biết về cách heroin , thuốc_phiện và cocaine gây ra sự phụ_thuộc và cai_nghiện
+4 5 6 10 10 những rắc_rối nghiêm_trọng đã kéo nữ diễn_viên khét_tiếng này trở_nên hỗn_loạn
+4 0 0 11 12 hội_nghị nghiên_cứu tác_giả của shakespeare là hội_nghị lớn nhất thế_giới về các nhà_khoa_học và các học_giả thu_thập hàng năm nhằm mục_đích chia_sẻ những nghiên_cứu mới về cuộc_đời và tác_phẩm của nhà_thơ , nhà biên_kịch và wordsmith
 1 0 2 5 5 sự co rút từ viêc giặt luôn là vấn_đề nghiêm_trọng đối_với các loại vải dệt_kim bằng vải cotton
 2 1 1 5 5 với móng của nó , tuần_lộc quét bụi và phát_hiện ra bên dưới rêu_ren
 3 0 0 11 12 hệ_thống điều_hoà không_khí này chứa chất làm lạnh dưới áp_lực , các bộ_phận quay và các kết_nối điện có_thể gây nguy_hiểm và có_thể gây ra chấn_thương nghiêm_trọng
@@ -724,94 +907,191 @@
 1 10 10 14 14 bài báo này đi theo một_số hướng , xác_định một_số xung_đột xuất_phát từ sự phát_triển nông_nghiệp trước_đây và hiện_tại
 2 17 17 20 20 không_khí bị đẩy qua dụng_cụ , xuất_phát từ đáy phổi của người chơi và đẩy xuyên qua chuông của cây kèn
 1 1 1 3 3 sự gián_đoạn do khủng_bố giáng_sinh mới nhất đã làm tăng thêm quá nhiều cho cuộc hành_trình mệt_mỏi của gia_đình
+4 20 21 26 26 những nhân_vật cao_cấp trong môn thể_thao mong_đợi chiếc xe brawn sẽ là đối_tượng của một cuộc phản_kháng kỹ_thuật đối_với thiết_kế bộ khuếch_tán của chúng bằng các đội đối_thủ
 2 19 20 21 21 gunung_papandayan , đã thức dậy từ lúc ngủ và hiện đang đe_doạ hàng ngàn dân_làng sống xung_quanh và trên sườn núi vulcano
 2 0 0 4 4 thành_phần làm ấm của thiết_bị gia_nhiệt được đặt ở bên trong các phần trước của ngón tay của một bao_tay để làm nóng các đầu trước của ngón tay của người sử_dụng
+4 0 1 7 7 miễn thuế này cũng được áp_dụng cho hàng_hoá cung_cấp để sử_dụng trên tàu và máy_bay
+4 0 1 8 9 nữ tu hoàn_thành tưởng_tượng của mình với một nụ hôn mà sẽ làm cho một rắc_rối_viên
 2 0 1 7 7 chậu rửa được đặt trong một khung tủ_đứng với các mặt của bồn rửa chén là một loại sứ tráng bằng sứ giống như bồn rửa chén
+4 0 0 6 6 công_ty đã rơi vào những cuộc tranh_luận lớn
 1 2 2 11 12 những cuộc xâm_lược barbarian của thế_kỷ thứ năm gây ra bởi sự huỷ_diệt của các vương_quốc gothic của huns trong 372-375
+4 8 9 11 11 mẫu đã được in và điền trước khi trả lại bằng thư
+4 8 8 11 11 cả hai ở malta và jamaica , đôi vợ_chồng làm nhiều bạn_bè bằng cách đắm mình trong nền văn_hoá địa_phương
+4 30 31 28 28 tuy_nhiên , nhu_cầu gia_tăng về mặt logic đòi_hỏi phải mở_rộng và sửa_đổi các quy_trình nạp để đạt được mục_tiêu ghép đôi các thành_viên tiềm_năng với một_số các sự lựa_chọn của hội phụ_nữ
 1 6 6 9 9 thành_phố hồ_chí_minh và hà_nội đang bị ngập_lụt sau trận mưa
 1 4 4 15 15 tám mươi phần_trăm của gian_lận thế_chấp đã được gây ra bởi các ngân_hàng và các tổ_chức cho vay
 0 11 11 14 14 sử_dụng điện_năng lượng mặt_trời thay_vì các nguồn điện thông_thường giúp giảm ô_nhiễm gây ra khói , mưa acid , bệnh hô_hấp và sự nóng lên toàn_cầu
+4 16 17 15 15 việc thực_hiện gói_thầu trị_giá 787 tỷ đô_la của bang và địa_phương đã biến thành một cuộc_chiến chống lại các chương_trình_nghị_sự cạnh_tranh giữa các thống_đốc , cơ_quan lập_pháp , thủ_đô và các khu_phố , thậm_chí giữa các đô_thị lân_cận
+4 14 14 13 13 sinh_viên năm thứ ba david_beer là một trong những người bị ảnh_hưởng bởi tranh_chấp chi_trả
+4 1 1 5 5 các nghiên_cứu này cung_cấp các chi_tiết khám_phá về một_số thuộc_tính quyết_định và cung_cấp cơ_sở cho nghiên_cứu hiện_tại
 0 1 1 10 11 sự gia_tăng của khách_hàng , mặc_dù , gây ra một sự quá_tải trên các máy_chủ của công_ty
+4 0 1 7 7 hoá_đơn thẻ_tín_dụng của tôi đang tiến tới giới_hạn của nó
+4 7 7 9 10 swype - được thành_lập bởi cliff_kushler , nhà_phát_minh ra công nghệ nhập văn_bản t9 - đã tăng 1,3 triệu usd vào đầu năm nay
+4 35 35 28 29 không có gì ngạc_nhiên khi tiêu_đề của triển_lãm là sự tôn_kính một trong những nhân_vật cổ_điển của thời hiện_đại , antoni_tapies , tác_phẩm của ông đã bị các nhà phê_bình đánh_giá là ranh_giới của việc sáng_tạo nghệ_thuật
 0 0 0 6 6 bão gây ra một lượng lớn thiệt_hại trên bờ bãi biển , và trong thời_gian hoàn_toàn cô_lập quân_đội tại anzac
+4 14 14 18 18 và vào những ngày mưa_bão khác , cậu bé đã học cách thổi một trục thẳng cho cái cung dài , và xỏ nó bằng lông ngỗng màu xám
+4 3 3 4 4 chúng_tôi dã thừa_hưởng khuynh_hướng lo_lắng
+4 5 5 8 8 điều này thông_báo việc bắt_đầu loại_trừ bệnh_viện theo định_nghĩa
+4 2 2 9 10 một cuộc kiểm_tra đã được thực_hiện bởi tất_cả các bài viết được công_bố trong bản tổng_kết từ năm 1944 đến năm 1953
 2 7 8 10 10 chỉ báo quay số được gắn trên trục chính của máy phay
 2 16 17 4 4 chữ_cái bút_chì kéo ngón tay cái về phía trước trong máy_bay ở góc phải so với lòng bàn_tay
 3 3 3 7 7 cô ấy giữ cưa đúng chỗ với lưỡi dao của nó ngay trên đường cắt
 3 3 3 8 8 trên những chiếc thuyền chỉ có một cái buồm , thông_thường các móc của cần_cẩu phía sau cao hơn cột buồm , có nghĩa là sự chằng_chịt và sự chồng_chéo
 3 2 2 1 1 mùa hoa táo thường kéo_dài từ giữa tháng 4 đến đầu tháng 5
+4 1 1 21 21 cuốn sách jungle , vì giọng nói tinh_thần của nó , đã được sử_dụng như là một cuốn sách động_lực bởi phong_trào này
+4 0 0 8 8 hình_dạng của tàu được nhìn thấy trong một ewer đã được trong bảo_tàng metropolitan trong nhiều năm
 2 4 4 6 7 một người dùng kéo núm của thanh trượt , chọn một từ , và bản dịch tiếng nhật của từ được hiển_thị ngay giữa màn_hình
 2 3 3 5 6 giữ chặt vào thanh của pit tông , đẩy miệng của nó qua lỗ vệ_sinh
 0 0 1 4 4 nỗi buồn dẫn đến cảm_hứng , vì_vậy trong câu_chuyện tình_yêu và ghét , tôn_trọng và phản_bội này , hãy tìm_hiểu về lịch_sử của cuộc chiến_đấu của mê-hi-cô
 2 0 0 2 3 mặt_tiền của toà nhà là đá và kính không há
+4 0 0 1 1 cyclotron bắt_đầu từ đầu tháng 1 năm 2000
+4 11 11 5 5 do_đó , trò_chơi bắt_đầu ở trạng_thái ban_đầu , ở đó người chơi thu_thập hoàn_trả chỉ khi họ ở trong trạng_thái đó để nó trở_thành trận chung_kết
+4 4 4 8 9 năm 1965 , một nông_dân đã đào được xương hàm dưới của một con voi ma_mút trong khi tiến_hành mở_rộng hầm rượu của mình
 2 1 1 6 6 các hoạt_động được chia thành ba chương_trình : chương_trình trẻ_em và thanh_thiếu_niên , chương_trình dành cho người_lớn và chương_trình công_dân cao_cấp
+4 11 11 12 12 một thách_thức ngay_lập_tức gây ra bởi phương_pháp này là chỉ có một_vài hình_ảnh đã được xem trên màn_hình máy_tính cùng một lúc
+4 12 12 17 17 trong bài báo này , chúng_tôi giới_thiệu các phân_tích_động và chuyển_đổi mô_hình bay theo chiều dọc của máy_bay siêu_âm
 3 1 1 15 15 con tàu đã kích_động cuộc tranh_luận mà phi_hành_đoàn đang tìm_kiếm ngay cả trước khi nhả neo
+4 0 0 2 2 nhân_viên trong cửa_hàng đều thuận tay_trái và vui_mừng trình_bày sản_phẩm , giải_thích lý_do tại_sao họ thuận tay_trái và đưa ra lời khuyên hữu_ích cho những người ở lại mọi lứa tuổi
 3 0 0 3 3 báo_thức có một âm_thanh sống_động nằm ở lối vào cho âm_thanh vào và ra
 2 15 15 17 18 làm_việc chặt_chẽ không_chỉ với các giảng_viên về văn_học so_sánh mà_còn với các giáo_sư khác từ khoa của trường đại_học phù_hợp nhất với lợi_ích của họ , sinh_viên phát_triển các chủ_đề nghiên_cứu cá_nhân có_thể bao_gồm từ xã_hội_học của paraliterature đến thông diễn học của bói_toán , tiếng anh và tiếng trung để so_sánh giữa tiếng phạn và tiếng hy_lạp sử_thi
 0 0 1 11 11 viêm da tiết bã là một trong những nguyên_nhân gây ra gàu
 2 6 7 9 9 thứ năm chúng_tôi bắt_đầu làm sạch sàn nhà trong cửa_hàng để chuẩn_bị cho bữa tiệc
 3 0 1 3 3 con ngựa đưa mũi hướng về cậu bé
+4 10 10 13 13 lý_thuyết sở_hữu da làm cho thấy rằng sự thâm_nhập và liên_kết của các đại_lý thuộc da là bổ_sung cho nhau trong quá_trình thuộc da
 2 14 14 15 15 một hệ_thống theo_dõi chuyển_động điện từ ( ascension_flock of birds ) được lắp_đặt ở trần hang_động để cung_cấp dữ_liệu vị_trí
 3 8 8 7 7 tôi tìm thấy một mảnh giấy trong túi quần với cái tên ' marylou ' viết trên đó
+4 1 1 5 5 các công_đoàn đang chuyển sang chính_trị
 2 8 8 10 10 alfonso sử_dụng một cái đòn để phá vỡ ổ_khoá của lồng và lấy máy_phát_điện và đặt nó vào trong xe
+4 16 16 18 19 tôi đặc_biệt thích bộ_cánh tay trần của matthew_wells vẫy cây gậy chơi khúc_côn_cầu của mình tại trọng_tài trong trận đấu úc - canada để tranh_cãi một quyết_định
 2 0 1 8 9 phòng ngủ tròn là phần tốt nhất của khoang thượng_hạng này
+4 0 0 2 2 biệt_thự có đất ở old_thame , moreton và north_weston và tài_sản ở new_thame
 3 0 0 1 1 máy trạng_thái chứa sáu trạng_thái , bảy đầu vào và năm đầu_ra
 0 19 19 28 28 nhiều xà_phòng thương_mại , gel tắm hoặc các sản_phẩm làm sạch có chứa chất bảo_quản , chất màu và hoá_chất gây ra khô , phát_ban , ngứa và gồ_ghề trên da
+4 20 22 24 24 trong những gì đã trở_thành một huyền_thoại về ma_tuý , anh ta trở_nên nôn_nao , mơ_màng và nhìn thấy một hình_ảnh vạn hoa của màu_sắc nhảy_múa
+4 1 1 5 5 tất_cả cơ_sở_hạ_tầng đều rơi vào hư_hỏng
 0 9 10 18 18 ưu_tiên phải có những nỗ_lực để chống lại sự mất an_ninh và do_đó nghèo_đói , nguyên_nhân chính của bạo_lực thường gặp nhất bởi những người nghèo nhất
+4 4 4 9 9 tình_hình được gọi là bánh bơ đậu_phộng nướng từ công_thức đơn_giản nhất mà bạn có_thể tưởng_tượng được
 2 2 2 4 4 đóng chặt ngón_chân cái chân phải bằng ngón tay đầu_tiên của cả hai tay
+4 0 1 15 15 người lái_xe giận_dữ đã bày_tỏ sự không hài_lòng của mình bằng cách chạy vòng_quanh chiếc xe kia , cắt đứt chiếc xe kia
 2 20 20 9 9 để thực_hiện các bài_tập này , bệnh_nhân ngồi trên ghế với khuỷu tay được hỗ_trợ trên cạnh bàn hoặc trên cánh_tay của ghế
 0 1 1 9 9 những thoả_hiệp có trong thoả_thuận đã gây ra cuộc nội_chiến tại 26 quận trong tháng 6 năm 1922 đến tháng 4 năm 1923 , trong đó chính_phủ lâm_thời pro_hiệp ước đã đánh_bại các lực_lượng cộng_hoà chống cộng
 2 0 0 3 3 đĩa động_vật của phôi nhím biển trở_thành bộ_phận thượng_vị , cấu_trúc cảm_giác của ấu_trùng
+4 0 0 4 4 uỷ_ban đang đưa ra quyết_định cuối_cùng
+4 0 0 2 3 chi_tiết bao_gồm những người liên_quan tham_gia cũng như các dữ_kiện thú_vị và thống_kê sản_xuất
 3 11 11 10 10 khi tôi bước vào phòng tắm , tôi nắm lấy núm cửa và cảm_thấy lỏng_lẻo và rỗng
+4 3 3 6 6 đó là một nhà_máy để phân_huỷ quần rất tốt
+4 8 8 7 7 mỗi hộ gia_đình đều cần một cái bàn lồng - chức_năng và kinh_tế với không_gian
 3 0 0 6 7 thiết_bị kết_nối bao_gồm một loạt các khe cắm mở_rộng hệ_thống máy_chủ lưu_trữ để kết_nối với bus cpu của hệ_thống máy_chủ
+4 4 5 8 8 trong khi đó , người xây_dựng đang chuyển bùn sang một_số nơi khác trong các phương_tiện đóng kín
+4 28 28 31 31 các kỹ_thuật truyền_thống được khuyến_khích trong tất_cả các công_việc và các tình_nguyện_viên được hưởng lợi bằng cách thoát khỏi căng_thẳng của cuộc_sống hiện_đại và tận_hưởng tinh_thần và sự giao_lưu của những thợ_thủ_công lành_nghề trong quá_khứ
 0 0 0 6 6 tranh_chấp đã dẫn đến các cuộc chiến_tranh lớn trong khu_vực và hai cuộc nội_chiến palestine với thảm_kịch ở cả hai bên
 3 8 8 7 7 bệnh_nhân bị đâm hoặc mắc_kẹt với một điểm bút_chì
 3 3 3 5 6 tôi đang kiếm quần_jean với dây kéo tất_cả các cách từ dây thắt_lưng ở phía trước tới các dây_lưng ở phía sau
 3 0 0 3 3 trang_web này cung_cấp tin_tức tổng_quát và tin_đồn về tất_cả các loại xà_phòng lớn nhất của anh
+4 7 7 10 10 luật về chiến_dịch của braxin bao_gồm một_số hạn_chế đối_với bài phát_biểu chính_trị có_vẻ bí_ẩn đối_với người bên ngoài , thậm_chí với một_số người brazil
+4 0 0 7 7 mẹ cô phản_ứng bằng cách sử_dụng sự hài_hước làm lá_chắn
+4 9 9 12 12 tôi đứng ở phía trên hẻm núi xoắn , gió đã chạm_trổ cát
+4 0 0 4 4 tác_giả tham_khảo tất_cả các khoa_học , với nhiều tác_phẩm cổ_điển về tâm_lý_học và sinh_học
 3 3 3 8 8 mỗi ngày , hội_thảo đã tổ_chức một_số cuộc đối_thoại nhằm tạo ra các cuộc thảo_luận về các vấn_đề mở
+4 1 1 6 6 hai nước cuối_cùng đã ký một thoả_thuận chia_sẻ mã
 2 6 7 10 11 chúng_tôi bật đầu của chúng_tôi ra mái vòm trần của toà nhà
+4 0 0 2 3 địa_chất bao_gồm đá granite của thời_kỳ mesozoi là nền_tảng đá_tảng
+4 4 4 9 9 cao huyết_áp động_mạch phổi cộng_đồng lâm_sàng xây_dựng trật_tự từ hỗn_loạn
+4 1 1 4 4 hai cảng này chuyên sản_xuất hàng xa_xỉ
+4 4 5 8 8 tiến_độ xây_dựng ổn_định và người xây_dựng đã thiết_lập vị_trí của các văn_phòng trên khu_vực bãi đậu xe trong tương_lai dọc theo forest_road
 2 1 2 2 2 lớp vỏ trái_đất bao_gồm nhiều loại đá_lửa , biến_chất và trầm_tích
+4 7 8 13 13 trong những năm trôi qua , một_số kẻ xâm_lược đã chết vì một cảm_xúc tương_tự tội_lỗi
+4 1 1 9 10 các biên_tập_viên đã tập_hợp nhiều chuyên_gia y_tế hàng_đầu , các nhà_nghiên_cứu và các chuyên_gia y_tế liên_quan , những người có kinh_nghiệm lâm_sàng rộng_rãi với những người sống_sót sau tai_nạn bại_liệt
 0 0 0 6 7 cuộc_chiến đã dẫn tới hàng trăm cái chết và trong việc triển_khai những người giữ hoà_bình vào đông_timor
+4 1 1 3 3 ba phương_pháp tiếp_cận phân_tích các tế_bào được mô_tả , với các ứng_dụng
 2 0 0 2 3 xiphon trong bể chứa bao_gồm một đường_ống uốn cong trên mực nước trong bể
+4 0 0 4 4 chiến_lược khởi_hành từ một mục_tiêu trọng
+4 9 9 7 7 phanh xe_kéo phụ được đảm_bảo bằng một đai kẹp cáp
+4 25 25 26 26 màu_sắc biểu_hiện , tương_phản với màu đen của bầu_trời khải huyền , sự tương_phản làm nổi_bật những chân_tay không chân , và phong_cảnh sa_mạc và đống chất_thải chiếm ưu_thế trong bối_cảnh đó thể_hiện sự bi_quan sâu_sắc của miro
 0 0 0 8 8 thành_phần chống neutrino lớn là nguồn_gốc của một nền_tảng không_thể giảm bớt
+4 11 11 6 7 cho đến bây_giờ , góc của bộ sưu_tập cá_nhân lan_truyền của hoạ_sĩ này đã bị quên_lãng
 0 1 2 7 7 vụ phun trào đã dẫn đến các dòng_chảy khổng_lồ ( hỗn_hợp tro , dung_nham , đá và nước ) , chủ_yếu ở các lưu_vực sông rio_montana và marker
+4 1 1 8 8 một người có_vẻ như chính_thống đã bị mắc sai_lầm nghiêm_trọng
 2 3 3 5 5 chúng_tôi ngồi dưới ghế của xe_buýt trong 20 phút , cố_gắng tránh xa viên đạn
 2 1 1 3 4 trong lòng của toà nhà , ông cho tôi thấy các thiết_bị sân_khấu mà đã được đi thẳng ra hầu_như mỗi ngày trong 35 năm qua
+4 1 1 5 6 người đàn_ông thực_sự khởi_hành từ sự thánh_thiện
 3 4 6 9 9 hình_ảnh của một chú chó mặt xệ ngồi treo lưỡi của mình ra ngoài
+4 1 1 6 7 một_số dữ_liệu được trình_bày trong một bài báo được đọc tại cuộc họp thường_niên
+4 9 9 6 7 mục này được khắc bằng tên viết tắt của tác_giả người_anh
 0 6 7 10 11 ngoài các phiến_quân sudan , vụ đánh bom gây ra cái chết của một_số thường_dân chadian và gia_súc
+4 1 1 12 12 ba công_thức khác nhau của axit valproic đã được điều_tra trong các thử_nghiệm lâm_sàng
 2 1 2 2 2 trong cành cây cúi xuống về phía đấng_christ , một con chim nuôi chim non của nó
+4 6 7 11 12 có những đống thư_mục của verizon xếp chồng lên nhau bằng lối vào của toà nhà
 3 2 2 0 0 cửa_sổ của tàu này được trang_trí thanh_lịch
+4 10 10 19 20 ở đây tôi chỉ ra rằng adh-psi thực_sự là một gen chức_năng mới , gần đây xuất_phát từ một sự trùng_lặp adh
+4 0 0 0 0 thống_đốc được trợ_giúp bởi một phó thống_đốc
+4 0 0 5 5 trọng_tâm chủ_yếu tập_trung vào vấn_đề đạo_đức
 3 1 3 7 8 một máy nghe nhạc mp3 có một lỗ cắm tai nghe và trong một_số trường_hợp một đầu_ra , cả hai đều đưa ra âm_thanh
 3 0 0 21 21 âm_nhạc của họ phản_ánh những ảnh_hưởng khác nhau , kết_hợp các yếu_tố của rock and roll , garage rock , nhạc dân_gian và ảo_giác
 0 1 2 8 8 do vụ bê_bối về đạo_đức gây ra việc nhầm_lẫn của thống_đốc bang , đã có hy_vọng thực_sự cho cải_cách đạo_đức ở illinois trong năm nay
 3 0 1 5 5 tập phim này có một bài bình_luận được ghi lại bởi tác_giả và nhà biên_kịch / nhà_sản_xuất david_simon
+4 0 0 3 4 nguồn_gốc của những kẻ phá_hoại không được biết , mặc_dù tacitus đề_cập đến các nhóm chiến_binh người đức với cơn thịnh_nộ điên_cuồng
+4 24 25 27 27 trong tập " tương_lai của bản_thân mình ' n ' me " các chàng trai phát_hiện ra một giấy_tờ chung và cán trên một gốc cây trong rừng
 2 0 0 7 8 tối chủ_nhật là ngày tốt nhất của cuối tuần này
+4 12 12 16 16 nó mở ra với một nhóm các nhà ngoại_giao có một cuộc thảo_luận xung_quanh một chiếc bàn chữ_nhật được bao_phủ bởi một miếng vải màu xanh lá cây
 3 12 12 11 11 có trợ_giúp thiết_kế để giúp mọi người nắm và quay một núm cửa
+4 1 1 5 7 các nguyên_tắc mà dựa vào vi_lượng đồng căn là rất khác với niềm tin y_học thông_thường
+4 0 0 4 4 gấu đã đi vào ngủ_đông
 3 7 7 9 10 nhờ lớp bên ngoài thời_trang của bộ váy , tấm lót trong được làm bằng một bộ_đồ giường bằng vải lanh tự nhân_tạo , trên đó vẫn có_thể thấy được chữ_cái thêu của chủ_sở_hữu
+4 8 8 14 14 đức giám_mục cũng vui_mừng khi nói về một_số vấn_đề gây tranh_cãi đang ảnh_hưởng đến nhà_thờ vào lúc này
 0 0 1 7 8 thuốc gây_mê nói_chung gây ra bất_tỉnh và mất cảm_giác đau và được sử_dụng cho các thủ_thuật phẫu_thuật chính
+4 5 5 7 7 những xu_hướng này đã đưa phụ_nữ vào tình_huống ức_chế hoàn_toàn
 2 28 28 30 31 đây là một hiệu_suất âm_thanh trực_quan trực_quan gồm các hình_dạng hình_học đơn_sắc hoạt_hình phù_hợp với kích_thước và hình_thức thực_sự của các mô đun hạt_nhân bốn phía tạo thành mặt_tiền của toà nhà
-2 19 20 22 22 bằng cách này , tốc_độ nhàn_rỗi được thiết_lập chính_xác bằng cách sử_dụng ốc vít bypass mà không đụng vào ốc vít trên cánh_tay ga , cần phải được đặt chính_xác
+2 12 13 22 22 bằng cách này , tốc_độ nhàn_rỗi được thiết_lập chính_xác bằng cách sử_dụng ốc vít bypass mà không đụng vào ốc vít trên cánh_tay ga , cần phải được đặt chính_xác
 2 0 0 3 3 buồng_lái an_toàn của máy_bay đã được thiết_kế lại hoàn_toàn
+4 0 0 5 6 thanh gỗ được gắn vào tay ghế , trên ghế tôi có một lỗ hình chữ l. ( góc ) dưới tay_vịn
+4 4 5 11 11 giống như shibnath , nhân_vật chính của chúng_tôi cũng tham_gia vào phong_trào tự_do của ấn_độ , đối_mặt với những rắc_rối của chế_độ nước_ngoài , và được lấy cảm_hứng từ sarojini_naidu và các nhân_vật đáng chú_ý khác như nhà_lãnh_đạo cộng_sản cựu_chiến_binh ravi_narayan_reddy
+4 0 0 6 6 quá_trình này được hỗ_trợ bởi sự can_thiệp lành_mạnh hoặc bỏ_bê
 2 20 21 23 23 sáu con ngựa mang những cái dây buộc tinh_xảo đã được hiến tế và nằm trên những khúc gỗ hình_thành mái nhà của buồng chôn lấp
 0 15 17 24 24 13 , học_sinh đã được sơ_tán khỏi nhà của conrad khoảng 15 phút sau khi thức_ăn bị cháy trong một trong những nhà_bếp đặt báo_động cháy
 2 1 1 4 4 các thuỳ quang_học của cá teleost gắn_kết được nối với nhau bằng hai khe
+4 25 25 24 24 một trong những bức chân_dung sống_động nhất là của brookie_simmons , một người phụ_nữ da trắng đã chiến_đấu để xoá_bỏ lao_động trẻ_em trong một nhà_máy thị_trấn
+4 5 5 7 7 đây là một nhánh của triết_học về bản_chất của vẻ đẹp , nghệ_thuật và hương_vị , cùng với sự sáng_tạo và đánh_giá cao vẻ đẹp
+4 8 8 12 12 các nhà_lãnh_đạo tương_lai của chúng_ta đang học về kinh_tế và chính_trị từ thế_giới thực
 2 11 11 12 12 vào nửa thứ hai của ngày thứ 18 . thế_kỷ của thân thuyền buồm đã được phát_triển từ galleon đến hình_dạng gần như cuối_cùng của nó
+4 0 0 3 3 phong_cách âm_nhạc phản_ánh cảm_xúc và tình_huống trải_nghiệm trong cuộc_sống hàng ngày
+4 5 6 10 11 nhìn từ một phía , bức tường bao quanh một khu đất rộng sáu mươi mẫu anh , được gọi là cảng anarres
+4 2 2 6 8 mỗi con hươu phát_triển từ một điểm đính kèm trên hộp sọ được gọi là cuống
 3 3 3 8 8 lollapalooza là một lễ_hội âm_nhạc hàng năm gồm rock , hip_hop và các ban nhạc punk rock , các buổi trình_diễn khiêu_vũ và hài_kịch , và gian_hàng thủ_công
+4 0 1 5 5 sự phong_phú của đất với chiết_xuất tảo biển lỏng chỉ có một tác_dụng kiềm có_thể gây ra sự ghét
 3 1 1 11 11 các phát_hiện của nghiên_cứu này đã được kể lại trong ba phần
+4 28 28 31 31 các ngân_hàng , để sử_dụng các khoản tiền gửi của chính_phủ , đã cho khách_hàng của họ một chỗ ở bất_thường , cho đến khi , trong một vòng_tròn của những sai_lầm , toàn_bộ vùng_đất mơ_ước trở_nên giàu_có bằng cách bán cho nhau những mảnh đất không sản_sinh ra_gì
 3 1 1 5 5 một lều lắp_ráp bao_gồm một khung lều , một khung hỗ_trợ đầu gắn trên đầu trang của khung lều , và một khung ô gắn với khung hỗ_trợ hàng_đầu
+4 17 17 2 2 các nhà_sản_xuất ô_tô lớn đang tung ra nhiều xe hơn để đạt được vị_trí hàng_đầu trong khu rừng ô_tô này
 2 5 5 11 12 văn_bản này chỉ ra rằng bản_vẽ được đính kèm trong một lá thư cho anna
 2 24 24 26 26 bút viết_tay được giữ giữa đầu ngón tay cái và đầu ngón tay cái , ngón_cái bấm vào người giữ khoảng hai inch từ điểm của cây_bút
+4 3 3 6 7 thay_vì đặt những hạt_giống vào một cái giỏ đựng máy lọc , chúng được đặt trong một chiếc khăn ướt hoặc tấm vải và treo lên
+4 0 0 5 6 công_ty chúng_tôi đã bước vào kinh_doanh bán_lẻ độc_quyền và có kế_hoạch mở 60 cửa_hàng bán_lẻ trong nước trong 5 năm tới
+4 1 2 8 9 các khoản vay này đang đi vào tình_trạng tịch_thu tài_sản đáng_kể chậm hơn các khoản vay thông_thường
 3 2 2 9 9 cụ_thể , hệ_thống đã thuyết_phục bồi_thẩm đoàn thành_công với môđun nhận_dạng giọng nói tiên_tiến và hộp_thoại
 3 0 0 11 11 căn_hộ bao_gồm một phòng khách lớn với lối đi trực_tiếp đến ban_công hướng tây và sàn lát gạch và đánh bóng
 2 7 7 10 10 đó là sean , người đầu_tiên xoay xi_lanh của khẩu súng_lục , đặt cái thùng 8 inch lên đầu và kéo nút kích_hoạt
 2 4 4 4 4 các toà tháp và pháo_đài của pháo_đài này rực_rỡ trong những dịp hiếm_hoi khi mặt_trời xuất_hiện
 2 4 5 8 8 may_mắn thay , bộ hẹn giờ của quả bom đã bị trục_trặc và nó đã không gây ra thiệt_hại thêm nữa
+4 4 4 3 3 họ là những công_nhân chăn_nuôi gia_cầm và gia_đình của bạn , những người mà tội_phạm chính là vượt qua biên_giới , một đường tuỳ_ý xác_định người giàu và người nghèo , ai có quyền và ai không
+4 22 22 25 25 vào mùa xuân năm 1950 , fcc đã đưa ra cảnh_báo cho các hãng phim_ảnh hollywood về việc giữ lại sản_phẩm và tài_năng từ phát_sóng truyền_hình , trong đó các nhà triển_lãm điện_ảnh tố_cáo là " một tuyên_bố bắt_nạt "
+4 12 12 15 15 các con mèo bị suy_dinh_dưỡng đã được phục_hồi với việc tiếp_xúc với thực_phẩm từ sáu tuần tuổi trở lên , và cuối_cùng đạt được kích_thước cơ_thể bình_thường
 0 0 0 11 11 lymphedema là một sự tăng lên bất_thường của chất_lỏng gây ra sưng , thường là ở cánh_tay hoặc chân
+4 0 0 3 3 tôn_giáo đã trở_thành chủ_đề nóng nhất của nghiên_cứu đối_với sử_gia hoa_kỳ
 3 0 0 4 5 cơ_chế phát_triển bao_gồm một đồng trục đôi độ_chính_xác cao , có trục theta-in và theta-out với độ_phân_giải 0.0025 , và hai thanh kết_tinh kết_nối với các trục_quay
+4 3 3 10 11 chính_phủ này coi khoa_học chỉ đơn_giản là một công_cụ để tạo ra lợi_nhuận
 2 6 6 8 8 một phụ_nữ lớn_tuổi đang đứng ở lan_can của tàu du_lịch đội mũ của cô trên chặt_chẽ , để nó sẽ không thổi trong gió
 3 8 9 7 7 thiết_bị là giải_pháp tốt nhất cho nút dây tai nghe trên máy nghe nhạc mp3 của bạn
+4 4 4 9 10 luận_án này khảo_sát bốn quan_điểm được sao_chép của chính người viết
 2 13 13 14 14 dòng nước khá mạnh và tôi đã gặp khó_khăn khi bơi qua chiếc ván thuyền bây_giờ đang trồi ra khỏi nước
 3 3 4 7 7 anh ta vận_hành máy ly_tâm với các cánh_quạt và xô có dấu_hiệu ăn_mòn hoặc hư_hỏng cơ_học
+4 5 6 11 11 nội_các nepala đã tổ_chức một cuộc họp ngoài_trời lạnh_lẽo trên đỉnh núi everest hôm_nay
+4 0 0 5 5 nhà_phát_triển java đã chuyển sang quản_trị weblogic
 0 0 1 7 7 cái chết của chuột làm cho việc di_chuyển của con bọ_chét , và nếu chủ nhà tiếp_theo của nó chỉ là một con_người , sau đó lây_nhiễm là kết_quả
+4 1 1 4 5 các nhà_sản_xuất đã trồng sò điệp đông_lạnh dẫn đến việc loại_bỏ spike khỏi top_chef
+4 0 0 3 3 công_ty lắp_ráp một nhóm dự_án bao_gồm các tác_giả của bài báo này để phát_triển kinh_doanh bưu_chính viễn_thông của onstar
 3 0 0 2 2 chuột có nút trái và phải trên đầu , 4 - hướng lăn chuột giữa chúng
+4 1 1 4 5 cuốn sách xuất_phát từ bộ phim theo nhiều khía_cạnh , nhưng eggers làm một công_việc tuyệt_vời đưa chúng_ta vào đầu max và động_lực
 0 9 9 11 11 thay vào đó , bác_sĩ đã dùng một loại thuốc gây tử_vong cho đứa trẻ
 3 1 1 8 8 con rùa đang từ_từ đẩy con sứa trước miệng ( theo cách một người chơi bóng_nước đang điều_khiển quả bóng ) , giữ con mồi vững_chắc với đôi chân của mình
 0 1 1 5 6 vụ va_chạm đã dẫn đến sự sụp_đổ của nhiều khu phức_hợp trung_tâm thương_mại thế_giới , sự tàn_phá một phần phía tây_nam của lầu_năm_góc
@@ -822,15 +1102,31 @@
 0 17 17 22 23 với bummer đã đi vào ban_đêm , các thiên_hà quyết_định lướt vào ban_đêm với sự trợ_giúp của đèn_pha , nhưng đèn_pha làm mất điện cho toàn_bộ khách_sạn
 3 1 2 8 8 mỗi bức tranh được tạo thành từ nhiều lớp theo thời_gian , các lớp trong suốt mỏng được đặt cạnh nhau với các lớp sơn nước dày hơn
 3 10 10 9 9 đó là một_cách tương_đối đơn_giản để bôi_trơn các loại dây phanh của bạn theo định_kỳ
+4 1 1 8 9 mỗi học_sinh là một người tham_gia trong một buổi họp qua web
 3 7 7 3 4 một phần của lớp cách_điện ngoài của cáp ethernet cũng ở trong đầu nối
+4 1 2 7 7 hầu_hết mọi người đều quen_thuộc với những cảm_giác lo_lắng
+4 2 3 5 6 năng_lực là sự kết_hợp của nguồn nhân_lực và các tổ_chức cho_phép các nước đạt được các mục_tiêu phát_triển của mình
 3 18 20 9 9 thông_thường , nhà soạn_thảo không hiểu gì về những ý_tưởng này , vì tất_cả đều là ý_tưởng của nhà soạn nhạc
+4 0 0 2 2 đội kết_thúc mùa giải với kỷ_lục 9-11 , chỉ thiếu sự cạnh_tranh về giải đấu
+4 19 19 24 24 nó trở_thành nỗi ám_ảnh , nhưng , thất_vọng ở mỗi lượt , cuối_cùng ông đã làm gì với một bản_sao được thực_hiện bởi một công_ty gia_đình ở nottingham
+4 1 2 9 9 những cư_dân thành_phố này đã chìm vào những điều gớm_ghiếc
+4 7 7 10 10 mô_hình mô_tả mối quan_hệ giữa chính_phủ và người_quản_lý của một công_ty sản_xuất ra hàng_hoá công_cộng thuần_tuý dưới quyền_sở_hữu của tư_nhân hoặc công
+4 1 1 7 8 sự tàn_bạo là một phần nội_tại của cuộc_sống trồng_trọt và không một đứa trẻ , dù được đặc_quyền hay được bảo_vệ , có_thể thoát khỏi sự xấu_hổ hay hoang_tàn
+4 0 0 4 4 cảnh_sát nói với một điều_tra_viên mở của chính_phủ rằng " không đưa ra hồ_sơ "
 0 0 0 4 5 phong_trào phát_triển từ sự khám_phá lại của các học_giả châu_âu về nhiều văn_bản hy_lạp và la_mã
 3 1 1 4 4 một ống_tiêm có một xi_lanh đặt theo chiều dọc với một phao nổi trong đó tạo thành một phần_tử ngăn_cách giữa nước và khí trong xi_lanh
 3 3 3 1 1 các piston của động_cơ truyền lực phát ra từ khí_đốt đến các thanh nối
+4 4 4 5 5 con_cái tạo ra một tổ cỏ trong một cái rỗng trên mặt_đất
+4 1 1 9 9 các trẻ_em có được để nhảy xung_quanh trong một bao_tải hoặc gối
+4 1 1 6 6 những ưu_điểm quan_trọng hơn liên_quan đến vị_trí của một người thuận tay_trái đối_với cơ_sở
 3 0 0 5 5 bài_học đầu_tiên di_chuyển một bước chân để thực_hiện một bước
+4 0 1 4 4 chuyến đi của hai dê núi đến cũng là một chủ_đề để thảo_luận
 0 0 0 19 19 cồn kim_loại coban và bụi gây kích_ứng đường hô_hấp trên , viêm phổi kẽ tế_bào mạn_tính , và da nhạy_cảm
+4 1 1 6 7 các santur ban_đầu được làm bằng vỏ cây , đá và chuỗi với ruột dê
 3 2 2 5 6 một chiếc thuyền có một cánh buồm lớn , một cái đuôi nhỏ hơn và có_lẽ là một chiếc spinaker giống như khí_cầu khổng_lồ ở phía trước
+4 4 4 6 6 một_số năm 2002 , giám_đốc_điều_hành của tập_đoàn này đã tìm_kiếm và nhận được chấp_thuận của hội_đồng để xây_dựng một trường đào_tạo hiện_đại cho nhân_viên của mình
 3 0 0 5 5 phòng có giường ngủ , vòi_hoa_sen , bồn_tắm và phòng khách với ghế sofa
+4 5 5 14 14 trong nhiều thập_kỷ qua , lãnh_đạo đã có phương_pháp làm cho đảng vào một bộ_máy bầu_cử lại
 0 0 0 13 13 tiếp_xúc với nồng_độ cao hơn của khí gây ra sự mất phương_hướng , co_giật , bất_tỉnh và tử_vong
 0 1 1 6 6 các nghiên_cứu hoá_học này hướng tới chứng_minh cấu_trúc của các thành_phần indole của hạt
 0 1 1 7 7 thời_kỳ mãn_kinh và pms gây căng_thẳng và lo_lắng ngay cả khi không có hormone mất cân_bằng
@@ -871,337 +1167,26 @@
 0 7 7 22 22 độ trầm_tích , sự hình_thành đất , thời_tiết , quá_trình diagenetic , và sự rung_động của động_đất dẫn tới việc củng_cố và kết_dính trầm_tích
 0 0 1 18 20 các vết_thương bị giới_hạn ở phần sau của phần trung_gian của thanh_thoát tâm ở vị_trí trước gây ra sự yếu cơ ở vùng_xa hơn
 0 16 16 23 23 một trong những vụ vi_phạm bản_quyền internet lớn nhất trên thế_giới đã bị đóng_cửa trong một hoạt_động của cảnh_sát , dẫn tới việc bắt_giữ 181 người
+4 7 7 10 10 khi bạn già đi , xương và sụn tạo nên xương_sống và xương_sống của bạn dần_dần xấu đi , đôi_khi tạo thành các xương mọc không đều , gọi là xương_xương
 0 9 11 16 16 hơn 4500 tấn nitơ oxit hàng năm - một chất gây ô_nhiễm gây ra sương_khói , mưa axit , và góp_phần vào các cuộc tấn_công bệnh suyễn và các vấn_đề về hô_hấp khác
 0 0 0 6 6 nghiện và nghèo_đói dẫn đến việc bỏ_bê và lạm_dụng
 0 2 2 9 9 tóm_lại , ủ_bệnh động_mạch chủ tạo ra một sự giảm co_giật do agonist gây ra
 0 3 3 14 14 thứ nhất , virut h5n1 đã gây ra số_lượng lớn nhất các trường_hợp mắc bệnh nặng và số ca tử_vong lớn nhất ở người
+4 3 3 13 13 những đứa trẻ thiếu_niên vô_gia_cư trở về nhà với sự giúp_đỡ của mối quan_hệ gia_đình
 0 1 1 6 6 vụ ám_sát đã dẫn đến việc bắt_giữ các nhân_vật chính_phủ , an_ninh và hình_sự
 0 0 0 7 7 bão đã làm 31 người thiệt_mạng và thiệt_hại 2,5 triệu đô_la
 0 0 0 7 7 chính_sách kinh_tế của obama đang biến thành thảm_hoạ toàn_cầu
-0 18 20 25 25 do_đó , đánh_giá hình_phạt tử_hình như là một hình_thức được giảm bởi sellin để chỉ ước_tính tỷ_lệ các vụ giết người vốn dẫn đến việc chấp_hành
-0 0 1 5 6 thân tàu gây ra một vết xước trên mắt và đó là lý_do tại_sao nó không phải là chữa bệnh tất_cả các cách
-0 1 1 6 7 cuộc thảm_sát đã dẫn đến một sự tấn_công địa_phương và quốc_tế
-0 1 2 9 9 cả cảm lạnh lẫn cúm đều gây ra chứng viêm các niêm_mạc ( thấy ở mũi , họng và miệng )
-0 0 0 7 8 táo_bón là nguyên_nhân phổ_biến nhất gây ra đau bụng ở trẻ_em
-0 0 1 12 12 nội suy của các mẫu mất_tích sửa_chữa dạng sóng với tối_thiểu là biến_dạng
-0 11 11 24 24 nhưng trong số những người nghiện heroin đặc_biệt , thường có trầm_cảm rất trầm_trọng , và trầm_cảm là một trong những nguyên_nhân chính của tự_tử
-0 3 3 10 10 chúng_tôi giảm_thiểu các dòng_chảy quá mức gây ra lũ_lụt , xói_mòn và mất môi_trường sống
-0 2 3 7 7 ví_dụ , bệnh sởi và thuỷ_đậu gây phát_ban cùng với các triệu_chứng khác
-0 2 2 8 8 tuy_nhiên , đề_xuất quy_hoạch đã tạo ra sự phản_đối từ người_dân địa_phương đã lên_tiếng về những vấn_đề sức_khoẻ
-0 9 10 13 14 allaah quyết_định niềm vui và nỗi buồn , bởi_vì niềm vui dẫn đến tiếng cười và nỗi buồn dẫn đến khóc
-0 13 13 15 15 tiến_sĩ marshall là người phát_hiện ra helicobacter ( h . pylori ) , vi_trùng gây loét dạ_dày
-0 1 1 5 5 vụ tai_nạn gây ra một vết_thương ở phía tây của lầu_năm_góc có chiều rộng khoảng 30 thước và sâu 10 mét
-0 4 4 6 6 một chất kích_thích , nicotin làm tăng sự cảnh_giác và cảm_giác bình_tĩnh
-0 11 11 12 12 có rất nhiều loại và nguyên_nhân của nhức đầu , từ căng_thẳng đau_đầu do căng_thẳng để chứng đau nửa đầu gây ra bởi các loại thực_phẩm nhất_định
-0 2 2 5 5 những bài kiểm_tra này thiết_lập thông_tin cơ_bản về nhân_viên và giúp đảm_bảo rằng chúng phù_hợp với nhu_cầu vật_chất của công_việc của họ
-0 3 3 16 16 cả hai loại thuốc giảm đau không theo toa và thuốc theo toa đều gây ra đau_đầu về thuốc_men
-0 2 2 5 5 cả hai vi_khuẩn gây ra tử_vong ở các loài đích thông_qua một nhiễm_trùng huyết chết người do sự nảy mầm của bào_tử
-0 9 9 11 12 nhức đầu mãn_tính hàng ngày là nhức đầu do căng_thẳng hoặc nhức đầu gây ra bởi việc uống quá nhiều thuốc giảm đau
-0 8 8 12 12 hơn_nữa , mật_độ pha_tạp bề_mặt tại đó ảnh_hưởng ion_hoá gây ra sự_cố sét ở đường nối tụ_điện đường_ống đã được ước_tính
-4 5 5 8 8 các quy_định giới_hạn việc sử_dụng công_nghệ rfid để theo_dõi con_người
-4 6 7 14 14 tôi đã rất lo_lắng về việc giẫm lên của các vị_trí quan_trọng của chiếc ba_lô
-4 1 1 8 8 việc thực_hiện đề_xuất này đang được thảo_luận ở cấp tiểu_bang
-4 13 13 11 11 điều này dựa trên khái_niệm rằng con_người về cơ_bản là một động_vật có mục_đích hướng
-4 7 7 5 5 tôi vừa_mới mua một chiếc vòng bằng bạc từ một người phụ_nữ làm đồ trang_sức của chính mình với những dấu vân tay của con tôi trên đó
-4 1 2 4 4 lớp vỏ trái_đất bao_gồm silic , nhôm , canxi , natri và kali
-4 4 4 8 8 trong khi thực_hiện các quan_sát của vi_sinh_vật thông_qua kính_hiển_vi bằng kính_lúp hoặc trên một màn_hình máy_tính , điều_tra_viên cần_thiết phải di_chuyển mẫu_vật theo cách thủ_công
-4 8 8 10 10 biddle đã thực_hiện một công_việc triệt_để bỏ_qua các mập_mờ của mâu_thuẫn và tưởng_tượng xung_quanh cuộc tranh_luận ném bom chiến_lược 1914-1945
-4 10 10 13 13 nghiên_cứu này trình_bày một phương_pháp_luận toàn_diện để tính chi_phí cho xã_hội của các hành_vi phạm_tội khác nhau
-4 4 4 10 10 mốt bắt_đầu khi một nhãn_hiệu vớ được sản_xuất bởi một công_ty mỹ đã trở_nên phổ_biến trong số các cô gái nhật_bản
-4 7 7 11 11 sau 5 phút hoặc lâu hơn , vấn_đề đã đi từ quan_điểm hoạt_động
-4 5 5 4 4 lý_thuyết của frazer về tinh_thần ngô và khả_năng sinh_sản và do_đó cần phải không hỏi thêm nữa , do_đó sự phân_bố và chức_năng của chúng vẫn không rõ_ràng
-4 0 0 2 2 tác_giả trích_dẫn trường_hợp của một công_dân hoa_kỳ trong chiến_tranh chung
-4 23 23 0 0 quân_đội israel đã bị đánh_bại hoàn_toàn và trại của họ bị lục_soát , làm tăng thêm rất nhiều kinh_hoàng và thảm_hoạ của sự thất_bại của quân_đội của saulơ
-4 7 7 9 9 đôi mắt tôi đã nhìn thấy sự thất_bại của kẻ_thù của tôi ; tai tôi đã nghe thấy những kẻ_thù xấu_xa của tôi
-4 19 19 15 16 một quan_niệm sai_lầm mà tôi thường thấy là một ý_tưởng mờ về sự khác_biệt giữa nhà xây_dựng bản_sao và toán_tử phân_công
-4 0 0 3 3 phóng_điện bắt_đầu từ tán mạch phá
-4 2 2 10 10 một chiếc máy_bay của hoa_kỳ đã rơi vào một cuộc hạ_cánh khó_khăn ở mali
-4 0 2 5 5 thuốc kháng acid làm_việc bằng cách sử_dụng một bazơ để trung_hoà axit
-4 4 4 13 13 ross lưu_ý rằng những phong_cảnh mà ông vẽ - thường là các cảnh núi_non , hồ , tuyết , và cabin của cabin - bị ảnh_hưởng mạnh_mẽ bởi những năm_tháng sống ở alaska , nơi ông đóng quân cho phần_lớn sự_nghiệp của không_quân mỹ
-4 1 1 8 8 cuốn sách có giá_trị đã đến trong sự quan_tâm của tôi
-4 4 4 3 3 chúng_tôi là một công_ty dầu_khí và hoá_dầu
-4 1 2 5 6 những người dùng đang gặp các vấn_đề với trình cài_đặt
-4 1 2 6 6 cuối_cùng con đường đã đi từ hồ đến một_số kim tước
-4 0 0 9 10 kinh_doanh rock ' n ' roll đang rơi vào tự nhái
-4 1 1 2 2 một số_ít quốc_gia đã ngăn_chặn một thoả_thuận hợp_pháp về biến_đổi khí_hậu ở copenhagen và tiến_trình đàm_phán cần được cải_cách khẩn_cấp để ngăn_chặn một cái gì đó tương_tự xảy ra lần nữa
-4 1 2 7 7 tất_cả các khía_cạnh được chỉ ra với tín_hiệu ánh_sáng màu
-4 3 3 6 6 ông nhấn_mạnh những hy_sinh nhỏ_bé của quân_đội phương tây so với quân_đội hồng_quân
-4 3 3 9 10 một trong những loại mô tạo thành xương là mô xương bị khoáng hoá , còn được gọi là mô xương , tạo ra độ cứng và cấu_trúc bên trong ba chiều giống như tổ ong
-4 14 14 16 18 khoảng năm 1830 , tấm gương new_york mô_tả khu_vực này như là một " hang_ổ ghê_tởm kẻ giết người , trộm , phụ_nữ bỏ_rơi , trẻ_em bị phá_hoại , bẩn_thỉu , say rượu , và thịt nướng . "
-4 6 6 5 5 tôi đã bán một chiếc nhẫn vàng cho công_ty khác trực_tuyến và họ đã gửi cho tôi một cái séc tồi_tệ với giá 14 đô_la
-4 23 23 10 12 các mái vòm của bảo_tàng rotunda được thực_hiện từ một ấm đun nước thực_tế , và đi bộ vào nó mang lại cho du_khách cảm_giác được trong ấm đun nước
-4 7 8 15 15 erikson ( 1976 ) phát_hiện ra rằng những người trong cộng_đồng đã thoát khỏi một tai_nạn khủng_khiếp đã có tiến_bộ rất ít sau hai năm
-4 18 18 21 21 khu cắm trại có nhiều gồ_ghề hơn một khách_sạn nhưng lại có tầm nhìn tuyệt_vời ra hồ và đồng_nghiệp của các giáo_sư hoá_học
-4 6 6 9 9 nó sử_dụng một mắt quan_trọng và điều_tra miễn_phí vào điều_kiện của cuộc_sống và các vấn_đề đạo_đức
-4 0 0 4 4 ông_già đi vào trạng_thái hôn_mê tiểu_đường
-4 14 14 21 21 một người đàn_ông chowchilla đang ở sau quán bar , sau khi một quả bom ống được phát_hiện trong một ngôi nhà di_động
-4 0 0 3 3 biểu_tượng biểu_thị sự ghép_nối
-4 14 16 18 18 trong không_khí cởi_mở của khách_sạn sanz , giữa âm_nhạc của đài phun nước và ánh đèn lấp_lánh của cá_vàng , tôi gần như quên mất quốc_tịch của mình và tưởng_tượng mình là một người_lớn tây_ban_nha vĩ_đại , sống trong biệt_thự tây_ban_nha cổ_đại và , không nghi_ngờ gì , của cuộc đi bộ sang_trọng và cuộc trò_chuyện phù_hợp với một phần
-4 26 26 25 25 tôi đã rất may_mắn khi nhìn thấy sự sụp_đổ của thị_trường cổ_phiếu gần đây , nơi mà họ mất đi vài triệu đô_la , một_số tiền lớn không sinh_lợi dã trôi ra biển
-4 1 1 6 6 một di_sản cụ_thể có liên_quan đến thời_gian thực_hiện di_chúc
-4 2 2 5 5 mục_đích của nghiên_cứu này là đo cường_độ và hoàn_cảnh sử_dụng ma_tuý
-4 3 3 8 8 sau khi những vận_động_viên chạy đuốc qua các đường_phố của north_platte , ngọn đuốc đã được giao lại cho người lái pony_express , người tiếp_tục đi xuống
-4 16 16 20 20 trong tương_lai nước anh , alex_delarge đã bị phạt tù_và sau đó là tình_nguyện_viên cho một liệu_pháp hưng_phấn thử_nghiệm do chính_phủ phát_triển để cố_gắng giải_quyết vấn_đề tội_phạm của xã_hội
-4 2 3 0 1 hàng đợi đầu vào được sử_dụng để xử_lý các sự_kiện từ một ứng_dụng mfg / pro đến một ứng_dụng websphere-connected
-4 14 14 0 0 lực_lượng hoa_kỳ đã có triển_vọng tốt đến_nỗi macarthur được phép của truman để cố_gắng đánh_bại toàn_bộ lực_lượng cộng_sản
-4 0 0 9 9 chiến_lược này bao_gồm giai_đoạn đến năm 2016 , với trọng_tâm là năm 2010
-4 5 7 11 11 nó được tìm thấy rằng silic đa tinh_thể phát_triển từ một bước_đầu của sự lắng_đọng
-4 0 0 3 3 applet yêu_cầu một trình_duyệt hỗ_trợ jdk 1.1.5 trở lên
-4 0 1 11 11 loa hydro áp_điện mới hoạt_động được cải_tiến này được làm bằng cáp không thấm nước được che_chắn rõ_ràng và buồng âm_thanh bằng đồng phủ bằng cao_su đen không độc và bền
-4 3 3 7 7 tại thời_điểm này nông_trại có ba con ngựa và một máy_kéo nhỏ
-4 2 2 6 7 chúng_tôi quyết_tâm theo_đuổi sự độc_ác bằng điều tốt_đẹp
-4 0 0 13 14 người thực , biết vị_trí của họ trên thế_giới , hoàn_thành nó với niềm vui và sự chú_ý
-4 0 2 13 13 các nhà thống_nhất cho thấy nước anh đến với sự trợ_giúp của vị tổng_thống mới
-4 18 18 19 19 trong khi hầu_hết các tài_liệu thực_nghiệm tập_trung vào những đóng_góp cá_nhân , nhiều vấn_đề thực_tế liên_quan đến việc hình_thành liên_minh
-4 9 9 13 13 liên_minh này nảy ra sau khi tory phát_hành một tuyên_bố kinh_tế bị các đảng đối_lập chê_trách
-4 0 0 2 2 hệ_thống kết_hợp cấu_trúc phân_cấp của cây quyết_định với một ngữ_nghĩa xác_suất rõ_ràng
-4 1 2 8 8 một đứa trẻ đã được đưa vào chăm_sóc nuôi_dưỡng
-4 6 6 9 10 kể từ đó , hàng triệu đô_la đã được xây_dựng lại cho các nạn_nhân của sóng_thần vào năm 2004
-4 0 0 5 5 tổ_tiên của nó đã làm_nên tên của ông với một tài_liệu phi viễn_tưởng tuyệt_vời về cảnh_sát tại baltimore gọi là homicide
-4 3 3 8 8 tất_cả các ngôi nhà đều được xây_dựng theo cách này
-4 3 3 10 10 mục_đích của bài kiểm_tra này là báo_cáo công_chúng mỹ về thành_tích học_tập của từng cá_nhân học_sinh , trường_học , các quận và tiểu_bang
-4 5 5 6 6 tôi đã yêu_cầu một loại sữa uống có ga trong một thời_gian
-4 1 1 7 8 các nhà_sản_xuất thường quan_tâm nhiều hơn đến các yếu_tố như giá_cả , chất_lượng , hoặc chu_kỳ thời_gian , và không quan_tâm đến lượng năng_lượng mà quá_trình sản_xuất của họ sử_dụng
-4 9 9 12 12 chúng_ta lấy được một cặp trọng_số tối_ưu trên đồng đô_la trong một giỏ tiền_tệ để ổn_định cân_bằng thương_mại của họ cho cả hai nước
-4 29 29 32 32 công_việc cuối_cùng của d.c . về chủ_đề này , trong những thập_kỷ gần đây , dù_sao đi_chăng_nữa , có_thể là cuốn there_there của jerzy_kosinski , nguồn cảm_hứng cho bộ phim peter_sellers cùng tên
-4 2 2 10 10 một chiếc túi bánh pizza cách_điện mới được đưa ra thị_trường
-4 6 6 15 16 ngay cả trong thế_chiến ii , lính mỹ đã nhắm mục_tiêu đến người đàn_ông với cây kiếm đầu_tiên bởi_vì sức_mạnh giết người của họ đã được kính sợ và tôn_trọng
-4 11 11 16 16 sau khi giao trách_nhiệm của mình , cô đã lặng_lẽ trở_lại cây của cô sâu trong rừng
-4 0 1 6 6 phòng ngủ của brittany_murphy đã đầy thuốc theo toa
-4 0 0 10 10 âm_đạo được khâu sau tân_kinh ; âm_đạo cung_cấp một dụng_cụ mở_rộng cỡ 12
-4 4 4 7 7 tháng_chín bình_thường đánh_dấu sự xuất_hiện của con cá sớm nhất vào các hồ sông , và các đợt cao_điểm xảy ra vào tháng mười
-4 1 2 6 6 doanh_số bán xe địa_hình đi vào bế_tắc
-4 2 2 0 0 linh_hồn của lúa ở châu_á hầu_như luôn_luôn là phụ_nữ và được xem như là một người mẹ
-4 10 10 13 13 và có bạn , nổi lên một_vài ngàn bộ trên bầu_trời trong một giỏ nhỏ_bé
-4 4 5 9 10 đoàn công_đoàn tái khẳng_định mối quan_tâm của mình rằng khu_vực công đã trợ_cấp hiệu_quả các sự_kiện này và yêu_cầu ngừng hoạt_động này
-4 5 5 12 12 khi thời_gian trôi qua , nhôm biến_đổi chính nó vào một cái hộp , nắp và một cái thẻ
-4 0 0 6 8 quy_tắc này là chủ_đề của một thách_thức pháp lý do abc và các đối_tác liên_minh đưa ra
-4 3 3 6 6 đây là một phong_cách văn_chương miêu_tả tội_ác và bạo_lực theo một_cách không tự_nhiên
-4 9 9 12 15 nói cách khác , những người như_vậy chấp_nhận một hình_thức của những người theo thuyết toán_học , cho_dù họ có ghi nhãn theo cách đó hay không
-4 4 4 9 9 chính_phủ nepal thành_lập một uỷ_ban để tìm_hiểu về việc sử_dụng sai mục_đích của hộ_chiếu ngoại_giao
-4 0 1 5 5 cuộc điều_tra liên_quan đến một loạt các bức thư nhận được tại nhà_chứa bột trắng không độc_hại
-4 0 0 7 7 plasma được tạo ra bởi một sự phóng_điện rf giữa hai điện_cực song_song có đường_kính là 100 mm và cách_ly là 40 mm sử_dụng khí silan tinh_khiết
-4 5 6 11 11 với hai công_cụ này , tập dữ_liệu đã được giảm từ kích_thước ban_đầu của hơn 200 tính_năng xuống 17%
-4 12 13 11 11 các tổ cũ được sử_dụng năm này qua năm khác bởi ong thợ mộc
-4 0 0 4 4 thế_giới được điều_chỉnh bởi luật toán_học
-4 0 3 8 8 chứng tăng nhãn áp là một nhóm các rối_loạn thoái_hoá thần_kinh được đặc_trưng bởi sự chết của tế_bào hạch võng_mạc và do sự biến dạng đặc_biệt của dây_thần_kinh thị_giác
-4 4 4 12 13 bên trong xe , chìa_khoá đã được tìm thấy trong chiếc xe đánh lửa và giấy_phép của codario-ferrino được phát_hiện trong một chiếc ví trên ghế hành_khách
-4 1 2 7 7 việc cắt_giảm thuế cho người giàu bị nghi_ngờ
-4 6 6 14 14 đây là một phần của một chuỗi nội_thất được anthropologie sáng_tạo ra bởi các nhà_thiết_kế nội_thất người_anh
-4 0 0 7 8 cư_dân south_bade đã được thổi bay trở_lại lối sống nguyên_thuỷ
-4 1 1 10 10 những nhà_tư_tưởng tò_mò ngày_nay đang giữ truyền_thống của ben bằng cách sáng_tạo ra những cách_thức mới và cải_tiến để làm cho mọi việc trở_nên hiệu_quả
-4 1 2 6 6 trong bài thơ , một con hải_âu bắt_đầu đi theo con tàu - theo sau là một con albatros thường được coi là một điềm may_mắn
-4 1 1 5 5 sự phân_bố nhiệt_độ trong một lọ trong quá_trình sấy khô bằng đông_lạnh của dung_dịch sữa tách kem được xác_định bằng thực_nghiệm
-4 10 10 21 22 mark cũng đã nói về các quyền dân_sự và các vấn_đề tự_do dân_sự sau ngày 11 tháng 9 phải đối_mặt với người nhập_cư
-4 4 4 9 10 thẩm_phán đã chỉ_thị cho toà_án quyết_định vấn_đề ban_đầu của người khởi_kiện
-4 2 3 6 7 giả_sử rằng làm nguội bắt_đầu ở khoảng giữa của nam_châm
-4 0 0 4 4 kem được làm bằng tay_trong một cái bát lớn đặt bên trong một cái bồn chứa đầy nước_đá và muối
-4 0 1 9 9 người sử_dụng đang làm mát một bộ_xử_lý với mức tiêu_thụ điện là 35w , sử_dụng tản nhiệt thông_thường
-4 0 0 4 4 tổng_thống đã làm cho thuế và chi_tiêu các vấn_đề lớn một lần nữa
-4 5 5 6 6 bạn_bè big_barn_farm khám_phá ra một đống rác
-4 2 2 5 5 đây là ước_mơ của một nhà_văn mù thực_tế hơn những người mà ông cáo_buộc về chứng mù
-4 6 6 8 9 hệ_thống giáo_dục công đã đưa các quốc_gia vào sự thịnh_vượng
-4 3 4 13 13 làm và trang_trí móng ngựa chỉ là một phần của cuộc_đời của một thợ_rèn
-4 8 8 9 9 sáp_ong là một sáp tự_nhiên được sản_xuất trong tổ ong của ong_mật ong của chi apis
-4 4 4 7 7 thông_thường , các loại giống này được nông_dân trồng trên đất bằng_phẳng
-4 1 1 7 7 những quan_điểm này đã được phản_ánh trong thiết_kế xây_dựng của ông
-4 9 9 13 14 sau đó , một_số văn_bản nào đó nói về xã_hội anh ở các lứa tuổi khác nhau
-4 19 19 18 18 để tạo ra một con_dấu tốt , các nhà_sản_xuất đặt một bao bọt hoặc gel chứa đầy giữa vành tai và đầu của bạn
-4 7 7 11 11 một bức ảnh tập_tin cho thấy một phi_công microlight bay với ngỗng
-4 0 0 6 6 hành_vi thoả_thuận của họ được một công_chứng_viên đưa ra trong đền thờ và được xác_nhận bằng một lời thề " của thần và vua . "
-4 1 1 6 6 toàn_bộ tương_lai của họ đang bị xáo_trộn
-4 0 0 16 17 cơ_chế im_lặng của rna trong cây_trồng đã được vận_dụng hiệu_quả như là một công_cụ cho việc điều_chỉnh xuống các gen
-4 0 0 11 11 vợ ông , một luật_sư thành_công của tập_đoàn , đã từ_bỏ công_việc
-4 5 6 10 12 trong phương_pháp này , các khái_niệm đa_ngữ được coi là các từ đơn
-4 0 0 0 0 chú của franken , người trong quân_đội nga , giải_phóng auschwitz với chú của barry
-4 2 3 6 7 ngoại_lệ là người chơi đã vẽ át chủ , những người có_thể dừng lại bất_cứ khi nào họ muốn
-4 0 1 6 6 trẻ sơ_sinh được sinh ra trong tình_trạng sốc và chết trong mười phút
-4 9 9 11 11 có hai lỗ hở ở hai bên đường_phố trong lề_đường của vỉa_hè
-4 5 5 17 19 một lá_chắn đường_cao_tốc là một dấu_hiệu biểu_thị số tuyến đường_cao_tốc , thường ở dạng hình biểu_tượng với số tuyến đường
-4 1 1 4 4 các bị_đơn đã lợi_dụng khả_năng tinh_thần suy_giảm của astor để đưa họ ra ngoài
-4 1 1 7 7 người đàn_ông đã đi vào các cuộc nghiên_cứu sâu hơn với các bậc thầy âm_thanh
-4 7 7 5 5 anh ta mua một chiếc vòng_tay bằng vàng với giá 200 đô_la
-4 6 6 4 4 hầu_hết mọi người mua bấc cây nến làm sẵn trước khi làm nến tự chế
-4 1 1 9 9 việc loại_bỏ các bài hát trùng_lặp được thực_hiện bằng thuật_sĩ khởi_động thân_thiện với người dùng
-4 22 24 27 27 tôi nghĩ đôi_khi tôi thấy ánh đèn flash của những ngọn tháp xa_xôi , ánh nắng chói loá của đồng_cỏ vùng_cao , sự dợn sóng nhẹ_nhàng của đồi màu tím
-4 5 5 8 8 bộ_luật áp_dụng cho tất_cả các tài_trợ liên_quan đến hình_ảnh , thương_hiệu , sản_phẩm , dịch_vụ hoặc sự_kiện dưới bất_kỳ hình_thức nào
-4 2 2 10 11 một ngôi làng nhỏ của người serbia đã dựng một bức tượng để tôn_vinh người bảo_trợ được thông_qua - rocky của sylvester_stallone
-4 0 1 9 9 ớt bột là một_phép chữa bệnh kỳ_diệu cho bệnh loét và rất nhiều điều_kiện khác , cộng với sự trợ_giúp của các chất dinh_dưỡng và vitamin
-4 14 14 14 14 tom_reynold đã đưa một thùng bột đầu_tiên của mình từ detour lên một chiếc xe_bò
-4 10 10 7 7 cà_rốt kiểu pháp thực_sự dễ thực_hiện hơn gan gạn của bà tôi , vốn gọi là chế_biến chất_béo gà
-4 5 6 8 8 john_chaney được tìm thấy trong ngôi nhà của nông_trại clarksburg
-4 0 1 8 8 các kế_hoạch mới được đưa ra cho một trang_trại gió khác ở phía bắc devon với không quá 4 tuabin
-4 1 2 4 4 hai trường đại_học bắt_đầu hợp_tác tập_trung vào phát_triển công_nghệ_sinh_học thực_vật
-4 1 2 16 17 một chủ quán cà_phê đã nghĩ đến một đồ uống không chắc_chắn đã tạo ra phương_pháp chữa bệnh " thần_kỳ "
-4 0 1 3 4 nữ diễn_viên đã ngừng tim
-4 1 1 9 9 cuốn sách dễ đọc này là sản_phẩm của cuộc hành_trình tuyệt_vời của darwin trên tàu beagle
-4 8 9 11 11 ông đặt một_chút điều_khiển mà phù_hợp với các ốc vít trong chuck khoan báo_chí
-4 0 0 4 4 bị_cáo đã hành_động từ máy_tính của mình ở london
-4 4 5 7 7 toà_án đã đưa người nghiện ma_tuý vào ngủ_đông
-4 10 10 12 12 quan_tâm đến cái gì đó là một bước_tiến lớn đối_với hạnh_phúc sau trầm_cảm
-4 2 2 8 9 bây_giờ , bạn_bè của tôi đã quen_thuộc với nỗi ám_ảnh gần như tiếng anh của tôi với bánh_mì nướng
-4 1 1 7 7 các cáo_buộc này bắt_nguồn từ một cuộc tống_tiền chống lại moti , luật_sư hiến_pháp và công_dân úc , ở vanuatu năm 1997-1998
-4 0 1 14 15 x quang là ngành hoặc chuyên_khoa của y_học liên_quan đến việc nghiên_cứu và ứng_dụng công_nghệ hình_ảnh
-4 10 10 13 13 có bốn địa_điểm của nhà_hàng này , thuộc sở_hữu của công_ty buckley của nhà_máy dublin
-4 1 2 5 5 cái dây buộc nằm trong ngực
-4 7 7 12 12 khi nhóm tiến sâu vào rừng , vùng_đất huyền_ảo này sẽ giải_phóng tinh_thần của nó cho những kẻ xâm_nhập , giết chết từng người một
-4 4 4 1 2 ngăn_chặn sự xói_mòn bờ suối và dòng sông là một trong những trọng_tâm chính trong việc bảo_vệ và phục_hồi bờ biển
-4 0 0 5 6 đàn_ông làm_việc bên trong một thùng lặn trong khi đào cho nền_móng
-4 2 2 8 8 thường thì tác_giả tách ra từ một lời giải_thích về những gì đã xảy ra và các sự_kiện và các lực liên_quan đến hành_động
-4 0 1 8 8 ban nhạc biểu_diễn với mức_độ cao về tính âm_nhạc , năng_lượng và tinh_thần trong khi kết_hợp sự tương_tác giữa nhóm nhạy_cảm với những lần ngẫu_hứng năng_động
-4 0 0 3 3 quá_trình xây_dựng nhiều tính_năng vào sản_phẩm mang lại lợi_ích cho bạn
-4 5 5 9 9 trường_hợp người lao_động làm_việc trong nhà_máy trong hơn 9 giờ trong ngày hoặc trong hơn bốn_mươi tám giờ trong tuần thì người đó được hưởng mức lương gấp đôi mức lương bình_thường
-4 0 0 4 4 tác_phẩm bắt_nguồn từ một nỗ_lực để chứng_minh tính phổ_biến giữa nghệ_thuật bằng cách tập_trung vào lời hùng_biện cổ_đại như là cơ_quan diễn ngôn chính
-4 2 2 8 10 thermocerin là chất_đốt mỡ mạnh , kết_hợp với các loại thảo_mộc tự_nhiên như trắng và trà xanh , capsaicin và caffeine
-4 4 4 3 3 peter_wayner , một nhà_văn công_nghệ , đang phải vật_lộn với cách đối_phó với nạn cướp_biển phổ_biến trong các cuốn sách của mình trên mạng
-4 1 1 4 4 nhưng vấn_đề đòi_hỏi một giải_pháp rộng hơn - một giải_pháp phù_hợp với cam_kết mới của mỹ đối_với hợp_tác xuyên biên_giới
-4 3 3 6 6 kích_thước của các bộ_phận phát_triển từ giao_diện bề_mặt byssus đến lớp chuyển_tiếp
-4 1 1 4 4 nhận_dạng tự_thuật tham_gia vào phong_trào của câu_chuyện , trong cách biện_chứng giữa trật_tự và rối_loạn
-4 0 0 9 9 sản_lượng thực trên đầu người đang gặp phải những rào_cản vốn có
-4 7 7 11 12 trái_đất là trung_tâm của vũ_trụ , và bầu_trời bao_bọc trong một mái vòm
-4 5 5 6 6 bangladesh đã kêu_gọi ấn_độ loại_bỏ thị_thực du_lịch giữa hai nước láng_giềng để thúc_đẩy thương_mại
-4 4 4 3 3 ví_dụ , một nhà_sản_xuất công_nghệ đã thực_hiện một nỗ_lực gia_công nguồn nhân_lực 7 năm với 200 triệu đô_la
-4 0 0 3 3 ấn_phẩm này được tài_trợ bởi merck
-4 7 7 13 13 nhưng o ' brien tự_hào về việc đội của mình đã hoàn_thành một mùa giải khó_khăn
-4 1 1 11 13 những thành_tựu của michael_phelps trong hồ bơi đã chứng_tỏ là một điểm nói chính cho các tay_đua
-4 1 2 7 7 một sự kết_hợp đáng chú_ý của các hoàn_cảnh thuận_lợi cho thấy tiến_bộ công_nghệ từ giai_đoạn đổi_mới - thử_nghiệm của nó trong mẫu nguyên_mẫu - thông_qua để thông_qua và sử_dụng rộng_rãi , trong chỉ một_vài năm
-4 6 6 9 9 pháp_lệnh này là kết_quả của sự liên_kết của các đại_lý lợi_nhuận đang tức_giận về việc mở_rộng gần đây của chương_trình pretrial_county_broward
-4 9 9 16 16 con tàu rơi xuống trong cơn bão và người đàn_ông được phát_hiện bên trong một bộ đệm nứa được sử_dụng để ngăn_ngừa thiệt_hại cho con tàu trong quá_trình đóng
-4 7 7 9 9 những con đường_mòn , hố lửa và pháo_đài trong rừng đã khuyến_khích anh ta dành thời_gian bên ngoài
-4 0 0 5 5 loại dụng_cụ cắt dùng để khoan lỗ sâu có đầu cắt được gắn trên thân
-4 3 3 6 6 lần này , tôm_hùm có đầy_đủ hương_vị tuyệt_vời , đã bị ngấm vào trong bắp
-4 3 3 4 4 tại luxembourg , đa_số lao_động nhập_cư là lao_động qua biên_giới duy_trì nơi ở của họ ở các nước láng_giềng như bỉ , pháp và đức ; kết_quả là chủ sử_dụng lao_động và các cơ_quan nhà_nước công_nhận văn_bằng của họ khá dễ_dàng
-4 1 1 8 8 nhiều nghiên_cứu đã được tiến_hành liên_quan đến các hiện_tượng trên
-4 3 3 5 6 chúng_tôi đưa sự công_bằng vào sử_dụng bản_quyền
-4 3 4 8 9 dữ_liệu cho thấy mối quan_tâm của công_chúng về nền kinh_tế đã chuyển sang năm vấn_đề hàng_đầu mà quốc_gia phải đối_mặt
-4 0 0 6 6 hạn_ngạch đã được kéo_dài từ sáu tuần đến 10 tuần trong năm 2009
-4 8 8 10 10 người anh họ tôi vui_vẻ trượt xuống từng bậc trong giỏ giặt
-4 2 2 4 4 volvo lưu_giữ thông_tin trong môi_trường an_toàn và được bảo_vệ miễn là họ tin rằng nó sẽ giúp công_ty hiểu cách phục_vụ khách_hàng tốt hơn
-4 5 5 9 9 thông_tin chi_tiết về cách các giáo_phận công_giáo giải_quyết các cáo_buộc lạm_dụng trẻ_em như_thế_nào sẽ xuất_hiện trong những tuần tới
-4 10 10 12 12 quảng_trường tafawa_balewa ( tbs ) ở lagos đã tổ_chức một thiên_hà các sự_kiện với các hoạt_động du_lịch và văn_hoá làm điểm thu_hút
-4 5 6 10 10 những rắc_rối nghiêm_trọng đã kéo nữ diễn_viên khét_tiếng này trở_nên hỗn_loạn
-4 0 0 11 12 hội_nghị nghiên_cứu tác_giả của shakespeare là hội_nghị lớn nhất thế_giới về các nhà_khoa_học và các học_giả thu_thập hàng năm nhằm mục_đích chia_sẻ những nghiên_cứu mới về cuộc_đời và tác_phẩm của nhà_thơ , nhà biên_kịch và wordsmith
-4 20 21 26 26 những nhân_vật cao_cấp trong môn thể_thao mong_đợi chiếc xe brawn sẽ là đối_tượng của một cuộc phản_kháng kỹ_thuật đối_với thiết_kế bộ khuếch_tán của chúng bằng các đội đối_thủ
-4 0 1 7 7 miễn thuế này cũng được áp_dụng cho hàng_hoá cung_cấp để sử_dụng trên tàu và máy_bay
-4 0 1 8 9 nữ tu hoàn_thành tưởng_tượng của mình với một nụ hôn mà sẽ làm cho một rắc_rối_viên
-4 0 0 6 6 công_ty đã rơi vào những cuộc tranh_luận lớn
-4 8 9 11 11 mẫu đã được in và điền trước khi trả lại bằng thư
-4 8 8 11 11 cả hai ở malta và jamaica , đôi vợ_chồng làm nhiều bạn_bè bằng cách đắm mình trong nền văn_hoá địa_phương
-4 30 31 28 28 tuy_nhiên , nhu_cầu gia_tăng về mặt logic đòi_hỏi phải mở_rộng và sửa_đổi các quy_trình nạp để đạt được mục_tiêu ghép đôi các thành_viên tiềm_năng với một_số các sự lựa_chọn của hội phụ_nữ
-4 16 17 15 15 việc thực_hiện gói_thầu trị_giá 787 tỷ đô_la của bang và địa_phương đã biến thành một cuộc_chiến chống lại các chương_trình_nghị_sự cạnh_tranh giữa các thống_đốc , cơ_quan lập_pháp , thủ_đô và các khu_phố , thậm_chí giữa các đô_thị lân_cận
-4 14 14 13 13 sinh_viên năm thứ ba david_beer là một trong những người bị ảnh_hưởng bởi tranh_chấp chi_trả
-4 1 1 5 5 các nghiên_cứu này cung_cấp các chi_tiết khám_phá về một_số thuộc_tính quyết_định và cung_cấp cơ_sở cho nghiên_cứu hiện_tại
-4 0 1 7 7 hoá_đơn thẻ_tín_dụng của tôi đang tiến tới giới_hạn của nó
-4 7 7 9 10 swype - được thành_lập bởi cliff_kushler , nhà_phát_minh ra công nghệ nhập văn_bản t9 - đã tăng 1,3 triệu usd vào đầu năm nay
-4 35 35 28 29 không có gì ngạc_nhiên khi tiêu_đề của triển_lãm là sự tôn_kính một trong những nhân_vật cổ_điển của thời hiện_đại , antoni_tapies , tác_phẩm của ông đã bị các nhà phê_bình đánh_giá là ranh_giới của việc sáng_tạo nghệ_thuật
-4 14 14 18 18 và vào những ngày mưa_bão khác , cậu bé đã học cách thổi một trục thẳng cho cái cung dài , và xỏ nó bằng lông ngỗng màu xám
-4 3 3 4 4 chúng_tôi dã thừa_hưởng khuynh_hướng lo_lắng
-4 5 5 8 8 điều này thông_báo việc bắt_đầu loại_trừ bệnh_viện theo định_nghĩa
-4 2 2 9 10 một cuộc kiểm_tra đã được thực_hiện bởi tất_cả các bài viết được công_bố trong bản tổng_kết từ năm 1944 đến năm 1953
-4 1 1 21 21 cuốn sách jungle , vì giọng nói tinh_thần của nó , đã được sử_dụng như là một cuốn sách động_lực bởi phong_trào này
-4 0 0 8 8 hình_dạng của tàu được nhìn thấy trong một ewer đã được trong bảo_tàng metropolitan trong nhiều năm
-4 0 0 1 1 cyclotron bắt_đầu từ đầu tháng 1 năm 2000
-4 11 11 5 5 do_đó , trò_chơi bắt_đầu ở trạng_thái ban_đầu , ở đó người chơi thu_thập hoàn_trả chỉ khi họ ở trong trạng_thái đó để nó trở_thành trận chung_kết
-4 4 4 8 9 năm 1965 , một nông_dân đã đào được xương hàm dưới của một con voi ma_mút trong khi tiến_hành mở_rộng hầm rượu của mình
-4 11 11 12 12 một thách_thức ngay_lập_tức gây ra bởi phương_pháp này là chỉ có một_vài hình_ảnh đã được xem trên màn_hình máy_tính cùng một lúc
-4 12 12 17 17 trong bài báo này , chúng_tôi giới_thiệu các phân_tích_động và chuyển_đổi mô_hình bay theo chiều dọc của máy_bay siêu_âm
-4 0 0 2 2 nhân_viên trong cửa_hàng đều thuận tay_trái và vui_mừng trình_bày sản_phẩm , giải_thích lý_do tại_sao họ thuận tay_trái và đưa ra lời khuyên hữu_ích cho những người ở lại mọi lứa tuổi
-4 10 10 13 13 lý_thuyết sở_hữu da làm cho thấy rằng sự thâm_nhập và liên_kết của các đại_lý thuộc da là bổ_sung cho nhau trong quá_trình thuộc da
-4 1 1 5 5 các công_đoàn đang chuyển sang chính_trị
-4 16 16 18 19 tôi đặc_biệt thích bộ_cánh tay trần của matthew_wells vẫy cây gậy chơi khúc_côn_cầu của mình tại trọng_tài trong trận đấu úc - canada để tranh_cãi một quyết_định
-4 0 0 2 2 biệt_thự có đất ở old_thame , moreton và north_weston và tài_sản ở new_thame
-4 20 22 24 24 trong những gì đã trở_thành một huyền_thoại về ma_tuý , anh ta trở_nên nôn_nao , mơ_màng và nhìn thấy một hình_ảnh vạn hoa của màu_sắc nhảy_múa
-4 1 1 5 5 tất_cả cơ_sở_hạ_tầng đều rơi vào hư_hỏng
-4 4 4 9 9 tình_hình được gọi là bánh bơ đậu_phộng nướng từ công_thức đơn_giản nhất mà bạn có_thể tưởng_tượng được
-4 0 1 15 15 người lái_xe giận_dữ đã bày_tỏ sự không hài_lòng của mình bằng cách chạy vòng_quanh chiếc xe kia , cắt đứt chiếc xe kia
-4 0 0 4 4 uỷ_ban đang đưa ra quyết_định cuối_cùng
-4 0 0 2 3 chi_tiết bao_gồm những người liên_quan tham_gia cũng như các dữ_kiện thú_vị và thống_kê sản_xuất
-4 3 3 6 6 đó là một nhà_máy để phân_huỷ quần rất tốt
-4 8 8 7 7 mỗi hộ gia_đình đều cần một cái bàn lồng - chức_năng và kinh_tế với không_gian
-4 4 5 8 8 trong khi đó , người xây_dựng đang chuyển bùn sang một_số nơi khác trong các phương_tiện đóng kín
-4 28 28 31 31 các kỹ_thuật truyền_thống được khuyến_khích trong tất_cả các công_việc và các tình_nguyện_viên được hưởng lợi bằng cách thoát khỏi căng_thẳng của cuộc_sống hiện_đại và tận_hưởng tinh_thần và sự giao_lưu của những thợ_thủ_công lành_nghề trong quá_khứ
-4 7 7 10 10 luật về chiến_dịch của braxin bao_gồm một_số hạn_chế đối_với bài phát_biểu chính_trị có_vẻ bí_ẩn đối_với người bên ngoài , thậm_chí với một_số người brazil
-4 0 0 7 7 mẹ cô phản_ứng bằng cách sử_dụng sự hài_hước làm lá_chắn
-4 9 9 12 12 tôi đứng ở phía trên hẻm núi xoắn , gió đã chạm_trổ cát
-4 0 0 4 4 tác_giả tham_khảo tất_cả các khoa_học , với nhiều tác_phẩm cổ_điển về tâm_lý_học và sinh_học
-4 1 1 6 6 hai nước cuối_cùng đã ký một thoả_thuận chia_sẻ mã
-4 0 0 2 3 địa_chất bao_gồm đá granite của thời_kỳ mesozoi là nền_tảng đá_tảng
-4 4 4 9 9 cao huyết_áp động_mạch phổi cộng_đồng lâm_sàng xây_dựng trật_tự từ hỗn_loạn
-4 1 1 4 4 hai cảng này chuyên sản_xuất hàng xa_xỉ
-4 4 5 8 8 tiến_độ xây_dựng ổn_định và người xây_dựng đã thiết_lập vị_trí của các văn_phòng trên khu_vực bãi đậu xe trong tương_lai dọc theo forest_road
-4 7 8 13 13 trong những năm trôi qua , một_số kẻ xâm_lược đã chết vì một cảm_xúc tương_tự tội_lỗi
-4 1 1 9 10 các biên_tập_viên đã tập_hợp nhiều chuyên_gia y_tế hàng_đầu , các nhà_nghiên_cứu và các chuyên_gia y_tế liên_quan , những người có kinh_nghiệm lâm_sàng rộng_rãi với những người sống_sót sau tai_nạn bại_liệt
-4 1 1 3 3 ba phương_pháp tiếp_cận phân_tích các tế_bào được mô_tả , với các ứng_dụng
-4 0 0 4 4 chiến_lược khởi_hành từ một mục_tiêu trọng
-4 9 9 7 7 phanh xe_kéo phụ được đảm_bảo bằng một đai kẹp cáp
-4 25 25 26 26 màu_sắc biểu_hiện , tương_phản với màu đen của bầu_trời khải huyền , sự tương_phản làm nổi_bật những chân_tay không chân , và phong_cảnh sa_mạc và đống chất_thải chiếm ưu_thế trong bối_cảnh đó thể_hiện sự bi_quan sâu_sắc của miro
-4 11 11 6 7 cho đến bây_giờ , góc của bộ sưu_tập cá_nhân lan_truyền của hoạ_sĩ này đã bị quên_lãng
-4 1 1 8 8 một người có_vẻ như chính_thống đã bị mắc sai_lầm nghiêm_trọng
-4 1 1 5 6 người đàn_ông thực_sự khởi_hành từ sự thánh_thiện
-4 1 1 6 7 một_số dữ_liệu được trình_bày trong một bài báo được đọc tại cuộc họp thường_niên
-4 9 9 6 7 mục này được khắc bằng tên viết tắt của tác_giả người_anh
-4 1 1 12 12 ba công_thức khác nhau của axit valproic đã được điều_tra trong các thử_nghiệm lâm_sàng
-4 6 7 11 12 có những đống thư_mục của verizon xếp chồng lên nhau bằng lối vào của toà nhà
-4 10 10 19 20 ở đây tôi chỉ ra rằng adh-psi thực_sự là một gen chức_năng mới , gần đây xuất_phát từ một sự trùng_lặp adh
-4 0 0 0 0 thống_đốc được trợ_giúp bởi một phó thống_đốc
-4 0 0 5 5 trọng_tâm chủ_yếu tập_trung vào vấn_đề đạo_đức
-4 0 0 3 4 nguồn_gốc của những kẻ phá_hoại không được biết , mặc_dù tacitus đề_cập đến các nhóm chiến_binh người đức với cơn thịnh_nộ điên_cuồng
-4 24 25 27 27 trong tập " tương_lai của bản_thân mình ' n ' me " các chàng trai phát_hiện ra một giấy_tờ chung và cán trên một gốc cây trong rừng
-4 12 12 16 16 nó mở ra với một nhóm các nhà ngoại_giao có một cuộc thảo_luận xung_quanh một chiếc bàn chữ_nhật được bao_phủ bởi một miếng vải màu xanh lá cây
-4 1 1 5 7 các nguyên_tắc mà dựa vào vi_lượng đồng căn là rất khác với niềm tin y_học thông_thường
-4 0 0 4 4 gấu đã đi vào ngủ_đông
-4 8 8 14 14 đức giám_mục cũng vui_mừng khi nói về một_số vấn_đề gây tranh_cãi đang ảnh_hưởng đến nhà_thờ vào lúc này
-4 5 5 7 7 những xu_hướng này đã đưa phụ_nữ vào tình_huống ức_chế hoàn_toàn
-4 0 0 5 6 thanh gỗ được gắn vào tay ghế , trên ghế tôi có một lỗ hình chữ l. ( góc ) dưới tay_vịn
-4 4 5 11 11 giống như shibnath , nhân_vật chính của chúng_tôi cũng tham_gia vào phong_trào tự_do của ấn_độ , đối_mặt với những rắc_rối của chế_độ nước_ngoài , và được lấy cảm_hứng từ sarojini_naidu và các nhân_vật đáng chú_ý khác như nhà_lãnh_đạo cộng_sản cựu_chiến_binh ravi_narayan_reddy
-4 0 0 6 6 quá_trình này được hỗ_trợ bởi sự can_thiệp lành_mạnh hoặc bỏ_bê
-4 25 25 24 24 một trong những bức chân_dung sống_động nhất là của brookie_simmons , một người phụ_nữ da trắng đã chiến_đấu để xoá_bỏ lao_động trẻ_em trong một nhà_máy thị_trấn
-4 5 5 7 7 đây là một nhánh của triết_học về bản_chất của vẻ đẹp , nghệ_thuật và hương_vị , cùng với sự sáng_tạo và đánh_giá cao vẻ đẹp
-4 8 8 12 12 các nhà_lãnh_đạo tương_lai của chúng_ta đang học về kinh_tế và chính_trị từ thế_giới thực
-4 0 0 3 3 phong_cách âm_nhạc phản_ánh cảm_xúc và tình_huống trải_nghiệm trong cuộc_sống hàng ngày
-4 5 6 10 11 nhìn từ một phía , bức tường bao quanh một khu đất rộng sáu mươi mẫu anh , được gọi là cảng anarres
-4 2 2 6 8 mỗi con hươu phát_triển từ một điểm đính kèm trên hộp sọ được gọi là cuống
-4 0 1 5 5 sự phong_phú của đất với chiết_xuất tảo biển lỏng chỉ có một tác_dụng kiềm có_thể gây ra sự ghét
-4 28 28 31 31 các ngân_hàng , để sử_dụng các khoản tiền gửi của chính_phủ , đã cho khách_hàng của họ một chỗ ở bất_thường , cho đến khi , trong một vòng_tròn của những sai_lầm , toàn_bộ vùng_đất mơ_ước trở_nên giàu_có bằng cách bán cho nhau những mảnh đất không sản_sinh ra_gì
-4 17 17 2 2 các nhà_sản_xuất ô_tô lớn đang tung ra nhiều xe hơn để đạt được vị_trí hàng_đầu trong khu rừng ô_tô này
-4 3 3 6 7 thay_vì đặt những hạt_giống vào một cái giỏ đựng máy lọc , chúng được đặt trong một chiếc khăn ướt hoặc tấm vải và treo lên
-4 0 0 5 6 công_ty chúng_tôi đã bước vào kinh_doanh bán_lẻ độc_quyền và có kế_hoạch mở 60 cửa_hàng bán_lẻ trong nước trong 5 năm tới
-4 1 2 8 9 các khoản vay này đang đi vào tình_trạng tịch_thu tài_sản đáng_kể chậm hơn các khoản vay thông_thường
-4 4 4 3 3 họ là những công_nhân chăn_nuôi gia_cầm và gia_đình của bạn , những người mà tội_phạm chính là vượt qua biên_giới , một đường tuỳ_ý xác_định người giàu và người nghèo , ai có quyền và ai không
-4 22 22 25 25 vào mùa xuân năm 1950 , fcc đã đưa ra cảnh_báo cho các hãng phim_ảnh hollywood về việc giữ lại sản_phẩm và tài_năng từ phát_sóng truyền_hình , trong đó các nhà triển_lãm điện_ảnh tố_cáo là " một tuyên_bố bắt_nạt "
-4 12 12 15 15 các con mèo bị suy_dinh_dưỡng đã được phục_hồi với việc tiếp_xúc với thực_phẩm từ sáu tuần tuổi trở lên , và cuối_cùng đạt được kích_thước cơ_thể bình_thường
-4 0 0 3 3 tôn_giáo đã trở_thành chủ_đề nóng nhất của nghiên_cứu đối_với sử_gia hoa_kỳ
-4 3 3 10 11 chính_phủ này coi khoa_học chỉ đơn_giản là một công_cụ để tạo ra lợi_nhuận
-4 4 4 9 10 luận_án này khảo_sát bốn quan_điểm được sao_chép của chính người viết
-4 5 6 11 11 nội_các nepala đã tổ_chức một cuộc họp ngoài_trời lạnh_lẽo trên đỉnh núi everest hôm_nay
-4 0 0 5 5 nhà_phát_triển java đã chuyển sang quản_trị weblogic
-4 1 1 4 5 các nhà_sản_xuất đã trồng sò điệp đông_lạnh dẫn đến việc loại_bỏ spike khỏi top_chef
-4 0 0 3 3 công_ty lắp_ráp một nhóm dự_án bao_gồm các tác_giả của bài báo này để phát_triển kinh_doanh bưu_chính viễn_thông của onstar
-4 1 1 4 5 cuốn sách xuất_phát từ bộ phim theo nhiều khía_cạnh , nhưng eggers làm một công_việc tuyệt_vời đưa chúng_ta vào đầu max và động_lực
-4 1 1 8 9 mỗi học_sinh là một người tham_gia trong một buổi họp qua web
-4 1 2 7 7 hầu_hết mọi người đều quen_thuộc với những cảm_giác lo_lắng
-4 2 3 5 6 năng_lực là sự kết_hợp của nguồn nhân_lực và các tổ_chức cho_phép các nước đạt được các mục_tiêu phát_triển của mình
-4 0 0 2 2 đội kết_thúc mùa giải với kỷ_lục 9-11 , chỉ thiếu sự cạnh_tranh về giải đấu
-4 19 19 24 24 nó trở_thành nỗi ám_ảnh , nhưng , thất_vọng ở mỗi lượt , cuối_cùng ông đã làm gì với một bản_sao được thực_hiện bởi một công_ty gia_đình ở nottingham
-4 1 2 9 9 những cư_dân thành_phố này đã chìm vào những điều gớm_ghiếc
-4 7 7 10 10 mô_hình mô_tả mối quan_hệ giữa chính_phủ và người_quản_lý của một công_ty sản_xuất ra hàng_hoá công_cộng thuần_tuý dưới quyền_sở_hữu của tư_nhân hoặc công
-4 1 1 7 8 sự tàn_bạo là một phần nội_tại của cuộc_sống trồng_trọt và không một đứa trẻ , dù được đặc_quyền hay được bảo_vệ , có_thể thoát khỏi sự xấu_hổ hay hoang_tàn
-4 0 0 4 4 cảnh_sát nói với một điều_tra_viên mở của chính_phủ rằng " không đưa ra hồ_sơ "
-4 4 4 5 5 con_cái tạo ra một tổ cỏ trong một cái rỗng trên mặt_đất
-4 1 1 9 9 các trẻ_em có được để nhảy xung_quanh trong một bao_tải hoặc gối
-4 1 1 6 6 những ưu_điểm quan_trọng hơn liên_quan đến vị_trí của một người thuận tay_trái đối_với cơ_sở
-4 0 1 4 4 chuyến đi của hai dê núi đến cũng là một chủ_đề để thảo_luận
-4 1 1 6 7 các santur ban_đầu được làm bằng vỏ cây , đá và chuỗi với ruột dê
-4 4 4 6 6 một_số năm 2002 , giám_đốc_điều_hành của tập_đoàn này đã tìm_kiếm và nhận được chấp_thuận của hội_đồng để xây_dựng một trường đào_tạo hiện_đại cho nhân_viên của mình
-4 5 5 14 14 trong nhiều thập_kỷ qua , lãnh_đạo đã có phương_pháp làm cho đảng vào một bộ_máy bầu_cử lại
-4 7 7 10 10 khi bạn già đi , xương và sụn tạo nên xương_sống và xương_sống của bạn dần_dần xấu đi , đôi_khi tạo thành các xương mọc không đều , gọi là xương_xương
-4 3 3 13 13 những đứa trẻ thiếu_niên vô_gia_cư trở về nhà với sự giúp_đỡ của mối quan_hệ gia_đình
 4 0 2 14 14 các nhà môi_trường , các tiện_ích , và các doanh_nghiệp xanh đang chuyển sang kinh_tế hành_vi
 4 0 1 11 11 toà_án tối_cao đã áp_dụng các biện_pháp bảo_vệ sửa_đổi này cho các tiểu_bang thông_qua điều_khoản đúng_quy trình điều 14
 4 9 9 11 11 trong cuối những gì còn lại của thành_phố là dặm từ biển , và nhiều trong số các cư_dân trái_đất thấp đầm lầy để sống trên các ngọn đồi xung_quanh
+0 18 20 25 25 do_đó , đánh_giá hình_phạt tử_hình như là một hình_thức được giảm bởi sellin để chỉ ước_tính tỷ_lệ các vụ giết người vốn dẫn đến việc chấp_hành
 4 3 3 9 10 các tác_giả đề_xuất cụm thiên_hà như một công_cụ cho vũ_trụ học
+0 0 1 5 6 thân tàu gây ra một vết xước trên mắt và đó là lý_do tại_sao nó không phải là chữa bệnh tất_cả các cách
+0 1 1 6 7 cuộc thảm_sát đã dẫn đến một sự tấn_công địa_phương và quốc_tế
 4 4 5 7 7 tổ_tiên chúng_ta đã truyền kiến ​​thức cho con_cháu
+0 1 2 9 9 cả cảm lạnh lẫn cúm đều gây ra chứng viêm các niêm_mạc ( thấy ở mũi , họng và miệng )
 4 2 2 5 5 texas chuẩn_bị đè_bẹp các vụ hành_quyết
+0 0 0 7 8 táo_bón là nguyên_nhân phổ_biến nhất gây ra đau bụng ở trẻ_em
 4 1 1 6 6 22 đoàn nhảy_múa truyền_thống đã tham_dự lễ_hội razlog
 4 4 4 6 6 đối_với mục_đích đăng_ký , tài_sản trên tàu được chia thành 64 cổ_phần không chia
 4 0 0 6 6 bố_mẹ anh ta bị kéo vào gian_lận bảo_hiểm_nhân_thọ của anh ta
@@ -1210,36 +1195,51 @@
 4 1 2 9 9 một tay súng đã bơm một viên đạn vào chân phải và chạy trốn khỏi cửa_hàng tiện_dụng northwest_side với hàng trăm đô_la
 4 18 18 20 20 những khám_phá bí_ẩn của vật_chất tối cách đây vài thập_niên và năng_lượng tối một_vài năm trước đã ném vật_lý vào hỗn_loạn
 4 17 17 24 24 nghiên_cứu hiện_tại chứng_minh rằng sự phát_triển mạch xảy ra sớm sau khi cấy_ghép , kết_quả là một hookup của người hiến và người nhận tàu
+0 0 1 12 12 nội suy của các mẫu mất_tích sửa_chữa dạng sóng với tối_thiểu là biến_dạng
 4 13 13 18 18 người đàn_ông bị án tù chung_thân , vụ đòi tiền chuộc của người phụ_nữ anh ta giữ trong quan_tài
+0 11 11 24 24 nhưng trong số những người nghiện heroin đặc_biệt , thường có trầm_cảm rất trầm_trọng , và trầm_cảm là một trong những nguyên_nhân chính của tự_tử
 4 7 7 9 9 hành_động của ông đã ném hàng ngàn người vào án tử_hình về tài_chính
+0 3 3 10 10 chúng_tôi giảm_thiểu các dòng_chảy quá mức gây ra lũ_lụt , xói_mòn và mất môi_trường sống
+0 2 3 7 7 ví_dụ , bệnh sởi và thuỷ_đậu gây phát_ban cùng với các triệu_chứng khác
+0 2 2 8 8 tuy_nhiên , đề_xuất quy_hoạch đã tạo ra sự phản_đối từ người_dân địa_phương đã lên_tiếng về những vấn_đề sức_khoẻ
+0 2 3 13 14 allaah quyết_định niềm vui và nỗi buồn , bởi_vì niềm vui dẫn đến tiếng cười và nỗi buồn dẫn đến khóc
 4 0 0 2 2 trọng_tài của trò_chơi bắt_đầu trò_chơi và yêu_cầu một động_thái từ người chơi đầu_tiên
 4 1 1 6 6 các mũi_tên hoạt_động như avatar của sinh_viên
 4 1 2 4 4 các tiệm bánh ở khu_vực siêu_thị cũng giảm_giá hàng_hoá của họ như là phương_pháp tiếp_cận thời_gian đóng_cửa
 4 4 5 8 9 tôi đã mua một giỏ hàng đầy_đủ các cửa_hàng tạp_hoá , và chi_tiêu một phần của những gì tôi muốn ở bất_kỳ cửa_hàng tạp_hoá thường_xuyên
+0 13 13 15 15 tiến_sĩ marshall là người phát_hiện ra helicobacter ( h . pylori ) , vi_trùng gây loét dạ_dày
 4 19 19 21 21 các công_thức nấu_ăn được tuyển_chọn từ các đầu_bếp nhà_hàng , tạp_chí và brother victor-antoine d ' avila-latourrette , một nhà_sư và tác_giả sách nấu_ăn
 4 21 21 24 24 các thời_điểm khi các rạn san_hô đã được sống ( 125.000 , 105.000 và 82.000 năm trước ) kết_hợp chặt_chẽ các ngày từ các chu_trình của milankovitch vào những thời_điểm các tảng băng nên tan chảy và biển_cả ở mức cao nhất ( 127.000 , 106.000 và 82.000 năm trước )
 4 1 2 5 6 các nghi phạm đã bị bắt giam vì các câu hỏi
+0 1 1 5 5 vụ tai_nạn gây ra một vết_thương ở phía tây của lầu_năm_góc có chiều rộng khoảng 30 thước và sâu 10 mét
 4 3 3 5 5 các nhà_khoa_học bơm chất_lỏng vào động_vật
+0 4 4 6 6 một chất kích_thích , nicotin làm tăng sự cảnh_giác và cảm_giác bình_tĩnh
 4 7 8 10 10 nghiên_cứu mới của ông cho thấy các thân cây trong rừng có vai_trò như chai nước nóng
 4 0 0 6 7 vấn_đề này đã trở_thành chủ_đề của hành_động pháp_lý kéo_dài , từ đó người sử_dụng lao_động nổi lên chiến_thắng
 4 1 1 11 11 các nghiên_cứu gần đây đang có những đóng_góp có giá_trị cho lịch_sử logic trong một giai_đoạn ít được biết đến ở phương tây
+0 11 11 12 12 có rất nhiều loại và nguyên_nhân của nhức đầu , từ căng_thẳng đau_đầu do căng_thẳng để chứng đau nửa đầu gây ra bởi các loại thực_phẩm nhất_định
 4 1 1 5 5 các nẹp cổ do các cơ ở phía trước và hai bên chân
 4 3 4 6 7 ông ta di_chuyển mọi người vào hành_động khí_hậu
 4 0 0 6 6 met di_động nằm trong một chiếc xe đậu bên trong một kho lưu_trữ tại 4095 west_kearns
+0 2 2 5 5 những bài kiểm_tra này thiết_lập thông_tin cơ_bản về nhân_viên và giúp đảm_bảo rằng chúng phù_hợp với nhu_cầu vật_chất của công_việc của họ
 4 14 14 17 19 tour diễn của california đã chạy qua west_marin hôm thứ hai trong một sự mờ_nhạt của những người đi xe_đạp tốc_độ và đoàn caravan của họ về các phương_tiện hỗ_trợ , một lần nữa làm dấy lên những cáo_buộc rằng nó làm cho khán_giả bị tổn_hại
+0 3 3 16 16 cả hai loại thuốc giảm đau không theo toa và thuốc theo toa đều gây ra đau_đầu về thuốc_men
 4 17 18 4 4 nhà_nước đã từ_bỏ các đòi_hỏi về văn_hoá xã_hội của cả nước và vội_vã tham_gia cộng_đồng tai_tiếng và tình bạn của các bạo_chúa
 4 0 0 4 4 đại_sứ_quán hoa_kỳ đã tham_dự khai_mạc triển_lãm độc_đáo về tướng pika
 4 12 12 7 7 nguồn_gốc của các thiết_bị mở_rộng bề_mặt từ gân dây kéo chung được căng
 4 3 3 8 8 nguyên_mẫu đầu_tiên của hệ_thống mới được xây_dựng từ thiết_kế sơ_bộ
 4 1 1 8 8 cách tiếp_cận hợp_lý đã được chưng_cất từ ​​cú sốc ban_đầu ở dữ_liệu xung_đột
 4 9 10 12 12 họ trình_bày rất rộng_rãi và chi_tiết báo_cáo về nhà_kính sưởi ấm với phân
+0 2 2 5 5 cả hai vi_khuẩn gây ra tử_vong ở các loài đích thông_qua một nhiễm_trùng huyết chết người do sự nảy mầm của bào_tử
 4 15 16 21 21 như các nhà_xuất_bản trong ngành công_nghiệp chăm_sóc sức_khoẻ lâu năm , chúng_tôi cũng hoài_nghi về sự bận_rộn của những người mới khởi_nghiệp trong lĩnh_vực này
 4 0 0 12 13 dốc núi nevado_mismi ở độ cao 5316 mét là nguồn cuối_cùng của dòng sông
+0 9 9 0 1 nhức đầu mãn_tính hàng ngày là nhức đầu do căng_thẳng hoặc nhức đầu gây ra bởi việc uống quá nhiều thuốc giảm đau
 4 10 12 7 8 ngay khi người lâm nguyệt nhìn thấy tên trộm , người đốn gỗ nghĩ rằng " nếu tôi giết ông ta và đưa ông ta đến thẩm_quyền , tôi sẽ nhận được một phần_thưởng . "
 4 6 6 12 14 vì một lý_do nào đó , ngôi_sao này đã bị mù từ cái nhìn sâu_sắc của mình về sự không tương_xứng của thời_gian
 4 0 1 4 4 nước mưa rơi vào sử_dụng đặc_biệt
 4 5 5 8 8 chính_phủ irac đã thành_lập một uỷ_ban xem_xét đề_xuất sửa_đổi hiến_pháp iraq
 4 5 6 7 7 những kinh_nghiệm mới ném các tế_bào thần_kinh đảo_ngược
+0 8 8 12 12 hơn_nữa , mật_độ pha_tạp bề_mặt tại đó ảnh_hưởng ion_hoá gây ra sự_cố sét ở đường nối tụ_điện đường_ống đã được ước_tính
 4 5 5 7 8 tôi thực_sự đã vào sử_dụng bột_nở để làm sạch , vì_vậy tôi mua nó với số_lượng lớn
 4 9 9 6 6 mỗi khu_vực được biểu_thị bằng một biểu_tượng cho thấy vùng này sẽ bị chinh_phục như_thế_nào
 4 4 5 9 10 năm 1993 , các hãng tin quốc_tế báo_cáo vụ giết người của cậu bé người anh bốn tuổi tên là james_bulger

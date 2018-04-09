@@ -23,6 +23,7 @@ def train(split, x, y, x_index, embeddings, log_dir, model_config={}):
             F1score(),
             ModelCheckpoint(weights_path, monitor='f1', verbose=1, save_best_only=True, save_weights_only=True,
                             mode='max'),
+            EarlyStopping(patience=5, monitor='f1', mode='max')
         ]
 
         x_train = [d[x_index[train_index]] for d in x]

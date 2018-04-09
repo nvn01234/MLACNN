@@ -60,7 +60,7 @@ def main():
     embeddings = make_dict(word_embeddings, position_embeddings_1, position_embeddings_2)
 
     print("training")
-    config = K.tf.ConfigProto(log_device_placement=False, allow_soft_placement=True, intra_op_parallelism_threads=4, inter_op_parallelism_threads=4, device_count = {'CPU': 4})
+    config = K.tf.ConfigProto(log_device_placement=False, allow_soft_placement=True)
     sess = K.tf.Session(config=config)
     K.set_session(sess)
 

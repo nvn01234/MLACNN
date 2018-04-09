@@ -3,16 +3,17 @@ import os
 import numpy as np
 from keras.callbacks import ModelCheckpoint, EarlyStopping, TensorBoard
 from keras import backend as K
-
 from metrics import F1score
 from models import build_model
 from settings import *
 from utils import make_dict
 from sklearn.model_selection import StratifiedKFold
 from metrics import evaluate
+from itertools import tee
 
 
 def train(split, x, y, x_index, embeddings, log_dir, model_config={}):
+    split = tee(split)
     f1_scores = []
     for i, (train_index, test_index) in enumerate(split):
         print("training fold %d" % (i + 1))

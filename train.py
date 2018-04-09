@@ -1,3 +1,4 @@
+import json
 import os
 import numpy as np
 from keras.callbacks import ModelCheckpoint, EarlyStopping, TensorBoard
@@ -43,6 +44,7 @@ def train(split, x, y, x_index, embeddings, log_dir, model_config={}):
         f1_scores.append(f1)
     f1_avg = sum(f1_scores) / len(f1_scores)
     print("model_config: %s, f1_avg = %.2f" % (str(model_config), f1_avg))
+    return f1_avg
 
 
 def main():
@@ -70,11 +72,14 @@ def main():
     os.makedirs(log_dir, exist_ok=True)
     split = skf.split(x_index, y)
 
-    train(split, x, y, x_index, embeddings, log_dir, {})
-    train(split, x, y, x_index, embeddings, log_dir, {"lexical_feature":[1,2,3,4]})
-    train(split, x, y, x_index, embeddings, log_dir, {"piecewise_max_pool": True})
-    train(split, x, y, x_index, embeddings, log_dir, {"attention_input": True})
-    train(split, x, y, x_index, embeddings, log_dir, {"attention_input": True, "piecewise_max_pool": True, "lexical_feature": [1,2,3,4]})
+    f1_avgs = [
+        train(split, x, y, x_index, embeddings, log_dir, {}),
+        train(split, x, y, x_index, embeddings, log_dir, {"lexical_feature":[1,2,3,4]}),
+        train(split, x, y, x_index, embeddings, log_dir, {"piecewise_max_pool": True}),
+        train(split, x, y, x_index, embeddings, log_dir, {"attention_input": True}),
+        train(split, x, y, x_index, embeddings, log_dir, {"attention_input": True, "piecewise_max_pool": True, "lexical_feature": [1,2,3,4]}),
+    ]
+    json.dump(f1_avgs, open("log/f1_avgs.json", "w", encoding="utf8"))
 
 if __name__ == "__main__":
     main()

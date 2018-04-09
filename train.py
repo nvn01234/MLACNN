@@ -61,11 +61,7 @@ def main():
     embeddings = make_dict(word_embeddings, position_embeddings_1, position_embeddings_2)
 
     print("training")
-    config = ConfigProto()
-    config.log_device_placement = False
-    config.allow_soft_placement = True
-    config.device_count.CPU = 4
-    # config.gpu_options.allow_growth = True
+    config = ConfigProto(device_count={'CPU': 4}, log_device_placement=False, allow_soft_placement=True)
     sess = Session(config=config)
     K.set_session(sess)
 

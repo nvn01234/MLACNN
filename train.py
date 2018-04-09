@@ -63,6 +63,8 @@ def main():
     print("training")
     config = ConfigProto()
     config.log_device_placement = False
+    config.allow_soft_placement = True
+    config.device_count = {'CPU': 4}
     # config.gpu_options.allow_growth = True
     sess = Session(config=config)
     K.set_session(sess)

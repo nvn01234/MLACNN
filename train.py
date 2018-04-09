@@ -2,7 +2,6 @@ import json
 import os
 import numpy as np
 from keras.callbacks import ModelCheckpoint, EarlyStopping, TensorBoard
-from tensorflow import ConfigProto, Session
 from keras import backend as K
 
 from metrics import F1score
@@ -61,8 +60,8 @@ def main():
     embeddings = make_dict(word_embeddings, position_embeddings_1, position_embeddings_2)
 
     print("training")
-    config = ConfigProto(device_count={'CPU': 4}, log_device_placement=False, allow_soft_placement=True)
-    sess = Session(config=config)
+    config = K.tf.ConfigProto(log_device_placement=False, allow_soft_placement=True, intra_op_parallelism_threads=4, inter_op_parallelism_threas=4)
+    sess = K.tf.Session(config=config)
     K.set_session(sess)
 
     os.makedirs("model", exist_ok=True)

@@ -13,7 +13,6 @@ from itertools import tee
 
 
 def train(split, x, y, x_index, embeddings, log_dir, model_config={}):
-    split = tee(split)
     f1_scores = []
     for i, (train_index, test_index) in enumerate(split):
         print("training fold %d" % (i + 1))
@@ -69,6 +68,7 @@ def main():
     log_dir = "log"
     os.makedirs(log_dir, exist_ok=True)
     split = skf.split(x_index, y)
+    split = list(split)
 
     f1_avgs = [
         train(split, x, y, x_index, embeddings, log_dir, {}),

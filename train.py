@@ -12,6 +12,38 @@ from sklearn.model_selection import StratifiedKFold
 from metrics import evaluate
 
 
+def train(split, x, y, x_index, embeddings, log_dir, model_config={}):
+    f1_scores = []
+    for i, (train_index, test_index) in enumerate(split):
+        print("training fold %d" % (i + 1))
+        weights_path = "model/weights_%d.best.h5" % (i + 1)
+
+        callbacks = [
+            TensorBoard(log_dir),
+            F1score(),
+            ModelCheckpoint(weights_path, monitor='f1', verbose=1, save_best_only=True, save_weights_only=True,
+                            mode='max'),
+        ]
+
+        x_train = [d[x_index[train_index]] for d in x]
+        y_train = y[train_index]
+        x_test = [d[x_index[test_index]] for d in x]
+        y_test = y[test_index]
+        model = build_model(embeddings, **model_config)
+        model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True, callbacks=callbacks,
+                  validation_data=[x_test, y_test])
+
+        print("testing fold %d" % (i + 1))
+        model.load_weights(weights_path)
+        scores = model.predict(x_test, verbose=False)
+        predictions = scores.argmax(-1)
+        f1 = evaluate(y_test, predictions, "log/result_%d.txt" % (i + 1))
+        print("f1_score: %.2f" % f1)
+        f1_scores.append(f1)
+    f1_avg = sum(f1_scores) / len(f1_scores)
+    print("model_config: %s, f1_avg = %.2f" % (str(model_config), f1_avg))
+
+
 def main():
     print("load data")
     x = [np.load("data/%s.npy" % name) for name in ["words", "pos1", "pos2", "e1", "e2", "e1context", "e2context", "segments"]]
@@ -35,35 +67,13 @@ def main():
     os.makedirs("model", exist_ok=True)
     log_dir = "log"
     os.makedirs(log_dir, exist_ok=True)
-
     split = skf.split(x_index, y)
-    f1_scores = []
-    for i, (train_index, test_index) in enumerate(split):
-        print("training fold %d" % (i+1))
-        weights_path = "model/weights_%d.best.h5" % (i+1)
 
-        callbacks = [
-            TensorBoard(log_dir),
-            F1score(),
-            ModelCheckpoint(weights_path, monitor='f1', verbose=1, save_best_only=True, save_weights_only=True, mode='max'),
-        ]
-
-        x_train = [d[x_index[train_index]] for d in x]
-        y_train = y[train_index]
-        x_test = [d[x_index[test_index]] for d in x]
-        y_test = y[test_index]
-        model = build_model(embeddings)
-        model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True, callbacks=callbacks, validation_data=[x_test, y_test])
-
-        print("testing fold %d" % (i+1))
-        model.load_weights(weights_path)
-        scores = model.predict(x_test, verbose=False)
-        predictions = scores.argmax(-1)
-        f1 = evaluate(y_test, predictions, "log/result_%d.txt" % (i + 1))
-        print("f1_score: %.2f" % f1)
-        f1_scores.append(f1)
-    f1_avg = sum(f1_scores) / len(f1_scores)
-    print("f1_avg = %.2f" % f1_avg)
+    train(split, x, y, x_index, embeddings, log_dir, {})
+    train(split, x, y, x_index, embeddings, log_dir, {"lexical_feature":[1,2,3,4]})
+    train(split, x, y, x_index, embeddings, log_dir, {"piecewise_max_pool": True})
+    train(split, x, y, x_index, embeddings, log_dir, {"attention_input": True})
+    train(split, x, y, x_index, embeddings, log_dir, {"attention_input": True, "piecewise_max_pool": True, "lexical_feature": [1,2,3,4]})
 
 if __name__ == "__main__":
     main()

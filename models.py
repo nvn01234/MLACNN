@@ -10,7 +10,7 @@ from metrics import evaluate
 from utils import make_dict
 
 
-def build_model(embeddings):
+def build_model(embeddings, lexical_feature=None, attention_input=False, piecewise_max_pool=False):
     # input representation features
     words_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
     pos1_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
@@ -49,7 +49,7 @@ def build_model(embeddings):
     input_repre = Dropout(DROPOUT)(input_repre)
 
     # input attention
-    if ATTENTION_INPUT:
+    if attention_input:
         e1_conved = Conv1D(filters=WORD_EMBED_SIZE,
                            kernel_size=ENTITY_LEN,
                            padding="valid",
@@ -80,23 +80,23 @@ def build_model(embeddings):
                           activation="relu",
                           kernel_initializer=TruncatedNormal(stddev=0.1),
                           bias_initializer=Constant(0.1))(input_repre)
-    if PIECEWISE_MAX_POOL:
+    if piecewise_max_pool:
         input_pooled = PiecewiseMaxPool()([input_conved, segs_input])
     else:
         input_pooled = GlobalMaxPool1D()(input_conved)
 
     # fully connected
-    if LEXICAL_FEATURES is None:
+    if lexical_feature is None:
         output = input_pooled
     else:
         outputs = [input_pooled]
-        if 1 in LEXICAL_FEATURES:
+        if 1 in lexical_feature:
             outputs.append(e1_flat)
-        if 2 in LEXICAL_FEATURES:
+        if 2 in lexical_feature:
             outputs.append(e2_flat)
-        if 3 in LEXICAL_FEATURES:
+        if 3 in lexical_feature:
             outputs.append(e1context_flat)
-        if 4 in LEXICAL_FEATURES:
+        if 4 in lexical_feature:
             outputs.append(e2context_flat)
         output = Concatenate()(outputs)
     output = Dropout(DROPOUT)(output)

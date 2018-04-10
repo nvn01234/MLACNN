@@ -72,11 +72,11 @@ def main():
 
     log_result = [
         train(split, x, y, x_index, embeddings, log_dir, {}),
-        # train(split, x, y, x_index, embeddings, log_dir, {"lexical_feature":[1,2,3,4]}),
-        # train(split, x, y, x_index, embeddings, log_dir, {"piecewise_max_pool": True}),
-        # train(split, x, y, x_index, embeddings, log_dir, {"attention_input": True}),
-        # train(split, x, y, x_index, embeddings, log_dir, {"piecewise_max_pool": True, "attention_input": True}),
-        # train(split, x, y, x_index, embeddings, log_dir, {"attention_input": True, "piecewise_max_pool": True, "lexical_feature": [1,2,3,4]}),
+        train(split, x, y, x_index, embeddings, log_dir, {"lexical_feature":[1,2,3,4]}),
+        train(split, x, y, x_index, embeddings, log_dir, {"piecewise_max_pool": True}),
+        train(split, x, y, x_index, embeddings, log_dir, {"attention_input": True}),
+        train(split, x, y, x_index, embeddings, log_dir, {"piecewise_max_pool": True, "attention_input": True}),
+        train(split, x, y, x_index, embeddings, log_dir, {"attention_input": True, "piecewise_max_pool": True, "lexical_feature": [1,2,3,4]}),
     ]
     json.dump(log_result, open("log/log_result.json", "w", encoding="utf8"))
 

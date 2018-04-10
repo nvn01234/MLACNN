@@ -25,7 +25,7 @@ def build_model(embeddings, lexical_feature=None, attention_input=False, piecewi
 
     # word embedding
     we = embeddings["word_embeddings"]
-    words_embed = Embedding(we.shape[0], we.shape[1], weights=[we], trainable=False)
+    words_embed = Embedding(we.shape[0], we.shape[1], weights=[we])
     words = words_embed(words_input)
     e1 = words_embed(e1_input)
     e2 = words_embed(e2_input)

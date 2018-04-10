@@ -178,7 +178,7 @@ def numpy_save_many(_dict_):
         np.save("data/%s.npy" % k, data)
 
 
-def pretrain_embedding(data, size, padding=False):
+def pretrain_embedding(data, size, padding=False, unknown=None):
     model = Word2Vec(data, size=size, min_count=1)
     model.init_sims(replace=True)
     index = {}
@@ -186,6 +186,9 @@ def pretrain_embedding(data, size, padding=False):
     if padding:
         index["PADDING"] = len(index)
         embeddings.append(np.zeros(size))
+    if unknown is not None:
+        index["UNKNOWN"] = len(index)
+        embeddings.append(unknown)
     for d in model.wv.index2word:
         index[d] = len(index)
         embeddings.append(model.wv.word_vec(d))
@@ -204,7 +207,9 @@ def main():
     print(counter)
 
     print("read word embeddings")
-    word2idx = read_word_embeddings(counter.vocab_word)
+    # word2idx = read_word_embeddings(counter.vocab_word)
+    word2idx, word_embeddings = pretrain_embedding([s.words for s in sentences], WORD_EMBED_SIZE, padding=True, unknown=np.load("origin_data/unknown.npy"))
+    np.save("data/embedding/word_embeddings.npy", word_embeddings)
 
     print("load position embeddings")
     if exists("data/embedding/dis2idx_1.json") and exists("data/embedding/position_embeddings_1.npy"):

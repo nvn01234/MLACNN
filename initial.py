@@ -210,18 +210,12 @@ def main():
     word2idx = read_word_embeddings(counter.vocab_word)
 
     print("load position embeddings")
-    if exists("data/embedding/dis2idx_1.json") and exists("data/embedding/position_embeddings_1.npy"):
-        dis2idx_1 = json.load(open("data/embedding/dis2idx_1.json", "r"))
-    else:
-        dis2idx_1, position_embeddings_1 = pretrain_embedding(counter.distances_1, POSITION_EMBED_SIZE)
-        json.dump(dis2idx_1, open("data/embedding/dis2idx_1.json", "w"))
-        np.save("data/embedding/position_embeddings_1.npy", position_embeddings_1)
-    if exists("data/embedding/dis2idx_2.json") and exists("data/embedding/position_embeddings_2.npy"):
-        dis2idx_2 = json.load(open("data/embedding/dis2idx_2.json", "r"))
-    else:
-        dis2idx_2, position_embeddings_2 = pretrain_embedding(counter.distances_2, POSITION_EMBED_SIZE)
-        json.dump(dis2idx_2, open("data/embedding/dis2idx_2.json", "w"))
-        np.save("data/embedding/position_embeddings_2.npy", position_embeddings_2)
+    dis2idx_1, position_embeddings_1 = pretrain_embedding(counter.distances_1, POSITION_EMBED_SIZE)
+    json.dump(dis2idx_1, open("data/embedding/dis2idx_1.json", "w"))
+    np.save("data/embedding/position_embeddings_1.npy", position_embeddings_1)
+    dis2idx_2, position_embeddings_2 = pretrain_embedding(counter.distances_2, POSITION_EMBED_SIZE)
+    json.dump(dis2idx_2, open("data/embedding/dis2idx_2.json", "w"))
+    np.save("data/embedding/position_embeddings_2.npy", position_embeddings_2)
 
     encoder = Encoder(word2idx, dis2idx_1, dis2idx_2)
 

@@ -207,9 +207,7 @@ def main():
     print(counter)
 
     print("read word embeddings")
-    # word2idx = read_word_embeddings(counter.vocab_word)
-    word2idx, word_embeddings = pretrain_embedding([s.words for s in sentences], WORD_EMBED_SIZE, padding=True, unknown=np.load("origin_data/unknown.npy"))
-    np.save("data/embedding/word_embeddings.npy", word_embeddings)
+    word2idx = read_word_embeddings(counter.vocab_word)
 
     print("load position embeddings")
     if exists("data/embedding/dis2idx_1.json") and exists("data/embedding/position_embeddings_1.npy"):

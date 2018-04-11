@@ -10,7 +10,7 @@ from metrics import evaluate
 from utils import make_dict
 
 
-def build_model(embeddings, lexical_feature=None, attention_input=False, piecewise_max_pool=False):
+def build_model(embeddings, lexical_feature=None, attention_input=0, piecewise_max_pool=False):
     # input representation features
     words_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
     pos1_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
@@ -49,7 +49,7 @@ def build_model(embeddings, lexical_feature=None, attention_input=False, piecewi
     input_repre = Dropout(DROPOUT)(input_repre)
 
     # input attention
-    if attention_input:
+    if attention_input == 1:
         e1_conved = Conv1D(filters=WORD_EMBED_SIZE,
                            kernel_size=ENTITY_LEN,
                            padding="valid",
@@ -66,6 +66,15 @@ def build_model(embeddings, lexical_feature=None, attention_input=False, piecewi
                            bias_initializer=Constant(0.1))(e2)
         e2_conved = Reshape([WORD_EMBED_SIZE])(e2_conved)
         e2_repeat = RepeatVector(SEQUENCE_LEN)(e2_conved)
+        concat = Concatenate()([words, e1_repeat, e2_repeat])
+        alpha = Dense(1, activation="softmax")(concat)
+        alpha = Reshape([SEQUENCE_LEN])(alpha)
+        alpha = RepeatVector(WORD_REPRE_SIZE)(alpha)
+        alpha = Permute([2, 1])(alpha)
+        input_repre = Multiply()([input_repre, alpha])
+    elif attention_input == 2:
+        e1_repeat = RepeatVector(SEQUENCE_LEN)(e1_flat)
+        e2_repeat = RepeatVector(SEQUENCE_LEN)(e2_flat)
         concat = Concatenate()([words, e1_repeat, e2_repeat])
         alpha = Dense(1, activation="softmax")(concat)
         alpha = Reshape([SEQUENCE_LEN])(alpha)

@@ -202,7 +202,7 @@ def main():
     counter = Counter()
 
     print("read data")
-    sentences, y = read_file("origin_data/new_data.cln", counter)
+    sentences, y = read_file("origin_data/data.cln", counter)
 
     print(counter)
 

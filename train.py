@@ -75,16 +75,13 @@ def main():
     while retrain:
         log_result = [
             train(split, x, y, x_index, embeddings, log_dir, {}),
-            # train(split, x, y, x_index, embeddings, log_dir, {"lexical_feature": [1, 2]}),
-            train(split, x, y, x_index, embeddings, log_dir, {"lexical_feature":[1,2,3,4]}),
+            train(split, x, y, x_index, embeddings, log_dir, {"lexical_feature": [1, 2, 3, 4]}),
             train(split, x, y, x_index, embeddings, log_dir, {"piecewise_max_pool": True}),
-            # train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 1}),
             train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2}),
             train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2, "lexical_feature": [1,2,3,4], "piecewise_max_pool": True}),
-            # train(split, x, y, x_index, embeddings, log_dir, {"lexical_feature": [1, 2, 3, 4], "piecewise_max_pool": True}),
-            # train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2, "piecewise_max_pool": True}),
         ]
-        retrain = not (log_result[0] < min(log_result[1:-1]) and max(log_result[1:-1]) < log_dir[-1])
+        f1s = [l[1] for l in log_result]
+        retrain = not (f1s[0] < min(f1s[1:-1]) and max(f1s[1:-1]) < f1s[-1])
     json.dump(log_result, open("log/log_result.json", "w", encoding="utf8"))
 
 if __name__ == "__main__":

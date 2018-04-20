@@ -10,13 +10,17 @@ from utils import make_dict
 from sklearn.model_selection import StratifiedKFold
 from metrics import evaluate
 from itertools import tee
+from datetime import datetime
 
 
 def train(split, x, y, x_index, embeddings, log_dir, model_config={}):
     f1_scores = []
+    timestamp = int(datetime.now().timestamp())
+    os.makedirs("log/%d" % timestamp, exist_ok=True)
+    os.makedirs("model/%d" % timestamp, exist_ok=True)
     for i, (train_index, test_index) in enumerate(split):
         print("training fold %d" % (i + 1))
-        weights_path = "model/weights_%d.best.h5" % (i + 1)
+        weights_path = "model/%d/weights_%d.best.h5" % (timestamp, i + 1)
 
         callbacks = [
             TensorBoard(log_dir),
@@ -38,12 +42,12 @@ def train(split, x, y, x_index, embeddings, log_dir, model_config={}):
         model.load_weights(weights_path)
         scores = model.predict(x_test, verbose=False)
         predictions = scores.argmax(-1)
-        f1 = evaluate(y_test, predictions, "log/result_%d.txt" % (i + 1))
+        f1 = evaluate(y_test, predictions, "log/%d/result_%d.txt" % (timestamp, i + 1))
         print("f1_score: %.2f" % f1)
         f1_scores.append(f1)
     f1_avg = np.average(f1_scores)
     print("model_config: %s, f1_avg = %.2f" % (str(model_config), f1_avg))
-    return model_config, f1_avg
+    return [timestamp, model_config, f1_avg]
 
 
 def main():
@@ -70,18 +74,13 @@ def main():
     split = skf.split(x_index, y)
     split = list(split)
 
-    retrain = True
-    log_result = []
-    while retrain:
-        log_result = [
-            train(split, x, y, x_index, embeddings, log_dir, {}),
-            train(split, x, y, x_index, embeddings, log_dir, {"lexical_feature": [1, 2, 3, 4]}),
-            train(split, x, y, x_index, embeddings, log_dir, {"piecewise_max_pool": True}),
-            train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2}),
-            train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2, "lexical_feature": [1,2,3,4], "piecewise_max_pool": True}),
-        ]
-        f1s = [l[1] for l in log_result]
-        retrain = not (f1s[0] < min(f1s[1:-1]) and max(f1s[1:-1]) < f1s[-1])
+    log_result = [
+        train(split, x, y, x_index, embeddings, log_dir, {}),
+        train(split, x, y, x_index, embeddings, log_dir, {"lexical_feature": [1, 2, 3, 4]}),
+        train(split, x, y, x_index, embeddings, log_dir, {"piecewise_max_pool": True}),
+        train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2}),
+        train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2, "lexical_feature": [1,2,3,4], "piecewise_max_pool": True}),
+    ]
     json.dump(log_result, open("log/log_result.json", "w", encoding="utf8"))
 
 if __name__ == "__main__":

@@ -78,8 +78,8 @@ def main():
         # train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 1}),
         train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2}),
         train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2, "lexical_feature": [1,2,3,4], "piecewise_max_pool": True}),
-        train(split, x, y, x_index, embeddings, log_dir, {"lexical_feature": [1, 2, 3, 4], "piecewise_max_pool": True}),
-        train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2, "piecewise_max_pool": True}),
+        # train(split, x, y, x_index, embeddings, log_dir, {"lexical_feature": [1, 2, 3, 4], "piecewise_max_pool": True}),
+        # train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2, "piecewise_max_pool": True}),
     ]
     json.dump(log_result, open("log/log_result.json", "w", encoding="utf8"))
 

@@ -16,14 +16,14 @@ from datetime import datetime
 def train(split, x, y, x_index, embeddings, log_dir, model_config={}):
     f1_scores = []
     timestamp = int(datetime.now().timestamp())
-    os.makedirs("log/%d" % timestamp, exist_ok=True)
-    os.makedirs("model/%d" % timestamp, exist_ok=True)
+    cur_log_dir = "%s/%d" % (log_dir, timestamp)
+    os.makedirs(cur_log_dir, exist_ok=True)
     for i, (train_index, test_index) in enumerate(split):
         print("training fold %d" % (i + 1))
-        weights_path = "model/%d/weights_%d.best.h5" % (timestamp, i + 1)
+        weights_path = "%s/weights_%d.best.h5" % (cur_log_dir, i + 1)
 
         callbacks = [
-            TensorBoard(log_dir),
+            TensorBoard(cur_log_dir),
             F1score(),
             ModelCheckpoint(weights_path, monitor='f1', verbose=1, save_best_only=True, save_weights_only=True,
                             mode='max'),
@@ -35,14 +35,14 @@ def train(split, x, y, x_index, embeddings, log_dir, model_config={}):
         x_test = [d[x_index[test_index]] for d in x]
         y_test = y[test_index]
         model = build_model(embeddings, **model_config)
-        model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=True, callbacks=callbacks,
+        model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=False, callbacks=callbacks,
                   validation_data=[x_test, y_test])
 
         print("testing fold %d" % (i + 1))
         model.load_weights(weights_path)
         scores = model.predict(x_test, verbose=False)
         predictions = scores.argmax(-1)
-        f1 = evaluate(y_test, predictions, "log/%d/result_%d.txt" % (timestamp, i + 1))
+        f1 = evaluate(y_test, predictions, "%s/result_%d.txt" % (cur_log_dir, i + 1))
         print("f1_score: %.2f" % f1)
         f1_scores.append(f1)
     f1_avg = np.average(f1_scores)
@@ -68,20 +68,27 @@ def main():
     sess = K.tf.Session(config=config)
     K.set_session(sess)
 
-    os.makedirs("model", exist_ok=True)
-    log_dir = "log"
-    os.makedirs(log_dir, exist_ok=True)
+    timestamp = int(datetime.now().timestamp())
+    log_dir = "log/%d" % timestamp
     split = skf.split(x_index, y)
     split = list(split)
 
     log_result = [
-        train(split, x, y, x_index, embeddings, log_dir, {}),
-        train(split, x, y, x_index, embeddings, log_dir, {"lexical_feature": [1, 2, 3, 4]}),
-        train(split, x, y, x_index, embeddings, log_dir, {"piecewise_max_pool": True}),
-        train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2}),
-        train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2, "lexical_feature": [1,2,3,4], "piecewise_max_pool": True}),
+        # train(split, x, y, x_index, embeddings, log_dir, {}),
+        # train(split, x, y, x_index, embeddings, log_dir, {"lexical_feature": [1, 2, 3, 4]}),
+        # train(split, x, y, x_index, embeddings, log_dir, {"piecewise_max_pool": True}),
+        # train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2}),
+        # train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2, "lexical_feature": [1,2,3,4], "piecewise_max_pool": True}),
+
+        train(split, x, y, x_index, embeddings, log_dir, {"nb_filters_word": 50}),
+        train(split, x, y, x_index, embeddings, log_dir, {"nb_filters_word": 100}),
+        train(split, x, y, x_index, embeddings, log_dir, {"nb_filters_word": 200}),
+        train(split, x, y, x_index, embeddings, log_dir, {"nb_filters_word": 300}),
+        train(split, x, y, x_index, embeddings, log_dir, {"nb_filters_word": 400}),
+        train(split, x, y, x_index, embeddings, log_dir, {"nb_filters_word": 500}),
+        train(split, x, y, x_index, embeddings, log_dir, {"nb_filters_word": 600}),
     ]
-    json.dump(log_result, open("log/log_result.json", "w", encoding="utf8"))
+    json.dump(log_result, open("%s/log_result.json" % log_dir, "w", encoding="utf8"))
 
 if __name__ == "__main__":
     main()

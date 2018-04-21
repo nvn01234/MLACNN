@@ -70,6 +70,7 @@ def main():
 
     timestamp = int(datetime.now().timestamp())
     log_dir = "log/%d" % timestamp
+    print("log_dir = %s" % log_dir)
     split = skf.split(x_index, y)
     split = list(split)
 

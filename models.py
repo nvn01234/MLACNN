@@ -1,4 +1,4 @@
-from keras.optimizers import Adam, SGD
+from keras.optimizers import Adam
 
 from settings import *
 from keras.layers import Input, Concatenate, Conv1D, Dense, Dropout, Embedding, Flatten, RepeatVector, Reshape, \
@@ -121,8 +121,7 @@ def build_model(embeddings, lexical_feature=None, attention_input=0, piecewise_m
     )(output)
 
     model = Model(inputs=[words_input, pos1_input, pos2_input, e1_input, e2_input, e1context_input, e2context_input, segs_input], outputs=[output])
-    optimizer = SGD(lr=LEARNING_RATE)
-    model.compile(loss="sparse_categorical_crossentropy", optimizer=optimizer, metrics=['accuracy'])
+    model.compile(loss="sparse_categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
     # model.summary()
     return model
 

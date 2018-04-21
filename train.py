@@ -74,19 +74,11 @@ def main():
     split = list(split)
 
     log_result = [
-        # train(split, x, y, x_index, embeddings, log_dir, {}),
-        # train(split, x, y, x_index, embeddings, log_dir, {"lexical_feature": [1, 2, 3, 4]}),
-        # train(split, x, y, x_index, embeddings, log_dir, {"piecewise_max_pool": True}),
-        # train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2}),
-        # train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2, "lexical_feature": [1,2,3,4], "piecewise_max_pool": True}),
-
-        train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2, "lexical_feature": [1,2,3,4], "piecewise_max_pool": True, "nb_filters_word": 50}),
-        train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2, "lexical_feature": [1,2,3,4], "piecewise_max_pool": True, "nb_filters_word": 100}),
-        train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2, "lexical_feature": [1,2,3,4], "piecewise_max_pool": True, "nb_filters_word": 200}),
-        train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2, "lexical_feature": [1,2,3,4], "piecewise_max_pool": True, "nb_filters_word": 300}),
-        train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2, "lexical_feature": [1,2,3,4], "piecewise_max_pool": True, "nb_filters_word": 400}),
-        train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2, "lexical_feature": [1,2,3,4], "piecewise_max_pool": True, "nb_filters_word": 500}),
-        train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2, "lexical_feature": [1,2,3,4], "piecewise_max_pool": True, "nb_filters_word": 600}),
+        train(split, x, y, x_index, embeddings, log_dir, {}),
+        train(split, x, y, x_index, embeddings, log_dir, {"lexical_feature": [1, 2, 3, 4]}),
+        train(split, x, y, x_index, embeddings, log_dir, {"piecewise_max_pool": True}),
+        train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2}),
+        train(split, x, y, x_index, embeddings, log_dir, {"attention_input": 2, "lexical_feature": [1,2,3,4], "piecewise_max_pool": True}),
     ]
     json.dump(log_result, open("%s/log_result.json" % log_dir, "w", encoding="utf8"))
 

@@ -10,7 +10,7 @@ from metrics import evaluate
 from utils import make_dict
 
 
-def build_model(embeddings, lexical_feature=None, attention_input=0, piecewise_max_pool=False, nb_filters_word=NB_FILTERS_WORD):
+def build_model(embeddings, lexical_feature=None, attention_input=0, piecewise_max_pool=False):
     # input representation features
     words_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
     pos1_input = Input(shape=[SEQUENCE_LEN], dtype='int32')
@@ -83,7 +83,7 @@ def build_model(embeddings, lexical_feature=None, attention_input=0, piecewise_m
         input_repre = Multiply()([input_repre, alpha])
 
     # word-level convolution
-    input_conved = Conv1D(filters=nb_filters_word,
+    input_conved = Conv1D(filters=NB_FILTERS_WORD,
                           kernel_size=WINDOW_SIZE_WORD,
                           padding="same",
                           activation="relu",

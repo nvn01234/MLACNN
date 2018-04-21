@@ -35,7 +35,7 @@ def train(split, x, y, x_index, embeddings, log_dir, model_config={}):
         x_test = [d[x_index[test_index]] for d in x]
         y_test = y[test_index]
         model = build_model(embeddings, **model_config)
-        model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=False, callbacks=callbacks,
+        model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=NB_EPOCHS, verbose=2, callbacks=callbacks,
                   validation_data=[x_test, y_test])
 
         print("testing fold %d" % (i + 1))

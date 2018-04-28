@@ -1,5 +1,4 @@
-0 Cause-Effect(e1,e2)
-1 Cause-Effect(e2,e1)
-2 Component-Whole(e1,e2)
-3 Component-Whole(e2,e1)
-4 Other
+0 Quê-Quán
+1 Nơi-Làm-Việc
+2 Nghề-Nghiệp
+3 Khác

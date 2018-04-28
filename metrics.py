@@ -1,3 +1,5 @@
+import json
+
 from keras.callbacks import Callback
 import os
 import time
@@ -20,43 +22,56 @@ class F1score(Callback):
         print(' - f1: {:04.2f}'.format(f1))
         logs['f1'] = f1
 
-def gen_key(path, data, idx2relations):
-    with open(path, "w", encoding="utf8") as f:
-        for idx, y in enumerate(data):
-            f.write("%s\t%s\n" % (idx, idx2relations[y]))
-
+def f1_score(precision, recall):
+    return 2 * precision * recall / (precision + recall)
 
 def evaluate(y_true, y_pred, result_path=None):
     y_pred = np.reshape(y_pred, (-1,))
     y_true = np.reshape(y_true, (-1,))
-    idx2relations = {}
-    with open("origin_data/relations.txt", "r", encoding="utf8") as f:
-        for line in f:
-            idx, r = line.strip().split()
-            idx2relations[int(idx)] = r
 
     log_dir = "log"
-    test_keys_path = os.path.join(log_dir, "test_keys.txt")
-    predict_keys_path = os.path.join(log_dir, "predict_keys.txt")
-
     os.makedirs(log_dir, exist_ok=True)
-    gen_key(test_keys_path, y_true, idx2relations)
-    gen_key(predict_keys_path, y_pred, idx2relations)
 
-    if result_path is None:
-        result_path = os.path.join(log_dir, "tmp_result.txt")
-        keep_result = False
-    else:
-        keep_result = True
+    with open("origin_data/relations.txt", "r", encoding="utf8") as f:
+        nlabels = len(f.readlines())
 
-    os.system("perl scorer.pl %s %s > %s" % (predict_keys_path, test_keys_path, result_path))
-    with open(result_path, "r") as f:
-        f1 = float(f.read().strip()[-10:-5])
+    matrix = np.zeros([nlabels, nlabels], dtype='int32')
+    for i, j in zip(y_true, y_pred):
+        matrix[i, j] += 1
+    sum_col = matrix.sum(1)
+    sum_row = matrix.sum(0)
+    sum_all = np.sum(matrix)
+    precisions = matrix.diagonal() / sum_row
+    recalls = matrix.diagonal() / sum_col
+    f1s = f1_score(precisions, recalls)
 
-    os.remove(test_keys_path)
-    os.remove(predict_keys_path)
-    if not keep_result:
-        os.remove(result_path)
+    micro_precision = np.sum(matrix.diagonal()[:-1]) / np.sum(sum_row[:-1])
+    micro_recall = np.sum(matrix.diagonal()[:-1]) / np.sum(sum_col[:-1])
+    micro_f1 = f1_score(micro_precision, micro_recall)
+    macro_precision = np.average(precisions[:-1])
+    macro_recall = np.average(recalls[:-1])
+    macro_f1 = np.average(f1s[:-1])
 
-    return f1
+    if result_path is not None:
+        log = {
+            "y_pred": y_pred.tolist(),
+            "y_true": y_true.tolist(),
+            "matrix": matrix.tolist(),
+            "sum_col": sum_col.tolist(),
+            "sum_row": sum_row.tolist(),
+            "sum_all": sum_all,
+            "precisions": precisions.tolist(),
+            "recalls": recalls.tolist(),
+            "f1s": f1s.tolist(),
+            "micro_precision": micro_precision,
+            "micro_recall": micro_recall,
+            "micro_f1": micro_f1,
+            "macro_precision": macro_precision,
+            "macro_recall": macro_recall,
+            "macro_f1": macro_f1,
+        }
+        with open(result_path, "w", encoding="utf8") as f:
+            json.dump(log, f, ensure_ascii=False)
+
+    return macro_f1
 

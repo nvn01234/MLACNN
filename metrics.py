@@ -23,7 +23,7 @@ class F1score(Callback):
         logs['f1'] = f1
 
 def f1_score(precision, recall):
-    return 2 * precision * recall / (precision + recall)
+    return np.nan_to_num(2 * precision * recall / (precision + recall))
 
 def evaluate(y_true, y_pred, result_path=None):
     y_pred = np.reshape(y_pred, (-1,))
@@ -41,12 +41,12 @@ def evaluate(y_true, y_pred, result_path=None):
     sum_col = matrix.sum(1)
     sum_row = matrix.sum(0)
     sum_all = np.sum(matrix)
-    precisions = matrix.diagonal() / sum_row
-    recalls = matrix.diagonal() / sum_col
+    precisions = np.nan_to_num(matrix.diagonal() / sum_row)
+    recalls = np.nan_to_num(matrix.diagonal() / sum_col)
     f1s = f1_score(precisions, recalls)
 
-    micro_precision = np.sum(matrix.diagonal()[:-1]) / np.sum(sum_row[:-1])
-    micro_recall = np.sum(matrix.diagonal()[:-1]) / np.sum(sum_col[:-1])
+    micro_precision = np.nan_to_num(np.sum(matrix.diagonal()[:-1]) / np.sum(sum_row[:-1]))
+    micro_recall = np.nan_to_num(np.sum(matrix.diagonal()[:-1]) / np.sum(sum_col[:-1]))
     micro_f1 = f1_score(micro_precision, micro_recall)
     macro_precision = np.average(precisions[:-1])
     macro_recall = np.average(recalls[:-1])

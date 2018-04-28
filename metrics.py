@@ -59,16 +59,16 @@ def evaluate(y_true, y_pred, result_path=None):
             "matrix": matrix.tolist(),
             "sum_col": sum_col.tolist(),
             "sum_row": sum_row.tolist(),
-            "sum_all": sum_all,
+            "sum_all": sum_all.tolist(),
             "precisions": precisions.tolist(),
             "recalls": recalls.tolist(),
             "f1s": f1s.tolist(),
-            "micro_precision": micro_precision,
-            "micro_recall": micro_recall,
-            "micro_f1": micro_f1,
-            "macro_precision": macro_precision,
-            "macro_recall": macro_recall,
-            "macro_f1": macro_f1,
+            "micro_precision": micro_precision.tolist(),
+            "micro_recall": micro_recall.tolist(),
+            "micro_f1": micro_f1.tolist(),
+            "macro_precision": macro_precision.tolist(),
+            "macro_recall": macro_recall.tolist(),
+            "macro_f1": macro_f1.tolist(),
         }
         with open(result_path, "w", encoding="utf8") as f:
             json.dump(log, f, ensure_ascii=False)

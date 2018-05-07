@@ -1,0 +1,46 @@
+load data
+load embeddings
+training
+training fold 1
+ - f1: 37.83
+
+Epoch 00001: f1 improved from -inf to 37.83000, saving model to log/1524328332/1524328332/weights_1.best.h5
+ - f1: 43.83
+
+Epoch 00002: f1 improved from 37.83000 to 43.83000, saving model to log/1524328332/1524328332/weights_1.best.h5
+ - f1: 60.56
+
+Epoch 00003: f1 improved from 43.83000 to 60.56000, saving model to log/1524328332/1524328332/weights_1.best.h5
+ - f1: 66.03
+
+Epoch 00004: f1 improved from 60.56000 to 66.03000, saving model to log/1524328332/1524328332/weights_1.best.h5
+ - f1: 62.19
+
+Epoch 00005: f1 did not improve
+ - f1: 65.74
+
+Epoch 00006: f1 did not improve
+ - f1: 68.26
+
+Epoch 00007: f1 improved from 66.03000 to 68.26000, saving model to log/1524328332/1524328332/weights_1.best.h5
+ - f1: 72.52
+
+Epoch 00008: f1 improved from 68.26000 to 72.52000, saving model to log/1524328332/1524328332/weights_1.best.h5
+ - f1: 73.02
+
+Epoch 00009: f1 improved from 72.52000 to 73.02000, saving model to log/1524328332/1524328332/weights_1.best.h5
+ - f1: 74.98
+
+Epoch 00010: f1 improved from 73.02000 to 74.98000, saving model to log/1524328332/1524328332/weights_1.best.h5
+ - f1: 77.63
+
+Epoch 00011: f1 improved from 74.98000 to 77.63000, saving model to log/1524328332/1524328332/weights_1.best.h5
+ - f1: 77.30
+
+Epoch 00012: f1 did not improve
+ - f1: 77.26
+
+Epoch 00013: f1 did not improve
+ - f1: 78.06
+
+Epoch 00014: f1 improved from 77.63000 to 78.06000, saving model to log/1524328332/1524328332/weights_1.best.h5

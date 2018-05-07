@@ -1,0 +1,92 @@
+<<< (2*9+1)-WAY EVALUATION (USING DIRECTIONALITY)>>>:
+
+Confusion matrix:
+        C-E1 C-E2 C-W1 C-W2  _O_ <-- classified as
+      +-------------------------+ -SUM- skip ACTUAL
+ C-E1 |  80    3    0    0   13 |   96    0   96
+ C-E2 |   3  148    0    0    8 |  159    0  159
+ C-W1 |   1    0   99    4   24 |  128    0  128
+ C-W2 |   0    2   10   55   30 |   97    0   97
+  _O_ |   3   10   22   17  199 |  251    0  251
+      +-------------------------+
+ -SUM-   87  163  131   76  274    731    0  731
+
+Coverage = 731/731 = 100.00%
+Accuracy (calculated for the above confusion matrix) = 581/731 = 79.48%
+Accuracy (considering all skipped examples as Wrong) = 581/731 = 79.48%
+Accuracy (considering all skipped examples as Other) = 581/731 = 79.48%
+
+Results for the individual relations:
+      Cause-Effect(e1,e2) :    P =   80/  87 =  91.95%     R =   80/  96 =  83.33%     F1 =  87.43%
+      Cause-Effect(e2,e1) :    P =  148/ 163 =  90.80%     R =  148/ 159 =  93.08%     F1 =  91.93%
+   Component-Whole(e1,e2) :    P =   99/ 131 =  75.57%     R =   99/ 128 =  77.34%     F1 =  76.45%
+   Component-Whole(e2,e1) :    P =   55/  76 =  72.37%     R =   55/  97 =  56.70%     F1 =  63.58%
+                   _Other :    P =  199/ 274 =  72.63%     R =  199/ 251 =  79.28%     F1 =  75.81%
+
+Micro-averaged result (excluding Other):
+P =  382/ 457 =  83.59%     R =  382/ 480 =  79.58%     F1 =  81.54%
+
+MACRO-averaged result (excluding Other):
+P =  82.67%	R =  77.61%	F1 =  79.85%
+
+
+
+<<< (9+1)-WAY EVALUATION IGNORING DIRECTIONALITY >>>:
+
+Confusion matrix:
+         C-E  C-W  _O_ <-- classified as
+      +---------------+ -SUM- skip ACTUAL
+  C-E | 234    0   21 |  255    0  255
+  C-W |   3  168   54 |  225    0  225
+  _O_ |  13   39  199 |  251    0  251
+      +---------------+
+ -SUM-  250  207  274    731    0  731
+
+Coverage = 731/731 = 100.00%
+Accuracy (calculated for the above confusion matrix) = 601/731 = 82.22%
+Accuracy (considering all skipped examples as Wrong) = 601/731 = 82.22%
+Accuracy (considering all skipped examples as Other) = 601/731 = 82.22%
+
+Results for the individual relations:
+             Cause-Effect :    P =  234/ 250 =  93.60%     R =  234/ 255 =  91.76%     F1 =  92.67%
+          Component-Whole :    P =  168/ 207 =  81.16%     R =  168/ 225 =  74.67%     F1 =  77.78%
+                   _Other :    P =  199/ 274 =  72.63%     R =  199/ 251 =  79.28%     F1 =  75.81%
+
+Micro-averaged result (excluding Other):
+P =  402/ 457 =  87.96%     R =  402/ 480 =  83.75%     F1 =  85.81%
+
+MACRO-averaged result (excluding Other):
+P =  87.38%	R =  83.22%	F1 =  85.23%
+
+
+
+<<< (9+1)-WAY EVALUATION TAKING DIRECTIONALITY INTO ACCOUNT -- OFFICIAL >>>:
+
+Confusion matrix:
+         C-E  C-W  _O_ <-- classified as
+      +---------------+ -SUM- xDIRx skip  ACTUAL
+  C-E | 228    0   21 |  249     6     0    255
+  C-W |   3  154   54 |  211    14     0    225
+  _O_ |  13   39  199 |  251     0     0    251
+      +---------------+
+ -SUM-  244  193  274    711    20     0    731
+
+Coverage = 731/731 = 100.00%
+Accuracy (calculated for the above confusion matrix) = 581/731 = 79.48%
+Accuracy (considering all skipped examples as Wrong) = 581/731 = 79.48%
+Accuracy (considering all skipped examples as Other) = 581/731 = 79.48%
+
+Results for the individual relations:
+             Cause-Effect :    P =  228/( 244 +   6) =  91.20%     R =  228/ 255 =  89.41%     F1 =  90.30%
+          Component-Whole :    P =  154/( 193 +  14) =  74.40%     R =  154/ 225 =  68.44%     F1 =  71.30%
+                   _Other :    P =  199/( 274 +   0) =  72.63%     R =  199/ 251 =  79.28%     F1 =  75.81%
+
+Micro-averaged result (excluding Other):
+P =  382/ 457 =  83.59%     R =  382/ 480 =  79.58%     F1 =  81.54%
+
+MACRO-averaged result (excluding Other):
+P =  82.80%	R =  78.93%	F1 =  80.80%
+
+
+
+<<< The official score is (9+1)-way evaluation with directionality taken into account: macro-averaged F1 = 80.80% >>>

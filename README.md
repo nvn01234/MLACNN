@@ -20,7 +20,7 @@ Input file must be placed at `data/input.cln`. The input file can contain multip
 
 - From `word-1` to `word-n` are the preprocessed sentence (tokenized, lowercase)
 
-Example of one line:
+Example one line of input file:
 
     0 0 12 12 văn_hanh ( tên thật nguyễn_văn_hanh ) ( sinh 1927 ) là một ca_sĩ việt_nam
 
@@ -35,4 +35,9 @@ Run `test.py`:
 
 For each record in input file, the model predict one relation. Name of these relations is logged into `data/output.cln` line by line. 
 
+Example one line of output file:
+
+    Nghề-Nghiệp
+
 List of relation provided at `origin_data/relations.txt` 
+

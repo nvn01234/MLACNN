@@ -1,3 +1,4 @@
+import json
 import traceback
 
 
@@ -7,3 +8,9 @@ def make_dict(*expr):
     end = text.find(')', begin)
     text = [name.strip() for name in text[begin:end].split(',')]
     return dict(zip(text, expr))
+
+
+def json_load(path):
+    with open(path, "r", encoding="utf8") as f:
+        content = json.load(f)
+    return content

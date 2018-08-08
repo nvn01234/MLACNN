@@ -117,9 +117,9 @@ class Encoder:
 
 def main():
     print("load embeddings")
-    word_embeddings = np.load("data/embedding/word_embeddings.npy")
-    position_embeddings_1 = np.load("data/embedding/position_embeddings_1.npy")
-    position_embeddings_2 = np.load("data/embedding/position_embeddings_2.npy")
+    word_embeddings = np.load("embedding/word_embeddings.npy")
+    position_embeddings_1 = np.load("embedding/position_embeddings_1.npy")
+    position_embeddings_2 = np.load("embedding/position_embeddings_2.npy")
     embeddings = make_dict(word_embeddings, position_embeddings_1, position_embeddings_2)
 
     print("load model")
@@ -129,9 +129,9 @@ def main():
     model.load_weights(best_weight)
 
     print("load encoder")
-    dis2idx_1 = json_load("data/embedding/dis2idx_1.json")
-    dis2idx_2 = json_load("data/embedding/dis2idx_2.json")
-    word2idx = json_load("data/embedding/word2idx.json")
+    dis2idx_1 = json_load("embedding/dis2idx_1.json")
+    dis2idx_2 = json_load("embedding/dis2idx_2.json")
+    word2idx = json_load("embedding/word2idx.json")
     encoder = Encoder(word2idx, dis2idx_1, dis2idx_2)
 
     print("load input")
